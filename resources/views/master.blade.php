@@ -17,6 +17,10 @@
 
     <div class="container mx-auto">
 
+        <!-- navigation -->
+        @include('partials/navigation')
+        <!-- navigation end -->
+
         @yield('content')
 
 
