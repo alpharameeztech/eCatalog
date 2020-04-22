@@ -9,7 +9,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/tailwind.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -237,6 +237,9 @@
         <!-- popular catalogs end-->
 
     </div>
+
+    @include('partials/footer')
+
 </div>
 
 <script src="{{ mix('js/alpine.min.js') }}" defer></script>
