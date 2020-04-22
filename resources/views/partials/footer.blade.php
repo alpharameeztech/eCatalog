@@ -3,16 +3,11 @@
         <div class="sm:flex mb-4">
             <div class="sm:w-1/4 h-auto">
                 <div class="text-orange mb-2">Orange</div>
-                <ul class="list-reset leading-normal">
-                    <li class="hover:text-orange text-grey-darker">One</li>
-                    <li class="hover:text-orange text-grey-darker">Two</li>
-                    <li class="hover:text-orange text-grey-darker">Three</li>
-                    <li class="hover:text-orange text-grey-darker">Four</li>
-                    <li class="hover:text-orange text-grey-darker">Five</li>
-                    <li class="hover:text-orange text-grey-darker">Six</li>
-                    <li class="hover:text-orange text-grey-darker">Seven</li>
-                    <li class="hover:text-orange text-grey-darker">Eight</li>
-                </ul>
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <a href="" class="hover:underline">Country</a>
+                    </div>
+                </div>
             </div>
             <div class="sm:w-1/4 h-auto sm:mt-0 mt-8">
                 <div class="text-blue mb-2">Blue</div>
