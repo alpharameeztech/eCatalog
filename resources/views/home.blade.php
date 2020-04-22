@@ -1,23 +1,23 @@
-@extends('layouts.app')
+@extends('master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <!-- navigation -->
+    @include('partials/navigation')
+    <!-- navigation end -->
 
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <!-- logos -->
+    @include('partials/logos')
+    <!-- logos end -->
+
+    <!-- catalogs -->
+    <h2 class="text-3xl mt-8">Latest Catalogs</h2>
+    @include('partials/catalog')
+    <!-- catalogs end-->
+
+    <!-- popular catalogs -->
+    <h2 class="text-3xl mt-8">Popular Catalogs</h2>
+    @include('partials/catalog')
+    <!-- popular catalogs end-->
+
 @endsection
