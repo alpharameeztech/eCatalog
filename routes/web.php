@@ -25,7 +25,8 @@ Route::get('/about-us', function () {
 
 Route::get('/home', function(){
     return view('admin.dashboard');
-})->name('admin.dashboard');
+})->name('admin.dashboard')
+    ->middleware('auth');
 
 //
 //======================== public apis ==========================
