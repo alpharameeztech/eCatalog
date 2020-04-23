@@ -27,6 +27,9 @@ window.flash = function(message, type = 'success') {
 Vue.component(
     'flash-component',
     require('./components/admin/Flash.vue').default);
+Vue.component(
+    'loader-component',
+    require('./components/admin/Loader.vue').default);
 
 /**
  * The following block of code may be used to automatically register your
