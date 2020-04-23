@@ -76,9 +76,13 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request )
     {
-        //
+
+        $country = Country::find($request->id);
+        $country->name = $request->name;
+        $country->slug = Str::slug($request->name, '-');
+        $country->save();
     }
 
     /**

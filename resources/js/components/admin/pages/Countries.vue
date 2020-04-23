@@ -162,11 +162,10 @@
             save () {
                 if (this.editedIndex > -1) {
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
-                    // console.log(this.editedIndex)
-                    // console.log(this.editedItem)
 
                     axios.patch('/api/countries', {
-                        name: this.editedItem
+                        id: this.editedItem.id,
+                        name: this.editedItem.name
                     })
                         .then(function (response) {
                             flash('Changes Saved.', 'success');
@@ -175,7 +174,7 @@
 
                         })
                         .catch(function (error) {
-                            flash('Changes Not Saved.', 'error');
+                         
                         })
                         .finally( function() {
                             self.$root.$emit('loading', false);
