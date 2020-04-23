@@ -174,7 +174,6 @@
 
                         })
                         .catch(function (error) {
-                         
                         })
                         .finally( function() {
                             self.$root.$emit('loading', false);

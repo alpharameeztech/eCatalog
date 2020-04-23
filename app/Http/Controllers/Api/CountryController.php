@@ -42,8 +42,8 @@ class CountryController extends Controller
         ]);
 
         $country = new Country;
-        $country->name = $request->name;
-        $country->slug = Str::slug($request->name, '-');
+        $country->name = Str::of($request->name)->trim();
+        $country->slug = Str::slug($country->name , '-');
         $country->save();
     }
 
@@ -78,10 +78,14 @@ class CountryController extends Controller
      */
     public function update(Request $request )
     {
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'name' => 'required|unique:countries|max:255',
+        ]);
 
         $country = Country::find($request->id);
-        $country->name = $request->name;
-        $country->slug = Str::slug($request->name, '-');
+        $country->name = Str::of($request->name)->trim();
+        $country->slug = Str::slug($country->name, '-');
         $country->save();
     }
 
