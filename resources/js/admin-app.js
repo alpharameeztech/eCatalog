@@ -6,6 +6,11 @@
 
 require('./bootstrap');
 
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify);
+
 window.Vue = require('vue');
 
 /**
