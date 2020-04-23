@@ -20,6 +20,14 @@ Vue.use(Vuelidate);
 window.Vue = require('vue');
 window.events = new Vue();
 
+window.flash = function(message, type = 'success') {
+    window.events.$emit('flash', {message, type} );
+}
+
+Vue.component(
+    'flash-component',
+    require('./components/admin/Flash.vue').default);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
