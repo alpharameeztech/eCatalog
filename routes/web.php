@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Routing\Router;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +26,13 @@ Route::get('/about-us', function () {
 Route::get('/home', function(){
     return view('admin.dashboard');
 })->name('admin.dashboard');
+
+//
+//======================== public apis ==========================
+Route::group([
+    'prefix'        => 'api',
+    'namespace'     => 'Api',
+], function (Router $router) {
+    Route::get('/countries', 'CountryController@index')->name('all.countries');
+});
+//======================== public apis end ==========================

@@ -90,7 +90,7 @@
                 class="ml-0 pl-4"
             >
                 <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-                <a href="/admin"><span class="hidden-sm-and-down"  >eCatalog Admin</span></a>
+                <a href="/home"><span class="hidden-sm-and-down"  >eCatalog Admin</span></a>
             </v-toolbar-title>
 
             <v-spacer />
@@ -171,7 +171,8 @@
             dialog: false,
             drawer: null,
             items: [
-                { icon: 'dashboard', text: 'Dashboard', link: '/admin/dashboard', hasAccess: ['admin', 'publisher'] },
+                { icon: 'dashboard', text: 'Dashboard', link: '/home', hasAccess: ['admin', 'publisher'] },
+                { icon: 'list_alt', text: 'Countries', link: '/home/countries', hasAccess: ['admin', 'publisher'] },
             ],
 
         }),
