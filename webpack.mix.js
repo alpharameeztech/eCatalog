@@ -16,6 +16,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/alpine.min.js', 'public/js');
 
 mix.sass('resources/sass/app.scss', 'public/css');
+mix.sass('resources/sass/vuetify.scss', 'public/css');
 mix.sass('resources/sass/tailwind.scss', 'public/css')
     .options({
         processCssUrls: false,
