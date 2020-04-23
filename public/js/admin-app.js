@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -49765,10 +49765,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
+/***/ "./resources/js/admin-app.js":
+/*!***********************************!*\
+  !*** ./resources/js/admin-app.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49917,62 +49917,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/sass/admin.scss":
-/*!***********************************!*\
-  !*** ./resources/sass/admin.scss ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/tailwind.scss":
-/*!**************************************!*\
-  !*** ./resources/sass/tailwind.scss ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/vuetify.scss":
-/*!*************************************!*\
-  !*** ./resources/sass/vuetify.scss ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!******************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/vuetify.scss ./resources/sass/admin.scss ./resources/sass/tailwind.scss ***!
-  \******************************************************************************************************************************************************/
+/***/ 2:
+/*!*****************************************!*\
+  !*** multi ./resources/js/admin-app.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/rameez/code/eCatalog/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/rameez/code/eCatalog/resources/sass/app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! /home/rameez/code/eCatalog/resources/sass/vuetify.scss */"./resources/sass/vuetify.scss");
-__webpack_require__(/*! /home/rameez/code/eCatalog/resources/sass/admin.scss */"./resources/sass/admin.scss");
-module.exports = __webpack_require__(/*! /home/rameez/code/eCatalog/resources/sass/tailwind.scss */"./resources/sass/tailwind.scss");
+module.exports = __webpack_require__(/*! /home/rameez/code/eCatalog/resources/js/admin-app.js */"./resources/js/admin-app.js");
 
 
 /***/ })
