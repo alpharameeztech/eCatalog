@@ -6,12 +6,14 @@
 
 require('./bootstrap');
 
-import Vue from 'vue'
-import Vuetify from 'vuetify'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import Vuetify from 'vuetify';
+import VueRouter from 'vue-router';
+import Vuelidate from 'vuelidate';
 
 Vue.use(Vuetify);
 Vue.use(VueRouter);
+Vue.use(Vuelidate);
 
 window.Vue = require('vue');
 
