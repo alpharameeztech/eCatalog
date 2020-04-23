@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Country;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CountryController extends Controller
 {
@@ -36,7 +37,14 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:countries|max:255',
+        ]);
+
+        $country = new Country;
+        $country->name = $request->name;
+        $country->slug = Str::slug($request->name, '-');
+        $country->save();
     }
 
     /**

@@ -34,5 +34,6 @@ Route::group([
     'namespace'     => 'Api',
 ], function (Router $router) {
     Route::get('/countries', 'CountryController@index')->name('all.countries');
+    Route::post('/countries', 'CountryController@store')->name('add.country');
 });
 //======================== public apis end ==========================
