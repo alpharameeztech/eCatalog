@@ -95360,7 +95360,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('example-component', __webp
  */
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: '#app'
+  el: '#app',
+  vuetify: new vuetify__WEBPACK_IMPORTED_MODULE_1___default.a({
+    icons: {
+      iconfont: 'mdi' // default - only for display purposes
+
+    }
+  })
 });
 
 /***/ }),

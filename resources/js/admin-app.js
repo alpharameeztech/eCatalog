@@ -38,4 +38,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    vuetify: new Vuetify({
+        icons: {
+            iconfont: 'mdi', // default - only for display purposes
+        },
+    }),
 });
