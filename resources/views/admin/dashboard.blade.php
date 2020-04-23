@@ -10,7 +10,7 @@
     <div class="">
 
         <div class="my-2">
-
+            <admin-header :user="{{Auth::user()}}"></admin-header>
         </div>
 
     </div>

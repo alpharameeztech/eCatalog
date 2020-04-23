@@ -11,12 +11,14 @@ import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import Vuelidate from 'vuelidate';
 import '@mdi/font/css/materialdesignicons.css'
+import router from './components/admin/router'
 
 Vue.use(Vuetify);
 Vue.use(VueRouter);
 Vue.use(Vuelidate);
 
 window.Vue = require('vue');
+window.events = new Vue();
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,7 +31,9 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component(
+    'admin-header',
+    require('./components/admin/Header.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -39,9 +43,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    router,
     vuetify: new Vuetify({
         icons: {
             iconfont: 'mdi', // default - only for display purposes
         },
     }),
 });
+
+window.user = function (){ // default will be a success message
+
+    window.events.$emit('user' );
+}

@@ -90,7 +90,7 @@
                 class="ml-0 pl-4"
             >
                 <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-                <a href="/admin"><span class="hidden-sm-and-down"  >Forum Admin</span></a>
+                <a href="/admin"><span class="hidden-sm-and-down"  >eCatalog Admin</span></a>
             </v-toolbar-title>
 
             <v-spacer />
@@ -106,8 +106,8 @@
                     outlined
                     class="backToForum"
                 >
-                    Back to Forum
-                    <v-icon>keyboard_return
+                    Back to Website
+                    <v-icon>forward
                     </v-icon>
                 </v-btn>
 
@@ -172,14 +172,6 @@
             drawer: null,
             items: [
                 { icon: 'dashboard', text: 'Dashboard', link: '/admin/dashboard', hasAccess: ['admin', 'publisher'] },
-                { icon: 'category', text: 'Channels', link: '/admin/channels', hasAccess: ['admin', 'publisher']},
-                { icon: 'chat_bubble', text: 'Threads', link: '/admin/threads', hasAccess: ['admin', 'publisher'] },
-                { icon: 'chat', text: 'Replies', link: '/admin/replies', hasAccess: ['admin', 'publisher'] },
-                { icon: 'people_alt', text: 'Team Users', link: '/admin/publishers', hasAccess: [ 'admin']},
-                { icon: 'people', text: 'Members', link: '/admin/members', hasAccess: [ 'admin', 'publisher']},
-                { icon: 'settings_brightness', text: 'Themes', link: '/admin/themes', hasAccess: [ 'admin', 'publisher']},
-                // { icon: 'branding_watermark', text: 'Branding', link: '/admin/branding', hasAccess: [ 'admin', 'publisher']},
-                { icon: 'settings_applications', text: 'Settings', link: '/admin/settings', hasAccess: [ 'admin', 'publisher']},
             ],
 
         }),
