@@ -2318,8 +2318,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mixins_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../mixins/api */ "./resources/js/mixins/api.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
 //
 //
 //
@@ -2446,9 +2450,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_api__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
+      country: '',
       search: '',
       editingPassword: false,
       ban: '',
@@ -2527,8 +2534,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     ago: function ago(date) {
-      moment__WEBPACK_IMPORTED_MODULE_0___default.a.locale();
-      return moment__WEBPACK_IMPORTED_MODULE_0___default.a.utc(date).fromNow();
+      moment__WEBPACK_IMPORTED_MODULE_1___default.a.locale();
+      return moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc(date).fromNow();
     },
     editItem: function editItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
@@ -57509,48 +57516,22 @@ var render = function() {
                                                 }
                                               },
                                               [
-                                                _c("v-text-field", {
-                                                  attrs: { label: "Alias" },
+                                                _c("v-select", {
+                                                  attrs: {
+                                                    items: _vm.countries,
+                                                    "item-text": "name",
+                                                    "item-value": "id",
+                                                    label: "Select",
+                                                    "persistent-hint": "",
+                                                    "return-object": "",
+                                                    "single-line": ""
+                                                  },
                                                   model: {
-                                                    value: _vm.editedItem.alias,
+                                                    value: _vm.country,
                                                     callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "alias",
-                                                        $$v
-                                                      )
+                                                      _vm.country = $$v
                                                     },
-                                                    expression:
-                                                      "editedItem.alias"
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "12",
-                                                  md: "12"
-                                                }
-                                              },
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: { label: "Email" },
-                                                  model: {
-                                                    value: _vm.editedItem.email,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "email",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.email"
+                                                    expression: "country"
                                                   }
                                                 })
                                               ],
@@ -116175,6 +116156,55 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
+
+/***/ }),
+
+/***/ "./resources/js/mixins/api.js":
+/*!************************************!*\
+  !*** ./resources/js/mixins/api.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      countries: null,
+      cities: null
+    };
+  },
+  methods: {
+    Load: function Load() {
+      this.Countries();
+      this.Cities();
+    },
+    Countries: function Countries() {
+      var self = this;
+      this.$root.$emit('loading', true);
+      axios.get('/api/countries').then(function (response) {
+        self.countries = response.data;
+        self.$root.$emit('loading', false);
+      })["catch"](function (error) {})["finally"](function () {
+        self.$root.$emit('loading', false);
+      });
+    },
+    Cities: function Cities() {
+      var self = this;
+      this.$root.$emit('loading', true);
+      axios.get('/api/cities').then(function (response) {
+        self.cities = response.data;
+        self.$root.$emit('loading', false);
+      })["catch"](function (error) {})["finally"](function () {
+        self.$root.$emit('loading', false);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.Load();
+  }
+});
 
 /***/ }),
 

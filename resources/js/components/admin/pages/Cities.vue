@@ -66,6 +66,8 @@
                 <!-- formatted updated date end-->
 
 
+        
+        
         <!-- add/update city -->
             <template v-slot:top>
                 <v-toolbar flat color="white">
@@ -88,20 +90,21 @@
                             <v-card-text>
                                 <v-container>
                                     <v-row>
-
                                         <v-col cols="12" sm="12" md="12">
                                             <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
                                         </v-col>
-
                                         <v-col cols="12" sm="12" md="12">
-                                            <v-text-field v-model="editedItem.alias" label="Alias"></v-text-field>
+                                            <v-select
+                                                v-model="country"
+                                                :items="countries"
+                                                item-text="name"
+                                                item-value="id"
+                                                label="Select"
+                                                persistent-hint
+                                                return-object
+                                                single-line
+                                                ></v-select>
                                         </v-col>
-
-                                        <v-col cols="12" sm="12" md="12">
-                                            <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
-                                        </v-col>
-
-
                                     </v-row>
                                 </v-container>
                             </v-card-text>
@@ -124,11 +127,14 @@
     </div>
 </template>
 <script>
+import api from "../../../mixins/api";
 import moment from 'moment';
 
     export default {
+        mixins: [api],
         data() {
             return {
+                country: '',
                 search: '',
                 editingPassword: false,
                 ban:'',
