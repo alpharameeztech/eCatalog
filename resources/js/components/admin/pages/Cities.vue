@@ -18,11 +18,14 @@
             :items="desserts"
             :search="search"
         >   
-
+        
+        <!-- country name -->
             <template v-slot:item.country="{ item }">
                      <v-text>{{ item.country.name }} </v-text>
-                </template>
-       
+            </template>
+        <!-- country name end-->
+            
+        <!-- formatted created date -->    
             <template v-slot:item.created_at="{ item }">
                     <v-row  class="d-flex justify-end">
                         <v-chip
@@ -39,8 +42,29 @@
 
                         </v-chip>
                     </v-row>
-
                 </template>
+            <!-- formatted created date end -->
+
+            <!-- formatted updated date -->
+            <template v-slot:item.updated_at="{ item }">
+                    <v-row  class="d-flex justify-end">
+                        <v-chip
+                            class="ma-2"
+                            color="primary"
+                            outlined
+                            pill
+                        >
+                            <v-avatar left>
+                                <v-icon>av_timer</v-icon>
+                            </v-avatar>
+
+                            {{ ago(item.updated_at) }}
+
+                        </v-chip>
+                    </v-row>
+                </template>
+                <!-- formatted updated date end-->
+
 
         <!-- add/update city -->
             <template v-slot:top>

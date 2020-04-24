@@ -2421,6 +2421,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -57331,6 +57355,42 @@ var render = function() {
                             _vm._v(
                               "\n\n                        " +
                                 _vm._s(_vm.ago(item.created_at)) +
+                                "\n\n                    "
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              },
+              {
+                key: "item.updated_at",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-row",
+                      { staticClass: "d-flex justify-end" },
+                      [
+                        _c(
+                          "v-chip",
+                          {
+                            staticClass: "ma-2",
+                            attrs: { color: "primary", outlined: "", pill: "" }
+                          },
+                          [
+                            _c(
+                              "v-avatar",
+                              { attrs: { left: "" } },
+                              [_c("v-icon", [_vm._v("av_timer")])],
+                              1
+                            ),
+                            _vm._v(
+                              "\n\n                        " +
+                                _vm._s(_vm.ago(item.updated_at)) +
                                 "\n\n                    "
                             )
                           ],
