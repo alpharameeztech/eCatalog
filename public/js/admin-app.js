@@ -2235,6 +2235,11 @@ __webpack_require__.r(__webpack_exports__);
         text: 'Countries',
         link: '/home/countries',
         hasAccess: ['admin', 'publisher']
+      }, {
+        icon: 'list_alt',
+        text: 'Cities',
+        link: '/home/cities',
+        hasAccess: ['admin', 'publisher']
       }]
     };
   },
@@ -2299,6 +2304,255 @@ __webpack_require__.r(__webpack_exports__);
     this.$root.$on('loading', function (data) {
       _this.overlay = data;
     });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/pages/Cities.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/pages/Cities.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      search: '',
+      editingPassword: false,
+      ban: '',
+      show1: false,
+      password: '',
+      rules: {
+        required: function required(value) {
+          return !!value || 'Required.';
+        },
+        min: function min(v) {
+          return v.length >= 8 || 'Min 8 characters';
+        }
+      },
+      dialog: false,
+      publishers: [],
+      headers: [{
+        text: 'Id',
+        value: 'id'
+      }, {
+        text: 'Name',
+        align: 'left',
+        sortable: true,
+        value: 'name'
+      }, {
+        text: 'Country',
+        value: 'country_id'
+      }, {
+        text: 'Updated At',
+        value: 'updated_at'
+      }, {
+        text: 'Created At',
+        value: 'created_at'
+      } // {text: 'Actions', value: 'action', sortable: false},
+      ],
+      desserts: [],
+      banPublishers: [],
+      editedIndex: -1,
+      editedItem: {
+        name: '',
+        calories: 0,
+        fat: 0,
+        carbs: 0
+      },
+      defaultItem: {
+        name: '',
+        calories: 0,
+        fat: 0,
+        carbs: 0
+      }
+    };
+  },
+  computed: {
+    formTitle: function formTitle() {
+      return this.editedIndex === -1 ? 'Add City' : 'Edit City';
+    }
+  },
+  watch: {
+    dialog: function dialog(val) {
+      val || this.close();
+    }
+  },
+  created: function created() {
+    this.initialize();
+  },
+  methods: {
+    initialize: function initialize() {
+      var self = this;
+      this.$root.$emit('loading', true);
+      axios.get('/api/cities').then(function (response) {
+        self.desserts = response.data;
+        self.$root.$emit('loading', false);
+      })["catch"](function (error) {
+        console.info('error');
+      })["finally"](function () {
+        self.$root.$emit('loading', false);
+      });
+    },
+    editItem: function editItem(item) {
+      this.editedIndex = this.desserts.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialog = true;
+    },
+    deleteItem: function deleteItem(item) {
+      var index = this.desserts.indexOf(item);
+      confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1);
+    },
+    close: function close() {
+      var _this = this;
+
+      this.dialog = false;
+      setTimeout(function () {
+        _this.editedItem = Object.assign({}, _this.defaultItem);
+        _this.editedIndex = -1;
+        _this.ban = '';
+      }, 300);
+    },
+    save: function save() {
+      var self = this; //this.desserts.push(this.editedItem)
+
+      this.$root.$emit('loading', true);
+      axios.post('/api/invitation', {
+        name: this.editedItem.name,
+        alias: this.editedItem.alias,
+        email: this.editedItem.email
+      }).then(function (response) {
+        flash('Invitation Sent.', 'success');
+      })["catch"](function (error) {
+        flash('Invitation Not Saved.', 'error');
+      })["finally"](function () {
+        self.$root.$emit('loading', false);
+      });
+      this.close();
+    },
+    toggleEditingPassword: function toggleEditingPassword() {
+      this.editingPassword = !this.editingPassword;
+
+      if (this.editingPassword == false) {
+        this.password = '';
+      }
+    },
+    toggleBan: function toggleBan(item) {
+      var self = this;
+      this.$root.$emit('loading', true);
+      axios.patch('/api/publisher', {
+        id: item.id,
+        ban: !item.is_ban
+      }).then(function (response) {
+        self.initialize();
+        self.getBanPublishers(); //self.banPublishers = []
+
+        flash('Changes Saved.', 'success');
+      })["catch"](function (error) {
+        flash('Changes Saved.', 'error');
+      })["finally"](function () {
+        self.$root.$emit('loading', false);
+      });
+    },
+    getBanPublishers: function getBanPublishers() {
+      var self = this;
+      this.$root.$emit('loading', true);
+      axios.get('/api/publishers?ban=1').then(function (response) {
+        self.banPublishers = response.data;
+        self.$root.$emit('loading', false);
+      })["catch"](function (error) {
+        console.info('error');
+      })["finally"](function () {
+        self.$root.$emit('loading', false);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.initialize();
+    this.getBanPublishers();
   }
 });
 
@@ -39341,6 +39595,285 @@ var render = function() {
         [
           _c("v-progress-circular", {
             attrs: { indeterminate: "", size: "64" }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/pages/Cities.vue?vue&type=template&id=3c2b0e5f&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/pages/Cities.vue?vue&type=template&id=3c2b0e5f& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-card",
+        [
+          _c(
+            "v-card-title",
+            [
+              _vm._v("\n        Cities\n        "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c("v-text-field", {
+                attrs: {
+                  "append-icon": "search",
+                  label: "Search",
+                  "single-line": "",
+                  "hide-details": ""
+                },
+                model: {
+                  value: _vm.search,
+                  callback: function($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-data-table", {
+            staticClass: "elevation-1",
+            attrs: {
+              headers: _vm.headers,
+              items: _vm.desserts,
+              "sort-by": "slug",
+              search: _vm.search
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "top",
+                fn: function() {
+                  return [
+                    _c(
+                      "v-toolbar",
+                      { attrs: { flat: "", color: "white" } },
+                      [
+                        _c("v-divider", {
+                          staticClass: "mx-4",
+                          attrs: { inset: "", vertical: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("v-spacer"),
+                        _vm._v(" "),
+                        _c(
+                          "v-dialog",
+                          {
+                            attrs: { "max-width": "500px" },
+                            scopedSlots: _vm._u([
+                              {
+                                key: "activator",
+                                fn: function(ref) {
+                                  var on = ref.on
+                                  return [
+                                    _c(
+                                      "v-btn",
+                                      _vm._g(
+                                        {
+                                          staticClass: "mb-2",
+                                          attrs: { color: "primary", dark: "" }
+                                        },
+                                        on
+                                      ),
+                                      [_vm._v("Add City")]
+                                    )
+                                  ]
+                                }
+                              }
+                            ]),
+                            model: {
+                              value: _vm.dialog,
+                              callback: function($$v) {
+                                _vm.dialog = $$v
+                              },
+                              expression: "dialog"
+                            }
+                          },
+                          [
+                            _vm._v(" "),
+                            _c(
+                              "v-card",
+                              [
+                                _c("v-card-title", [
+                                  _c("span", { staticClass: "headline" }, [
+                                    _vm._v(_vm._s(_vm.formTitle))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "v-card-text",
+                                  [
+                                    _c(
+                                      "v-container",
+                                      [
+                                        _c(
+                                          "v-row",
+                                          [
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "12",
+                                                  md: "12"
+                                                }
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: { label: "Name" },
+                                                  model: {
+                                                    value: _vm.editedItem.name,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "name",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.name"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "12",
+                                                  md: "12"
+                                                }
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: { label: "Alias" },
+                                                  model: {
+                                                    value: _vm.editedItem.alias,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "alias",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.alias"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "12",
+                                                  md: "12"
+                                                }
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: { label: "Email" },
+                                                  model: {
+                                                    value: _vm.editedItem.email,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "email",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.email"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-card-actions",
+                                  [
+                                    _c("v-spacer"),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          color: "blue darken-1",
+                                          text: ""
+                                        },
+                                        on: { click: _vm.close }
+                                      },
+                                      [_vm._v("Cancel")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          color: "blue darken-1",
+                                          text: ""
+                                        },
+                                        on: { click: _vm.save }
+                                      },
+                                      [_vm._v("Send")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                },
+                proxy: true
+              }
+            ])
           })
         ],
         1
@@ -97644,6 +98177,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/pages/Cities.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/admin/pages/Cities.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Cities_vue_vue_type_template_id_3c2b0e5f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Cities.vue?vue&type=template&id=3c2b0e5f& */ "./resources/js/components/admin/pages/Cities.vue?vue&type=template&id=3c2b0e5f&");
+/* harmony import */ var _Cities_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cities.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/pages/Cities.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Cities_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Cities_vue_vue_type_template_id_3c2b0e5f___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Cities_vue_vue_type_template_id_3c2b0e5f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/pages/Cities.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/pages/Cities.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/admin/pages/Cities.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Cities_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Cities.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/pages/Cities.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Cities_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/pages/Cities.vue?vue&type=template&id=3c2b0e5f&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/admin/pages/Cities.vue?vue&type=template&id=3c2b0e5f& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Cities_vue_vue_type_template_id_3c2b0e5f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Cities.vue?vue&type=template&id=3c2b0e5f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/pages/Cities.vue?vue&type=template&id=3c2b0e5f&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Cities_vue_vue_type_template_id_3c2b0e5f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Cities_vue_vue_type_template_id_3c2b0e5f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/pages/Countries.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/admin/pages/Countries.vue ***!
@@ -97812,6 +98414,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _pages_dashboard_Index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/dashboard/Index */ "./resources/js/components/admin/pages/dashboard/Index.vue");
 /* harmony import */ var _pages_Countries__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Countries */ "./resources/js/components/admin/pages/Countries.vue");
+/* harmony import */ var _pages_Cities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Cities */ "./resources/js/components/admin/pages/Cities.vue");
+
 
 
 
@@ -97828,6 +98432,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   }, {
     path: '/home/countries',
     component: _pages_Countries__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }, {
+    path: '/home/cities',
+    component: _pages_Cities__WEBPACK_IMPORTED_MODULE_3__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);

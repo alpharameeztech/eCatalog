@@ -37,5 +37,9 @@ Route::group([
     Route::get('/countries', 'CountryController@index')->name('all.countries');
     Route::post('/countries', 'CountryController@store')->name('add.country');
     Route::patch('/countries', 'CountryController@update')->name('update.country');
+
+    Route::get('/cities', 'CityController@index')->name('all.countries');
+    Route::post('/cities', 'CityController@store')->name('add.country');
+    Route::patch('/cities', 'CityController@update')->name('update.country');
 });
 //======================== public apis end ==========================

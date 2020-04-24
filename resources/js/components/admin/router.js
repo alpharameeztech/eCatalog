@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router';
 import Dashboard from './pages/dashboard/Index';
 import Countries from "./pages/Countries";
+import Cities from "./pages/Cities";
 const router = new VueRouter({
     mode: 'history',
     routes: [
@@ -21,6 +22,10 @@ const router = new VueRouter({
         {
             path: '/home/countries',
             component: Countries,
+        },
+        {
+            path: '/home/cities',
+            component: Cities,
         },
     ],
 });
