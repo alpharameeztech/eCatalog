@@ -2449,6 +2449,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2493,13 +2506,17 @@ __webpack_require__.r(__webpack_exports__);
         text: 'Created At',
         value: 'created_at',
         width: 250
-      } // {text: 'Actions', value: 'action', sortable: false},
-      ],
+      }, {
+        text: 'Actions',
+        value: 'action',
+        sortable: false
+      }],
       desserts: [],
       banPublishers: [],
       editedIndex: -1,
       editedItem: {
         id: '',
+        country_id: '',
         name: '',
         calories: 0,
         fat: 0,
@@ -2567,7 +2584,8 @@ __webpack_require__.r(__webpack_exports__);
         Object.assign(this.desserts[this.editedIndex], this.editedItem);
         axios.patch('/api/cities', {
           id: this.editedItem.id,
-          name: this.editedItem.name
+          name: this.editedItem.name,
+          countryId: this.editedItem.country_id.id
         }).then(function (response) {
           flash('Changes Saved.', 'success');
           this.initialize();
@@ -2580,14 +2598,14 @@ __webpack_require__.r(__webpack_exports__);
         this.desserts.push(this.editedItem);
         axios.post('/api/cities', {
           name: this.editedItem.name,
-          countryId: this.country.id
+          countryId: this.editedItem.country_id.id
         }).then(function (response) {
           //self.initialize()
           flash('Changes Saved.', 'success');
         })["catch"](function (error) {
           flash('Changes Saved.', 'error');
         })["finally"](function () {
-          self.$root.$emit('loading', false);
+          this.$root.$emit('loading', false);
         });
         this.initialize();
       }
@@ -57512,11 +57530,17 @@ var render = function() {
                                                     "single-line": ""
                                                   },
                                                   model: {
-                                                    value: _vm.country,
+                                                    value:
+                                                      _vm.editedItem.country_id,
                                                     callback: function($$v) {
-                                                      _vm.country = $$v
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "country_id",
+                                                        $$v
+                                                      )
                                                     },
-                                                    expression: "country"
+                                                    expression:
+                                                      "editedItem.country_id"
                                                   }
                                                 })
                                               ],
@@ -57575,6 +57599,27 @@ var render = function() {
                   ]
                 },
                 proxy: true
+              },
+              {
+                key: "item.action",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-icon",
+                      {
+                        staticClass: "mr-2",
+                        attrs: { small: "" },
+                        on: {
+                          click: function($event) {
+                            return _vm.editItem(item)
+                          }
+                        }
+                      },
+                      [_vm._v("\n            edit\n        ")]
+                    )
+                  ]
+                }
               }
             ])
           })

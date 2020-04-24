@@ -78,9 +78,19 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'name' => 'required|max:255',
+            'countryId' => 'required',
+        ]);
+
+        $city = City::find($request->id);
+        $city->name = Str::of($request->name)->trim();
+        $city->slug = Str::slug($city->name , '-');
+        $city->country_id = $request->countryId;
+        $city->save();
     }
 
     /**

@@ -68,6 +68,7 @@
 
         
         
+       
         <!-- add/update city -->
             <template v-slot:top>
                 <v-toolbar flat color="white">
@@ -94,8 +95,9 @@
                                             <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="12">
+                                            
                                             <v-select
-                                                v-model="country"
+                                                v-model="editedItem.country_id"
                                                 :items="countries"
                                                 item-text="name"
                                                 item-value="id"
@@ -120,6 +122,17 @@
             </template>
         <!-- add/update city end -->
 
+        <!-- action -->
+         <template v-slot:item.action="{ item }">
+            <v-icon
+                small
+                class="mr-2"
+                @click="editItem(item)"
+            >
+                edit
+            </v-icon>
+        </template>
+        <!-- action end -->
         </v-data-table>
     </v-card>
 
@@ -162,13 +175,14 @@ import moment from 'moment';
                     { text: 'Country', value: 'country'},
                     {text: 'Updated At', value: 'updated_at', width: 250},
                     {text: 'Created At', value: 'created_at', width: 250},
-                    // {text: 'Actions', value: 'action', sortable: false},
+                    {text: 'Actions', value: 'action', sortable: false},
                 ],
                 desserts: [],
                 banPublishers:[],
                 editedIndex: -1,
                 editedItem: {
                     id:'',
+                    country_id:'',
                     name: '',
                     calories: 0,
                     fat: 0,
@@ -255,10 +269,10 @@ import moment from 'moment';
             save () {
                 if (this.editedIndex > -1) {
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
-
                     axios.patch('/api/cities', {
                         id: this.editedItem.id,
-                        name: this.editedItem.name
+                        name: this.editedItem.name,
+                        countryId: this.editedItem.country_id.id
                     })
                         .then(function (response) {
                             flash('Changes Saved.', 'success');
@@ -275,14 +289,13 @@ import moment from 'moment';
 
                 } else {
                     var self = this
-                    
                     this.$root.$emit('loading', true);
 
                     this.desserts.push(this.editedItem)
                     
                     axios.post('/api/cities', {
                         name: this.editedItem.name,
-                        countryId: this.country.id
+                        countryId: this.editedItem.country_id.id
                     })
                         .then(function (response) {
                             //self.initialize()
@@ -292,7 +305,7 @@ import moment from 'moment';
                             flash('Changes Saved.', 'error');
                         })
                         .finally( function() {
-                            self.$root.$emit('loading', false);
+                            this.$root.$emit('loading', false);
                         });
 
                     this.initialize()
