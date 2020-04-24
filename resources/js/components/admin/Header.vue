@@ -173,7 +173,8 @@
             items: [
                 { icon: 'dashboard', text: 'Dashboard', link: '/home', hasAccess: ['admin', 'publisher'] },
                 { icon: 'list_alt', text: 'Countries', link: '/home/countries', hasAccess: ['admin', 'publisher'] },
-                { icon: 'list_alt', text: 'Cities', link: '/home/cities', hasAccess: ['admin', 'publisher'] },
+                { icon: 'location_city', text: 'Cities', link: '/home/cities', hasAccess: ['admin', 'publisher'] },
+                { icon: 'store', text: 'Stores', link: '/home/stores', hasAccess: ['admin', 'publisher'] },
             ],
 
         }),
