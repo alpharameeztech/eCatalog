@@ -16,10 +16,32 @@
          <v-data-table
             :headers="headers"
             :items="desserts"
-            sort-by="slug"
-            class="elevation-1"
             :search="search"
-        >
+        >   
+
+            <template v-slot:item.country="{ item }">
+                     <v-text>{{ item.country.name }} </v-text>
+                </template>
+       
+            <template v-slot:item.created_at="{ item }">
+                    <v-row  class="d-flex justify-end">
+                        <v-chip
+                            class="ma-2"
+                            color="primary"
+                            outlined
+                            pill
+                        >
+                            <v-avatar left>
+                                <v-icon>av_timer</v-icon>
+                            </v-avatar>
+
+                            {{ ago(item.created_at) }}
+
+                        </v-chip>
+                    </v-row>
+
+                </template>
+
         <!-- add/update city -->
             <template v-slot:top>
                 <v-toolbar flat color="white">
@@ -78,6 +100,8 @@
     </div>
 </template>
 <script>
+import moment from 'moment';
+
     export default {
         data() {
             return {
@@ -93,6 +117,7 @@
                 dialog: false,
                 publishers: [],
                 headers: [
+                    
                     {
                         text: 'Id',
                         value: 'id',
@@ -103,7 +128,7 @@
                         sortable: true,
                         value: 'name',
                     },
-                     {text: 'Country', value: 'country_id'},
+                   { text: 'Country', value: 'country'},
                     {text: 'Updated At', value: 'updated_at'},
                     {text: 'Created At', value: 'created_at'},
                     // {text: 'Actions', value: 'action', sortable: false},
@@ -165,6 +190,13 @@
                     .finally(function () {
                         self.$root.$emit('loading', false);
                     });
+
+            },
+             ago(date){
+
+                moment.locale();
+
+                return moment.utc(date).fromNow();
 
             },
 
