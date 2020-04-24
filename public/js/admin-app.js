@@ -2480,14 +2480,19 @@ __webpack_require__.r(__webpack_exports__);
         sortable: true,
         value: 'name'
       }, {
+        text: 'Slug',
+        value: 'slug'
+      }, {
         text: 'Country',
         value: 'country'
       }, {
         text: 'Updated At',
-        value: 'updated_at'
+        value: 'updated_at',
+        width: 250
       }, {
         text: 'Created At',
-        value: 'created_at'
+        value: 'created_at',
+        width: 250
       } // {text: 'Actions', value: 'action', sortable: false},
       ],
       desserts: [],
