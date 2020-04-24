@@ -167,6 +167,7 @@ import moment from 'moment';
                 banPublishers:[],
                 editedIndex: -1,
                 editedItem: {
+                    id:'',
                     name: '',
                     calories: 0,
                     fat: 0,
@@ -251,92 +252,53 @@ import moment from 'moment';
             },
 
             save () {
-                var self = this;
+                if (this.editedIndex > -1) {
+                    Object.assign(this.desserts[this.editedIndex], this.editedItem)
 
-                    //this.desserts.push(this.editedItem)
+                    axios.patch('/api/cities', {
+                        id: this.editedItem.id,
+                        name: this.editedItem.name
+                    })
+                        .then(function (response) {
+                            flash('Changes Saved.', 'success');
 
+                            this.initialize()
+
+                        })
+                        .catch(function (error) {
+                        })
+                        .finally( function() {
+                            self.$root.$emit('loading', false);
+                        });
+
+
+                } else {
+                    var self = this
+                    
                     this.$root.$emit('loading', true);
 
-                    axios.post('/api/invitation', {
+                    this.desserts.push(this.editedItem)
+                    
+                    axios.post('/api/cities', {
                         name: this.editedItem.name,
-                        alias: this.editedItem.alias,
-                        email: this.editedItem.email,
+                        countryId: this.country.id
                     })
-                    .then(function (response) {
+                        .then(function (response) {
+                            //self.initialize()
+                            flash('Changes Saved.', 'success');
+                        })
+                        .catch(function (error) {
+                            flash('Changes Saved.', 'error');
+                        })
+                        .finally( function() {
+                            self.$root.$emit('loading', false);
+                        });
 
-                        flash('Invitation Sent.', 'success');
-                    })
-                    .catch(function (error) {
-
-                        flash('Invitation Not Saved.', 'error');
-                    })
-                    .finally(function () {
-                        self.$root.$emit('loading', false);
-                    });
-
-                this.close()
-
-            },
-
-            toggleEditingPassword(){
-
-                this.editingPassword = !this.editingPassword
-
-                if(this.editingPassword == false){
-
-                    this.password = ''
+                    this.initialize()
                 }
-            },
-            toggleBan(item){
-
-                var self = this
-
-                this.$root.$emit('loading', true);
-
-                axios.patch('/api/publisher', {
-                    id: item.id,
-                    ban: !item.is_ban
-                })
-                    .then(function (response) {
-
-                        self.initialize()
-                        self.getBanPublishers()
-                        //self.banPublishers = []
-
-                        flash('Changes Saved.', 'success');
-                    })
-                    .catch(function (error) {
-                        flash('Changes Saved.', 'error');
-                    })
-                    .finally( function() {
-                        self.$root.$emit('loading', false);
-                    });
-
+                this.close()
             },
 
-            getBanPublishers () {
-
-                var self = this;
-
-                this.$root.$emit('loading', true);
-
-                axios.get('/api/publishers?ban=1')
-                    .then(function (response) {
-
-                        self.banPublishers = response.data;
-
-                        self.$root.$emit('loading', false);
-                    })
-                    .catch(function (error) {
-
-                        console.info('error');
-
-                    })
-                     .finally(function () {
-                        self.$root.$emit('loading', false);
-                    });
-
-            },
         },
 
         mounted() {

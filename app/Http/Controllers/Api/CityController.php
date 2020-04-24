@@ -44,7 +44,7 @@ class CityController extends Controller
 
         $city = new City();
         $city->name = Str::of($request->name)->trim();
-        $city->slug = Str::slug($country->name , '-');
+        $city->slug = Str::slug($city->name , '-');
         $city->country_id = $request->countryId;
         $city->save();
     }

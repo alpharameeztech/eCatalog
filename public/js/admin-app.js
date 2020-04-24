@@ -2494,6 +2494,7 @@ __webpack_require__.r(__webpack_exports__);
       banPublishers: [],
       editedIndex: -1,
       editedItem: {
+        id: '',
         name: '',
         calories: 0,
         fat: 0,
@@ -2557,57 +2558,36 @@ __webpack_require__.r(__webpack_exports__);
       }, 300);
     },
     save: function save() {
-      var self = this; //this.desserts.push(this.editedItem)
-
-      this.$root.$emit('loading', true);
-      axios.post('/api/invitation', {
-        name: this.editedItem.name,
-        alias: this.editedItem.alias,
-        email: this.editedItem.email
-      }).then(function (response) {
-        flash('Invitation Sent.', 'success');
-      })["catch"](function (error) {
-        flash('Invitation Not Saved.', 'error');
-      })["finally"](function () {
-        self.$root.$emit('loading', false);
-      });
-      this.close();
-    },
-    toggleEditingPassword: function toggleEditingPassword() {
-      this.editingPassword = !this.editingPassword;
-
-      if (this.editingPassword == false) {
-        this.password = '';
+      if (this.editedIndex > -1) {
+        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        axios.patch('/api/cities', {
+          id: this.editedItem.id,
+          name: this.editedItem.name
+        }).then(function (response) {
+          flash('Changes Saved.', 'success');
+          this.initialize();
+        })["catch"](function (error) {})["finally"](function () {
+          self.$root.$emit('loading', false);
+        });
+      } else {
+        var self = this;
+        this.$root.$emit('loading', true);
+        this.desserts.push(this.editedItem);
+        axios.post('/api/cities', {
+          name: this.editedItem.name,
+          countryId: this.country.id
+        }).then(function (response) {
+          //self.initialize()
+          flash('Changes Saved.', 'success');
+        })["catch"](function (error) {
+          flash('Changes Saved.', 'error');
+        })["finally"](function () {
+          self.$root.$emit('loading', false);
+        });
+        this.initialize();
       }
-    },
-    toggleBan: function toggleBan(item) {
-      var self = this;
-      this.$root.$emit('loading', true);
-      axios.patch('/api/publisher', {
-        id: item.id,
-        ban: !item.is_ban
-      }).then(function (response) {
-        self.initialize();
-        self.getBanPublishers(); //self.banPublishers = []
 
-        flash('Changes Saved.', 'success');
-      })["catch"](function (error) {
-        flash('Changes Saved.', 'error');
-      })["finally"](function () {
-        self.$root.$emit('loading', false);
-      });
-    },
-    getBanPublishers: function getBanPublishers() {
-      var self = this;
-      this.$root.$emit('loading', true);
-      axios.get('/api/publishers?ban=1').then(function (response) {
-        self.banPublishers = response.data;
-        self.$root.$emit('loading', false);
-      })["catch"](function (error) {
-        console.info('error');
-      })["finally"](function () {
-        self.$root.$emit('loading', false);
-      });
+      this.close();
     }
   },
   mounted: function mounted() {
