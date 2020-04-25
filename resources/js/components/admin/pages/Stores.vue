@@ -271,6 +271,8 @@ import moment from 'moment';
             },
 
             close () {
+                var self = this
+                self.$root.$emit('loading', false)
                 this.dialog = false
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem)
@@ -293,63 +295,54 @@ import moment from 'moment';
                 formData.append('websiteLink', this.editedItem.website_link);
                 formData.append('facebookLink', this.editedItem.facebook_link);
                 formData.append('about', this.editedItem.about);
-
+               
                 if (this.editedIndex > -1) {
+                    formData.append('id',this.editedItem.id);
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
-                    axios.patch('/api/store', {
-                        id: this.editedItem.id,
-                        name: this.editedItem.name,
-                        countryId: this.editedItem.country_id.id
-                    })
-                        .then(function (response) {
-                            flash('Changes Saved.', 'success');
+                    
+                    var self = this
+                    this.$root.$emit('loading', true);
 
-                            this.initialize()
-
-                        })
-                        .catch(function (error) {
-                        })
-                        .finally( function() {
-                            self.$root.$emit('loading', false);
-                        });
-
+                    this.desserts.push(this.editedItem)
+                    
 
                 } else {
                     var self = this
                     this.$root.$emit('loading', true);
 
                     this.desserts.push(this.editedItem)
-                    
-                    axios.post('/api/store', formData,
-                    {
-                        headers: {
-                            'Content-Type': 'multipart/form-data',
-                            'enctype' : 'multipart/form-data'
-                        }
-                    }).then(function (response) {
-
-                        self.$root.$emit('loading', false)
-
-                        flash('Changes Saved')
-
-                        self.initialize()
-
-                        self.removeImage()
-
-                    })
-                    .catch(function (error) {
-
-                        self.$root.$emit('loading', false)
-
-                        flash('Changes Not Saved', 'error')
-                    })
-                    .finally(function () {
-                        self.$root.$emit('loading', false)
-
-                    });
-                    this.close()
-                    this.initialize()
                 }
+
+                //send the form data to server
+                axios.post('/api/store', formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'enctype' : 'multipart/form-data'
+                    }
+                }).then(function (response) {
+
+                    self.$root.$emit('loading', false)
+
+                    flash('Changes Saved')
+
+                    self.initialize()
+
+                    self.removeImage()
+
+                })
+                .catch(function (error) {
+
+                    self.$root.$emit('loading', false)
+
+                    flash('Changes Not Saved', 'error')
+                })
+                .finally(function () {
+                    self.$root.$emit('loading', false)
+
+                });
+                this.close()
+                this.initialize()
                
             },
             onFileChange() {

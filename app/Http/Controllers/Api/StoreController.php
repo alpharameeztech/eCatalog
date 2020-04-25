@@ -37,23 +37,39 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $validatedData = $request->validate([
-            'profilePicture' => 'required',
-            'name' => 'required|unique:stores|max:255',
-            'websiteLink' => 'required',
-            'facebookLink' => 'required',
-            'about' => 'required',
-        ]);
+        if($request->id){
+            $store = Store::find($request->id);
+       
+            if (!empty(request()->file('profilePicture'))) {
+                $store->image = request()->file('profilePicture')->store('stores', 's3');
+            }
 
-        $store = new Store;
-        $store->image = request()->file('profilePicture')->store('stores', 's3');
-        $store->name = Str::of($request->name)->trim();
-        $store->slug = Str::slug($store->name , '-');
-        $store->website_link = Str::of($request->websiteLink)->trim();
-        $store->facebook_link = Str::of($request->facebookLink)->trim();
-        $store->about = Str::of($request->about)->trim();
-        $store->save();
+            $store->name = Str::of($request->name)->trim();
+            $store->slug = Str::slug($store->name , '-');
+            $store->website_link = Str::of($request->websiteLink)->trim();
+            $store->facebook_link = Str::of($request->facebookLink)->trim();
+            $store->about = Str::of($request->about)->trim();
+            $store->save();
+        }
+        else{
+            $validatedData = $request->validate([
+                'profilePicture' => 'required',
+                'name' => 'required|unique:stores|max:255',
+                'websiteLink' => 'required',
+                'facebookLink' => 'required',
+                'about' => 'required',
+            ]);
+    
+            $store = new Store;
+            $store->image = request()->file('profilePicture')->store('stores', 's3');
+            $store->name = Str::of($request->name)->trim();
+            $store->slug = Str::slug($store->name , '-');
+            $store->website_link = Str::of($request->websiteLink)->trim();
+            $store->facebook_link = Str::of($request->facebookLink)->trim();
+            $store->about = Str::of($request->about)->trim();
+            $store->save();
+        }
+       
     }
 
     /**
@@ -85,9 +101,9 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        
     }
 
     /**

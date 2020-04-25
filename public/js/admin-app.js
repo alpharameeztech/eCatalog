@@ -3100,6 +3100,8 @@ __webpack_require__.r(__webpack_exports__);
     close: function close() {
       var _this = this;
 
+      var self = this;
+      self.$root.$emit('loading', false);
       this.dialog = false;
       setTimeout(function () {
         _this.editedItem = Object.assign({}, _this.defaultItem);
@@ -3122,40 +3124,36 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('about', this.editedItem.about);
 
       if (this.editedIndex > -1) {
+        formData.append('id', this.editedItem.id);
         Object.assign(this.desserts[this.editedIndex], this.editedItem);
-        axios.patch('/api/store', {
-          id: this.editedItem.id,
-          name: this.editedItem.name,
-          countryId: this.editedItem.country_id.id
-        }).then(function (response) {
-          flash('Changes Saved.', 'success');
-          this.initialize();
-        })["catch"](function (error) {})["finally"](function () {
-          self.$root.$emit('loading', false);
-        });
+        var self = this;
+        this.$root.$emit('loading', true);
+        this.desserts.push(this.editedItem);
       } else {
         var self = this;
         this.$root.$emit('loading', true);
         this.desserts.push(this.editedItem);
-        axios.post('/api/store', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            'enctype': 'multipart/form-data'
-          }
-        }).then(function (response) {
-          self.$root.$emit('loading', false);
-          flash('Changes Saved');
-          self.initialize();
-          self.removeImage();
-        })["catch"](function (error) {
-          self.$root.$emit('loading', false);
-          flash('Changes Not Saved', 'error');
-        })["finally"](function () {
-          self.$root.$emit('loading', false);
-        });
-        this.close();
-        this.initialize();
-      }
+      } //send the form data to server
+
+
+      axios.post('/api/store', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'enctype': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        self.$root.$emit('loading', false);
+        flash('Changes Saved');
+        self.initialize();
+        self.removeImage();
+      })["catch"](function (error) {
+        self.$root.$emit('loading', false);
+        flash('Changes Not Saved', 'error');
+      })["finally"](function () {
+        self.$root.$emit('loading', false);
+      });
+      this.close();
+      this.initialize();
     },
     onFileChange: function onFileChange() {
       var _this2 = this;
