@@ -42,17 +42,24 @@ class StoreController extends Controller
             return $this->update($request);
         }
         else{
+            \Log::info($request);
             // add a new store
             $validatedData = $request->validate([
                 'profilePicture' => 'required',
                 'name' => 'required|unique:stores|max:255',
+                'arabicName' => 'required',
                 'about' => 'required',
+                'arabicAbout' => 'required',
             ]);
     
             $store = new Store;
             $store->image = request()->file('profilePicture')->store('stores', 's3');
-            $store->name = Str::of($request->name)->trim();
-            $store->slug = Str::slug($store->name , '-');
+            
+            //$store->name = Str::of($request->name)->trim();
+            $store->setTranslation('name', 'en', $request->name);
+            $store->setTranslation('name', 'ar', $request->arabicName);
+           
+            $store->slug = Str::of($request->name)->slug('-');
             $store->website_link = Str::of($request->websiteLink)->trim();
             $store->facebook_link = Str::of($request->facebookLink)->trim();
             $store->twitter_link = Str::of($request->twitterLink)->trim();
@@ -60,6 +67,10 @@ class StoreController extends Controller
             $store->youtube_link = Str::of($request->youtubeLink)->trim();
             $store->about = Str::of($request->about)->trim();
             $store->save();
+
+            // $store
+            //     ->setTranslation('name', 'ar', 'اسم')
+            //     ->save();
         }
        
     }
@@ -106,8 +117,10 @@ class StoreController extends Controller
             $store->image = request()->file('profilePicture')->store('stores', 's3');
         }
 
-        $store->name = Str::of($request->name)->trim();
-        $store->slug = Str::slug($store->name , '-');
+        $store->setTranslation('name', 'en', $request->name);
+        $store->setTranslation('name', 'ar', $request->arabicName);
+        
+        $store->slug = Str::of($request->name)->slug('-');
         $store->website_link = Str::of($request->websiteLink)->trim();
         $store->facebook_link = Str::of($request->facebookLink)->trim();
         $store->twitter_link = Str::of($request->twitterLink)->trim();

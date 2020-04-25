@@ -2996,6 +2996,68 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3029,7 +3091,8 @@ __webpack_require__.r(__webpack_exports__);
         text: 'Name',
         align: 'left',
         sortable: true,
-        value: 'name'
+        value: 'name',
+        width: 250
       }, {
         text: 'Slug',
         value: 'slug'
@@ -3074,12 +3137,14 @@ __webpack_require__.r(__webpack_exports__);
       editedItem: {
         id: '',
         name: '',
+        arabic_name: '',
         website_link: '',
         facebook_link: '',
         instagram_link: '',
         youtube_link: '',
         twitter_link: '',
         about: '',
+        arabic_about: '',
         profilePicture: ''
       },
       defaultItem: {
@@ -3110,6 +3175,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/stores').then(function (response) {
         self.desserts = response.data;
         self.$root.$emit('loading', false);
+        console.log(response.data[0].name.en);
       })["catch"](function (error) {
         console.info('error');
       })["finally"](function () {
@@ -3120,9 +3186,17 @@ __webpack_require__.r(__webpack_exports__);
       moment__WEBPACK_IMPORTED_MODULE_1___default.a.locale();
       return moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc(date).fromNow();
     },
+    parseNameInEnglish: function parseNameInEnglish(item) {
+      return item.name.en;
+    },
+    parseNameInArabic: function parseNameInArabic(item) {
+      return item.name.ar;
+    },
     editItem: function editItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
+      this.editedItem.name = this.parseNameInEnglish(item);
+      this.editedItem.arabic_name = this.parseNameInArabic(item);
       this.dialog = true;
     },
     deleteItem: function deleteItem(item) {
@@ -3151,12 +3225,14 @@ __webpack_require__.r(__webpack_exports__);
 
       formData.append('profilePicture', this.profilePicture);
       formData.append('name', this.editedItem.name);
+      formData.append('arabicName', this.editedItem.arabic_name);
       formData.append('websiteLink', this.editedItem.website_link);
       formData.append('facebookLink', this.editedItem.facebook_link);
       formData.append('instagramLink', this.editedItem.instagram_link);
       formData.append('youtubeLink', this.editedItem.youtube_link);
       formData.append('twitterLink', this.editedItem.twitter_link);
       formData.append('about', this.editedItem.about);
+      formData.append('arabicAbout', this.editedItem.arabic_about);
 
       if (this.editedIndex > -1) {
         formData.append('id', this.editedItem.id);
@@ -58318,6 +58394,35 @@ var render = function() {
             },
             scopedSlots: _vm._u([
               {
+                key: "item.name",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-row",
+                      { staticClass: "d-flex justify-start" },
+                      [
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "12", sm: "4", md: "4" } },
+                          [
+                            _c("v-text", [
+                              _vm._v(
+                                "  " +
+                                  _vm._s(_vm.parseNameInEnglish(item)) +
+                                  " "
+                              )
+                            ])
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              },
+              {
                 key: "item.status",
                 fn: function(ref) {
                   var item = ref.item
@@ -58477,279 +58582,375 @@ var render = function() {
                           [
                             _vm._v(" "),
                             _c(
-                              "v-card",
+                              "v-tabs",
+                              {
+                                attrs: {
+                                  "fixed-tabs": "",
+                                  "background-color": "indigo",
+                                  dark: ""
+                                }
+                              },
                               [
-                                _c("v-card-title", [
-                                  _c("span", { staticClass: "headline" }, [
-                                    _vm._v(_vm._s(_vm.formTitle))
-                                  ])
+                                _c("v-tabs-slider"),
+                                _vm._v(" "),
+                                _c("v-tab", [
+                                  _vm._v(
+                                    "\n                        English\n                        "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("v-tab", [
+                                  _vm._v(
+                                    "\n                        Arabic\n                        "
+                                  )
                                 ]),
                                 _vm._v(" "),
                                 _c(
-                                  "v-card-text",
+                                  "v-tab-item",
                                   [
                                     _c(
-                                      "v-container",
+                                      "v-card",
                                       [
+                                        _c("v-card-title", [
+                                          _c(
+                                            "span",
+                                            { staticClass: "headline" },
+                                            [_vm._v(_vm._s(_vm.formTitle))]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
                                         _c(
-                                          "v-row",
+                                          "v-card-text",
                                           [
                                             _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "12",
-                                                  md: "12"
-                                                }
-                                              },
+                                              "v-container",
                                               [
-                                                _c("v-text-field", {
-                                                  attrs: { label: "Name" },
-                                                  model: {
-                                                    value: _vm.editedItem.name,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "name",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.name"
-                                                  }
-                                                })
+                                                _c(
+                                                  "v-row",
+                                                  [
+                                                    _c(
+                                                      "v-col",
+                                                      {
+                                                        attrs: {
+                                                          cols: "12",
+                                                          sm: "12",
+                                                          md: "12"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-text-field", {
+                                                          attrs: {
+                                                            label: "Name"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .name,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "name",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.name"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-col",
+                                                      {
+                                                        attrs: {
+                                                          cols: "12",
+                                                          sm: "12",
+                                                          md: "12"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-file-input", {
+                                                          attrs: {
+                                                            label:
+                                                              "Select Image File...",
+                                                            accept: "image/*"
+                                                          },
+                                                          on: {
+                                                            change:
+                                                              _vm.onFileChange
+                                                          },
+                                                          model: {
+                                                            value: _vm.file,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.file = $$v
+                                                            },
+                                                            expression: "file"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-col",
+                                                      {
+                                                        attrs: {
+                                                          cols: "12",
+                                                          sm: "12",
+                                                          md: "12"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-text-field", {
+                                                          attrs: {
+                                                            label:
+                                                              "Website Link"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .website_link,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "website_link",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.website_link"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-col",
+                                                      {
+                                                        attrs: {
+                                                          cols: "12",
+                                                          sm: "12",
+                                                          md: "12"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-text-field", {
+                                                          attrs: {
+                                                            label:
+                                                              "Facebook Page"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .facebook_link,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "facebook_link",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.facebook_link"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-col",
+                                                      {
+                                                        attrs: {
+                                                          cols: "12",
+                                                          sm: "12",
+                                                          md: "12"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-text-field", {
+                                                          attrs: {
+                                                            label:
+                                                              "Twitter Page"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .twitter_link,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "twitter_link",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.twitter_link"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-col",
+                                                      {
+                                                        attrs: {
+                                                          cols: "12",
+                                                          sm: "12",
+                                                          md: "12"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-text-field", {
+                                                          attrs: {
+                                                            label:
+                                                              "Instagram Page"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .instagram_link,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "instagram_link",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.instagram_link"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-col",
+                                                      {
+                                                        attrs: {
+                                                          cols: "12",
+                                                          sm: "12",
+                                                          md: "12"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-text-field", {
+                                                          attrs: {
+                                                            label:
+                                                              "Youtube Page"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .youtube_link,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "youtube_link",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.youtube_link"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-col",
+                                                      {
+                                                        attrs: {
+                                                          cols: "12",
+                                                          sm: "12",
+                                                          md: "12"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-textarea", {
+                                                          attrs: {
+                                                            outlined: "",
+                                                            name: "input-7-4",
+                                                            label:
+                                                              "About us in English"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .about,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "about",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.about"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    )
+                                                  ],
+                                                  1
+                                                )
                                               ],
                                               1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-card-actions",
+                                          [
+                                            _c("v-spacer"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-btn",
+                                              {
+                                                attrs: {
+                                                  color: "blue darken-1",
+                                                  text: ""
+                                                },
+                                                on: { click: _vm.close }
+                                              },
+                                              [_vm._v("Cancel")]
                                             ),
                                             _vm._v(" "),
                                             _c(
-                                              "v-col",
+                                              "v-btn",
                                               {
                                                 attrs: {
-                                                  cols: "12",
-                                                  sm: "12",
-                                                  md: "12"
-                                                }
+                                                  color: "blue darken-1",
+                                                  text: ""
+                                                },
+                                                on: { click: _vm.save }
                                               },
-                                              [
-                                                _c("v-file-input", {
-                                                  attrs: {
-                                                    label:
-                                                      "Select Image File...",
-                                                    accept: "image/*"
-                                                  },
-                                                  on: {
-                                                    change: _vm.onFileChange
-                                                  },
-                                                  model: {
-                                                    value: _vm.file,
-                                                    callback: function($$v) {
-                                                      _vm.file = $$v
-                                                    },
-                                                    expression: "file"
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "12",
-                                                  md: "12"
-                                                }
-                                              },
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: {
-                                                    label: "Website Link"
-                                                  },
-                                                  model: {
-                                                    value:
-                                                      _vm.editedItem
-                                                        .website_link,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "website_link",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.website_link"
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "12",
-                                                  md: "12"
-                                                }
-                                              },
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: {
-                                                    label: "Facebook Page"
-                                                  },
-                                                  model: {
-                                                    value:
-                                                      _vm.editedItem
-                                                        .facebook_link,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "facebook_link",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.facebook_link"
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "12",
-                                                  md: "12"
-                                                }
-                                              },
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: {
-                                                    label: "Twitter Page"
-                                                  },
-                                                  model: {
-                                                    value:
-                                                      _vm.editedItem
-                                                        .twitter_link,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "twitter_link",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.twitter_link"
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "12",
-                                                  md: "12"
-                                                }
-                                              },
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: {
-                                                    label: "Instagram Page"
-                                                  },
-                                                  model: {
-                                                    value:
-                                                      _vm.editedItem
-                                                        .instagram_link,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "instagram_link",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.instagram_link"
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "12",
-                                                  md: "12"
-                                                }
-                                              },
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: {
-                                                    label: "Youtube Page"
-                                                  },
-                                                  model: {
-                                                    value:
-                                                      _vm.editedItem
-                                                        .youtube_link,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "youtube_link",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.youtube_link"
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "12",
-                                                  md: "12"
-                                                }
-                                              },
-                                              [
-                                                _c("v-textarea", {
-                                                  attrs: {
-                                                    outlined: "",
-                                                    name: "input-7-4",
-                                                    label: "Outlined textarea"
-                                                  },
-                                                  model: {
-                                                    value: _vm.editedItem.about,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "about",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.about"
-                                                  }
-                                                })
-                                              ],
-                                              1
+                                              [_vm._v("Send")]
                                             )
                                           ],
                                           1
@@ -58762,32 +58963,104 @@ var render = function() {
                                 ),
                                 _vm._v(" "),
                                 _c(
-                                  "v-card-actions",
+                                  "v-tab-item",
                                   [
-                                    _c("v-spacer"),
-                                    _vm._v(" "),
                                     _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          color: "blue darken-1",
-                                          text: ""
-                                        },
-                                        on: { click: _vm.close }
-                                      },
-                                      [_vm._v("Cancel")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          color: "blue darken-1",
-                                          text: ""
-                                        },
-                                        on: { click: _vm.save }
-                                      },
-                                      [_vm._v("Send")]
+                                      "v-card",
+                                      [
+                                        _c(
+                                          "v-card-text",
+                                          [
+                                            _c(
+                                              "v-container",
+                                              [
+                                                _c(
+                                                  "v-row",
+                                                  [
+                                                    _c(
+                                                      "v-col",
+                                                      {
+                                                        attrs: {
+                                                          cols: "12",
+                                                          sm: "12",
+                                                          md: "12"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-text-field", {
+                                                          attrs: {
+                                                            label:
+                                                              "Name in Arabic"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .arabic_name,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "arabic_name",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.arabic_name"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-col",
+                                                      {
+                                                        attrs: {
+                                                          cols: "12",
+                                                          sm: "12",
+                                                          md: "12"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-textarea", {
+                                                          attrs: {
+                                                            outlined: "",
+                                                            name: "input-7-4",
+                                                            label:
+                                                              "About us in Arabic"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .arabic_about,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "arabic_about",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.arabic_about"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
                                     )
                                   ],
                                   1

@@ -18,7 +18,17 @@
             :items="desserts"
             :search="search"
         >   
+          <template v-slot:item.name="{ item }">
 
+                    <v-row  class="d-flex justify-start">
+                        <v-col cols="12" sm="4" md="4">
+                          
+                            <v-text>  {{ parseNameInEnglish(item)}} </v-text>
+                        </v-col>
+
+                    </v-row>
+
+            </template>
         <!-- status -->
             <template v-slot:item.status="{ item }">
 
@@ -92,58 +102,110 @@
                         <template v-slot:activator="{ on }">
                             <v-btn color="primary" dark class="mb-2" v-on="on">Add Store</v-btn>
                         </template>
-                        <v-card>
-                            <v-card-title>
-                                <span class="headline">{{ formTitle }}</span>
-                            </v-card-title>
 
-                            <v-card-text>
-                                <v-container>
-                                    <v-row>
-                                        <v-col cols="12" sm="12" md="12">
-                                            <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="12" md="12">
-                                            <v-file-input
-                                                v-model="file"
-                                                label="Select Image File..."
-                                                accept="image/*"
-                                                @change="onFileChange"
-                                            ></v-file-input>
-                                        </v-col>
-                                        <v-col cols="12" sm="12" md="12">
-                                            <v-text-field v-model="editedItem.website_link" label="Website Link"></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="12" md="12">
-                                            <v-text-field v-model="editedItem.facebook_link" label="Facebook Page"></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="12" md="12">
-                                            <v-text-field v-model="editedItem.twitter_link" label="Twitter Page"></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="12" md="12">
-                                            <v-text-field v-model="editedItem.instagram_link" label="Instagram Page"></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="12" md="12">
-                                            <v-text-field v-model="editedItem.youtube_link" label="Youtube Page"></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="12" md="12">
-                                             <v-textarea
-                                                v-model="editedItem.about"
-                                                outlined
-                                                name="input-7-4"
-                                                label="Outlined textarea"
-                                                ></v-textarea>
-                                        </v-col>
-                                    </v-row>
-                                </v-container>
-                            </v-card-text>
+                        <!-- tabs -->
+                        <v-tabs
+                            fixed-tabs
+                            background-color="indigo"
+                            dark
+                        >
+                        <v-tabs-slider></v-tabs-slider>
+                            <v-tab>
+                            English
+                            </v-tab>
+                            <v-tab>
+                            Arabic
+                            </v-tab>
 
-                            <v-card-actions>
-                                <v-spacer></v-spacer>
-                                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                                <v-btn color="blue darken-1" text @click="save">Send</v-btn>
-                            </v-card-actions>
-                        </v-card>
+                            <!-- english tab item -->
+                            <v-tab-item>
+                                <v-card>
+                                    <v-card-title>
+                                        <span class="headline">{{ formTitle }}</span>
+                                    </v-card-title>
+
+                                    <v-card-text>
+                                        <v-container>
+                                            <v-row>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-file-input
+                                                        v-model="file"
+                                                        label="Select Image File..."
+                                                        accept="image/*"
+                                                        @change="onFileChange"
+                                                    ></v-file-input>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.website_link" label="Website Link"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.facebook_link" label="Facebook Page"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.twitter_link" label="Twitter Page"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.instagram_link" label="Instagram Page"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.youtube_link" label="Youtube Page"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-textarea
+                                                        v-model="editedItem.about"
+                                                        outlined
+                                                        name="input-7-4"
+                                                        label="About us in English"
+                                                        ></v-textarea>
+                                                </v-col>
+                                            </v-row>
+                                        </v-container>
+                                    </v-card-text>
+
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+                                        <v-btn color="blue darken-1" text @click="save">Send</v-btn>
+                                    </v-card-actions>
+                                 </v-card>
+                            </v-tab-item>
+                            <!-- english tab item end -->
+
+                            <!-- Arabic tab item -->
+                            <v-tab-item>
+
+                                    <v-card>
+                                   
+                                        <v-card-text>
+                                            <v-container>
+                                                <v-row>
+                                                    <v-col cols="12" sm="12" md="12">
+                                                        <v-text-field v-model="editedItem.arabic_name" label="Name in Arabic"></v-text-field>
+                                                    </v-col>
+                                                  
+                                                    <v-col cols="12" sm="12" md="12">
+                                                        <v-textarea
+                                                            v-model="editedItem.arabic_about"
+                                                            outlined
+                                                            name="input-7-4"
+                                                            label="About us in Arabic"
+                                                            ></v-textarea>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-container>
+                                        </v-card-text>
+
+                                 </v-card>
+
+                            </v-tab-item>
+                            <!-- Arabic tab item end-->
+
+                        </v-tabs>
+                        <!-- tabs end -->
+                      
                     </v-dialog>
                 </v-toolbar>
             </template>
@@ -201,6 +263,7 @@ import moment from 'moment';
                         align: 'left',
                         sortable: true,
                         value: 'name',
+                        width: 250
                     },
                     { text: 'Slug', value: 'slug'},
                     { text: 'Image', value: 'image'},
@@ -221,12 +284,14 @@ import moment from 'moment';
                 editedItem: {
                     id:'',
                     name: '',
+                    arabic_name:'',
                     website_link: '',
                     facebook_link: '',
                     instagram_link: '',
                     youtube_link: '',
                     twitter_link: '',
                     about: '',
+                    arabic_about:'',
                     profilePicture: ''
                 },
                 defaultItem: {
@@ -268,6 +333,8 @@ import moment from 'moment';
                         self.desserts = response.data;
 
                         self.$root.$emit('loading', false);
+
+                        console.log(response.data[0].name.en)
                     })
                     .catch(function (error) {
 
@@ -287,9 +354,18 @@ import moment from 'moment';
 
             },
 
+            parseNameInEnglish(item){
+                return item.name.en
+            },
+            parseNameInArabic(item){
+                return item.name.ar
+            },
+
             editItem (item) {
                 this.editedIndex = this.desserts.indexOf(item)
                 this.editedItem = Object.assign({}, item)
+                this.editedItem.name =   this.parseNameInEnglish(item)
+                this.editedItem.arabic_name =   this.parseNameInArabic(item)
                 this.dialog = true
             },
 
@@ -320,12 +396,14 @@ import moment from 'moment';
                 */
                 formData.append('profilePicture', this.profilePicture);
                 formData.append('name', this.editedItem.name);
+                formData.append('arabicName', this.editedItem.arabic_name);
                 formData.append('websiteLink', this.editedItem.website_link);
                 formData.append('facebookLink', this.editedItem.facebook_link);
                 formData.append('instagramLink', this.editedItem.instagram_link);
                 formData.append('youtubeLink', this.editedItem.youtube_link);
                 formData.append('twitterLink', this.editedItem.twitter_link);
                 formData.append('about', this.editedItem.about);
+                formData.append('arabicAbout', this.editedItem.arabic_about);
                
                 if (this.editedIndex > -1) {
                     formData.append('id',this.editedItem.id);
