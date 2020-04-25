@@ -114,6 +114,20 @@ class StoreController extends Controller
         $store->about = Str::of($request->about)->trim();
         $store->save();
     }
+    /**
+     * Toggle the store status
+     */
+    public function toggleStatus(Request $request) {
+
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'status' => 'required'
+        ]);
+
+        $store = Store::find($request->id);
+        $store->status = $request->status;
+        $store->save();
+    }
 
     /**
      * Remove the specified resource from storage.

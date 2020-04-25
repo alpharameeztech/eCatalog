@@ -18,13 +18,26 @@
             :items="desserts"
             :search="search"
         >   
+
+        <!-- status -->
+            <template v-slot:item.status="{ item }">
+
+                    <v-row  class="d-flex justify-start">
+                        <v-col cols="12" sm="4" md="4">
+
+                            <v-switch
+                                v-model=" item.status "
+                                color="success"
+                                @change="toggleBan(item)"
+                            ></v-switch>
+
+                        </v-col>
+
+                    </v-row>
+
+            </template> 
+        <!-- status -->
         
-        <!-- country name -->
-            <template v-slot:item.country="{ item }">
-                     <v-text>{{ item.country.name }} </v-text>
-            </template>
-        <!-- country name end-->
-            
         <!-- formatted created date -->    
             <template v-slot:item.created_at="{ item }">
                     <v-row  class="d-flex justify-end">
@@ -357,6 +370,30 @@ import moment from 'moment';
             removeImage: function (e) {
                 this.profilePicture = ''
                 this.file = ''
+            },
+            
+            toggleBan(item){
+                var self = this
+
+                this.$root.$emit('loading', true);
+                
+                axios.patch('/api/toggle/store/status', {
+                    id: item.id,
+                    status: item.status
+                })
+                .then(function (response) {
+
+                    self.initialize()
+                    
+                    flash('Changes Saved.', 'success');
+                })
+                .catch(function (error) {
+                    flash('Changes Saved.', 'error');
+                })
+                .finally( function() {
+                    self.$root.$emit('loading', false);
+                });
+
             },
 
         },

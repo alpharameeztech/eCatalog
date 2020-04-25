@@ -2974,6 +2974,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3170,6 +3183,21 @@ __webpack_require__.r(__webpack_exports__);
     removeImage: function removeImage(e) {
       this.profilePicture = '';
       this.file = '';
+    },
+    toggleBan: function toggleBan(item) {
+      var self = this;
+      this.$root.$emit('loading', true);
+      axios.patch('/api/toggle/store/status', {
+        id: item.id,
+        status: item.status
+      }).then(function (response) {
+        self.initialize();
+        flash('Changes Saved.', 'success');
+      })["catch"](function (error) {
+        flash('Changes Saved.', 'error');
+      })["finally"](function () {
+        self.$root.$emit('loading', false);
+      });
     }
   },
   mounted: function mounted() {
@@ -58268,11 +58296,39 @@ var render = function() {
             },
             scopedSlots: _vm._u([
               {
-                key: "item.country",
+                key: "item.status",
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    _c("v-text", [_vm._v(_vm._s(item.country.name) + " ")])
+                    _c(
+                      "v-row",
+                      { staticClass: "d-flex justify-start" },
+                      [
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "12", sm: "4", md: "4" } },
+                          [
+                            _c("v-switch", {
+                              attrs: { color: "success" },
+                              on: {
+                                change: function($event) {
+                                  return _vm.toggleBan(item)
+                                }
+                              },
+                              model: {
+                                value: item.status,
+                                callback: function($$v) {
+                                  _vm.$set(item, "status", $$v)
+                                },
+                                expression: " item.status "
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
                   ]
                 }
               },

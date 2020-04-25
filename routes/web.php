@@ -44,5 +44,7 @@ Route::group([
 
     Route::get('/stores', 'StoreController@index')->name('all.stores');
     Route::post('/store', 'StoreController@store')->name('add.store');
+    Route::patch('/toggle/store/status', 'StoreController@toggleStatus')->name('toggle.store.status');
+
 });
 //======================== public apis end ==========================
