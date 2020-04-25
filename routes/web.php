@@ -41,5 +41,9 @@ Route::group([
     Route::get('/cities', 'CityController@index')->name('all.cities');
     Route::post('/cities', 'CityController@store')->name('add.city');
     Route::patch('/cities', 'CityController@update')->name('update.city');
+
+    Route::get('/stores', 'StoreController@index')->name('all.stores');
+    Route::post('/store', 'StoreController@store')->name('add.store');
+    Route::patch('/store', 'StoreController@update')->name('update.store');
 });
 //======================== public apis end ==========================

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Store;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
@@ -14,7 +15,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        //
+        return Store::get();
     }
 
     /**
@@ -35,7 +36,13 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'profilePicture' => 'required',
+        ]);
+
+        $store = new Store;
+       $store->image = request()->file('profilePicture')->store('stores', 's3');
+       
     }
 
     /**

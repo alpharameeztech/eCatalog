@@ -2969,6 +2969,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2981,6 +2986,10 @@ __webpack_require__.r(__webpack_exports__);
       ban: '',
       show1: false,
       password: '',
+      avatar: false,
+      file: null,
+      imageUrl: null,
+      profilePicture: '',
       rules: {
         required: function required(value) {
           return !!value || 'Required.';
@@ -3003,16 +3012,28 @@ __webpack_require__.r(__webpack_exports__);
         text: 'Slug',
         value: 'slug'
       }, {
-        text: 'Country',
-        value: 'country'
+        text: 'Image',
+        value: 'image'
+      }, {
+        text: 'Website Link',
+        value: 'website_link'
+      }, {
+        text: 'Facebook Link',
+        value: 'facebook_link',
+        width: 250
+      }, {
+        text: 'About',
+        value: 'about',
+        width: 250
+      }, {
+        text: 'Status',
+        value: 'status'
       }, {
         text: 'Updated At',
-        value: 'updated_at',
-        width: 250
+        value: 'updated_at'
       }, {
         text: 'Created At',
-        value: 'created_at',
-        width: 250
+        value: 'created_at'
       }, {
         text: 'Actions',
         value: 'action',
@@ -3023,11 +3044,10 @@ __webpack_require__.r(__webpack_exports__);
       editedIndex: -1,
       editedItem: {
         id: '',
-        country_id: '',
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0
+        website_link: '',
+        facebook_link: '',
+        about: ''
       },
       defaultItem: {
         name: '',
@@ -3039,7 +3059,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     formTitle: function formTitle() {
-      return this.editedIndex === -1 ? 'Add City' : 'Edit City';
+      return this.editedIndex === -1 ? 'Add Store' : 'Edit Store';
     }
   },
   watch: {
@@ -3054,7 +3074,7 @@ __webpack_require__.r(__webpack_exports__);
     initialize: function initialize() {
       var self = this;
       this.$root.$emit('loading', true);
-      axios.get('/api/cities').then(function (response) {
+      axios.get('/api/stores').then(function (response) {
         self.desserts = response.data;
         self.$root.$emit('loading', false);
       })["catch"](function (error) {
@@ -3087,9 +3107,18 @@ __webpack_require__.r(__webpack_exports__);
       }, 300);
     },
     save: function save() {
+      var self = this;
+      this.$root.$emit('loading', true);
+      var formData = new FormData();
+      /*
+          Add the form data we need to submit
+      */
+
+      formData.append('profilePicture', this.profilePicture);
+
       if (this.editedIndex > -1) {
         Object.assign(this.desserts[this.editedIndex], this.editedItem);
-        axios.patch('/api/cities', {
+        axios.patch('/api/store', {
           id: this.editedItem.id,
           name: this.editedItem.name,
           countryId: this.editedItem.country_id.id
@@ -3103,21 +3132,41 @@ __webpack_require__.r(__webpack_exports__);
         var self = this;
         this.$root.$emit('loading', true);
         this.desserts.push(this.editedItem);
-        axios.post('/api/cities', {
-          name: this.editedItem.name,
-          countryId: this.editedItem.country_id.id
+        axios.post('/api/store', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'enctype': 'multipart/form-data'
+          }
         }).then(function (response) {
-          //self.initialize()
-          flash('Changes Saved.', 'success');
+          self.$root.$emit('loading', false);
+          flash('Changes Saved');
+          self.initialize();
+          self.removeImage();
         })["catch"](function (error) {
-          flash('Changes Saved.', 'error');
+          self.$root.$emit('loading', false);
+          flash('Changes Not Saved', 'error');
         })["finally"](function () {
-          this.$root.$emit('loading', false);
+          self.$root.$emit('loading', false);
         });
+        this.close();
         this.initialize();
       }
+    },
+    onFileChange: function onFileChange() {
+      var _this2 = this;
 
-      this.close();
+      var reader = new FileReader();
+
+      reader.onload = function () {
+        _this2.imageUrl = reader.result;
+      };
+
+      reader.readAsDataURL(this.file);
+      this.profilePicture = this.file;
+    },
+    removeImage: function removeImage(e) {
+      this.profilePicture = '';
+      this.file = '';
     }
   },
   mounted: function mounted() {
@@ -58186,7 +58235,7 @@ var render = function() {
           _c(
             "v-card-title",
             [
-              _vm._v("\n        Cities\n        "),
+              _vm._v("\n        Stores\n        "),
               _c("v-spacer"),
               _vm._v(" "),
               _c("v-text-field", {
@@ -58330,7 +58379,7 @@ var render = function() {
                                         },
                                         on
                                       ),
-                                      [_vm._v("Add City")]
+                                      [_vm._v("Add Store")]
                                     )
                                   ]
                                 }
@@ -58403,28 +58452,120 @@ var render = function() {
                                                 }
                                               },
                                               [
-                                                _c("v-select", {
+                                                _c("v-file-input", {
                                                   attrs: {
-                                                    items: _vm.countries,
-                                                    "item-text": "name",
-                                                    "item-value": "id",
-                                                    label: "Select",
-                                                    "persistent-hint": "",
-                                                    "return-object": "",
-                                                    "single-line": ""
+                                                    label:
+                                                      "Select Image File...",
+                                                    accept: "image/*"
+                                                  },
+                                                  on: {
+                                                    change: _vm.onFileChange
+                                                  },
+                                                  model: {
+                                                    value: _vm.file,
+                                                    callback: function($$v) {
+                                                      _vm.file = $$v
+                                                    },
+                                                    expression: "file"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "12",
+                                                  md: "12"
+                                                }
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    label: "Website Link"
                                                   },
                                                   model: {
                                                     value:
-                                                      _vm.editedItem.country_id,
+                                                      _vm.editedItem
+                                                        .website_link,
                                                     callback: function($$v) {
                                                       _vm.$set(
                                                         _vm.editedItem,
-                                                        "country_id",
+                                                        "website_link",
                                                         $$v
                                                       )
                                                     },
                                                     expression:
-                                                      "editedItem.country_id"
+                                                      "editedItem.website_link"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "12",
+                                                  md: "12"
+                                                }
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    label: "Facebook Page"
+                                                  },
+                                                  model: {
+                                                    value:
+                                                      _vm.editedItem
+                                                        .facebook_link,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "facebook_link",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.facebook_link"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "12",
+                                                  md: "12"
+                                                }
+                                              },
+                                              [
+                                                _c("v-textarea", {
+                                                  attrs: {
+                                                    outlined: "",
+                                                    name: "input-7-4",
+                                                    label: "Outlined textarea"
+                                                  },
+                                                  model: {
+                                                    value: _vm.editedItem.about,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "about",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.about"
                                                   }
                                                 })
                                               ],

@@ -3,7 +3,7 @@
 
         <v-card>
         <v-card-title>
-            Cities
+            Stores
             <v-spacer></v-spacer>
             <v-text-field
                 v-model="search"
@@ -63,13 +63,9 @@
                         </v-chip>
                     </v-row>
                 </template>
-                <!-- formatted updated date end-->
-
-
-        
-        
+                <!-- formatted updated date end-->        
        
-        <!-- add/update city -->
+        <!-- add/update modal -->
             <template v-slot:top>
                 <v-toolbar flat color="white">
 
@@ -81,7 +77,7 @@
                     <v-spacer></v-spacer>
                     <v-dialog v-model="dialog" max-width="500px">
                         <template v-slot:activator="{ on }">
-                            <v-btn color="primary" dark class="mb-2" v-on="on">Add City</v-btn>
+                            <v-btn color="primary" dark class="mb-2" v-on="on">Add Store</v-btn>
                         </template>
                         <v-card>
                             <v-card-title>
@@ -95,17 +91,26 @@
                                             <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="12">
-                                            
-                                            <v-select
-                                                v-model="editedItem.country_id"
-                                                :items="countries"
-                                                item-text="name"
-                                                item-value="id"
-                                                label="Select"
-                                                persistent-hint
-                                                return-object
-                                                single-line
-                                                ></v-select>
+                                            <v-file-input
+                                                v-model="file"
+                                                label="Select Image File..."
+                                                accept="image/*"
+                                                @change="onFileChange"
+                                            ></v-file-input>
+                                        </v-col>
+                                        <v-col cols="12" sm="12" md="12">
+                                            <v-text-field v-model="editedItem.website_link" label="Website Link"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="12" md="12">
+                                            <v-text-field v-model="editedItem.facebook_link" label="Facebook Page"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="12" md="12">
+                                             <v-textarea
+                                                v-model="editedItem.about"
+                                                outlined
+                                                name="input-7-4"
+                                                label="Outlined textarea"
+                                                ></v-textarea>
                                         </v-col>
                                     </v-row>
                                 </v-container>
@@ -120,7 +125,7 @@
                     </v-dialog>
                 </v-toolbar>
             </template>
-        <!-- add/update city end -->
+        <!-- add/update modal end -->
 
         <!-- action -->
          <template v-slot:item.action="{ item }">
@@ -153,6 +158,10 @@ import moment from 'moment';
                 ban:'',
                 show1: false,
                 password: '',
+                avatar: false,
+                file: null,
+                imageUrl: null,
+                profilePicture: '',
                 rules: {
                     required: value => !!value || 'Required.',
                     min: v => v.length >= 8 || 'Min 8 characters',
@@ -172,9 +181,13 @@ import moment from 'moment';
                         value: 'name',
                     },
                     { text: 'Slug', value: 'slug'},
-                    { text: 'Country', value: 'country'},
-                    {text: 'Updated At', value: 'updated_at', width: 250},
-                    {text: 'Created At', value: 'created_at', width: 250},
+                    { text: 'Image', value: 'image'},
+                    { text: 'Website Link', value: 'website_link'},
+                    {text: 'Facebook Link', value: 'facebook_link', width: 250},
+                    {text: 'About', value: 'about', width: 250},
+                    {text: 'Status', value: 'status'},
+                    {text: 'Updated At', value: 'updated_at'},
+                    {text: 'Created At', value: 'created_at'},
                     {text: 'Actions', value: 'action', sortable: false},
                 ],
                 desserts: [],
@@ -182,11 +195,10 @@ import moment from 'moment';
                 editedIndex: -1,
                 editedItem: {
                     id:'',
-                    country_id:'',
                     name: '',
-                    calories: 0,
-                    fat: 0,
-                    carbs: 0,
+                    website_link: '',
+                    facebook_link: '',
+                    about: '',
                 },
                 defaultItem: {
                     name: '',
@@ -200,7 +212,7 @@ import moment from 'moment';
 
         computed: {
             formTitle () {
-                return this.editedIndex === -1 ? 'Add City' : 'Edit City'
+                return this.editedIndex === -1 ? 'Add Store' : 'Edit Store'
             },
         },
 
@@ -221,7 +233,7 @@ import moment from 'moment';
 
                 this.$root.$emit('loading', true);
 
-                axios.get('/api/cities')
+                axios.get('/api/stores')
                     .then(function (response) {
 
                         self.desserts = response.data;
@@ -267,9 +279,19 @@ import moment from 'moment';
             },
 
             save () {
+                var self = this;
+
+                this.$root.$emit('loading', true);
+
+                let formData = new FormData();
+                /*
+                    Add the form data we need to submit
+                */
+                formData.append('profilePicture', this.profilePicture);
+
                 if (this.editedIndex > -1) {
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
-                    axios.patch('/api/cities', {
+                    axios.patch('/api/store', {
                         id: this.editedItem.id,
                         name: this.editedItem.name,
                         countryId: this.editedItem.country_id.id
@@ -293,24 +315,50 @@ import moment from 'moment';
 
                     this.desserts.push(this.editedItem)
                     
-                    axios.post('/api/cities', {
-                        name: this.editedItem.name,
-                        countryId: this.editedItem.country_id.id
-                    })
-                        .then(function (response) {
-                            //self.initialize()
-                            flash('Changes Saved.', 'success');
-                        })
-                        .catch(function (error) {
-                            flash('Changes Saved.', 'error');
-                        })
-                        .finally( function() {
-                            this.$root.$emit('loading', false);
-                        });
+                    axios.post('/api/store', formData,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            'enctype' : 'multipart/form-data'
+                        }
+                    }).then(function (response) {
 
+                        self.$root.$emit('loading', false)
+
+                        flash('Changes Saved')
+
+                        self.initialize()
+
+                        self.removeImage()
+
+                    })
+                    .catch(function (error) {
+
+                        self.$root.$emit('loading', false)
+
+                        flash('Changes Not Saved', 'error')
+                    })
+                    .finally(function () {
+                        self.$root.$emit('loading', false)
+
+                    });
+                    this.close()
                     this.initialize()
                 }
-                this.close()
+               
+            },
+            onFileChange() {
+                let reader = new FileReader()
+                reader.onload = () => {
+                    this.imageUrl = reader.result
+                }
+                reader.readAsDataURL(this.file)
+                this.profilePicture = this.file
+            },
+
+            removeImage: function (e) {
+                this.profilePicture = ''
+                this.file = ''
             },
 
         },
