@@ -19,6 +19,9 @@ class CreateStoresTable extends Migration
             $table->string('slug')->unique();
             $table->string('website_link')->nullable();
             $table->string('facebook_link')->nullable();
+            $table->string('twitter_link')->nullable();
+            $table->string('instagram_link')->nullable();
+            $table->string('youtube_link')->nullable();
             $table->longText('about');
             $table->string('image');
             $table->boolean('status')->default(1);

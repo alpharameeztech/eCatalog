@@ -118,6 +118,15 @@
                                             <v-text-field v-model="editedItem.facebook_link" label="Facebook Page"></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="12">
+                                            <v-text-field v-model="editedItem.twitter_link" label="Twitter Page"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="12" md="12">
+                                            <v-text-field v-model="editedItem.instagram_link" label="Instagram Page"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="12" md="12">
+                                            <v-text-field v-model="editedItem.youtube_link" label="Youtube Page"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="12" md="12">
                                              <v-textarea
                                                 v-model="editedItem.about"
                                                 outlined
@@ -196,8 +205,11 @@ import moment from 'moment';
                     { text: 'Slug', value: 'slug'},
                     { text: 'Image', value: 'image'},
                     { text: 'Website Link', value: 'website_link'},
-                    {text: 'Facebook Link', value: 'facebook_link', width: 250},
-                    {text: 'About', value: 'about', width: 250},
+                    {text: 'Facebook Link', value: 'facebook_link'},
+                    {text: 'Twitter Link', value: 'twitter_link'},
+                    {text: 'Instagram Link', value: 'instagram_link'},
+                    {text: 'Youtube Link', value: 'youtube_link'},
+                    {text: 'About', value: 'about'},
                     {text: 'Status', value: 'status'},
                     {text: 'Updated At', value: 'updated_at'},
                     {text: 'Created At', value: 'created_at'},
@@ -211,6 +223,9 @@ import moment from 'moment';
                     name: '',
                     website_link: '',
                     facebook_link: '',
+                    instagram_link: '',
+                    youtube_link: '',
+                    twitter_link: '',
                     about: '',
                     profilePicture: ''
                 },
@@ -307,6 +322,9 @@ import moment from 'moment';
                 formData.append('name', this.editedItem.name);
                 formData.append('websiteLink', this.editedItem.website_link);
                 formData.append('facebookLink', this.editedItem.facebook_link);
+                formData.append('instagramLink', this.editedItem.instagram_link);
+                formData.append('youtubeLink', this.editedItem.youtube_link);
+                formData.append('twitterLink', this.editedItem.twitter_link);
                 formData.append('about', this.editedItem.about);
                
                 if (this.editedIndex > -1) {

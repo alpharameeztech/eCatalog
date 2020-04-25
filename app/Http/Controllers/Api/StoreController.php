@@ -46,8 +46,6 @@ class StoreController extends Controller
             $validatedData = $request->validate([
                 'profilePicture' => 'required',
                 'name' => 'required|unique:stores|max:255',
-                'websiteLink' => 'required',
-                'facebookLink' => 'required',
                 'about' => 'required',
             ]);
     
@@ -57,6 +55,9 @@ class StoreController extends Controller
             $store->slug = Str::slug($store->name , '-');
             $store->website_link = Str::of($request->websiteLink)->trim();
             $store->facebook_link = Str::of($request->facebookLink)->trim();
+            $store->twitter_link = Str::of($request->twitterLink)->trim();
+            $store->instagram_link = Str::of($request->instagramLink)->trim();
+            $store->youtube_link = Str::of($request->youtubeLink)->trim();
             $store->about = Str::of($request->about)->trim();
             $store->save();
         }
@@ -95,9 +96,7 @@ class StoreController extends Controller
     public function update(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|unique:stores|max:255',
-            'websiteLink' => 'required',
-            'facebookLink' => 'required',
+            'name' => 'required|max:255',
             'about' => 'required',
         ]);
 
@@ -111,6 +110,9 @@ class StoreController extends Controller
         $store->slug = Str::slug($store->name , '-');
         $store->website_link = Str::of($request->websiteLink)->trim();
         $store->facebook_link = Str::of($request->facebookLink)->trim();
+        $store->twitter_link = Str::of($request->twitterLink)->trim();
+        $store->instagram_link = Str::of($request->instagramLink)->trim();
+        $store->youtube_link = Str::of($request->youtubeLink)->trim();
         $store->about = Str::of($request->about)->trim();
         $store->save();
     }

@@ -2987,6 +2987,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3032,12 +3041,19 @@ __webpack_require__.r(__webpack_exports__);
         value: 'website_link'
       }, {
         text: 'Facebook Link',
-        value: 'facebook_link',
-        width: 250
+        value: 'facebook_link'
+      }, {
+        text: 'Twitter Link',
+        value: 'twitter_link'
+      }, {
+        text: 'Instagram Link',
+        value: 'instagram_link'
+      }, {
+        text: 'Youtube Link',
+        value: 'youtube_link'
       }, {
         text: 'About',
-        value: 'about',
-        width: 250
+        value: 'about'
       }, {
         text: 'Status',
         value: 'status'
@@ -3060,6 +3076,9 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         website_link: '',
         facebook_link: '',
+        instagram_link: '',
+        youtube_link: '',
+        twitter_link: '',
         about: '',
         profilePicture: ''
       },
@@ -3134,6 +3153,9 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('name', this.editedItem.name);
       formData.append('websiteLink', this.editedItem.website_link);
       formData.append('facebookLink', this.editedItem.facebook_link);
+      formData.append('instagramLink', this.editedItem.instagram_link);
+      formData.append('youtubeLink', this.editedItem.youtube_link);
+      formData.append('twitterLink', this.editedItem.twitter_link);
       formData.append('about', this.editedItem.about);
 
       if (this.editedIndex > -1) {
@@ -58592,6 +58614,105 @@ var render = function() {
                                                     },
                                                     expression:
                                                       "editedItem.facebook_link"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "12",
+                                                  md: "12"
+                                                }
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    label: "Twitter Page"
+                                                  },
+                                                  model: {
+                                                    value:
+                                                      _vm.editedItem
+                                                        .twitter_link,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "twitter_link",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.twitter_link"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "12",
+                                                  md: "12"
+                                                }
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    label: "Instagram Page"
+                                                  },
+                                                  model: {
+                                                    value:
+                                                      _vm.editedItem
+                                                        .instagram_link,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "instagram_link",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.instagram_link"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "12",
+                                                  md: "12"
+                                                }
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    label: "Youtube Page"
+                                                  },
+                                                  model: {
+                                                    value:
+                                                      _vm.editedItem
+                                                        .youtube_link,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "youtube_link",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.youtube_link"
                                                   }
                                                 })
                                               ],
