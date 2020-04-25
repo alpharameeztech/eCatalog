@@ -3047,7 +3047,8 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         website_link: '',
         facebook_link: '',
-        about: ''
+        about: '',
+        profilePicture: ''
       },
       defaultItem: {
         name: '',
@@ -3115,6 +3116,10 @@ __webpack_require__.r(__webpack_exports__);
       */
 
       formData.append('profilePicture', this.profilePicture);
+      formData.append('name', this.editedItem.name);
+      formData.append('websiteLink', this.editedItem.website_link);
+      formData.append('facebookLink', this.editedItem.facebook_link);
+      formData.append('about', this.editedItem.about);
 
       if (this.editedIndex > -1) {
         Object.assign(this.desserts[this.editedIndex], this.editedItem);

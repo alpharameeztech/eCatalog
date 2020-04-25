@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class StoreController extends Controller
 {
@@ -36,13 +37,23 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validatedData = $request->validate([
             'profilePicture' => 'required',
+            'name' => 'required|unique:stores|max:255',
+            'websiteLink' => 'required',
+            'facebookLink' => 'required',
+            'about' => 'required',
         ]);
 
         $store = new Store;
-       $store->image = request()->file('profilePicture')->store('stores', 's3');
-       
+        $store->image = request()->file('profilePicture')->store('stores', 's3');
+        $store->name = Str::of($request->name)->trim();
+        $store->slug = Str::slug($store->name , '-');
+        $store->website_link = Str::of($request->websiteLink)->trim();
+        $store->facebook_link = Str::of($request->facebookLink)->trim();
+        $store->about = Str::of($request->about)->trim();
+        $store->save();
     }
 
     /**

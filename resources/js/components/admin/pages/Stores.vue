@@ -199,6 +199,7 @@ import moment from 'moment';
                     website_link: '',
                     facebook_link: '',
                     about: '',
+                    profilePicture: ''
                 },
                 defaultItem: {
                     name: '',
@@ -288,6 +289,10 @@ import moment from 'moment';
                     Add the form data we need to submit
                 */
                 formData.append('profilePicture', this.profilePicture);
+                formData.append('name', this.editedItem.name);
+                formData.append('websiteLink', this.editedItem.website_link);
+                formData.append('facebookLink', this.editedItem.facebook_link);
+                formData.append('about', this.editedItem.about);
 
                 if (this.editedIndex > -1) {
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
