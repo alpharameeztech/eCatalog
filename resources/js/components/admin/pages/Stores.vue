@@ -17,18 +17,31 @@
             :headers="headers"
             :items="desserts"
             :search="search"
-        >   
+        > 
+
+        <!-- name -->  
           <template v-slot:item.name="{ item }">
-
-                    <v-row  class="d-flex justify-start">
-                        <v-col cols="12" sm="4" md="4">
-                          
-                            <v-text>  {{ parseNameInEnglish(item)}} </v-text>
-                        </v-col>
-
-                    </v-row>
-
+                <v-row  class="d-flex justify-start">
+                    <v-col cols="12" sm="4" md="4">
+                        
+                        <v-text> {{item.name.en}} </v-text>
+                    </v-col>
+                </v-row>
             </template>
+        <!-- name end-->
+        
+        <!-- about -->  
+          <template v-slot:item.about="{ item }">
+                <v-row  class="d-flex justify-start">
+                    <v-col cols="12" sm="4" md="4">
+                        
+                        <v-text> {{item.about.en}} </v-text>
+                    </v-col>
+                </v-row>
+            </template>
+        <!-- about end-->
+        
+
         <!-- status -->
             <template v-slot:item.status="{ item }">
 
@@ -263,7 +276,7 @@ import moment from 'moment';
                         align: 'left',
                         sortable: true,
                         value: 'name',
-                        width: 250
+                        width: 500
                     },
                     { text: 'Slug', value: 'slug'},
                     { text: 'Image', value: 'image'},
@@ -272,7 +285,7 @@ import moment from 'moment';
                     {text: 'Twitter Link', value: 'twitter_link'},
                     {text: 'Instagram Link', value: 'instagram_link'},
                     {text: 'Youtube Link', value: 'youtube_link'},
-                    {text: 'About', value: 'about'},
+                    {text: 'About', value: 'about',  width: 500},
                     {text: 'Status', value: 'status'},
                     {text: 'Updated At', value: 'updated_at'},
                     {text: 'Created At', value: 'created_at'},
@@ -354,18 +367,13 @@ import moment from 'moment';
 
             },
 
-            parseNameInEnglish(item){
-                return item.name.en
-            },
-            parseNameInArabic(item){
-                return item.name.ar
-            },
-
             editItem (item) {
                 this.editedIndex = this.desserts.indexOf(item)
                 this.editedItem = Object.assign({}, item)
-                this.editedItem.name =   this.parseNameInEnglish(item)
-                this.editedItem.arabic_name =   this.parseNameInArabic(item)
+                this.editedItem.name = item.name.en
+                this.editedItem.arabic_name = item.name.ar
+                this.editedItem.about = item.about.en
+                this.editedItem.arabic_about = item.about.ar
                 this.dialog = true
             },
 

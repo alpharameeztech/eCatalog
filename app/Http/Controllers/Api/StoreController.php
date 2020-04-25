@@ -65,7 +65,12 @@ class StoreController extends Controller
             $store->twitter_link = Str::of($request->twitterLink)->trim();
             $store->instagram_link = Str::of($request->instagramLink)->trim();
             $store->youtube_link = Str::of($request->youtubeLink)->trim();
-            $store->about = Str::of($request->about)->trim();
+            // $store->about = Str::of($request->about)->trim();
+
+             //$store->name = Str::of($request->name)->trim();
+            $store->setTranslation('about', 'en', $request->about);
+            $store->setTranslation('about', 'ar', $request->arabicAbout);
+
             $store->save();
 
             // $store
@@ -119,14 +124,16 @@ class StoreController extends Controller
 
         $store->setTranslation('name', 'en', $request->name);
         $store->setTranslation('name', 'ar', $request->arabicName);
-        
+
         $store->slug = Str::of($request->name)->slug('-');
         $store->website_link = Str::of($request->websiteLink)->trim();
         $store->facebook_link = Str::of($request->facebookLink)->trim();
         $store->twitter_link = Str::of($request->twitterLink)->trim();
         $store->instagram_link = Str::of($request->instagramLink)->trim();
         $store->youtube_link = Str::of($request->youtubeLink)->trim();
-        $store->about = Str::of($request->about)->trim();
+        //$store->about = Str::of($request->about)->trim();
+        $store->setTranslation('about', 'en', $request->about);
+        $store->setTranslation('about', 'ar', $request->arabicAbout);
         $store->save();
     }
     /**

@@ -3058,6 +3058,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3092,7 +3105,7 @@ __webpack_require__.r(__webpack_exports__);
         align: 'left',
         sortable: true,
         value: 'name',
-        width: 250
+        width: 500
       }, {
         text: 'Slug',
         value: 'slug'
@@ -3116,7 +3129,8 @@ __webpack_require__.r(__webpack_exports__);
         value: 'youtube_link'
       }, {
         text: 'About',
-        value: 'about'
+        value: 'about',
+        width: 500
       }, {
         text: 'Status',
         value: 'status'
@@ -3186,17 +3200,13 @@ __webpack_require__.r(__webpack_exports__);
       moment__WEBPACK_IMPORTED_MODULE_1___default.a.locale();
       return moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc(date).fromNow();
     },
-    parseNameInEnglish: function parseNameInEnglish(item) {
-      return item.name.en;
-    },
-    parseNameInArabic: function parseNameInArabic(item) {
-      return item.name.ar;
-    },
     editItem: function editItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      this.editedItem.name = this.parseNameInEnglish(item);
-      this.editedItem.arabic_name = this.parseNameInArabic(item);
+      this.editedItem.name = item.name.en;
+      this.editedItem.arabic_name = item.name.ar;
+      this.editedItem.about = item.about.en;
+      this.editedItem.arabic_about = item.about.ar;
       this.dialog = true;
     },
     deleteItem: function deleteItem(item) {
@@ -58407,11 +58417,32 @@ var render = function() {
                           { attrs: { cols: "12", sm: "4", md: "4" } },
                           [
                             _c("v-text", [
-                              _vm._v(
-                                "  " +
-                                  _vm._s(_vm.parseNameInEnglish(item)) +
-                                  " "
-                              )
+                              _vm._v(" " + _vm._s(item.name.en) + " ")
+                            ])
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              },
+              {
+                key: "item.about",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-row",
+                      { staticClass: "d-flex justify-start" },
+                      [
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "12", sm: "4", md: "4" } },
+                          [
+                            _c("v-text", [
+                              _vm._v(" " + _vm._s(item.about.en) + " ")
                             ])
                           ],
                           1
