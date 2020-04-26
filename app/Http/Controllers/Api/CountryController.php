@@ -39,11 +39,15 @@ class CountryController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|unique:countries|max:255',
+            'arabic_name' => 'required'
         ]);
 
         $country = new Country;
-        $country->name = Str::of($request->name)->trim();
-        $country->slug = Str::slug($country->name , '-');
+
+        $country->setTranslation('name', 'en', $request->name);
+        $country->setTranslation('name', 'ar', $request->arabic_name);
+
+        $country->slug = Str::slug($request->name , '-');
         $country->save();
     }
 
@@ -80,12 +84,16 @@ class CountryController extends Controller
     {
         $validatedData = $request->validate([
             'id' => 'required',
-            'name' => 'required|unique:countries|max:255',
+            'name' => 'required|max:255',
+            'arabic_name' => 'required'
         ]);
 
         $country = Country::find($request->id);
-        $country->name = Str::of($request->name)->trim();
-        $country->slug = Str::slug($country->name, '-');
+
+        $country->setTranslation('name', 'en', $request->name);
+        $country->setTranslation('name', 'ar', $request->arabic_name);
+
+        $country->slug = Str::slug($request->name , '-');
         $country->save();
     }
 

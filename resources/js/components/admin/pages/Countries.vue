@@ -5,6 +5,16 @@
         sort-by="slug"
         class="elevation-1"
     >
+        <!-- name -->  
+            <template v-slot:item.name="{ item }">
+                <v-row  class="d-flex justify-start">
+                    <v-col cols="12" sm="12" md="12">
+                        <v-text> {{item.name.en}} </v-text>
+                    </v-col>
+                </v-row>
+            </template>
+        <!-- name end-->
+
         <template v-slot:top>
             <v-toolbar flat color="white">
                 <v-toolbar-title>Countries</v-toolbar-title>
@@ -18,28 +28,64 @@
                     <template v-slot:activator="{ on }">
                         <v-btn color="primary" dark class="mb-2" v-on="on">Add Country</v-btn>
                     </template>
-                    <v-card>
-                        <v-card-title>
-                            <span class="headline">{{ formTitle }}</span>
-                        </v-card-title>
+                     <v-tabs
+                            fixed-tabs
+                            background-color="indigo"
+                            dark
+                        >
+                        <v-tabs-slider></v-tabs-slider>
+                            <v-tab>
+                            English
+                            </v-tab>
+                            <v-tab>
+                            Arabic
+                            </v-tab>
 
-                        <v-card-text>
-                            <v-container>
-                                <v-row>
-                                    <v-col cols="12" sm="12" md="12">
-                                        <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
-                                    </v-col>
+                            <!-- english tab item -->
+                            <v-tab-item>
+                                 <v-card>
+                                    <v-card-title>
+                                        <span class="headline">{{ formTitle }}</span>
+                                    </v-card-title>
 
-                                </v-row>
-                            </v-container>
-                        </v-card-text>
+                                    <v-card-text>
+                                        <v-container>
+                                            <v-row>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
+                                                </v-col>
 
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                            <v-btn color="blue darken-1" text @click="save">Save</v-btn>
-                        </v-card-actions>
-                    </v-card>
+                                            </v-row>
+                                        </v-container>
+                                    </v-card-text>
+
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+                                        <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-tab-item>
+                            <!-- english tab item end -->
+
+                            <!-- arbaic tab item -->
+                            <v-tab-item>
+                                 <v-card>
+                                    <v-card-text>
+                                        <v-container>
+                                            <v-row>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.arabic_name" label="Name in Arabic"></v-text-field>
+                                                </v-col>
+                                            </v-row>
+                                        </v-container>
+                                    </v-card-text>
+                                </v-card>
+                            </v-tab-item>
+                             <!-- arbaic tab item end -->
+                     </v-tabs>
+                            
+                   
                 </v-dialog>
             </v-toolbar>
         </template>
@@ -84,6 +130,7 @@
                 editedIndex: -1,
                 editedItem: {
                     name: '',
+                    arabic_name: '',
                     calories: 0,
                     fat: 0,
                     carbs: 0,
@@ -143,6 +190,8 @@
             editItem (item) {
                 this.editedIndex = this.desserts.indexOf(item)
                 this.editedItem = Object.assign({}, item)
+                this.editedItem.name = item.name.en
+                this.editedItem.arabic_name = item.name.ar
                 this.dialog = true
             },
 
@@ -162,18 +211,23 @@
             save () {
                 if (this.editedIndex > -1) {
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
+                    
+                    var self = this
+                    this.$root.$emit('loading', true);
 
                     axios.patch('/api/countries', {
                         id: this.editedItem.id,
-                        name: this.editedItem.name
+                        name: this.editedItem.name,
+                        arabic_name: this.editedItem.arabic_name
                     })
                         .then(function (response) {
                             flash('Changes Saved.', 'success');
 
-                            this.initialize()
+                            self.initialize()
 
                         })
                         .catch(function (error) {
+                            self.$root.$emit('loading', false)
                         })
                         .finally( function() {
                             self.$root.$emit('loading', false);
@@ -188,11 +242,14 @@
                     this.desserts.push(this.editedItem)
 
                     axios.post('/api/countries', {
-                        name: this.editedItem.name
+                        name: this.editedItem.name,
+                        arabic_name: this.editedItem.arabic_name
                     })
                         .then(function (response) {
-                            //self.initialize()
-                            flash('Changes Saved.', 'success');
+                           
+                           self.initialize()
+                           
+                           flash('Changes Saved.', 'success');
                         })
                         .catch(function (error) {
                             flash('Changes Saved.', 'error');
