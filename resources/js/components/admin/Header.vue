@@ -175,6 +175,7 @@
                 { icon: 'list_alt', text: 'Countries', link: '/home/countries', hasAccess: ['admin', 'publisher'] },
                 { icon: 'location_city', text: 'Cities', link: '/home/cities', hasAccess: ['admin', 'publisher'] },
                 { icon: 'store', text: 'Stores', link: '/home/stores', hasAccess: ['admin', 'publisher'] },
+                { icon: 'local_mall', text: 'Malls', link: '/home/malls', hasAccess: ['admin', 'publisher'] },
             ],
 
         }),
