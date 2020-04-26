@@ -15,6 +15,46 @@
             </template>
         <!-- name end-->
 
+        <!-- formatted created date -->    
+            <template v-slot:item.created_at="{ item }">
+                    <v-row  class="d-flex justify-end">
+                        <v-chip
+                            class="ma-2"
+                            color="primary"
+                            outlined
+                            pill
+                        >
+                            <v-avatar left>
+                                <v-icon>av_timer</v-icon>
+                            </v-avatar>
+
+                            {{ ago(item.created_at) }}
+
+                        </v-chip>
+                    </v-row>
+                </template>
+            <!-- formatted created date end -->
+
+            <!-- formatted updated date -->
+            <template v-slot:item.updated_at="{ item }">
+                    <v-row  class="d-flex justify-end">
+                        <v-chip
+                            class="ma-2"
+                            color="primary"
+                            outlined
+                            pill
+                        >
+                            <v-avatar left>
+                                <v-icon>av_timer</v-icon>
+                            </v-avatar>
+
+                            {{ ago(item.updated_at) }}
+
+                        </v-chip>
+                    </v-row>
+                </template>
+                <!-- formatted updated date end-->
+
         <template v-slot:top>
             <v-toolbar flat color="white">
                 <v-toolbar-title>Countries</v-toolbar-title>
@@ -104,6 +144,7 @@
     </v-data-table>
 </template>
 <script>
+import moment from 'moment';
     export default {
         data() {
             return {
@@ -261,6 +302,14 @@
                     this.initialize()
                 }
                 this.close()
+            },
+            
+            ago(date){
+
+                moment.locale();
+
+                return moment.utc(date).fromNow();
+
             },
         },
 
