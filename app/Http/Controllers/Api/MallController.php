@@ -100,9 +100,41 @@ class MallController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+       
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'arabicName' => 'required|max:255',
+            'openingHours' => 'required',
+            'arabicOpeningHours' => 'required',
+            'mapLocation' => 'required',
+            'cityId' => 'required',
+            'address' => 'required',
+            'arabicAddress'=> 'required'
+        ]);
+
+        $mall = Mall::find($request->id);
+       
+        //$store->name = Str::of($request->name)->trim();
+        $mall->setTranslation('name', 'en', $request->name);
+        $mall->setTranslation('name', 'ar', $request->arabicName);
+       
+        $mall->slug = Str::of($request->name)->slug('-');
+
+        $mall->telephone = $request->telephone;
+
+        $mall->setTranslation('opening_hours', 'en', $request->openingHours);
+        $mall->setTranslation('opening_hours', 'ar', $request->arabicOpeningHours);
+
+        $mall->map_location = $request->mapLocation;
+        $mall->city_id = $request->cityId;
+
+        
+        $mall->setTranslation('address', 'en', $request->address);
+        $mall->setTranslation('address', 'ar', $request->arabicAddress);
+
+        $mall->save();
     }
 
     /**
