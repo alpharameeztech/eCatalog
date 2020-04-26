@@ -3071,6 +3071,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3189,7 +3199,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/stores').then(function (response) {
         self.desserts = response.data;
         self.$root.$emit('loading', false);
-        console.log(response.data[0].name.en);
       })["catch"](function (error) {
         console.info('error');
       })["finally"](function () {
@@ -3306,6 +3315,9 @@ __webpack_require__.r(__webpack_exports__);
       })["finally"](function () {
         self.$root.$emit('loading', false);
       });
+    },
+    storeImage: function storeImage(image) {
+      return 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + image;
     }
   },
   mounted: function mounted() {
@@ -58419,6 +58431,31 @@ var render = function() {
                             _c("v-text", [
                               _vm._v(" " + _vm._s(item.name.en) + " ")
                             ])
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              },
+              {
+                key: "item.image",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-row",
+                      { staticClass: "storeImage d-flex justify-start" },
+                      [
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "12", sm: "4", md: "4" } },
+                          [
+                            _c("v-img", {
+                              attrs: { src: _vm.storeImage(item.image) }
+                            })
                           ],
                           1
                         )

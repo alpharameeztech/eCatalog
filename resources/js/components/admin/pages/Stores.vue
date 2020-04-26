@@ -20,7 +20,7 @@
         > 
 
         <!-- name -->  
-          <template v-slot:item.name="{ item }">
+            <template v-slot:item.name="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="4" md="4">
                         
@@ -29,6 +29,16 @@
                 </v-row>
             </template>
         <!-- name end-->
+
+        <!-- image -->
+            <template v-slot:item.image="{ item }">
+                <v-row  class="storeImage d-flex justify-start">
+                    <v-col cols="12" sm="4" md="4">
+                        <v-img :src="storeImage(item.image)" ></v-img>
+                    </v-col>
+                </v-row>
+            </template>
+        <!-- image end-->
         
         <!-- about -->  
           <template v-slot:item.about="{ item }">
@@ -321,6 +331,7 @@ import moment from 'moment';
             formTitle () {
                 return this.editedIndex === -1 ? 'Add Store' : 'Edit Store'
             },
+            
         },
 
         watch: {
@@ -347,7 +358,6 @@ import moment from 'moment';
 
                         self.$root.$emit('loading', false);
 
-                        console.log(response.data[0].name.en)
                     })
                     .catch(function (error) {
 
@@ -499,6 +509,9 @@ import moment from 'moment';
                 });
 
             },
+            storeImage(image){
+               return 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + image;
+            }
 
         },
 
