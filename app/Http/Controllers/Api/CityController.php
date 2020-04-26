@@ -40,7 +40,7 @@ class CityController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|unique:cities|max:255',
             'arabic_name' => 'required',
-            'country_id' => 'required',
+            'country' => 'required',
         ]);
 
         $city = new City();
@@ -49,7 +49,7 @@ class CityController extends Controller
         $city->setTranslation('name', 'ar', $request->arabic_name);
 
         $city->slug = Str::slug($request->name , '-');
-        $city->country_id = $request->country_id;
+        $city->country_id = $request->country['id'];
         $city->save();
     }
 
@@ -89,7 +89,7 @@ class CityController extends Controller
             'id' => 'required',
             'name' => 'required|max:255',
             'arabic_name' => 'required',
-            'country_id' => 'required',
+            'country' => 'required',
         ]);
 
         $city = City::find($request->id);
@@ -98,7 +98,7 @@ class CityController extends Controller
         $city->setTranslation('name', 'ar', $request->arabic_name);
         
         $city->slug = Str::slug($request->name , '-');
-        $city->country_id = $request->country_id;
+        $city->country_id = $request->country['id'];
         $city->save();
     }
 

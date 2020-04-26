@@ -121,7 +121,7 @@
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-select
-                                                        v-model="editedItem.country_id"
+                                                        v-model="editedItem.country"
                                                         :items="countries"
                                                         item-text="name.en"
                                                         item-value="id"
@@ -321,12 +321,12 @@ import moment from 'moment';
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
 
                     var self = this
-                  
+                    
                     axios.patch('/api/cities', {
                         id: this.editedItem.id,
                         name: this.editedItem.name,
                         arabic_name: this.editedItem.arabic_name,
-                        country_id: this.editedItem.country_id.id
+                        country: this.editedItem.country
                     })
                         .then(function (response) {
                             flash('Changes Saved.', 'success');
@@ -350,7 +350,7 @@ import moment from 'moment';
                     axios.post('/api/cities', {
                         name: this.editedItem.name,
                         arabic_name: this.editedItem.arabic_name,
-                        country_id: this.editedItem.country_id.id
+                        country: this.editedItem.country
                     })
                         .then(function (response) {
                             self.initialize()
