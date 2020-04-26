@@ -43,7 +43,7 @@ class MallController extends Controller
             'openingHours' => 'required',
             'arabicOpeningHours' => 'required',
             'mapLocation' => 'required',
-            'cityId' => 'required',
+            'city' => 'required',
             'address' => 'required',
             'arabicAddress'=> 'required'
         ]);
@@ -62,7 +62,7 @@ class MallController extends Controller
         $mall->setTranslation('opening_hours', 'ar', $request->arabicOpeningHours);
 
         $mall->map_location = $request->mapLocation;
-        $mall->city_id = $request->cityId;
+        $mall->city_id = $request->city['id'];
 
         
         $mall->setTranslation('address', 'en', $request->address);
@@ -102,14 +102,14 @@ class MallController extends Controller
      */
     public function update(Request $request)
     {
-        \Log::info($request);
+
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'arabicName' => 'required|max:255',
             'openingHours' => 'required',
             'arabicOpeningHours' => 'required',
             'mapLocation' => 'required',
-            'cityId' => 'required',
+            'city' => 'required',
             'address' => 'required',
             'arabicAddress'=> 'required'
         ]);
@@ -128,7 +128,7 @@ class MallController extends Controller
         $mall->setTranslation('opening_hours', 'ar', $request->arabicOpeningHours);
 
         $mall->map_location = $request->mapLocation;
-        $mall->city_id = $request->cityId;
+        $mall->city_id = $request->city['id'];
 
         
         $mall->setTranslation('address', 'en', $request->address);

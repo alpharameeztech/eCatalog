@@ -32,7 +32,7 @@
 
         <!-- city name -->
             <template v-slot:item.city_id="{ item }">
-                     <v-text>{{ item.city.name }} </v-text>
+                     <v-text>{{ item.city.name.en }} </v-text>
             </template>
         <!-- city name end-->
 
@@ -151,7 +151,7 @@
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-select
-                                                        v-model="editedItem.city_id"
+                                                        v-model="editedItem.city"
                                                         :items="cities"
                                                         item-text="name.en"
                                                         item-value="id"
@@ -403,7 +403,7 @@ import moment from 'moment';
                 formData.append('openingHours', this.editedItem.opening_hours);
                 formData.append('arabicOpeningHours', this.editedItem.arabic_opening_hours);
                 formData.append('mapLocation', this.editedItem.map_location);
-                formData.append('cityId', this.editedItem.city_id.id);
+                formData.append('city', this.editedItem.city);
                
                 if (this.editedIndex > -1) {
                     formData.append('id',this.editedItem.id);
@@ -425,7 +425,7 @@ import moment from 'moment';
                         openingHours: this.editedItem.opening_hours,
                         arabicOpeningHours: this.editedItem.arabic_opening_hours,
                         mapLocation: this.editedItem.map_location,
-                        cityId: this.editedItem.city_id.id
+                        city: this.editedItem.city
                     })
                     .then(function (response) {
 
