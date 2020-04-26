@@ -44,8 +44,7 @@
           <template v-slot:item.about="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="4" md="4">
-                        
-                        <v-text> {{item.about.en}} </v-text>
+                        <read-more more-str="read more" :text="item.about.en" link="#" less-str="read less" :max-chars="300"></read-more>
                     </v-col>
                 </v-row>
             </template>

@@ -8,6 +8,7 @@ require('./bootstrap');
 
 import Vue from 'vue';
 import Vuetify from 'vuetify';
+import ReadMore from 'vue-read-more';
 import VueRouter from 'vue-router';
 import Vuelidate from 'vuelidate';
 import '@mdi/font/css/materialdesignicons.css'
@@ -16,6 +17,7 @@ import router from './components/admin/router'
 Vue.use(Vuetify);
 Vue.use(VueRouter);
 Vue.use(Vuelidate);
+Vue.use(ReadMore);
 
 window.Vue = require('vue');
 window.events = new Vue();
