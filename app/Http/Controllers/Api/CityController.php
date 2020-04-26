@@ -39,13 +39,17 @@ class CityController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|unique:cities|max:255',
-            'countryId' => 'required',
+            'arabic_name' => 'required',
+            'country_id' => 'required',
         ]);
 
         $city = new City();
-        $city->name = Str::of($request->name)->trim();
-        $city->slug = Str::slug($city->name , '-');
-        $city->country_id = $request->countryId;
+       
+        $city->setTranslation('name', 'en', $request->name);
+        $city->setTranslation('name', 'ar', $request->arabic_name);
+
+        $city->slug = Str::slug($request->name , '-');
+        $city->country_id = $request->country_id;
         $city->save();
     }
 
@@ -80,16 +84,21 @@ class CityController extends Controller
      */
     public function update(Request $request)
     {
+        
         $validatedData = $request->validate([
             'id' => 'required',
             'name' => 'required|max:255',
-            'countryId' => 'required',
+            'arabic_name' => 'required',
+            'country_id' => 'required',
         ]);
 
         $city = City::find($request->id);
-        $city->name = Str::of($request->name)->trim();
-        $city->slug = Str::slug($city->name , '-');
-        $city->country_id = $request->countryId;
+        
+        $city->setTranslation('name', 'en', $request->name);
+        $city->setTranslation('name', 'ar', $request->arabic_name);
+        
+        $city->slug = Str::slug($request->name , '-');
+        $city->country_id = $request->country_id;
         $city->save();
     }
 

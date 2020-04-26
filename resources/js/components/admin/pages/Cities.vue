@@ -18,10 +18,20 @@
             :items="desserts"
             :search="search"
         >   
-        
+      
+        <!-- name -->  
+            <template v-slot:item.name="{ item }">
+                <v-row  class="d-flex justify-start">
+                    <v-col cols="12" sm="12" md="12">
+                        <v-text> {{item.name.en}} </v-text>
+                    </v-col>
+                </v-row>
+            </template>
+        <!-- name end-->
+
         <!-- country name -->
             <template v-slot:item.country="{ item }">
-                     <v-text>{{ item.country.name }} </v-text>
+                     <v-text>{{ item.country.name.en }} </v-text>
             </template>
         <!-- country name end-->
             
@@ -80,44 +90,79 @@
                     ></v-divider>
                     <v-spacer></v-spacer>
                     <v-dialog v-model="dialog" max-width="500px">
-                        <template v-slot:activator="{ on }">
-                            <v-btn color="primary" dark class="mb-2" v-on="on">Add City</v-btn>
-                        </template>
-                        <v-card>
-                            <v-card-title>
-                                <span class="headline">{{ formTitle }}</span>
-                            </v-card-title>
+                    <template v-slot:activator="{ on }">
+                        <v-btn color="primary" dark class="mb-2" v-on="on">Add City</v-btn>
+                    </template>
+                     <v-tabs
+                            fixed-tabs
+                            background-color="indigo"
+                            dark
+                        >
+                        <v-tabs-slider></v-tabs-slider>
+                            <v-tab>
+                            English
+                            </v-tab>
+                            <v-tab>
+                            Arabic
+                            </v-tab>
 
-                            <v-card-text>
-                                <v-container>
-                                    <v-row>
-                                        <v-col cols="12" sm="12" md="12">
-                                            <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="12" md="12">
-                                            
-                                            <v-select
-                                                v-model="editedItem.country_id"
-                                                :items="countries"
-                                                item-text="name"
-                                                item-value="id"
-                                                label="Select"
-                                                persistent-hint
-                                                return-object
-                                                single-line
-                                                ></v-select>
-                                        </v-col>
-                                    </v-row>
-                                </v-container>
-                            </v-card-text>
+                            <!-- english tab item -->
+                            <v-tab-item>
+                                 <v-card>
+                                    <v-card-title>
+                                        <span class="headline">{{ formTitle }}</span>
+                                    </v-card-title>
 
-                            <v-card-actions>
-                                <v-spacer></v-spacer>
-                                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                                <v-btn color="blue darken-1" text @click="save">Send</v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-dialog>
+                                    <v-card-text>
+                                        <v-container>
+                                            <v-row>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-select
+                                                        v-model="editedItem.country_id"
+                                                        :items="countries"
+                                                        item-text="name.en"
+                                                        item-value="id"
+                                                        label="Select"
+                                                        persistent-hint
+                                                        return-object
+                                                        single-line
+                                                    ></v-select>
+                                                </v-col>
+                                            </v-row>
+                                        </v-container>
+                                    </v-card-text>
+
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+                                        <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-tab-item>
+                            <!-- english tab item end -->
+
+                            <!-- arbaic tab item -->
+                            <v-tab-item>
+                                 <v-card>
+                                    <v-card-text>
+                                        <v-container>
+                                            <v-row>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.arabic_name" label="Name in Arabic"></v-text-field>
+                                                </v-col>
+                                            </v-row>
+                                        </v-container>
+                                    </v-card-text>
+                                </v-card>
+                            </v-tab-item>
+                             <!-- arbaic tab item end -->
+                     </v-tabs>
+                            
+                   
+                </v-dialog>
                 </v-toolbar>
             </template>
         <!-- add/update city end -->
@@ -184,6 +229,7 @@ import moment from 'moment';
                     id:'',
                     country_id:'',
                     name: '',
+                    arabic_name: '',
                     calories: 0,
                     fat: 0,
                     carbs: 0,
@@ -247,8 +293,12 @@ import moment from 'moment';
             },
 
             editItem (item) {
+               // alert(item.country_id);
                 this.editedIndex = this.desserts.indexOf(item)
                 this.editedItem = Object.assign({}, item)
+                this.editedItem.name = item.name.en
+                this.editedItem.arabic_name = item.name.ar
+                //this.editedItem.country_id = item.country_id
                 this.dialog = true
             },
 
@@ -269,15 +319,19 @@ import moment from 'moment';
             save () {
                 if (this.editedIndex > -1) {
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
+
+                    var self = this
+                  
                     axios.patch('/api/cities', {
                         id: this.editedItem.id,
                         name: this.editedItem.name,
-                        countryId: this.editedItem.country_id.id
+                        arabic_name: this.editedItem.arabic_name,
+                        country_id: this.editedItem.country_id.id
                     })
                         .then(function (response) {
                             flash('Changes Saved.', 'success');
 
-                            this.initialize()
+                            self.initialize()
 
                         })
                         .catch(function (error) {
@@ -295,10 +349,11 @@ import moment from 'moment';
                     
                     axios.post('/api/cities', {
                         name: this.editedItem.name,
-                        countryId: this.editedItem.country_id.id
+                        arabic_name: this.editedItem.arabic_name,
+                        country_id: this.editedItem.country_id.id
                     })
                         .then(function (response) {
-                            //self.initialize()
+                            self.initialize()
                             flash('Changes Saved.', 'success');
                         })
                         .catch(function (error) {

@@ -153,7 +153,7 @@
                                                     <v-select
                                                         v-model="editedItem.city_id"
                                                         :items="cities"
-                                                        item-text="name"
+                                                        item-text="name.en"
                                                         item-value="id"
                                                         label="Select City"
                                                         persistent-hint
