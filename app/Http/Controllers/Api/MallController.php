@@ -102,7 +102,7 @@ class MallController extends Controller
      */
     public function update(Request $request)
     {
-       
+        \Log::info($request);
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'arabicName' => 'required|max:255',

@@ -413,7 +413,7 @@ import moment from 'moment';
                     this.$root.$emit('loading', true);
 
                     this.desserts.push(this.editedItem)
-
+                   // alert(this.editedItem.city_id.id);return;
                     //send the form data to server
                    axios.patch('/api/mall', {
                         id: this.editedItem.id,
@@ -425,7 +425,7 @@ import moment from 'moment';
                         openingHours: this.editedItem.opening_hours,
                         arabicOpeningHours: this.editedItem.arabic_opening_hours,
                         mapLocation: this.editedItem.map_location,
-                        cityId: this.editedItem.city_id
+                        cityId: this.editedItem.city_id.id
                     })
                     .then(function (response) {
 
