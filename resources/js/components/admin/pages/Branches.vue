@@ -36,11 +36,17 @@
             </template>
         <!-- city name end-->
 
-         <!-- store name -->
+        <!-- store name -->
             <template v-slot:item.store_id="{ item }">
                      <v-text>{{ item.store.name.en }} </v-text>
             </template>
         <!-- store name end-->
+
+        <!-- mall name -->
+            <template v-slot:item.mall_id="{ item }">
+                     <v-text>{{ item.mall.name.en }} </v-text>
+            </template>
+        <!-- mall name end-->
 
         <!-- address -->  
             <template v-slot:item.address="{ item }">

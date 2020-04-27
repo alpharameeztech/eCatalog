@@ -11,7 +11,7 @@ class Branch extends Model
 
     public $translatable = ['name', 'opening_hours', 'address'];
     
-    protected $with = ['city', 'store'];
+    protected $with = ['city', 'store', 'mall'];
 
     public function city(){
         return $this->belongsTo(City::class);
@@ -19,5 +19,9 @@ class Branch extends Model
 
     public function store(){
         return $this->belongsTo(Store::class);
+    }
+
+    public function mall(){
+        return $this->belongsTo(Mall::class);
     }
 }

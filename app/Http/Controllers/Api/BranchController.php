@@ -106,9 +106,46 @@ class BranchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'arabic_name' => 'required|max:255',
+            'opening_hours' => 'required',
+            'arabic_opening_hours' => 'required',
+            'city' => 'required',
+            'address' => 'required',
+            'arabic_address'=> 'required'
+        ]);
+
+        $branch = Branch::find($request->id);
+       
+        //$store->name = Str::of($request->name)->trim();
+        $branch->setTranslation('name', 'en', $request->name);
+        $branch->setTranslation('name', 'ar', $request->arabic_name);
+       
+        $branch->slug = Str::of($request->name)->slug('-');
+
+        $branch->telephone = $request->telephone;
+        $branch->fax = $request->fax;
+        $branch->email = $request->email;
+
+        $branch->setTranslation('opening_hours', 'en', $request->opening_hours);
+        $branch->setTranslation('opening_hours', 'ar', $request->arabic_opening_hours);
+
+        $branch->map_location = $request->map_location;
+        $branch->city_id = $request->city['id'];
+        $branch->store_id = $request->store['id'];
+
+        if($request->mall){
+            $branch->mall_id = $request->mall['id'];
+        }
+    
+        
+        $branch->setTranslation('address', 'en', $request->address);
+        $branch->setTranslation('address', 'ar', $request->arabic_address);
+
+        $branch->save();
     }
 
     /**
