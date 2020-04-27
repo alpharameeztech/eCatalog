@@ -394,18 +394,8 @@ import moment from 'moment';
                 /*
                     Add the form data we need to submit
                 */
-                formData.append('name', this.editedItem.name);
-                formData.append('arabicName', this.editedItem.arabic_name);
-                formData.append('address', this.editedItem.address);
-                formData.append('arabicAddress', this.editedItem.arabic_address);
-                formData.append('telephone', this.editedItem.telephone);
-                formData.append('openingHours', this.editedItem.opening_hours);
-                formData.append('arabicOpeningHours', this.editedItem.arabic_opening_hours);
-                formData.append('mapLocation', this.editedItem.map_location);
-                formData.append('city', this.editedItem.city);
                
                 if (this.editedIndex > -1) {
-                    formData.append('id',this.editedItem.id);
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
                     
                     var self = this
