@@ -19,32 +19,31 @@
             :search="search"
         > 
 
-         <!-- name -->  
+        <!-- name -->  
             <template v-slot:item.name="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
-                        
                         <v-text> {{item.name.en}} </v-text>
                     </v-col>
                 </v-row>
             </template>
         <!-- name end-->
 
-        <!-- city name -->
+         <!-- city name -->
             <template v-slot:item.city_id="{ item }">
-                     <v-text>{{ item.city.name.en }} </v-text>
+                <v-text>{{ item.city.name.en }} </v-text>
             </template>
         <!-- city name end-->
 
         <!-- store name -->
             <template v-slot:item.store_id="{ item }">
-                     <v-text>{{ item.store.name.en }} </v-text>
+                <v-text>{{ item.store.name.en }} </v-text>
             </template>
         <!-- store name end-->
 
         <!-- mall name -->
-            <template v-slot:item.mall_id="{ item }">
-                     <v-text>{{ item.mall.name.en }} </v-text>
+            <template v-slot:item.mall_id="{ item }" >
+                <v-text v-if="item.mall != null">{{ item.mall.name.en }} </v-text>
             </template>
         <!-- mall name end-->
 
@@ -92,25 +91,25 @@
 
             <!-- formatted updated date -->
             <template v-slot:item.updated_at="{ item }">
-                    <v-row  class="d-flex justify-end">
-                        <v-chip
-                            class="ma-2"
-                            color="primary"
-                            outlined
-                            pill
-                        >
-                            <v-avatar left>
-                                <v-icon>av_timer</v-icon>
-                            </v-avatar>
+                <v-row  class="d-flex justify-end">
+                    <v-chip
+                        class="ma-2"
+                        color="primary"
+                        outlined
+                        pill
+                    >
+                        <v-avatar left>
+                            <v-icon>av_timer</v-icon>
+                        </v-avatar>
 
-                            {{ ago(item.updated_at) }}
+                        {{ ago(item.updated_at) }}
 
-                        </v-chip>
-                    </v-row>
-                </template>
-                <!-- formatted updated date end-->        
-       
-        <!-- add/update modal -->
+                    </v-chip>
+                </v-row>
+            </template>
+                <!-- formatted updated date end--> 
+
+            <!-- add/update modal -->
             <template v-slot:top>
                 <v-toolbar flat color="white">
 
@@ -262,7 +261,7 @@
                 </v-toolbar>
             </template>
         <!-- add/update modal end -->
-
+        
         <!-- action -->
          <template v-slot:item.action="{ item }">
             <v-icon
