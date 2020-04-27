@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Seo;
 use App\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -73,9 +74,15 @@ class StoreController extends Controller
 
             $store->save();
 
-            // $store
-            //     ->setTranslation('name', 'ar', 'اسم')
-            //     ->save();
+            /*
+            * add the store's seo tags
+            */
+            $seoTags = new Seo; 
+            $seoTags->setTranslation('title', 'en', $request->seo_title);
+            $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+            $seoTags->setTranslation('description', 'en', $request->seo_description);
+            $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+            $store->seoTags()->save($seoTags);
         }
        
     }
@@ -134,6 +141,17 @@ class StoreController extends Controller
         //$store->about = Str::of($request->about)->trim();
         $store->setTranslation('about', 'en', $request->about);
         $store->setTranslation('about', 'ar', $request->arabicAbout);
+
+        /*
+        * update the store's seo tags
+        */
+        $seoTags = $store->seoTags; 
+        $seoTags->setTranslation('title', 'en', $request->seo_title);
+        $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+        $seoTags->setTranslation('description', 'en', $request->seo_description);
+        $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+        $store->seoTags()->save($seoTags);
+
         $store->save();
     }
     /**

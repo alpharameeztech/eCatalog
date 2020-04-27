@@ -153,6 +153,18 @@
                                                     <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.seo_title" label="SEO title"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-textarea
+                                                        v-model="editedItem.seo_description"
+                                                        outlined
+                                                        name="input-7-4"
+                                                        label="SEO description"
+                                                        ></v-textarea>
+                                                </v-col>
+                                               
+                                                <v-col cols="12" sm="12" md="12">
                                                     <v-file-input
                                                         v-model="file"
                                                         label="Select Image File..."
@@ -207,7 +219,18 @@
                                                     <v-col cols="12" sm="12" md="12">
                                                         <v-text-field v-model="editedItem.arabic_name" label="Name in Arabic"></v-text-field>
                                                     </v-col>
-                                                  
+                                                    <v-col cols="12" sm="12" md="12">
+                                                        <v-text-field v-model="editedItem.arabic_seo_title" label="SEO title in Arabic"></v-text-field>
+                                                    </v-col>
+                                                    <v-col cols="12" sm="12" md="12">
+                                                        <v-textarea
+                                                            v-model="editedItem.arabic_seo_description"
+                                                            outlined
+                                                            name="input-7-4"
+                                                            label="SEO description in Arabic"
+                                                            ></v-textarea>
+                                                    </v-col>
+                                               
                                                     <v-col cols="12" sm="12" md="12">
                                                         <v-textarea
                                                             v-model="editedItem.arabic_about"
@@ -314,7 +337,11 @@ import moment from 'moment';
                     twitter_link: '',
                     about: '',
                     arabic_about:'',
-                    profilePicture: ''
+                    profilePicture: '',
+                    seo_title: '',
+                    arabic_seo_title: '',
+                    seo_description: '',
+                    arabic_seo_description: ''
                 },
                 defaultItem: {
                     name: '',
@@ -383,6 +410,13 @@ import moment from 'moment';
                 this.editedItem.arabic_name = item.name.ar
                 this.editedItem.about = item.about.en
                 this.editedItem.arabic_about = item.about.ar
+                if(this.editedItem.seo_tags != null){
+                    this.editedItem.seo_title = item.seo_tags.title.en
+                    this.editedItem.arabic_seo_title = item.seo_tags.title.ar
+                    this.editedItem.seo_description = item.seo_tags.description.en
+                    this.editedItem.arabic_seo_description = item.seo_tags.description.ar
+                }
+                
                 this.dialog = true
             },
 
@@ -421,6 +455,11 @@ import moment from 'moment';
                 formData.append('twitterLink', this.editedItem.twitter_link);
                 formData.append('about', this.editedItem.about);
                 formData.append('arabicAbout', this.editedItem.arabic_about);
+                
+                formData.append('seo_title', this.editedItem.seo_title);
+                formData.append('arabic_seo_title', this.editedItem.arabic_seo_title);
+                formData.append('seo_description', this.editedItem.seo_description);
+                formData.append('arabic_seo_description', this.editedItem.arabic_seo_description);
                
                 if (this.editedIndex > -1) {
                     formData.append('id',this.editedItem.id);
