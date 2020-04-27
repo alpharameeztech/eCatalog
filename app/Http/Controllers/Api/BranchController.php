@@ -62,7 +62,7 @@ class BranchController extends Controller
         $branch->setTranslation('opening_hours', 'en', $request->opening_hours);
         $branch->setTranslation('opening_hours', 'ar', $request->arabic_opening_hours);
 
-        $branch->map_location = $request->mapLocation;
+        $branch->map_location = $request->map_location;
         $branch->city_id = $request->city['id'];
         $branch->store_id = $request->store['id'];
 

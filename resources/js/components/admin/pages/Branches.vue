@@ -22,7 +22,7 @@
          <!-- name -->  
             <template v-slot:item.name="{ item }">
                 <v-row  class="d-flex justify-start">
-                    <v-col cols="12" sm="4" md="4">
+                    <v-col cols="12" sm="12" md="12">
                         
                         <v-text> {{item.name.en}} </v-text>
                     </v-col>
@@ -35,6 +35,12 @@
                      <v-text>{{ item.city.name.en }} </v-text>
             </template>
         <!-- city name end-->
+
+         <!-- store name -->
+            <template v-slot:item.store_id="{ item }">
+                     <v-text>{{ item.store.name.en }} </v-text>
+            </template>
+        <!-- store name end-->
 
         <!-- address -->  
             <template v-slot:item.address="{ item }">
@@ -304,11 +310,15 @@ import moment from 'moment';
                         width: 500
                     },
                     { text: 'Slug', value: 'slug', width: 300},
+                    {text: 'City', value: 'city_id'},
+                    {text: 'Store', value: 'store_id'},
+                    {text: 'Mall', value: 'mall_id'},
                     { text: 'Address', value: 'address',width: 500},
                     {text: 'Telephone', value: 'telephone'},
+                    {text: 'Fax', value: 'fax'},
+                    {text: 'Email', value: 'email'},
                     {text: 'Opening Hours', value: 'opening_hours', width: 500},
                     {text: 'Map Location', value: 'map_location'},
-                    {text: 'City', value: 'city_id'},,
                     {text: 'Updated At', value: 'updated_at'},
                     {text: 'Created At', value: 'created_at'},
                     {text: 'Actions', value: 'action', sortable: false},
