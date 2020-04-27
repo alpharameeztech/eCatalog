@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Branch;
 use App\Http\Controllers\Controller;
+use App\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -75,6 +76,21 @@ class BranchController extends Controller
         $branch->setTranslation('address', 'ar', $request->arabic_address);
 
         $branch->save();
+
+        /*
+        * associate the seo tags with
+        * the store's branch
+        */
+        if($request->seo_title && $request->seo_description){
+            $seoTags = new Seo; 
+            $seoTags->setTranslation('title', 'en', $request->seo_title);
+            $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+            $seoTags->setTranslation('description', 'en', $request->seo_description);
+            $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+            
+            $branch->seoTags()->save($seoTags);
+        }
+       
     }
 
     /**
@@ -146,6 +162,18 @@ class BranchController extends Controller
         $branch->setTranslation('address', 'ar', $request->arabic_address);
 
         $branch->save();
+
+        /*
+        * update the store's seo tags
+        */
+        $seoTags = $branch->seoTags; 
+        $seoTags->setTranslation('title', 'en', $request->seo_title);
+        $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+        $seoTags->setTranslation('description', 'en', $request->seo_description);
+        $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+        
+        $branch->seoTags()->save($seoTags);
+
     }
 
     /**

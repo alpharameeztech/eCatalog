@@ -11,7 +11,7 @@ class Branch extends Model
 
     public $translatable = ['name', 'opening_hours', 'address'];
     
-    protected $with = ['city', 'store', 'mall'];
+    protected $with = ['city', 'store', 'mall', 'seoTags'];
 
     public function city(){
         return $this->belongsTo(City::class);
@@ -23,5 +23,13 @@ class Branch extends Model
 
     public function mall(){
         return $this->belongsTo(Mall::class);
+    }
+
+    /**
+     * Get the store's branch seo tags.
+     */
+    public function seoTags()
+    {
+        return $this->morphOne(Seo::class, 'seoable');
     }
 }

@@ -43,7 +43,6 @@ class StoreController extends Controller
             return $this->update($request);
         }
         else{
-            \Log::info($request);
             // add a new store
             $validatedData = $request->validate([
                 'profilePicture' => 'required',
@@ -77,12 +76,17 @@ class StoreController extends Controller
             /*
             * add the store's seo tags
             */
+            if($request->seo_title && $request->seo_description){
+                $seoTags = new Seo; 
             $seoTags = new Seo; 
-            $seoTags->setTranslation('title', 'en', $request->seo_title);
-            $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
-            $seoTags->setTranslation('description', 'en', $request->seo_description);
-            $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
-            $store->seoTags()->save($seoTags);
+                $seoTags = new Seo; 
+                $seoTags->setTranslation('title', 'en', $request->seo_title);
+                $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+                $seoTags->setTranslation('description', 'en', $request->seo_description);
+                $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+                $store->seoTags()->save($seoTags);
+            }
+            
         }
        
     }
