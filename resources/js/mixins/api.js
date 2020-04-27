@@ -5,6 +5,8 @@ export default {
         return {
             countries: null,
             cities: null,
+            stores: null,
+            malls: null
         }
     },
 
@@ -13,6 +15,8 @@ export default {
 
             this.Countries()
             this.Cities()
+            this.Stores()
+            this.Malls()
         },
 
         Countries() {
@@ -48,6 +52,52 @@ export default {
             .then(function (response) {
 
                 self.cities = response.data;
+
+                self.$root.$emit('loading', false);
+
+            })
+            .catch(function (error) {
+
+            })
+            .finally( function() {
+                self.$root.$emit('loading', false);
+            });
+
+        },
+
+        Stores() {
+
+            var self = this;
+
+            this.$root.$emit('loading', true);
+
+            axios.get('/api/stores')
+            .then(function (response) {
+
+                self.stores = response.data;
+
+                self.$root.$emit('loading', false);
+
+            })
+            .catch(function (error) {
+
+            })
+            .finally( function() {
+                self.$root.$emit('loading', false);
+            });
+
+        },
+
+        Malls() {
+
+            var self = this;
+
+            this.$root.$emit('loading', true);
+
+            axios.get('/api/malls')
+            .then(function (response) {
+
+                self.malls = response.data;
 
                 self.$root.$emit('loading', false);
 

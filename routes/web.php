@@ -50,5 +50,8 @@ Route::group([
     Route::post('/mall', 'MallController@store')->name('add.mall');
     Route::patch('/mall', 'MallController@update')->name('update.mall');
 
+    Route::get('/branches', 'BranchController@index')->name('all.branches');
+    Route::post('/branch', 'BranchController@store')->name('add.branch');
+    Route::patch('/branch', 'BranchController@update')->name('update.branch');
 });
 //======================== public apis end ==========================

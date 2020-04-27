@@ -4,6 +4,7 @@ import Countries from "./pages/Countries";
 import Cities from "./pages/Cities";
 import Stores from "./pages/Stores";
 import Malls from "./pages/Malls";
+import Branches from "./pages/Branches";
 
 const router = new VueRouter({
     mode: 'history',
@@ -37,6 +38,10 @@ const router = new VueRouter({
         {
             path: '/home/malls',
             component: Malls,
+        },
+        {
+            path: '/home/branches',
+            component: Branches,
         },
     ],
 });
