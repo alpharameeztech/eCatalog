@@ -456,7 +456,17 @@ import moment from 'moment';
                     this.desserts.push(this.editedItem)
 
                     //send the form data to server
-                    axios.post('/api/mall', formData)
+                    axios.post('/api/mall',{
+                        name: this.editedItem.name,
+                        arabicName: this.editedItem.arabic_name,
+                        address: this.editedItem.address,
+                        arabicAddress: this.editedItem.arabic_address,
+                        telephone: this.editedItem.telephone,
+                        openingHours: this.editedItem.opening_hours,
+                        arabicOpeningHours: this.editedItem.arabic_opening_hours,
+                        mapLocation: this.editedItem.map_location,
+                        city: this.editedItem.city
+                    })
                     .then(function (response) {
 
                         self.$root.$emit('loading', false)
