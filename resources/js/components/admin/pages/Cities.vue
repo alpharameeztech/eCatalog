@@ -125,7 +125,7 @@
                                                         :items="countries"
                                                         item-text="name.en"
                                                         item-value="id"
-                                                        label="Select"
+                                                        label="Select Country"
                                                         persistent-hint
                                                         return-object
                                                         single-line
@@ -317,11 +317,15 @@ import moment from 'moment';
             },
 
             save () {
+                
+                this.$root.$emit('loading', true);
+
                 if (this.editedIndex > -1) {
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
 
                     var self = this
                     
+
                     axios.patch('/api/cities', {
                         id: this.editedItem.id,
                         name: this.editedItem.name,
@@ -335,15 +339,16 @@ import moment from 'moment';
 
                         })
                         .catch(function (error) {
+
                         })
                         .finally( function() {
+                            
                             self.$root.$emit('loading', false);
                         });
 
 
                 } else {
                     var self = this
-                    this.$root.$emit('loading', true);
 
                     this.desserts.push(this.editedItem)
                     
@@ -360,7 +365,7 @@ import moment from 'moment';
                             flash('Changes Saved.', 'error');
                         })
                         .finally( function() {
-                            this.$root.$emit('loading', false);
+                            self.$root.$emit('loading', false);
                         });
 
                     this.initialize()
@@ -374,7 +379,6 @@ import moment from 'moment';
 
             this.initialize()
 
-            this.getBanPublishers()
         }
 
     }
