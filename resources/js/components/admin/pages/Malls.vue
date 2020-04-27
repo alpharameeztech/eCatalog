@@ -377,7 +377,6 @@ import moment from 'moment';
 
             close () {
                 var self = this
-                self.$root.$emit('loading', false)
                 this.dialog = false
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem)
@@ -410,7 +409,6 @@ import moment from 'moment';
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
                     
                     var self = this
-                    this.$root.$emit('loading', true);
 
                     this.desserts.push(this.editedItem)
                    // alert(this.editedItem.city_id.id);return;
