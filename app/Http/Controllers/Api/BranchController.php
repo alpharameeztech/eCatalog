@@ -175,6 +175,20 @@ class BranchController extends Controller
         $branch->seoTags()->save($seoTags);
 
     }
+    /**
+     * Toggle the branch status
+     */
+    public function toggleStatus(Request $request) {
+
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'status' => 'required'
+        ]);
+
+        $branch = Branch::find($request->id);
+        $branch->status = $request->status;
+        $branch->save();
+    }
 
     /**
      * Remove the specified resource from storage.

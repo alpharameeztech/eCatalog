@@ -69,6 +69,25 @@
             </template>
         <!-- opening hours end-->
 
+        <!-- status -->
+            <template v-slot:item.status="{ item }">
+
+                    <v-row  class="d-flex justify-start">
+                        <v-col cols="12" sm="4" md="4">
+
+                            <v-switch
+                                v-model=" item.status "
+                                color="success"
+                                @change="toggleBan(item)"
+                            ></v-switch>
+
+                        </v-col>
+
+                    </v-row>
+
+            </template> 
+        <!-- status -->
+
         <!-- formatted created date -->    
             <template v-slot:item.created_at="{ item }">
                     <v-row  class="d-flex justify-end">
@@ -341,6 +360,7 @@ import moment from 'moment';
                     {text: 'Store', value: 'store_id'},
                     {text: 'Mall', value: 'mall_id'},
                     { text: 'Address', value: 'address',width: 500},
+                    {text: 'Status', value: 'status'},
                     {text: 'Telephone', value: 'telephone'},
                     {text: 'Fax', value: 'fax'},
                     {text: 'Email', value: 'email'},
@@ -577,6 +597,29 @@ import moment from 'moment';
                     this.initialize()
                 }
                
+            },
+            toggleBan(item){
+                var self = this
+
+                this.$root.$emit('loading', true);
+                
+                axios.patch('/api/toggle/branch/status', {
+                    id: item.id,
+                    status: item.status
+                })
+                .then(function (response) {
+
+                    self.initialize()
+                    
+                    flash('Changes Saved.', 'success');
+                })
+                .catch(function (error) {
+                    flash('Changes Saved.', 'error');
+                })
+                .finally( function() {
+                    self.$root.$emit('loading', false);
+                });
+
             },
 
         },
