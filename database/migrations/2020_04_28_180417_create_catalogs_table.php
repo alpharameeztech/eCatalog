@@ -21,10 +21,10 @@ class CreateCatalogsTable extends Migration
             $table->mediumText('name');
             $table->string('slug',500)->unique();
             $table->text('description')->nullable();
-            $table->date('start_at');
-            $table->date('end_at')->nullable();
+            $table->string('start_at',500);
+            $table->string('end_at',500)->nullable();
             $table->unsignedInteger('total_views')->nullable();
-            $table->boolean('featured')->default(0);
+            $table->boolean('featured')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
 

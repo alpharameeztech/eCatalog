@@ -29,45 +29,21 @@
             </template>
         <!-- name end-->
 
-         <!-- city name -->
-            <template v-slot:item.city_id="{ item }">
-                <v-text>{{ item.city.name.en }} </v-text>
-            </template>
-        <!-- city name end-->
-
         <!-- store name -->
             <template v-slot:item.store_id="{ item }">
                 <v-text>{{ item.store.name.en }} </v-text>
             </template>
         <!-- store name end-->
 
-        <!-- mall name -->
-            <template v-slot:item.mall_id="{ item }" >
-                <v-text v-if="item.mall != null">{{ item.mall.name.en }} </v-text>
-            </template>
-        <!-- mall name end-->
-
-        <!-- address -->  
-            <template v-slot:item.address="{ item }">
+        <!-- start at -->  
+            <template v-slot:item.start_at="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
-                        
-                        <v-text> {{item.address.en}} </v-text>
+                        <v-text> {{item.start_at.en}} </v-text>
                     </v-col>
                 </v-row>
             </template>
-        <!-- address end-->
-
-        <!-- opening hours -->  
-            <template v-slot:item.opening_hours="{ item }">
-                <v-row  class="d-flex justify-start">
-                    <v-col cols="12" sm="12" md="12">
-                        
-                        <v-text> {{item.opening_hours.en}} </v-text>
-                    </v-col>
-                </v-row>
-            </template>
-        <!-- opening hours end-->
+        <!-- start at end-->
 
         <!-- status -->
             <template v-slot:item.status="{ item }">
@@ -140,7 +116,7 @@
                     <v-spacer></v-spacer>
                     <v-dialog v-model="dialog" max-width="500px">
                         <template v-slot:activator="{ on }">
-                            <v-btn color="primary" dark class="mb-2" v-on="on">Add Store Branch</v-btn>
+                            <v-btn color="primary" dark class="mb-2" v-on="on">Add a Catalog</v-btn>
                         </template>
 
                         <!-- tabs -->
@@ -182,31 +158,12 @@
                                                         ></v-textarea>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
-                                                    <v-text-field v-model="editedItem.telephone" label="Telephone"></v-text-field>
-                                                </v-col>
-                                                <v-col cols="12" sm="12" md="12">
-                                                    <v-text-field v-model="editedItem.fax" label="Fax"></v-text-field>
+                                                    <p>Start date</p>
+                                                    <v-date-picker v-model="editedItem.start_at" label="Select end date or leave it if its for unlimited time"></v-date-picker>
                                                 </v-col>
                                                  <v-col cols="12" sm="12" md="12">
-                                                    <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
-                                                </v-col>
-                                                <v-col cols="12" sm="12" md="12">
-                                                    <v-text-field v-model="editedItem.opening_hours" label="Opening Hours"></v-text-field>
-                                                </v-col>
-                                                <v-col cols="12" sm="12" md="12">
-                                                    <v-text-field v-model="editedItem.map_location" label="Location in Map"></v-text-field>
-                                                </v-col>
-                                                <v-col cols="12" sm="12" md="12">
-                                                    <v-select
-                                                        v-model="editedItem.city"
-                                                        :items="cities"
-                                                        item-text="name.en"
-                                                        item-value="id"
-                                                        label="Select City"
-                                                        persistent-hint
-                                                        return-object
-                                                        single-line
-                                                        ></v-select>
+                                                    <p>Select end date or leave it if its for unlimited time</p>
+                                                    <v-date-picker v-model="editedItem.end_at" label="Select end date or leave it if its for unlimited time"></v-date-picker>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-select
@@ -220,24 +177,12 @@
                                                         single-line
                                                         ></v-select>
                                                 </v-col>
-                                                 <v-col cols="12" sm="12" md="12">
-                                                    <v-select
-                                                        v-model="editedItem.mall"
-                                                        :items="malls"
-                                                        item-text="name.en"
-                                                        item-value="id"
-                                                        label="Select a Mall if applicable"
-                                                        persistent-hint
-                                                        return-object
-                                                        single-line
-                                                        ></v-select>
-                                                </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-textarea
-                                                        v-model="editedItem.address"
+                                                        v-model="editedItem.description"
                                                         outlined
                                                         name="input-7-4"
-                                                        label="Address"
+                                                        label="Description"
                                                         ></v-textarea>
                                                 </v-col>
                                             </v-row>
@@ -276,15 +221,18 @@
                                                         ></v-textarea>
                                                     </v-col>
                                                     <v-col cols="12" sm="12" md="12">
-                                                        <v-text-field v-model="editedItem.arabic_opening_hours" label="Opening Hours in Arabic"></v-text-field>
+                                                        <v-text-field v-model="editedItem.arabic_start_at" label="Select start date in Arabic"></v-text-field>
+                                                    </v-col>
+                                                    <v-col cols="12" sm="12" md="12">
+                                                        <v-text-field v-model="editedItem.arabic_end_at" label="Select end date in Arabic or leave it blank if its for unlimited time"></v-text-field>
                                                     </v-col>
                                                     <v-col cols="12" sm="12" md="12">
                                                         <v-textarea
-                                                            v-model="editedItem.arabic_address"
+                                                            v-model="editedItem.arabic_description"
                                                             outlined
                                                             name="input-7-4"
-                                                            label="Address in Arabic"
-                                                            ></v-textarea>
+                                                            label="Description in Arabic"
+                                                        ></v-textarea>
                                                     </v-col>
                                                 </v-row>
                                             </v-container>
@@ -355,15 +303,9 @@ import moment from 'moment';
                         value: 'name',
                         width: 500
                     },
-                    { text: 'Slug', value: 'slug', width: 300},
-                    {text: 'City', value: 'city_id'},
+                    {text: 'Slug', value: 'slug', width: 300},
                     {text: 'Store', value: 'store_id'},
-                    {text: 'Mall', value: 'mall_id'},
-                    { text: 'Address', value: 'address',width: 500},
                     {text: 'Status', value: 'status'},
-                    {text: 'Telephone', value: 'telephone'},
-                    {text: 'Fax', value: 'fax'},
-                    {text: 'Email', value: 'email'},
                     {text: 'Opening Hours', value: 'opening_hours', width: 500},
                     {text: 'Map Location', value: 'map_location'},
                     {text: 'Updated At', value: 'updated_at'},
@@ -377,15 +319,12 @@ import moment from 'moment';
                     id:'',
                     name: '',
                     arabic_name:'',
-                    address: '',
-                    arabic_address: '',
-                    telephone: '',
-                    fax: '',
-                    email: '',
-                    opening_hours: '',
-                    arabic_opening_hours: '',
-                    map_location: '',
-                    city_id:'',
+                    description: '',
+                    arabic_description: '',
+                    start_at: '',
+                    arabic_start_at: '',
+                    end_at: '',
+                    arabic_end_at: '',
                     seo_title: '',
                     arabic_seo_title: '',
                     seo_description: '',
@@ -403,7 +342,7 @@ import moment from 'moment';
 
         computed: {
             formTitle () {
-                return this.editedIndex === -1 ? 'Add a Store Branch' : 'Edit a Store Branch'
+                return this.editedIndex === -1 ? 'Add a Catalog' : 'Edit a Catalog'
             },
             
         },
@@ -504,7 +443,7 @@ import moment from 'moment';
                     this.desserts.push(this.editedItem)
                    // alert(this.editedItem.city_id.id);return;
                     //send the form data to server
-                   axios.patch('/api/branch', {
+                   axios.patch('/api/catalog', {
                         id: this.editedItem.id,
                         name: this.editedItem.name,
                         arabic_name: this.editedItem.arabic_name,
@@ -551,24 +490,20 @@ import moment from 'moment';
                 } else {
                     var self = this
                     this.$root.$emit('loading', true);
-
+                    //alert(this.editedItem.start_at);return;
                     this.desserts.push(this.editedItem)
 
                     //send the form data to server
-                    axios.post('/api/branch', {
+                    axios.post('/api/catalog', {
                         name: this.editedItem.name,
                         arabic_name: this.editedItem.arabic_name,
-                        address: this.editedItem.address,
-                        arabic_address: this.editedItem.arabic_address,
-                        telephone: this.editedItem.telephone,
-                        fax: this.editedItem.fax,
-                        email: this.editedItem.email,
-                        opening_hours: this.editedItem.opening_hours,
-                        arabic_opening_hours: this.editedItem.arabic_opening_hours,
-                        map_location: this.editedItem.map_location,
-                        city: this.editedItem.city,
+                        description: this.editedItem.description,
+                        arabic_description: this.editedItem.arabic_description,
+                        start_at: this.editedItem.start_at,
+                        arabic_start_at: this.editedItem.arabic_start_at,
+                        end_at: this.editedItem.end_at,
+                        arabic_end_at: this.editedItem.arabic_end_at,
                         store: this.editedItem.store,
-                        mall: this.editedItem.mall,
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,

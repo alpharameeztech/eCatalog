@@ -18,4 +18,12 @@ class Catalog extends Model
     {
         return $this->morphMany('App\Image', 'imageable');
     }
+
+     /**
+     * Get the store's branch seo tags.
+     */
+    public function seoTags()
+    {
+        return $this->morphOne(Seo::class, 'seoable');
+    }
 }
