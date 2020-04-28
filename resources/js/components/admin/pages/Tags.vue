@@ -341,10 +341,14 @@ import moment from 'moment';
                            
                            self.initialize()
                            
-                           flash('Changes Saved.', 'success');
+                            if(response.data.error){
+                                flash('Changes Not Saved. ' + response.data.message, 'error');
+                            }else{
+                                flash('Changes Saved.', 'success');
+                            }                           
                         })
                         .catch(function (error) {
-                            flash('Changes Saved.', 'error');
+                            flash('Changes Not Saved.', 'error');
                         })
                         .finally( function() {
                             self.$root.$emit('loading', false);

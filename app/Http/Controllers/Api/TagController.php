@@ -39,29 +39,42 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|unique:countries|max:255',
+            'name' => 'required',
             'arabic_name' => 'required'
         ]);
-
-        $tag = new Tag;
-
-        $tag->setTranslation('name', 'en', $request->name);
-        $tag->setTranslation('name', 'ar', $request->arabic_name);
-
-        $tag->slug = Str::slug($request->name , '-');
-        $tag->save();
-
-        /*
-        * associate the seo tags with
-        * the tag
-        */
-        $seoTags = new Seo; 
-        $seoTags->setTranslation('title', 'en', $request->seo_title);
-        $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
-        $seoTags->setTranslation('description', 'en', $request->seo_description);
-        $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
         
-        $tag->seoTags()->save($seoTags);
+        $slug = Str::slug($request->name , '-');
+
+        $nameAlreadyExist = Tag::where('slug', $slug)->exists();
+       // \Log::info($nameAlreadyExist);exit;
+        if(!$nameAlreadyExist){
+            $tag = new Tag;
+
+            $tag->setTranslation('name', 'en', $request->name);
+            $tag->setTranslation('name', 'ar', $request->arabic_name);
+    
+            $tag->slug = $slug;
+            $tag->save();
+    
+            /*
+            * associate the seo tags with
+            * the tag
+            */
+            $seoTags = new Seo; 
+            $seoTags->setTranslation('title', 'en', $request->seo_title);
+            $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+            $seoTags->setTranslation('description', 'en', $request->seo_description);
+            $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+            
+            $tag->seoTags()->save($seoTags);
+        }  
+        else{
+            return [
+                'error' => true,
+                'message' => 'Data already exist'
+            ];
+        }  
+      
 
     }
 
