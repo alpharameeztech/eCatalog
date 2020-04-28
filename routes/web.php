@@ -59,5 +59,10 @@ Route::group([
     Route::post('/tag', 'TagController@store')->name('add.tag');
     Route::patch('/tag', 'TagController@update')->name('update.tag');
     Route::patch('/toggle/tag/status', 'TagController@toggleStatus')->name('toggle.tag.status');
+
+    Route::get('/catalogs', 'CatalogController@index')->name('all.catalogs');
+    Route::post('/catalog', 'CatalogController@store')->name('add.catalog');
+    Route::patch('/catalog', 'CatalogController@update')->name('update.catalog');
+    Route::patch('/toggle/catalog/status', 'CatalogController@toggleStatus')->name('toggle.catalog.status');
 });
 //======================== public apis end ==========================

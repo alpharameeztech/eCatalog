@@ -6,6 +6,7 @@ import Stores from "./pages/Stores";
 import Malls from "./pages/Malls";
 import Branches from "./pages/Branches";
 import Tags from "./pages/Tags";
+import Catalogs from "./pages/Catalogs";
 
 const router = new VueRouter({
     mode: 'history',
@@ -47,6 +48,10 @@ const router = new VueRouter({
         {
             path: '/home/tags',
             component: Tags,
+        },
+        {
+            path: '/home/catalogs',
+            component: Catalogs,
         },
     ],
 });
