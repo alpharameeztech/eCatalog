@@ -309,9 +309,14 @@ import moment from 'moment';
                         arabic_seo_description: this.editedItem.arabic_seo_description
                     })
                         .then(function (response) {
-                            flash('Changes Saved.', 'success');
-
+                          
                             self.initialize()
+
+                            if(response.data.error){
+                                flash('Changes Not Saved. ' + response.data.message, 'error');
+                            }else{
+                                flash('Changes Saved.', 'success');
+                            }      
 
                         })
                         .catch(function (error) {
@@ -340,7 +345,7 @@ import moment from 'moment';
                         .then(function (response) {
                            
                            self.initialize()
-                           
+
                             if(response.data.error){
                                 flash('Changes Not Saved. ' + response.data.message, 'error');
                             }else{

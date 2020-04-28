@@ -45,9 +45,9 @@ class TagController extends Controller
         
         $slug = Str::slug($request->name , '-');
 
-        $nameAlreadyExist = Tag::where('slug', $slug)->exists();
-       // \Log::info($nameAlreadyExist);exit;
-        if(!$nameAlreadyExist){
+        $slugAlreadyExist = $this->checkWhetherTheSlugAlreadyExist($slug);
+
+        if(!$slugAlreadyExist){
             $tag = new Tag;
 
             $tag->setTranslation('name', 'en', $request->name);
@@ -114,25 +114,40 @@ class TagController extends Controller
             'name' => 'required|max:255',
             'arabic_name' => 'required'
         ]);
-
-        $tag = Tag::find($request->id);
-
-        $tag->setTranslation('name', 'en', $request->name);
-        $tag->setTranslation('name', 'ar', $request->arabic_name);
-
-        $tag->slug = Str::slug($request->name , '-');
-        $tag->save();
-
-         /*
-        * update the tag's seo tags
-        */
-        $seoTags = $tag->seoTags; 
-        $seoTags->setTranslation('title', 'en', $request->seo_title);
-        $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
-        $seoTags->setTranslation('description', 'en', $request->seo_description);
-        $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
         
-        $tag->seoTags()->save($seoTags);
+        $slug = Str::slug($request->name , '-');
+
+        $slugAlreadyExist = $this->checkWhetherTheSlugAlreadyExist($slug);
+
+        if (!$slugAlreadyExist) {
+
+            $tag = Tag::find($request->id);
+
+            $tag->setTranslation('name', 'en', $request->name);
+            $tag->setTranslation('name', 'ar', $request->arabic_name);
+    
+            $tag->slug = $slug;
+            $tag->save();
+    
+             /*
+            * update the tag's seo tags
+            */
+            $seoTags = $tag->seoTags; 
+            $seoTags->setTranslation('title', 'en', $request->seo_title);
+            $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+            $seoTags->setTranslation('description', 'en', $request->seo_description);
+            $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+            
+            $tag->seoTags()->save($seoTags);
+
+        }else{
+            return [
+                'error' => true,
+                'message' => 'Data already exist'
+            ];
+        }
+
+       
 
     }
 
@@ -160,5 +175,11 @@ class TagController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function checkWhetherTheSlugAlreadyExist($slug){
+
+        return Tag::where('slug', $slug)->exists();
+
     }
 }
