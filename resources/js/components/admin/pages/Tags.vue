@@ -113,7 +113,17 @@
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
                                                 </v-col>
-
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.seo_title" label="SEO title"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-textarea
+                                                        v-model="editedItem.seo_description"
+                                                        outlined
+                                                        name="input-7-4"
+                                                        label="SEO description"
+                                                        ></v-textarea>
+                                                </v-col>
                                             </v-row>
                                         </v-container>
                                     </v-card-text>
@@ -135,6 +145,17 @@
                                             <v-row>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-text-field v-model="editedItem.arabic_name" label="Name in Arabic"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                            <v-text-field v-model="editedItem.arabic_seo_title" label="SEO title in Arabic"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-textarea
+                                                        v-model="editedItem.arabic_seo_description"
+                                                        outlined
+                                                        name="input-7-4"
+                                                        label="SEO description in Arabic"
+                                                    ></v-textarea>
                                                 </v-col>
                                             </v-row>
                                         </v-container>
@@ -187,9 +208,10 @@ import moment from 'moment';
                 editedItem: {
                     name: '',
                     arabic_name: '',
-                    calories: 0,
-                    fat: 0,
-                    carbs: 0,
+                    seo_title: '',
+                    arabic_seo_title: '',
+                    seo_description: '',
+                    arabic_seo_description: ''
                 },
                 defaultItem: {
                     name: '',
@@ -248,6 +270,12 @@ import moment from 'moment';
                 this.editedItem = Object.assign({}, item)
                 this.editedItem.name = item.name.en
                 this.editedItem.arabic_name = item.name.ar
+                if(this.editedItem.seo_tags != null){
+                    this.editedItem.seo_title = item.seo_tags.title.en
+                    this.editedItem.arabic_seo_title = item.seo_tags.title.ar
+                    this.editedItem.seo_description = item.seo_tags.description.en
+                    this.editedItem.arabic_seo_description = item.seo_tags.description.ar
+                }
                 this.dialog = true
             },
 
@@ -274,7 +302,11 @@ import moment from 'moment';
                     axios.patch('/api/tag', {
                         id: this.editedItem.id,
                         name: this.editedItem.name,
-                        arabic_name: this.editedItem.arabic_name
+                        arabic_name: this.editedItem.arabic_name,
+                        seo_title: this.editedItem.seo_title,
+                        arabic_seo_title: this.editedItem.arabic_seo_title,
+                        seo_description: this.editedItem.seo_description,
+                        arabic_seo_description: this.editedItem.arabic_seo_description
                     })
                         .then(function (response) {
                             flash('Changes Saved.', 'success');
@@ -299,7 +331,11 @@ import moment from 'moment';
 
                     axios.post('/api/tag', {
                         name: this.editedItem.name,
-                        arabic_name: this.editedItem.arabic_name
+                        arabic_name: this.editedItem.arabic_name,
+                        seo_title: this.editedItem.seo_title,
+                        arabic_seo_title: this.editedItem.arabic_seo_title,
+                        seo_description: this.editedItem.seo_description,
+                        arabic_seo_description: this.editedItem.arabic_seo_description
                     })
                         .then(function (response) {
                            

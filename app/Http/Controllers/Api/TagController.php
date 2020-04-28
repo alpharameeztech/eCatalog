@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Seo;
 
 class TagController extends Controller
 {
@@ -49,6 +50,19 @@ class TagController extends Controller
 
         $tag->slug = Str::slug($request->name , '-');
         $tag->save();
+
+        /*
+        * associate the seo tags with
+        * the tag
+        */
+        $seoTags = new Seo; 
+        $seoTags->setTranslation('title', 'en', $request->seo_title);
+        $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+        $seoTags->setTranslation('description', 'en', $request->seo_description);
+        $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+        
+        $tag->seoTags()->save($seoTags);
+
     }
 
     /**
@@ -95,6 +109,18 @@ class TagController extends Controller
 
         $tag->slug = Str::slug($request->name , '-');
         $tag->save();
+
+         /*
+        * update the tag's seo tags
+        */
+        $seoTags = $tag->seoTags; 
+        $seoTags->setTranslation('title', 'en', $request->seo_title);
+        $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+        $seoTags->setTranslation('description', 'en', $request->seo_description);
+        $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+        
+        $tag->seoTags()->save($seoTags);
+
     }
 
     /**

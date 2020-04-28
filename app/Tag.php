@@ -11,4 +11,13 @@ class Tag extends Model
 
     public $translatable = ['name'];
     
+    protected $with = ['seoTags'];
+
+    /**
+     * Get the store's branch seo tags.
+     */
+    public function seoTags()
+    {
+        return $this->morphOne(Seo::class, 'seoable');
+    }
 }

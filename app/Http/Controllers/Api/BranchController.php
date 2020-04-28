@@ -81,15 +81,13 @@ class BranchController extends Controller
         * associate the seo tags with
         * the store's branch
         */
-        if($request->seo_title && $request->seo_description){
-            $seoTags = new Seo; 
-            $seoTags->setTranslation('title', 'en', $request->seo_title);
-            $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
-            $seoTags->setTranslation('description', 'en', $request->seo_description);
-            $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
-            
-            $branch->seoTags()->save($seoTags);
-        }
+        $seoTags = new Seo; 
+        $seoTags->setTranslation('title', 'en', $request->seo_title);
+        $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+        $seoTags->setTranslation('description', 'en', $request->seo_description);
+        $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+        
+        $branch->seoTags()->save($seoTags);
        
     }
 
