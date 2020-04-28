@@ -177,6 +177,7 @@
                 { icon: 'store', text: 'Stores', link: '/home/stores', hasAccess: ['admin', 'publisher'] },
                 { icon: 'local_mall', text: 'Malls', link: '/home/malls', hasAccess: ['admin', 'publisher'] },
                 { icon: 'domain', text: 'Store Branches', link: '/home/branches', hasAccess: ['admin', 'publisher'] },
+                { icon: 'label', text: 'Catalog Tags', link: '/home/tags', hasAccess: ['admin', 'publisher'] },
             ],
 
         }),

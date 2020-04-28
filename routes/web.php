@@ -54,5 +54,10 @@ Route::group([
     Route::post('/branch', 'BranchController@store')->name('add.branch');
     Route::patch('/branch', 'BranchController@update')->name('update.branch');
     Route::patch('/toggle/branch/status', 'BranchController@toggleStatus')->name('toggle.branch.status');
+
+    Route::get('/tags', 'TagController@index')->name('all.tags');
+    Route::post('/tag', 'TagController@store')->name('add.tag');
+    Route::patch('/tag', 'TagController@update')->name('update.tag');
+    Route::patch('/toggle/tag/status', 'TagController@toggleStatus')->name('toggle.tag.status');
 });
 //======================== public apis end ==========================
