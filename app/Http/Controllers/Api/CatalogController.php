@@ -127,7 +127,6 @@ class CatalogController extends Controller
      */
     public function update(Request $request)
     {
-
         $validatedData = $request->validate([
             'name' => 'required|max:500',
             'arabic_name' => 'required|max:255',
@@ -181,10 +180,20 @@ class CatalogController extends Controller
         $catalog->seoTags()->save($seoTags);
 
         // sync the catalog tags
-        $catalog->tags()->sync($request->tags);
+        // if the user has updated 
+        // then save the data
+        // because then the data is correctly formatted i.e
+        // array (
+        //     0 => 9),
+        if(!is_array($request->tags[0])){
+            $catalog->tags()->sync($request->tags);
+        }
 
         // sync catalog with the branches
-        $catalog->branches()->sync($request->branches);
+        if(!is_array($request->branches[0])){
+            $catalog->branches()->sync($request->branches);
+        }
+
     }
 
     /**
