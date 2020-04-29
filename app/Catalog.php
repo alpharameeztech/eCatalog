@@ -11,7 +11,7 @@ class Catalog extends Model
 
     public $translatable = ['name', 'description', 'start_at', 'end_at'];
 
-    protected $with = ['store', 'seoTags', 'images', 'tags'];
+    protected $with = ['store', 'seoTags', 'images', 'tags', 'branches'];
 
     /**
      * Get all of the catalog's images.
@@ -44,4 +44,13 @@ class Catalog extends Model
     {
         return $this->belongsToMany('App\Tag');
     }
+
+    /**
+     * A Catalog can exist in multiple branches
+     */
+    public function branches()
+    {
+        return $this->belongsToMany('App\Branch');
+    }
+    
 }

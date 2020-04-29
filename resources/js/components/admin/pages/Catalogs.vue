@@ -205,6 +205,17 @@
                                                         single-line
                                                         ></v-select>
                                                 </v-col>
+                                                 <v-col cols="12" sm="12" md="12">
+                                                     <v-select
+                                                        v-model="editedItem.branches"
+                                                        :items="branches"
+                                                        item-text="name.en"
+                                                        item-value="id"
+                                                        label="Select branches"
+                                                        multiple
+                                                        >
+                                                     </v-select>
+                                                </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-textarea
                                                         v-model="editedItem.description"
@@ -299,10 +310,11 @@
 <script>
 import stores_api from "../../../mixins/apis/store";
 import tags_api from "../../../mixins/apis/tags";
+import branches_api from "../../../mixins/apis/branches";
 import moment from 'moment';
 
     export default {
-        mixins: [tags_api, stores_api],
+        mixins: [tags_api, stores_api, branches_api],
         data() {
             return {
                 search: '',
@@ -492,7 +504,8 @@ import moment from 'moment';
                         seo_description: this.editedItem.seo_description,
                         arabic_seo_description: this.editedItem.arabic_seo_description,
                         for_unlimited_time: this.for_unlimited_time,
-                        tags: this.editedItem.tags
+                        tags: this.editedItem.tags,
+                        branches: this.editedItem.branches
                     })
                     .then(function (response) {
 
@@ -539,7 +552,8 @@ import moment from 'moment';
                         seo_description: this.editedItem.seo_description,
                         arabic_seo_description: this.editedItem.arabic_seo_description,
                         for_unlimited_time: this.for_unlimited_time,
-                        tags: this.editedItem.tags
+                        tags: this.editedItem.tags,
+                        branches: this.editedItem.branches
                     })
                     .then(function (response) {
 

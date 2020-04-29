@@ -93,6 +93,7 @@ class CatalogController extends Controller
          
         // sync the catalog tags
         $catalog->tags()->sync($request->tags);
+        
     }
 
     /**
@@ -181,6 +182,9 @@ class CatalogController extends Controller
 
         // sync the catalog tags
         $catalog->tags()->sync($request->tags);
+
+        // sync catalog with the branches
+        $catalog->branches()->sync($request->branches);
     }
 
     /**

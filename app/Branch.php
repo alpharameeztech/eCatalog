@@ -32,4 +32,11 @@ class Branch extends Model
     {
         return $this->morphOne(Seo::class, 'seoable');
     }
+
+    /**
+     * A branch have multiple catalogs
+     */
+    public function catalogs(){
+        return $this->belongsToMany(Catalog::class);
+    }
 }
