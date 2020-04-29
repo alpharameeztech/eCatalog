@@ -333,7 +333,6 @@ import moment from 'moment';
                     this.$root.$emit('loading', true);
 
                     this.desserts.push(this.editedItem)
-
                     axios.post('/api/tag', {
                         name: this.editedItem.name,
                         arabic_name: this.editedItem.arabic_name,
@@ -347,6 +346,7 @@ import moment from 'moment';
                            self.initialize()
 
                             if(response.data.error){
+                               
                                 flash('Changes Not Saved. ' + response.data.message, 'error');
                             }else{
                                 flash('Changes Saved.', 'success');

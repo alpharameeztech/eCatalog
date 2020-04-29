@@ -7,6 +7,7 @@ use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Seo;
+use Throwable;
 
 class TagController extends Controller
 {
@@ -43,11 +44,10 @@ class TagController extends Controller
             'arabic_name' => 'required'
         ]);
         
-        $slug = Str::slug($request->name , '-');
+        try {
+            
+            $slug = Str::slug($request->name , '-');
 
-        $slugAlreadyExist = $this->checkWhetherTheSlugAlreadyExist($slug);
-
-        if(!$slugAlreadyExist){
             $tag = new Tag;
 
             $tag->setTranslation('name', 'en', $request->name);
@@ -67,14 +67,13 @@ class TagController extends Controller
             $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
             
             $tag->seoTags()->save($seoTags);
-        }  
-        else{
+
+        } catch (Throwable $e) {
             return [
                 'error' => true,
                 'message' => 'Data already exist'
             ];
-        }  
-      
+        }
 
     }
 
@@ -115,11 +114,9 @@ class TagController extends Controller
             'arabic_name' => 'required'
         ]);
         
-        $slug = Str::slug($request->name , '-');
-
-        $slugAlreadyExist = $this->checkWhetherTheSlugAlreadyExist($slug);
-
-        if (!$slugAlreadyExist) {
+        try {
+            
+            $slug = Str::slug($request->name , '-');
 
             $tag = Tag::find($request->id);
 
@@ -129,10 +126,11 @@ class TagController extends Controller
             $tag->slug = $slug;
             $tag->save();
     
-             /*
-            * update the tag's seo tags
+            /*
+            * associate the seo tags with
+            * the tag
             */
-            $seoTags = $tag->seoTags; 
+            $seoTags = $tag->seoTags;
             $seoTags->setTranslation('title', 'en', $request->seo_title);
             $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
             $seoTags->setTranslation('description', 'en', $request->seo_description);
@@ -140,7 +138,7 @@ class TagController extends Controller
             
             $tag->seoTags()->save($seoTags);
 
-        }else{
+        } catch (Throwable $e) {
             return [
                 'error' => true,
                 'message' => 'Data already exist'
@@ -177,9 +175,4 @@ class TagController extends Controller
         //
     }
 
-    protected function checkWhetherTheSlugAlreadyExist($slug){
-
-        return Tag::where('slug', $slug)->exists();
-
-    }
 }
