@@ -38,7 +38,7 @@ class CatalogController extends Controller
      */
     public function store(Request $request)
     {
-
+       
         $validatedData = $request->validate([
             'name' => 'required|max:500',
             'arabic_name' => 'required|max:255',
@@ -93,6 +93,9 @@ class CatalogController extends Controller
          
         // sync the catalog tags
         $catalog->tags()->sync($request->tags);
+
+        // sync catalog with the branches
+        $catalog->branches()->sync($request->branches);
         
     }
 
@@ -127,6 +130,7 @@ class CatalogController extends Controller
      */
     public function update(Request $request)
     {
+       
         $validatedData = $request->validate([
             'name' => 'required|max:500',
             'arabic_name' => 'required|max:255',
@@ -181,17 +185,21 @@ class CatalogController extends Controller
 
         // sync the catalog tags
         // if the user has updated 
-        // then save the data
-        // because then the data is correctly formatted i.e
-        // array (
-        //     0 => 9),
-        if(!is_array($request->tags[0])){
-            $catalog->tags()->sync($request->tags);
+        if( count($request->tags) && !is_array($request->tags[0])){
+            $catalog->tags()->sync($request->tags); // if provided with tags
+        }elseif( count($request->tags) == 0){
+            $catalog->tags()->sync([]); // if provided with no tags
+        }else{
+
         }
 
         // sync catalog with the branches
-        if(!is_array($request->branches[0])){
-            $catalog->branches()->sync($request->branches);
+        if( count($request->branches) &&  !is_array($request->branches[0])){
+            $catalog->branches()->sync($request->branches); // if provided branches
+        }elseif( count($request->branches) == 0){
+            $catalog->branches()->sync([]); // if provided with no branches
+        }else{
+
         }
 
     }

@@ -372,7 +372,6 @@ import moment from 'moment';
                     arabic_seo_title: '',
                     seo_description: '',
                     arabic_seo_description: '',
-                    tags: '',
                 },
                 defaultItem: {
                     name: '',
