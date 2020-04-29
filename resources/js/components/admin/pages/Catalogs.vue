@@ -383,12 +383,9 @@ import moment from 'moment';
                         self.desserts = response.data;
 
                         self.$root.$emit('loading', false);
-                        console.log(self.desserts)
 
                     })
                     .catch(function (error) {
-
-                        console.info('error');
 
                     })
                     .finally(function () {
@@ -409,10 +406,14 @@ import moment from 'moment';
                 this.editedItem = Object.assign({}, item)
                 this.editedItem.name = item.name.en
                 this.editedItem.arabic_name = item.name.ar
-                this.editedItem.address = item.address.en
-                this.editedItem.arabic_address = item.address.ar
-                this.editedItem.opening_hours = item.opening_hours.en
-                this.editedItem.arabic_opening_hours = item.opening_hours.ar
+                this.editedItem.start_at = item.start_at.en
+                this.editedItem.arabic_start_at = item.start_at.ar
+                if(this.editedItem.end_at != null){
+                    this.editedItem.end_at = item.end_at.en
+                    this.editedItem.arabic_end_at = item.end_at.ar
+                }
+                this.editedItem.description = item.description.en
+                this.editedItem.arabic_description = item.description.ar
                 if(this.editedItem.seo_tags != null){
                     this.editedItem.seo_title = item.seo_tags.title.en
                     this.editedItem.arabic_seo_title = item.seo_tags.title.ar
@@ -452,25 +453,20 @@ import moment from 'moment';
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
                     
                     var self = this
-
                     this.desserts.push(this.editedItem)
                    // alert(this.editedItem.city_id.id);return;
                     //send the form data to server
-                   axios.patch('/api/catalog', {
+                    axios.patch('/api/catalog', {
                         id: this.editedItem.id,
                         name: this.editedItem.name,
                         arabic_name: this.editedItem.arabic_name,
-                        address: this.editedItem.address,
-                        arabic_address: this.editedItem.arabic_address,
-                        telephone: this.editedItem.telephone,
-                        fax: this.editedItem.fax,
-                        email: this.editedItem.email,
-                        opening_hours: this.editedItem.opening_hours,
-                        arabic_opening_hours: this.editedItem.arabic_opening_hours,
-                        map_location: this.editedItem.map_location,
-                        city: this.editedItem.city,
+                        description: this.editedItem.description,
+                        arabic_description: this.editedItem.arabic_description,
+                        start_at: this.editedItem.start_at,
+                        arabic_start_at: this.editedItem.arabic_start_at,
+                        end_at: this.editedItem.end_at,
+                        arabic_end_at: this.editedItem.arabic_end_at,
                         store: this.editedItem.store,
-                        mall: this.editedItem.mall,
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,
@@ -488,7 +484,6 @@ import moment from 'moment';
                     .catch(function (error) {
 
                         self.$root.$emit('loading', false)
-                        console.log(error)
 
                         flash('Changes Not Saved', 'error')
                     })
