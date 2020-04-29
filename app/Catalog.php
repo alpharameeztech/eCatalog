@@ -11,6 +11,8 @@ class Catalog extends Model
 
     public $translatable = ['name', 'description', 'start_at', 'end_at'];
 
+    protected $with = ['store', 'seoTags', 'images'];
+
     /**
      * Get all of the catalog's images.
      */
@@ -25,5 +27,12 @@ class Catalog extends Model
     public function seoTags()
     {
         return $this->morphOne(Seo::class, 'seoable');
+    }
+
+    /*
+    * A catalog belongs to a store
+    */
+    public function store(){
+        return $this->belongsTo(Store::class);
     }
 }

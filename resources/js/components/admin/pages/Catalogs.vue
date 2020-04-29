@@ -21,17 +21,19 @@
 
         <!-- name -->  
             <template v-slot:item.name="{ item }">
-                <v-row  class="d-flex justify-start">
-                    <v-col cols="12" sm="12" md="12">
-                        <v-text> {{item.name.en}} </v-text>
-                    </v-col>
-                </v-row>
+                <v-text> {{item.name.en}} </v-text>
             </template>
         <!-- name end-->
 
         <!-- store name -->
             <template v-slot:item.store_id="{ item }">
                 <v-text>{{ item.store.name.en }} </v-text>
+            </template>
+        <!-- store name end-->
+
+        <!-- store name -->
+            <template v-slot:item.description="{ item }">
+                <v-text>{{ item.description.en }} </v-text>
             </template>
         <!-- store name end-->
 
@@ -44,6 +46,16 @@
                 </v-row>
             </template>
         <!-- start at end-->
+
+        <!-- end at -->  
+            <template v-slot:item.end_at="{ item }">
+                <v-row  class="d-flex justify-start">
+                    <v-col cols="12" sm="12" md="12">
+                        <v-text> {{item.end_at.en}} </v-text>
+                    </v-col>
+                </v-row>
+            </template>
+        <!-- end at end-->
 
         <!-- status -->
             <template v-slot:item.status="{ item }">
@@ -301,13 +313,14 @@ import moment from 'moment';
                         text: 'Name',
                         sortable: true,
                         value: 'name',
-                        width: 500
                     },
                     {text: 'Slug', value: 'slug', width: 300},
                     {text: 'Store', value: 'store_id'},
                     {text: 'Status', value: 'status'},
-                    {text: 'Opening Hours', value: 'opening_hours', width: 500},
-                    {text: 'Map Location', value: 'map_location'},
+                    {text: 'Description', value: 'description'},
+                    {text: 'Starting from', value: 'start_at'},
+                    {text: 'End on', value: 'end_at'},
+                    {text: 'Total Views', value: 'total_views'},
                     {text: 'Updated At', value: 'updated_at'},
                     {text: 'Created At', value: 'created_at'},
                     {text: 'Actions', value: 'action', sortable: false},
@@ -364,7 +377,7 @@ import moment from 'moment';
 
                 this.$root.$emit('loading', true);
 
-                axios.get('/api/branches')
+                axios.get('/api/catalogs')
                     .then(function (response) {
 
                         self.desserts = response.data;
