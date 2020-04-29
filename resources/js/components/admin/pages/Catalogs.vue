@@ -51,7 +51,7 @@
             <template v-slot:item.end_at="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
-                        <v-text> {{item.end_at.en}} </v-text>
+                        <v-text v-if="item.end_at != null"> {{item.end_at.en}} </v-text>
                     </v-col>
                 </v-row>
             </template>
@@ -171,11 +171,16 @@
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <p>Start date</p>
-                                                    <v-date-picker v-model="editedItem.start_at" label="Select end date or leave it if its for unlimited time"></v-date-picker>
+                                                    <v-date-picker v-model="editedItem.start_at" label="Select end date"></v-date-picker>
                                                 </v-col>
                                                  <v-col cols="12" sm="12" md="12">
-                                                    <p>Select end date or leave it if its for unlimited time</p>
-                                                    <v-date-picker v-model="editedItem.end_at" label="Select end date or leave it if its for unlimited time"></v-date-picker>
+                                                     <p>
+                                                         <v-switch
+                                                            v-model="for_unlimited_time"
+                                                            label="Set this catalog for unlimited time"
+                                                            ></v-switch>
+                                                     </p>
+                                                    <v-date-picker v-model="editedItem.end_at" v-if="!for_unlimited_time" label="Select end date"></v-date-picker>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-select
@@ -236,7 +241,7 @@
                                                         <v-text-field v-model="editedItem.arabic_start_at" label="Select start date in Arabic"></v-text-field>
                                                     </v-col>
                                                     <v-col cols="12" sm="12" md="12">
-                                                        <v-text-field v-model="editedItem.arabic_end_at" label="Select end date in Arabic or leave it blank if its for unlimited time"></v-text-field>
+                                                        <v-text-field v-model="editedItem.arabic_end_at" v-if="!for_unlimited_time" label="Select end date in Arabic or leave it blank if its for unlimited time"></v-text-field>
                                                     </v-col>
                                                     <v-col cols="12" sm="12" md="12">
                                                         <v-textarea
@@ -289,6 +294,7 @@ import moment from 'moment';
         data() {
             return {
                 search: '',
+                for_unlimited_time: false,
                 editingPassword: false,
                 ban:'',
                 show1: false,
@@ -420,6 +426,9 @@ import moment from 'moment';
                     this.editedItem.seo_description = item.seo_tags.description.en
                     this.editedItem.arabic_seo_description = item.seo_tags.description.ar
                 }
+                if(this.editedItem.end_at == null){
+                    this.for_unlimited_time = true
+                }
                 this.dialog = true
             },
 
@@ -447,7 +456,6 @@ import moment from 'moment';
                 /*
                     Add the form data we need to submit
                 */
-               
                 if (this.editedIndex > -1) {
                     formData.append('id',this.editedItem.id);
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
@@ -470,7 +478,8 @@ import moment from 'moment';
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,
-                        arabic_seo_description: this.editedItem.arabic_seo_description
+                        arabic_seo_description: this.editedItem.arabic_seo_description,
+                        for_unlimited_time: this.for_unlimited_time
                     })
                     .then(function (response) {
 
@@ -515,7 +524,8 @@ import moment from 'moment';
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,
-                        arabic_seo_description: this.editedItem.arabic_seo_description
+                        arabic_seo_description: this.editedItem.arabic_seo_description,
+                        for_unlimited_time: this.for_unlimited_time
                     })
                     .then(function (response) {
 

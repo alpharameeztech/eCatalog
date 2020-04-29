@@ -64,8 +64,13 @@ class CatalogController extends Controller
         $catalog->setTranslation('start_at', 'en', $request->start_at);
         $catalog->setTranslation('start_at', 'ar', $request->arabic_start_at);
         
-        //end at if applicable
-        if($request->end_at){
+        //if catalog has no expiry
+        //then set the to null
+        if ($request->for_unlimited_time) {
+            $catalog->setTranslation('end_at', 'en', null);
+            $catalog->setTranslation('end_at', 'ar', null);
+        }
+        else{
             $catalog->setTranslation('end_at', 'en', $request->end_at);
             $catalog->setTranslation('end_at', 'ar', $request->arabic_end_at);
         }
@@ -118,7 +123,6 @@ class CatalogController extends Controller
      */
     public function update(Request $request)
     {
-        \Log::info($request);
 
         $validatedData = $request->validate([
             'name' => 'required|max:500',
@@ -145,8 +149,13 @@ class CatalogController extends Controller
         $catalog->setTranslation('start_at', 'en', $request->start_at);
         $catalog->setTranslation('start_at', 'ar', $request->arabic_start_at);
         
-        //end at if applicable
-        if($request->end_at){
+        //if catalog has no expiry
+        //then set the to null
+        if ($request->for_unlimited_time) {
+            $catalog->setTranslation('end_at', 'en', null);
+            $catalog->setTranslation('end_at', 'ar', null);
+        }
+        else{
             $catalog->setTranslation('end_at', 'en', $request->end_at);
             $catalog->setTranslation('end_at', 'ar', $request->arabic_end_at);
         }
