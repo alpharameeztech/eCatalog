@@ -170,6 +170,17 @@
                                                         ></v-textarea>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
+                                                     <v-select
+                                                        v-model="editedItem.tags"
+                                                        :items="tags"
+                                                        item-text="name.en"
+                                                        item-value="id"
+                                                        label="Select tags"
+                                                        multiple
+                                                        >
+                                                     </v-select>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
                                                     <p>Start date</p>
                                                     <v-date-picker v-model="editedItem.start_at" label="Select end date"></v-date-picker>
                                                 </v-col>
@@ -286,11 +297,12 @@
     </div>
 </template>
 <script>
-import api from "../../../mixins/api";
+import stores_api from "../../../mixins/apis/store";
+import tags_api from "../../../mixins/apis/tags";
 import moment from 'moment';
 
     export default {
-        mixins: [api],
+        mixins: [tags_api, stores_api],
         data() {
             return {
                 search: '',
@@ -479,7 +491,8 @@ import moment from 'moment';
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,
                         arabic_seo_description: this.editedItem.arabic_seo_description,
-                        for_unlimited_time: this.for_unlimited_time
+                        for_unlimited_time: this.for_unlimited_time,
+                        tags: this.editedItem.tags
                     })
                     .then(function (response) {
 
@@ -525,7 +538,8 @@ import moment from 'moment';
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,
                         arabic_seo_description: this.editedItem.arabic_seo_description,
-                        for_unlimited_time: this.for_unlimited_time
+                        for_unlimited_time: this.for_unlimited_time,
+                        tags: this.editedItem.tags
                     })
                     .then(function (response) {
 

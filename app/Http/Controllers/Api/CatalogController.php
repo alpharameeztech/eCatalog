@@ -90,6 +90,9 @@ class CatalogController extends Controller
         $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
         
         $catalog->seoTags()->save($seoTags);
+         
+        // sync the catalog tags
+        $catalog->tags()->sync($request->tags);
     }
 
     /**
@@ -175,6 +178,9 @@ class CatalogController extends Controller
         $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
         
         $catalog->seoTags()->save($seoTags);
+
+        // sync the catalog tags
+        $catalog->tags()->sync($request->tags);
     }
 
     /**

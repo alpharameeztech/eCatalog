@@ -20,4 +20,12 @@ class Tag extends Model
     {
         return $this->morphOne(Seo::class, 'seoable');
     }
+
+    /**
+     * A tag is associated with many catalogs
+     */
+    public function catalogs()
+    {
+        return $this->belongsToMany(Catalog::class);
+    }
 }
