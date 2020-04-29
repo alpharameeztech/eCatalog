@@ -31,11 +31,11 @@
             </template>
         <!-- store name end-->
 
-        <!-- store name -->
+        <!-- description name -->
             <template v-slot:item.description="{ item }">
                 <v-text>{{ item.description.en }} </v-text>
             </template>
-        <!-- store name end-->
+        <!-- description name end-->
 
         <!-- start at -->  
             <template v-slot:item.start_at="{ item }">
