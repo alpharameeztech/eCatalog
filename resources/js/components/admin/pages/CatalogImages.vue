@@ -69,7 +69,6 @@
             <!-- add/update modal -->
             <template v-slot:top>
                 <v-toolbar flat color="white">
-
                     <v-divider
                         class="mx-4"
                         inset
@@ -85,8 +84,9 @@
                             <v-card-title>
                                 <span class="headline">{{ formTitle }}</span>
                             </v-card-title>
-
-                            <v-card-text>
+                           
+                            <!-- add image -->
+                            <v-card-text v-if="editedIndex == -1">
                                 <v-container>
                                     <v-row>
                                         <v-col cols="12" sm="12" md="12">
@@ -109,7 +109,39 @@
                                     </v-row>
                                 </v-container>
                             </v-card-text>
+                            <!-- add image end -->
 
+                            <!-- update images -->
+                            <v-card-text v-if="editedIndex > -1">
+                                <v-container>
+                                    <v-text>
+                                        <i> {{editedItem.name}}</i> catalog have total of <i>{{editedItem.images.length}}</i> images
+                                    </v-text>
+                                    <v-row>
+                                        <v-col cols="12" sm="12" md="12">
+                                            <v-select
+                                                v-model="editedItem"
+                                                :items="catalogs"
+                                                item-text="name.en"
+                                                item-value="id"
+                                                label="Select Catalog"
+                                                persistent-hint
+                                                return-object
+                                                single-line
+                                                ></v-select>
+                                        </v-col>
+                                        <v-col cols="12" sm="12" md="12" v-for="image in editedItem.images" :key="image.id">
+                                            <v-img 
+                                                :src="storeImage(image)" 
+                                                aspect-ratio="1.7">
+                                            </v-img>
+                                        </v-col>
+                                        
+                                    </v-row>
+                                </v-container>
+                            </v-card-text>
+                            <!-- update images end -->
+                            
                             <v-card-actions>
                                 <v-spacer></v-spacer>
                                 <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
@@ -339,6 +371,10 @@ import moment from 'moment';
             selectFiles(event){
                 this.file = event //event[0]
                 console.log(this.file)
+            },
+            storeImage(image){
+                console.log(image.image)
+               return 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + image.image;
             }
 
         },
