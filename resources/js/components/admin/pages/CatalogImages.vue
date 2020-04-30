@@ -135,6 +135,9 @@
                                                 :src="storeImage(image)" 
                                                 aspect-ratio="1.7">
                                             </v-img>
+                                            <v-btn color="pink darken-1" text @click="deleteImage(image)">
+                                                <v-icon>delete</v-icon>
+                                            </v-btn>
                                         </v-col>
                                         
                                     </v-row>
@@ -142,7 +145,7 @@
                             </v-card-text>
                             <!-- update images end -->
                             
-                            <v-card-actions>
+                            <v-card-actions v-if="editedIndex == -1">
                                 <v-spacer></v-spacer>
                                 <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
                                 <v-btn color="blue darken-1" text @click="save">Send</v-btn>
@@ -286,6 +289,39 @@ import moment from 'moment';
                     this.editedIndex = -1
                     this.ban= ''
                 }, 300)
+            },
+
+            deleteImage (image) {
+
+                var self = this
+
+                this.$root.$emit('loading', true);
+
+                axios.post('/api/delete/catalog/image', {
+                    image: image
+                })
+                .then(function (response) {
+
+                    self.$root.$emit('loading', false)
+
+                    flash('Changes Saved')
+
+                    self.initialize()
+
+                })
+                .catch(function (error) {
+
+                    self.$root.$emit('loading', false)
+
+                    flash('Changes Not Saved', 'error')
+                })
+                .finally(function () {
+                    self.$root.$emit('loading', false)
+
+                });
+
+                this.close()
+
             },
 
             save () {

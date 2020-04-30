@@ -261,6 +261,14 @@ class CatalogController extends Controller
     }
 
     /**
+     * delete a catalog image
+     */
+    public function deleteImage(Request $request)
+    {
+        $catalog = Catalog::find($request->image['imageable_id']);
+        $catalog->images()->where('id', $request->image['id'])->delete();
+    }
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
