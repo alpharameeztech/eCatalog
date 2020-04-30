@@ -179,7 +179,8 @@
                 { icon: 'domain', text: 'Store Branches', link: '/home/branches', hasAccess: ['admin', 'publisher'] },
                 { icon: 'label', text: 'Tags', link: '/home/tags', hasAccess: ['admin', 'publisher'] },
                 { icon: 'card_giftcard', text: 'Catalogs', link: '/home/catalogs', hasAccess: ['admin', 'publisher'] },
-            ],
+                { icon: 'card_giftcard', text: 'Catalog Images', link: '/home/catalog/images', hasAccess: ['admin', 'publisher'] },
+            ]
 
         }),
         mounted(){

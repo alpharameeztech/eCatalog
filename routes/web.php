@@ -64,5 +64,8 @@ Route::group([
     Route::post('/catalog', 'CatalogController@store')->name('add.catalog');
     Route::patch('/catalog', 'CatalogController@update')->name('update.catalog');
     Route::patch('/toggle/catalog/status', 'CatalogController@toggleStatus')->name('toggle.catalog.status');
+
+    Route::post('/catalog/images', 'CatalogController@storeImages')->name('add.catalog.images');
+
 });
 //======================== public apis end ==========================

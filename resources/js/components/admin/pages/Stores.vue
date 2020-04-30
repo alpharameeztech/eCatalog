@@ -167,7 +167,7 @@
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-file-input
                                                         v-model="file"
-                                                        label="Select Image File..."
+                                                        label="Select Logo"
                                                         accept="image/*"
                                                         @change="onFileChange"
                                                     ></v-file-input>

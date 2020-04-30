@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Catalog;
 use App\Http\Controllers\Controller;
+use App\Image;
 use App\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -236,6 +237,22 @@ class CatalogController extends Controller
         $catalog = Catalog::find($request->id);
         $catalog->status = $request->status;
         $catalog->save();
+    }
+
+    /**
+     * Store a catalog image
+     */
+    public function storeImages(Request $request){
+        
+        $new_image = request()->file('file')->store('catalogs', 's3');
+        
+        $catalog = Catalog::find($request->id);
+
+        $image = new Image;
+
+        $image->image = $new_image; 
+        $catalog->images()->save($image);
+
     }
 
     /**
