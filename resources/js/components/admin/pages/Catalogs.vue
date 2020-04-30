@@ -31,6 +31,12 @@
             </template>
         <!-- store name end-->
 
+        <!-- featured -->
+            <template v-slot:item.featured="{ item }">
+                <v-text>{{ isFeatured(item.featured) }} </v-text>
+            </template>
+        <!-- featured end-->
+
         <!-- description name -->
             <template v-slot:item.description="{ item }">
                 <v-text>{{ item.description.en }} </v-text>
@@ -191,6 +197,7 @@
                                                             label="Set this catalog for unlimited time"
                                                             ></v-switch>
                                                      </p>
+                                                    <p v-if="!for_unlimited_time">Expiry date</p>
                                                     <v-date-picker v-model="editedItem.end_at" v-if="!for_unlimited_time" label="Select end date"></v-date-picker>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
@@ -347,6 +354,7 @@ import moment from 'moment';
                     {text: 'Slug', value: 'slug', width: 300},
                     {text: 'Store', value: 'store_id'},
                     {text: 'Status', value: 'status'},
+                    {text: 'Featured', value: 'featured'},
                     {text: 'Description', value: 'description'},
                     {text: 'Starting from', value: 'start_at'},
                     {text: 'End on', value: 'end_at'},
@@ -602,6 +610,14 @@ import moment from 'moment';
                 });
 
             },
+            isFeatured(isFeatured){
+                if(isFeatured){
+                    return 'Yes'
+                }
+                else{
+                    return 'No'
+                }
+            }
 
         },
 

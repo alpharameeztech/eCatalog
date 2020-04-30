@@ -24,7 +24,7 @@ class CreateCatalogsTable extends Migration
             $table->string('start_at',500);
             $table->string('end_at',500)->nullable();
             $table->unsignedInteger('total_views')->nullable();
-            $table->boolean('featured')->nullable();
+            $table->boolean('featured')->default(0);
             $table->boolean('status')->default(1);
             $table->timestamps();
 
