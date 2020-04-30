@@ -584,7 +584,7 @@ import moment from 'moment';
 
                 this.$root.$emit('loading', true);
                 
-                axios.patch('/api/toggle/branch/status', {
+                axios.patch('/api/toggle/catalog/status', {
                     id: item.id,
                     status: item.status
                 })

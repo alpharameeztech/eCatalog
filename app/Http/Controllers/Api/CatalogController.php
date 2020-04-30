@@ -205,6 +205,21 @@ class CatalogController extends Controller
     }
 
     /**
+     * Toggle the catalog status
+     */
+    public function toggleStatus(Request $request) {
+
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'status' => 'required'
+        ]);
+
+        $catalog = Catalog::find($request->id);
+        $catalog->status = $request->status;
+        $catalog->save();
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
