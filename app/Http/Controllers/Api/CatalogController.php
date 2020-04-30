@@ -244,6 +244,11 @@ class CatalogController extends Controller
      */
     public function storeImages(Request $request){
         
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'file' => 'required'
+        ]);
+
         $new_image = request()->file('file')->store('catalogs', 's3');
         
         $catalog = Catalog::find($request->id);
