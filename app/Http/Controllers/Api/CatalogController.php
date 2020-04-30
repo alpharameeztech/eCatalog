@@ -77,6 +77,14 @@ class CatalogController extends Controller
         
         $catalog->store_id = $request->store['id'];
 
+        //check whether the catalog is
+        //marked as featured
+        //if yes, then save it
+        if($request->featured && $request->featured_expiry_at != null){
+            $catalog->featured = true;
+            $catalog->featured_expiry_at =  $request->featured_expiry_at;
+        }
+
         $catalog->save();
 
         /*
@@ -167,6 +175,17 @@ class CatalogController extends Controller
             $catalog->setTranslation('end_at', 'ar', $request->arabic_end_at);
         }
         
+        //check whether the catalog is
+        //marked as featured
+        //if yes, then save it
+        if($request->featured && $request->featured_expiry_at != null){
+            $catalog->featured = true;
+            $catalog->featured_expiry_at =  $request->featured_expiry_at;
+        }else{
+            $catalog->featured = false;
+            $catalog->featured_expiry_at =  null;
+        }
+
         $catalog->store_id = $request->store['id'];
 
         $catalog->save();

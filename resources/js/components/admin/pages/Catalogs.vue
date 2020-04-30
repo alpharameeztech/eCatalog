@@ -200,6 +200,18 @@
                                                     <p v-if="!for_unlimited_time">Expiry date</p>
                                                     <v-date-picker v-model="editedItem.end_at" v-if="!for_unlimited_time" label="Select end date"></v-date-picker>
                                                 </v-col>
+
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <p>
+                                                        <v-switch
+                                                            v-model="editedItem.featured"
+                                                            label="Set this catalog as featured"
+                                                        ></v-switch>
+                                                    </p>
+                                                    <p v-if="editedItem.featured">Set expiry date of the featured one</p>
+                                                    <v-date-picker v-model="editedItem.featured_expiry_at" v-if="editedItem.featured" label="Select end date"></v-date-picker>
+                                                </v-col>
+
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-select
                                                         v-model="editedItem.store"
@@ -513,7 +525,9 @@ import moment from 'moment';
                         arabic_seo_description: this.editedItem.arabic_seo_description,
                         for_unlimited_time: this.for_unlimited_time,
                         tags: this.editedItem.tags,
-                        branches: this.editedItem.branches
+                        branches: this.editedItem.branches,
+                        featured: this.editedItem.featured,
+                        featured_expiry_at: this.editedItem.featured_expiry_at      
                     })
                     .then(function (response) {
 
@@ -561,7 +575,9 @@ import moment from 'moment';
                         arabic_seo_description: this.editedItem.arabic_seo_description,
                         for_unlimited_time: this.for_unlimited_time,
                         tags: this.editedItem.tags,
-                        branches: this.editedItem.branches
+                        branches: this.editedItem.branches,
+                        featured: this.editedItem.featured,
+                        featured_expiry_at: this.editedItem.featured_expiry_at
                     })
                     .then(function (response) {
 
