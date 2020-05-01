@@ -216,6 +216,11 @@ import moment from 'moment';
                         sortable: true,
                         value: 'name',
                     },
+                     {
+                        text: 'Slug',
+                        sortable: true,
+                        value: 'slug',
+                    },
                     {text: 'Updated At', value: 'updated_at'},
                     {text: 'Created At', value: 'created_at'},
                     {text: 'Actions', value: 'action', sortable: false},
