@@ -69,6 +69,25 @@
 
             </template> 
         <!-- status -->
+
+         <!-- show on home page -->
+            <template v-slot:item.featured="{ item }">
+
+                    <v-row  class="d-flex justify-start">
+                        <v-col cols="12" sm="12" md="12">
+
+                            <v-switch
+                                v-model=" item.featured "
+                                color="success"
+                                @change="toggleFeatured(item)"
+                            ></v-switch>
+
+                        </v-col>
+
+                    </v-row>
+
+            </template> 
+        <!-- show on home page end -->
         
         <!-- formatted created date -->    
             <template v-slot:item.created_at="{ item }">
@@ -319,6 +338,7 @@ import moment from 'moment';
                     {text: 'Youtube Link', value: 'youtube_link'},
                     {text: 'About', value: 'about',  width: 500},
                     {text: 'Status', value: 'status'},
+                    {text: 'Show on home page', value: 'featured'},
                     {text: 'Updated At', value: 'updated_at'},
                     {text: 'Created At', value: 'created_at'},
                     {text: 'Actions', value: 'action', sortable: false},
@@ -542,6 +562,27 @@ import moment from 'moment';
                     self.$root.$emit('loading', false);
                 });
 
+            },
+            toggleFeatured(item){
+                var self = this
+
+                this.$root.$emit('loading', true);
+                
+                axios.patch('/api/toggle/store/featured', {
+                    store: item,
+                })
+                .then(function (response) {
+
+                    self.initialize()
+                    
+                    flash('Changes Saved.', 'success');
+                })
+                .catch(function (error) {
+                    flash('Changes Saved.', 'error');
+                })
+                .finally( function() {
+                    self.$root.$emit('loading', false);
+                });
             },
             storeImage(image){
                return 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + image;

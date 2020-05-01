@@ -169,6 +169,16 @@ class StoreController extends Controller
         $store->save();
     }
 
+    public function toggleFeatured(Request $request){
+        $validatedData = $request->validate([
+            'store' => 'required',
+        ]);
+
+        $store = Store::find($request->store['id']);
+        $store->featured = !$store->featured;
+        $store->save();
+    }
+
     /**
      * Remove the specified resource from storage.
      *

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFeaturedExpiryAtToCatalogsTable extends Migration
+class AddFeaturedToStoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddFeaturedExpiryAtToCatalogsTable extends Migration
      */
     public function up()
     {
-        Schema::table('catalogs', function (Blueprint $table) {
-            $table->date('featured_expiry_at')->nullable()->after('featured');
+        Schema::table('stores', function (Blueprint $table) {
+            $table->boolean('featured')->default(0)->after('slug');
         });
     }
 
@@ -25,8 +25,8 @@ class AddFeaturedExpiryAtToCatalogsTable extends Migration
      */
     public function down()
     {
-        Schema::table('catalogs', function (Blueprint $table) {
-            $table->dropColumn('featured_expiry_at');
+        Schema::table('stores', function (Blueprint $table) {
+            $table->dropColumn('featured');
         });
     }
 }

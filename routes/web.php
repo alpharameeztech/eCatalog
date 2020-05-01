@@ -45,6 +45,7 @@ Route::group([
     Route::get('/stores', 'StoreController@index')->name('all.stores');
     Route::post('/store', 'StoreController@store')->name('add.store');
     Route::patch('/toggle/store/status', 'StoreController@toggleStatus')->name('toggle.store.status');
+    Route::patch('/toggle/store/featured', 'StoreController@toggleFeatured')->name('toggle.store.featured');
 
     Route::get('/malls', 'MallController@index')->name('all.malls');
     Route::post('/mall', 'MallController@store')->name('add.mall');
