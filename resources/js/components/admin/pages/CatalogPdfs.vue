@@ -115,7 +115,7 @@
                             <v-card-text v-if="editedIndex > -1">
                                 <v-container>
                                     <v-text>
-                                        <i> {{editedItem.name}}</i> catalog have total of <i>{{editedItem.pdfs.length}}</i> images
+                                        <i> {{editedItem.name}}</i> catalog have total of <i>{{editedItem.pdfs.length}}</i> Pdf
                                     </v-text>
                                     <v-row>
                                         <v-col cols="12" sm="12" md="12">
