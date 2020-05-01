@@ -143,6 +143,12 @@
                                                 :src="storeImage(image)" 
                                                 aspect-ratio="1.7">
                                             </v-img>
+                                            <v-switch
+                                            v-model="image.featured"
+                                            label="featured"
+                                            @change="toggleFeaturedImageStatus(image)"
+                                            ></v-switch>
+
                                             <v-btn color="pink darken-1" text @click="deleteImage(image)">
                                                 <v-icon>delete</v-icon>
                                             </v-btn>
@@ -191,6 +197,7 @@ import moment from 'moment';
         data() {
             return {
                 featured: false,
+                markedAsFeatured: true,
                 file:'',
                 search: '',
                 show1: false,
@@ -421,6 +428,36 @@ import moment from 'moment';
             storeImage(image){
                 console.log(image.image)
                return 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + image.image;
+            },
+            toggleFeaturedImageStatus(image){
+                var self = this
+
+                this.$root.$emit('loading', true);
+
+                axios.post('/api/toggle/featured/image', {
+                    image: image
+                })
+                .then(function (response) {
+
+                    self.$root.$emit('loading', false)
+
+                    flash('Changes Saved')
+
+                    self.initialize()
+
+                })
+                .catch(function (error) {
+
+                    self.$root.$emit('loading', false)
+
+                    flash('Changes Not Saved', 'error')
+                })
+                .finally(function () {
+                    self.$root.$emit('loading', false)
+
+                });
+
+                this.close()
             }
 
         },

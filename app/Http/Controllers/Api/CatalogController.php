@@ -262,9 +262,23 @@ class CatalogController extends Controller
         * featured, then save with the catalog
         */
         if($request->featured == 'true'){
-            $catalog->image_id = $response->id;
-            $catalog->save();
+            // $catalog->image_id = $response->id;
+            // $catalog->save();
+            $image->featured = true; 
+
+            $response = $catalog->images()->save($image);
         }
+    }
+
+    public function toggleFeaturedImage(Request $request){
+        $validatedData = $request->validate([
+            'image' => 'required',
+        ]);
+            
+        $image = Image::find($request->image['id']);
+        $image->featured = !$image->featured;
+        $image->save();
+        
     }
 
     /**

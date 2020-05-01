@@ -66,6 +66,7 @@ Route::group([
     Route::patch('/toggle/catalog/status', 'CatalogController@toggleStatus')->name('toggle.catalog.status');
     Route::post('/catalog/images', 'CatalogController@storeImages')->name('add.catalog.images');
     Route::post('/delete/catalog/image', 'CatalogController@deleteImage')->name('delete.catalog.image');
+    Route::post('/toggle/featured/image', 'CatalogController@toggleFeaturedImage')->name('toggle.catalog.featured.image');
 
 });
 //======================== public apis end ==========================
