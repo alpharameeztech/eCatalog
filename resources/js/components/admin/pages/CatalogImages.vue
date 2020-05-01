@@ -105,6 +105,14 @@
                                         <v-col cols="12" sm="12" md="12">
                                             <v-file-input v-model="file" @change="selectFiles" accept="image/*" label="Select images"></v-file-input>
                                         </v-col>
+                                        <v-col cols="12" sm="12" md="12">
+                                            <p>
+                                                <v-switch
+                                                v-model="featured"
+                                                label="Set this image as featured"
+                                                ></v-switch>
+                                            </p>
+                                        </v-col>
 
                                     </v-row>
                                 </v-container>
@@ -182,6 +190,7 @@ import moment from 'moment';
         mixins: [catalogs],
         data() {
             return {
+                featured: false,
                 file:'',
                 search: '',
                 show1: false,
@@ -376,6 +385,7 @@ import moment from 'moment';
                     let formData = new FormData();
                     formData.append('id', this.editedItem.id);
                     formData.append('file', this.file);
+                    formData.append('featured', this.featured);
 
                     //send the form data to server
                     axios.post('/api/catalog/images', formData)

@@ -256,8 +256,16 @@ class CatalogController extends Controller
         $image = new Image;
 
         $image->image = $new_image; 
-        $catalog->images()->save($image);
-
+        $response = $catalog->images()->save($image);
+            
+        /*
+        * if this imag has been marked as 
+        * featured, then save with the catalog
+        */
+        if($request->featured){
+            $catalog->image_id = $response->id;
+            $catalog->save();
+        }
     }
 
     /**
