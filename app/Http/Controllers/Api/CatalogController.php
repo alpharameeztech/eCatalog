@@ -226,6 +226,20 @@ class CatalogController extends Controller
     }
 
     /**
+     * Save the updated order of the
+     * catalog images
+     */
+    public function reorderImages(Request $request)
+    {
+        
+        foreach($request->images as $key=> $image){
+            $imageModel = Image::find($image['id']);
+            $imageModel->update(['order' => ++$key]);
+        }
+
+    }
+
+    /**
      * Toggle the catalog status
      */
     public function toggleStatus(Request $request) {

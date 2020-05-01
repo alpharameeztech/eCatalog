@@ -125,8 +125,11 @@
                                     <v-text>
                                         <i> {{editedItem.name}}</i> catalog have total of <i>{{editedItem.images.length}}</i> images
                                     </v-text>
-                                     <p>
+                                    <p>
                                         You can set only one image as cover image of a catalog.
+                                    </p>
+                                    <p>
+                                        You can change the images order with drag and drop and then saving the changes.
                                     </p>
                                     <v-row>
                                         <v-col cols="12" sm="12" md="12">
@@ -141,31 +144,55 @@
                                                 single-line
                                                 ></v-select>
                                         </v-col>
-                                        <v-col cols="12" sm="12" md="12" v-for="image in editedItem.images" :key="image.id">
-                                            <v-img 
-                                                :src="storeImage(image)" 
-                                                aspect-ratio="1.7">
-                                            </v-img>
-                                            <v-switch
-                                            v-model="image.featured"
-                                            label="cover image"
-                                            @change="toggleFeaturedImageStatus(image)"
-                                            ></v-switch>
+                                      
+                                        <draggable v-model="editedItem.images" group="people" @start="drag=true" @end="drag=true">
+                                            <div v-for="image in editedItem.images" :key="image.id">{{image.image}}
+                                                
+                                                <v-row>
+                                                    <v-col cols="12" sm="1" md="1">
+                                                        <v-icon>more_vert</v-icon>
+                                                    </v-col>
 
-                                            <v-btn color="pink darken-1" text @click="deleteImage(image)">
-                                                <v-icon>delete</v-icon>
-                                            </v-btn>
-                                        </v-col>
-                                        
+                                                    <v-col cols="12" sm="11" md="11">
+                                                        <v-img 
+                                                            :src="storeImage(image)" 
+                                                            aspect-ratio="1.7">
+                                                        </v-img>
+                                                    </v-col>
+
+                                                    <v-row>
+
+                                                        <v-col cols="12" sm="6" md="6">
+                                                            <v-switch
+                                                                v-model="image.featured"
+                                                                label="cover image"
+                                                                @change="toggleFeaturedImageStatus(image)"
+                                                            ></v-switch>
+                                                        </v-col>
+
+                                                        <v-col cols="12" sm="6" md="6">
+                                                            <v-btn color="pink darken-1" text @click="deleteImage(image)">
+                                                                <v-icon>delete</v-icon>
+                                                            </v-btn>
+                                                        </v-col>
+
+                                                     </v-row>
+
+                                                </v-row>
+                                              
+                                            </div>
+                                        </draggable>
+                                            
                                     </v-row>
+
                                 </v-container>
                             </v-card-text>
                             <!-- update images end -->
                             
-                            <v-card-actions v-if="editedIndex == -1">
+                            <v-card-actions >
                                 <v-spacer></v-spacer>
                                 <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                                <v-btn color="blue darken-1" text @click="save">Send</v-btn>
+                                <v-btn color="blue darken-1" text @click="save">Update</v-btn>
                             </v-card-actions>
                         </v-card>
                       
@@ -194,8 +221,12 @@
 <script>
 import catalogs from "../../../mixins/apis/catalogs";
 import moment from 'moment';
+import draggable from 'vuedraggable';
 
     export default {
+        components: {
+            draggable,
+        },
         mixins: [catalogs],
         data() {
             return {
@@ -359,16 +390,15 @@ import moment from 'moment';
                 */
 
                 if (this.editedIndex > -1) {
-                    formData.append('id',this.editedItem.id);
+                    
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
                     
                     var self = this
                     this.desserts.push(this.editedItem)
-                   // alert(this.editedItem.city_id.id);return;
                     //send the form data to server
-                    axios.patch('/api/catalog', {
+                    axios.patch('/api/reorder/catalog/images', {
                         id: this.editedItem.id,
-                       
+                        images: this.editedItem.images
                     })
                     .then(function (response) {
 

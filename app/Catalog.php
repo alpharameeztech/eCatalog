@@ -15,10 +15,11 @@ class Catalog extends Model
 
     /**
      * Get all of the catalog's images.
+     * in asc order
      */
     public function images()
     {
-        return $this->morphMany('App\Image', 'imageable');
+        return $this->morphMany('App\Image', 'imageable')->orderBy('order');
     }
 
     /**
