@@ -243,7 +243,6 @@ class CatalogController extends Controller
      * Store a catalog image
      */
     public function storeImages(Request $request){
-        
         $validatedData = $request->validate([
             'id' => 'required',
             'file' => 'required'
@@ -262,7 +261,7 @@ class CatalogController extends Controller
         * if this imag has been marked as 
         * featured, then save with the catalog
         */
-        if($request->featured){
+        if($request->featured == 'true'){
             $catalog->image_id = $response->id;
             $catalog->save();
         }
