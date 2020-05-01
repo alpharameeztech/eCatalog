@@ -11,7 +11,7 @@ class Catalog extends Model
 
     public $translatable = ['name', 'description', 'start_at', 'end_at'];
 
-    protected $with = ['store', 'seoTags', 'images', 'tags', 'branches'];
+    protected $with = ['store', 'seoTags', 'images', 'tags', 'branches', 'pdfs'];
 
     /**
      * Get all of the catalog's images.
@@ -19,6 +19,14 @@ class Catalog extends Model
     public function images()
     {
         return $this->morphMany('App\Image', 'imageable');
+    }
+
+    /**
+     * Get all of the catalog's pdf.
+     */
+    public function pdfs()
+    {
+        return $this->morphMany('App\Pdf', 'pdfable');
     }
 
     /**

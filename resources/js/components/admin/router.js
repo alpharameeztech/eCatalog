@@ -8,6 +8,7 @@ import Branches from "./pages/Branches";
 import Tags from "./pages/Tags";
 import Catalogs from "./pages/Catalogs";
 import CatalogImages from "./pages/CatalogImages";
+import CatalogPdfs from "./pages/CatalogPdfs";
 
 const router = new VueRouter({
     mode: 'history',
@@ -57,6 +58,10 @@ const router = new VueRouter({
         {
             path: '/home/catalog/images',
             component: CatalogImages,
+        },
+        {
+            path: '/home/catalog/pdfs',
+            component: CatalogPdfs,
         },
     ],
 });

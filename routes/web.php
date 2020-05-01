@@ -67,6 +67,7 @@ Route::group([
     Route::post('/catalog/images', 'CatalogController@storeImages')->name('add.catalog.images');
     Route::post('/delete/catalog/image', 'CatalogController@deleteImage')->name('delete.catalog.image');
     Route::post('/toggle/featured/image', 'CatalogController@toggleFeaturedImage')->name('toggle.catalog.featured.image');
-
+    Route::post('/catalog/pdf', 'CatalogController@storePdf')->name('add.catalog.pdf');
+    Route::post('/delete/catalog/pdf', 'CatalogController@deletePdf')->name('delete.catalog.pdf');
 });
 //======================== public apis end ==========================

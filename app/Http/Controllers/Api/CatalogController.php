@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Catalog;
 use App\Http\Controllers\Controller;
 use App\Image;
+use App\Pdf;
 use App\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -270,6 +271,26 @@ class CatalogController extends Controller
         }
     }
 
+     /**
+     * Store a catalog pdf
+     */
+    public function storePdf(Request $request){
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'file' => 'required'
+        ]);
+
+        $new_pdf = request()->file('file')->store('catalogs', 's3');
+        
+        $catalog = Catalog::find($request->id);
+
+        $pdf = new Pdf;
+
+        $pdf->pdf = $new_pdf; 
+        $catalog->pdfs()->save($pdf);
+            
+    }
+
     public function toggleFeaturedImage(Request $request){
         $validatedData = $request->validate([
             'image' => 'required',
@@ -289,6 +310,16 @@ class CatalogController extends Controller
         $catalog = Catalog::find($request->image['imageable_id']);
         $catalog->images()->where('id', $request->image['id'])->delete();
     }
+
+     /**
+     * delete a catalog pdf
+     */
+    public function deletePdf(Request $request)
+    {
+        $catalog = Catalog::find($request->pdf['pdfable_id']);
+        $catalog->pdfs()->where('id', $request->pdf['id'])->delete();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
