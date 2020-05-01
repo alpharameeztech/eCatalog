@@ -125,6 +125,9 @@
                                     <v-text>
                                         <i> {{editedItem.name}}</i> catalog have total of <i>{{editedItem.images.length}}</i> images
                                     </v-text>
+                                     <p>
+                                        You can set only one image as featured.
+                                    </p>
                                     <v-row>
                                         <v-col cols="12" sm="12" md="12">
                                             <v-select
