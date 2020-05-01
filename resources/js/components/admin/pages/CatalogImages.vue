@@ -109,7 +109,7 @@
                                             <p>
                                                 <v-switch
                                                 v-model="featured"
-                                                label="Set this image as featured"
+                                                label="Set this image as cover image"
                                                 ></v-switch>
                                             </p>
                                         </v-col>
@@ -126,7 +126,7 @@
                                         <i> {{editedItem.name}}</i> catalog have total of <i>{{editedItem.images.length}}</i> images
                                     </v-text>
                                      <p>
-                                        You can set only one image as featured.
+                                        You can set only one image as cover image of a catalog.
                                     </p>
                                     <v-row>
                                         <v-col cols="12" sm="12" md="12">
@@ -148,7 +148,7 @@
                                             </v-img>
                                             <v-switch
                                             v-model="image.featured"
-                                            label="featured"
+                                            label="cover image"
                                             @change="toggleFeaturedImageStatus(image)"
                                             ></v-switch>
 
