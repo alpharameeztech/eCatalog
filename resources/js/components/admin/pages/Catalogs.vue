@@ -230,10 +230,10 @@
                                                             :items="stores"
                                                             item-value="id"
                                                             :filter="customFilter"
-                                                            color="white"
                                                             item-text="name.en"
                                                             return-object
                                                             label="Store"
+                                                            @change="storeSelected"
                                                         ></v-autocomplete>
                                                         
                                                 </v-col>
@@ -655,6 +655,26 @@ import moment from 'moment';
                 return textOne.indexOf(searchText) > -1 ||
                 textTwo.indexOf(searchText) > -1
             },
+            storeSelected () {
+                
+                var store = this.editedItem.store
+
+                var self = this;
+
+                self.$root.$emit('loading', true);
+                
+                axios.get('/api/store/'+ store.slug + '/branches')
+                    .then(function (response) {
+                        self.branches = response.data
+                    })
+                    .catch(function (error) {
+
+                    })
+                    .finally(function () {
+                        self.$root.$emit('loading', false);
+                    });  
+
+            }
 
         },
 

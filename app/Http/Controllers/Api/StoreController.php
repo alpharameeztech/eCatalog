@@ -179,6 +179,13 @@ class StoreController extends Controller
         $store->save();
     }
 
+    /*
+    * Get all the branches of the store
+    */
+    public function storeBranches(Store $store, Request $request){
+        return $store->branches;
+    }
+
     /**
      * Remove the specified resource from storage.
      *
