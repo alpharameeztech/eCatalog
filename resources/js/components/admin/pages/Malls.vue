@@ -150,7 +150,7 @@
                                                     <v-text-field v-model="editedItem.map_location" label="Location in Map"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
-                                                    <v-select
+                                                    <!-- <v-select
                                                         v-model="editedItem.city"
                                                         :items="cities"
                                                         item-text="name.en"
@@ -159,7 +159,17 @@
                                                         persistent-hint
                                                         return-object
                                                         single-line
-                                                        ></v-select>
+                                                        ></v-select> -->
+                                                        <v-autocomplete
+                                                            v-model="editedItem.city"
+                                                            :items="cities"
+                                                            item-value="id"
+                                                            :filter="customFilter"
+                                                            color="white"
+                                                            item-text="name.en"
+                                                            return-object
+                                                            label="Select City"
+                                                        ></v-autocomplete>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-textarea
@@ -481,6 +491,15 @@ import moment from 'moment';
                 }
                
             },
+            customFilter (item, queryText, itemText) {
+                const textOne = item.name.en.toLowerCase()
+                const textTwo = item.name.en.toLowerCase()
+                const searchText = queryText.toLowerCase()
+
+                return textOne.indexOf(searchText) > -1 ||
+                textTwo.indexOf(searchText) > -1
+            }
+
 
         },
 
