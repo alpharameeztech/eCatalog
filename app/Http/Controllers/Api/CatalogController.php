@@ -46,6 +46,7 @@ class CatalogController extends Controller
             'arabic_name' => 'required|max:255',
             'start_at' => 'required',
             'store' => 'required',
+            'branches' => 'required',
             'description'=> 'required',
             'arabic_description'=> 'required'
         ]);
@@ -146,6 +147,7 @@ class CatalogController extends Controller
             'arabic_name' => 'required|max:255',
             'start_at' => 'required',
             'store' => 'required',
+            'branches' => 'required',
             'description'=> 'required',
             'arabic_description'=> 'required'
         ]);
