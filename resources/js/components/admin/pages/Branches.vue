@@ -240,7 +240,7 @@
 
                                                 </v-col>
                                                  <v-col cols="12" sm="12" md="12">
-                                                    <v-select
+                                                    <!-- <v-select
                                                         v-model="editedItem.mall"
                                                         :items="malls"
                                                         item-text="name.en"
@@ -249,7 +249,17 @@
                                                         persistent-hint
                                                         return-object
                                                         single-line
-                                                        ></v-select>
+                                                        ></v-select> -->
+                                                        <v-autocomplete
+                                                            v-model="editedItem.mall"
+                                                            :items="malls"
+                                                            item-value="id"
+                                                            :filter="customFilter"
+                                                            item-text="name.en"
+                                                            return-object
+                                                            label="Select Mall if applicable"
+                                                        ></v-autocomplete>
+                                                        
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-textarea

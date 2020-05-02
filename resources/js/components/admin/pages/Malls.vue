@@ -165,7 +165,6 @@
                                                             :items="cities"
                                                             item-value="id"
                                                             :filter="customFilter"
-                                                            color="white"
                                                             item-text="name.en"
                                                             return-object
                                                             label="Select City"
