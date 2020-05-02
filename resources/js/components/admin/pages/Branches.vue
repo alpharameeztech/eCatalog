@@ -209,7 +209,7 @@
                                                         ></v-select>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
-                                                    <v-select
+                                                    <!-- <v-select
                                                         v-model="editedItem.store"
                                                         :items="stores"
                                                         item-text="name.en"
@@ -218,7 +218,18 @@
                                                         persistent-hint
                                                         return-object
                                                         single-line
-                                                        ></v-select>
+                                                        ></v-select> -->
+                                                        <v-autocomplete
+                                                            v-model="editedItem.store"
+                                                            :items="stores"
+                                                            item-value="id"
+                                                            :filter="customFilter"
+                                                            color="white"
+                                                            item-text="name.en"
+                                                            return-object
+                                                            label="Store"
+                                                        ></v-autocomplete>
+
                                                 </v-col>
                                                  <v-col cols="12" sm="12" md="12">
                                                     <v-select
@@ -620,6 +631,14 @@ import moment from 'moment';
                     self.$root.$emit('loading', false);
                 });
 
+            },
+            customFilter (item, queryText, itemText) {
+                const textOne = item.name.en.toLowerCase()
+                const textTwo = item.name.en.toLowerCase()
+                const searchText = queryText.toLowerCase()
+
+                return textOne.indexOf(searchText) > -1 ||
+                textTwo.indexOf(searchText) > -1
             },
 
         },
