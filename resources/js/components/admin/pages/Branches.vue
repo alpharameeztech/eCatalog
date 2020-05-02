@@ -197,7 +197,7 @@
                                                     <v-text-field v-model="editedItem.map_location" label="Location in Map"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
-                                                    <v-select
+                                                    <!-- <v-select
                                                         v-model="editedItem.city"
                                                         :items="cities"
                                                         item-text="name.en"
@@ -206,7 +206,16 @@
                                                         persistent-hint
                                                         return-object
                                                         single-line
-                                                        ></v-select>
+                                                        ></v-select> -->
+                                                        <v-autocomplete
+                                                            v-model="editedItem.city"
+                                                            :items="cities"
+                                                            item-value="id"
+                                                            :filter="customFilter"
+                                                            item-text="name.en"
+                                                            return-object
+                                                            label="Select City"
+                                                        ></v-autocomplete>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <!-- <v-select
@@ -224,7 +233,6 @@
                                                             :items="stores"
                                                             item-value="id"
                                                             :filter="customFilter"
-                                                            color="white"
                                                             item-text="name.en"
                                                             return-object
                                                             label="Store"
