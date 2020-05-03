@@ -120,16 +120,15 @@
                                                     <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
-                                                    <v-select
-                                                        v-model="editedItem.country"
-                                                        :items="countries"
-                                                        item-text="name.en"
-                                                        item-value="id"
-                                                        label="Select Country"
-                                                        persistent-hint
-                                                        return-object
-                                                        single-line
-                                                    ></v-select>
+                                                    <v-autocomplete
+                                                            v-model="editedItem.country"
+                                                            :items="countries"
+                                                            item-value="id"
+                                                            :filter="customFilter"
+                                                            item-text="name.en"
+                                                            return-object
+                                                            label="Select Country"
+                                                        ></v-autocomplete>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-text>Page Description</v-text>
@@ -193,12 +192,12 @@
     </div>
 </template>
 <script>
-import api from "../../../mixins/api";
+import countries from "../../../mixins/apis/countries";
 import moment from 'moment';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
     export default {
-        mixins: [api],
+        mixins: [countries],
         data() {
             return {
                 editor: ClassicEditor,
@@ -395,6 +394,14 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 }
                 this.close()
             },
+            customFilter (item, queryText, itemText) {
+                const textOne = item.name.en.toLowerCase()
+                const textTwo = item.name.en.toLowerCase()
+                const searchText = queryText.toLowerCase()
+
+                return textOne.indexOf(searchText) > -1 ||
+                textTwo.indexOf(searchText) > -1
+            }
 
         },
 
