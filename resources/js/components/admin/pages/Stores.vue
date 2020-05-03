@@ -207,12 +207,8 @@
                                                     <v-text-field v-model="editedItem.youtube_link" label="Youtube Page"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
-                                                    <v-textarea
-                                                        v-model="editedItem.about"
-                                                        outlined
-                                                        name="input-7-4"
-                                                        label="About us in English"
-                                                        ></v-textarea>
+                                                    <v-text>About Us</v-text>
+                                                    <ckeditor :editor="editor" v-model="editedItem.about" :config="editorConfig"></ckeditor>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-text>Page Description</v-text>
@@ -255,15 +251,11 @@
                                                     </v-col>
                                                
                                                     <v-col cols="12" sm="12" md="12">
-                                                        <v-textarea
-                                                            v-model="editedItem.arabic_about"
-                                                            outlined
-                                                            name="input-7-4"
-                                                            label="About us in Arabic"
-                                                            ></v-textarea>
-                                                    </v-col>
-                                                    <v-col cols="12" sm="12" md="12">
-                                                        <v-text>Arabic Page Description</v-text>
+                                                        <v-text>About Us in Arabic</v-text>
+                                                            <ckeditor :editor="editor" v-model="editedItem.arabic_about" :config="editorConfig"></ckeditor>
+                                                        </v-col>
+                                                        <v-col cols="12" sm="12" md="12">
+                                                            <v-text>Arabic Page Description</v-text>
                                                         <ckeditor :editor="editor" v-model="arabicEditorData" :config="editorConfig"></ckeditor>
                                                     </v-col>
                                                 </v-row>
