@@ -522,8 +522,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     this.desserts.push(this.editedItem)
                    // alert(this.editedItem.city_id.id);return;
                     //send the form data to server
-                   axios.patch('/api/branch', {
-                        id: this.editedItem.id,
+                   axios.patch('/api/branch/'+ this.editedItem.slug, {
                         name: this.editedItem.name,
                         arabic_name: this.editedItem.arabic_name,
                         address: this.editedItem.address,

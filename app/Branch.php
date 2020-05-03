@@ -13,6 +13,10 @@ class Branch extends Model
     
     protected $with = ['city', 'store', 'mall', 'seoTags', 'page'];
 
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+    
     public function city(){
         return $this->belongsTo(City::class);
     }

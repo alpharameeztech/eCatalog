@@ -129,7 +129,7 @@ class BranchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Branch $branch, Request $request)
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
@@ -143,8 +143,6 @@ class BranchController extends Controller
             'arabic_description' => 'required',
         ]);
 
-        $branch = Branch::find($request->id);
-       
         //$store->name = Str::of($request->name)->trim();
         $branch->setTranslation('name', 'en', $request->name);
         $branch->setTranslation('name', 'ar', $request->arabic_name);
