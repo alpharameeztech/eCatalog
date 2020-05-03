@@ -11,9 +11,17 @@ class Mall extends Model
 
     public $translatable = ['name', 'opening_hours', 'address'];
 
-    protected $with = ['city'];
+    protected $with = ['city', 'page'];
 
     public function city(){
         return $this->belongsTo(City::class);
     }   
+
+    /**
+     * Get the malls's page description.
+     */
+    public function page()
+    {
+        return $this->morphOne('App\Page', 'pageable');
+    }
 }

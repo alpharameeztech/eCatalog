@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Mall;
+use App\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -45,7 +46,9 @@ class MallController extends Controller
             'mapLocation' => 'required',
             'city' => 'required',
             'address' => 'required',
-            'arabicAddress'=> 'required'
+            'arabicAddress'=> 'required',
+            'description' => 'required',
+            'arabic_description' => 'required'
         ]);
 
         $mall = new Mall;
@@ -69,6 +72,12 @@ class MallController extends Controller
         $mall->setTranslation('address', 'ar', $request->arabicAddress);
 
         $mall->save();
+
+        // add the page description
+        $page = new Page; 
+        $page->setTranslation('description', 'en', $request->description);
+        $page->setTranslation('description', 'ar', $request->arabic_description);
+        $mall->page()->save($page);
     }
 
     /**
@@ -111,7 +120,9 @@ class MallController extends Controller
             'mapLocation' => 'required',
             'city' => 'required',
             'address' => 'required',
-            'arabicAddress'=> 'required'
+            'arabicAddress'=> 'required',
+            'description' => 'required',
+            'arabic_description' => 'required'
         ]);
 
         $mall = Mall::find($request->id);
@@ -135,6 +146,12 @@ class MallController extends Controller
         $mall->setTranslation('address', 'ar', $request->arabicAddress);
 
         $mall->save();
+
+        //update the page description
+        $page = $mall->page; 
+        $page->setTranslation('description', 'en', $request->description);
+        $page->setTranslation('description', 'ar', $request->arabic_description);
+        $mall->page()->save($page);
     }
 
     /**
