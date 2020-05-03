@@ -21,3 +21,7 @@ header a {
 v-cloak {
   display: none;
 }
+
+.ck-content {
+  height: 400px;
+}

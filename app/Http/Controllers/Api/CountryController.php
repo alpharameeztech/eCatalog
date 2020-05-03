@@ -6,6 +6,7 @@ use App\Country;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Page;
 
 class CountryController extends Controller
 {
@@ -39,7 +40,9 @@ class CountryController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|unique:countries|max:255',
-            'arabic_name' => 'required'
+            'arabic_name' => 'required',
+            'description' => 'required',
+            'arabic_description' => 'required',
         ]);
 
         $country = new Country;
@@ -49,6 +52,12 @@ class CountryController extends Controller
 
         $country->slug = Str::slug($request->name , '-');
         $country->save();
+        
+        // add the page description
+        $page = new Page; 
+        $page->setTranslation('description', 'en', $request->description);
+        $page->setTranslation('description', 'ar', $request->arabic_description);
+        $country->page()->save($page);
     }
 
     /**
@@ -85,7 +94,9 @@ class CountryController extends Controller
         $validatedData = $request->validate([
             'id' => 'required',
             'name' => 'required|max:255',
-            'arabic_name' => 'required'
+            'arabic_name' => 'required',
+            'description' => 'required',
+            'arabic_description' => 'required',
         ]);
 
         $country = Country::find($request->id);
@@ -95,6 +106,12 @@ class CountryController extends Controller
 
         $country->slug = Str::slug($request->name , '-');
         $country->save();
+
+        //update the page description
+        $page = $country->page; 
+        $page->setTranslation('description', 'en', $request->description);
+        $page->setTranslation('description', 'ar', $request->arabic_description);
+        $country->page()->save($page);
     }
 
     /**

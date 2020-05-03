@@ -64,7 +64,7 @@
                     vertical
                 ></v-divider>
                 <v-spacer></v-spacer>
-                <v-dialog v-model="dialog" max-width="500px">
+                <v-dialog v-model="dialog" max-width="50%">
                     <template v-slot:activator="{ on }">
                         <v-btn color="primary" dark class="mb-2" v-on="on">Add Country</v-btn>
                     </template>
@@ -94,7 +94,10 @@
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
                                                 </v-col>
-
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text>Page Description</v-text>
+                                                    <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+                                                </v-col>
                                             </v-row>
                                         </v-container>
                                     </v-card-text>
@@ -116,6 +119,10 @@
                                             <v-row>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-text-field v-model="editedItem.arabic_name" label="Name in Arabic"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text>Arabic Page Description</v-text>
+                                                    <ckeditor :editor="editor" v-model="arabicEditorData" :config="editorConfig"></ckeditor>
                                                 </v-col>
                                             </v-row>
                                         </v-container>
@@ -145,9 +152,16 @@
 </template>
 <script>
 import moment from 'moment';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
     export default {
         data() {
             return {
+                editor: ClassicEditor,
+                editorData: '',
+                arabicEditorData: '',
+                editorConfig: {
+
+                },
                 countries: '',
                 dialog: false,
                 countries: [],
@@ -233,6 +247,11 @@ import moment from 'moment';
                 this.editedItem = Object.assign({}, item)
                 this.editedItem.name = item.name.en
                 this.editedItem.arabic_name = item.name.ar
+                if(this.editedItem.page != null){
+                    this.editorData = this.editedItem.page.description.en
+                    this.arabicEditorData = this.editedItem.page.description.ar
+                }
+                
                 this.dialog = true
             },
 
@@ -247,6 +266,9 @@ import moment from 'moment';
                     this.editedItem = Object.assign({}, this.defaultItem)
                     this.editedIndex = -1
                 }, 300)
+                this.editorData = ''
+                this.arabicEditorData = ''
+
             },
 
             save () {
@@ -259,7 +281,9 @@ import moment from 'moment';
                     axios.patch('/api/countries', {
                         id: this.editedItem.id,
                         name: this.editedItem.name,
-                        arabic_name: this.editedItem.arabic_name
+                        arabic_name: this.editedItem.arabic_name,
+                        description: this.editorData,
+                        arabic_description : this.arabicEditorData
                     })
                         .then(function (response) {
                             flash('Changes Saved.', 'success');
@@ -284,7 +308,9 @@ import moment from 'moment';
 
                     axios.post('/api/countries', {
                         name: this.editedItem.name,
-                        arabic_name: this.editedItem.arabic_name
+                        arabic_name: this.editedItem.arabic_name,
+                        description: this.editorData,
+                        arabic_description : this.arabicEditorData
                     })
                         .then(function (response) {
                            

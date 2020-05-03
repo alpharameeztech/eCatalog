@@ -13,11 +13,13 @@ import VueRouter from 'vue-router';
 import Vuelidate from 'vuelidate';
 import '@mdi/font/css/materialdesignicons.css'
 import router from './components/admin/router'
+import CKEditor from '@ckeditor/ckeditor5-vue';
 
 Vue.use(Vuetify);
 Vue.use(VueRouter);
 Vue.use(Vuelidate);
 Vue.use(ReadMore);
+Vue.use(CKEditor);
 
 window.Vue = require('vue');
 window.events = new Vue();

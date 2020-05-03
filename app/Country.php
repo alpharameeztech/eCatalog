@@ -12,4 +12,14 @@ class Country extends Model
     public $translatable = ['name'];
 
     protected $guarded = [] ;
+
+    protected $with = ['page'];
+
+    /**
+     * Get the country's page description.
+     */
+    public function page()
+    {
+        return $this->morphOne('App\Page', 'pageable');
+    }
 }
