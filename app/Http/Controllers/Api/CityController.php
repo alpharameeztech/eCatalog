@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\City;
 use App\Http\Controllers\Controller;
+use App\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -41,6 +42,8 @@ class CityController extends Controller
             'name' => 'required|unique:cities|max:255',
             'arabic_name' => 'required',
             'country' => 'required',
+            'description' => 'required',
+            'arabic_description' => 'required',
         ]);
 
         $city = new City();
@@ -51,6 +54,12 @@ class CityController extends Controller
         $city->slug = Str::slug($request->name , '-');
         $city->country_id = $request->country['id'];
         $city->save();
+
+        // add the page description
+        $page = new Page; 
+        $page->setTranslation('description', 'en', $request->description);
+        $page->setTranslation('description', 'ar', $request->arabic_description);
+        $city->page()->save($page);
     }
 
     /**
@@ -82,24 +91,29 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(City $city, Request $request)
     {
         
         $validatedData = $request->validate([
-            'id' => 'required',
             'name' => 'required|max:255',
             'arabic_name' => 'required',
             'country' => 'required',
+            'description' => 'required',
+            'arabic_description' => 'required',
         ]);
 
-        $city = City::find($request->id);
-        
         $city->setTranslation('name', 'en', $request->name);
         $city->setTranslation('name', 'ar', $request->arabic_name);
         
         $city->slug = Str::slug($request->name , '-');
         $city->country_id = $request->country['id'];
         $city->save();
+
+        //update the page description
+        $page = $city->page; 
+        $page->setTranslation('description', 'en', $request->description);
+        $page->setTranslation('description', 'ar', $request->arabic_description);
+        $city->page()->save($page);
     }
 
     /**

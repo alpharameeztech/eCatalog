@@ -14,9 +14,21 @@ class City extends Model
 
     protected $guarded = [] ;
     
-    protected $with = ['country'];
+    protected $with = ['country', 'page'];
+
+    public function getRouteKeyName(){
+        return 'slug';
+    }
 
     public function country(){
         return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * Get the city's page description.
+     */
+    public function page()
+    {
+        return $this->morphOne('App\Page', 'pageable');
     }
 }

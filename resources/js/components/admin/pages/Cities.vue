@@ -37,7 +37,7 @@
             
         <!-- formatted created date -->    
             <template v-slot:item.created_at="{ item }">
-                    <v-row  class="d-flex justify-end">
+                    <v-row  class="d-flex justify-start">
                         <v-chip
                             class="ma-2"
                             color="primary"
@@ -57,7 +57,7 @@
 
             <!-- formatted updated date -->
             <template v-slot:item.updated_at="{ item }">
-                    <v-row  class="d-flex justify-end">
+                    <v-row  class="d-flex justify-start">
                         <v-chip
                             class="ma-2"
                             color="primary"
@@ -89,7 +89,7 @@
                         vertical
                     ></v-divider>
                     <v-spacer></v-spacer>
-                    <v-dialog v-model="dialog" max-width="500px">
+                    <v-dialog v-model="dialog" max-width="50%">
                     <template v-slot:activator="{ on }">
                         <v-btn color="primary" dark class="mb-2" v-on="on">Add City</v-btn>
                     </template>
@@ -131,6 +131,10 @@
                                                         single-line
                                                     ></v-select>
                                                 </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text>Page Description</v-text>
+                                                    <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+                                                </v-col>
                                             </v-row>
                                         </v-container>
                                     </v-card-text>
@@ -152,6 +156,10 @@
                                             <v-row>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-text-field v-model="editedItem.arabic_name" label="Name in Arabic"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text>Arabic Page Description</v-text>
+                                                    <ckeditor :editor="editor" v-model="arabicEditorData" :config="editorConfig"></ckeditor>
                                                 </v-col>
                                             </v-row>
                                         </v-container>
@@ -187,11 +195,17 @@
 <script>
 import api from "../../../mixins/api";
 import moment from 'moment';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
     export default {
         mixins: [api],
         data() {
             return {
+                editor: ClassicEditor,
+                editorData: '',
+                arabicEditorData: '',
+                editorConfig: {
+                },
                 country: '',
                 search: '',
                 editingPassword: false,
@@ -299,6 +313,10 @@ import moment from 'moment';
                 this.editedItem.name = item.name.en
                 this.editedItem.arabic_name = item.name.ar
                 //this.editedItem.country_id = item.country_id
+                if(this.editedItem.page != null){
+                    this.editorData = this.editedItem.page.description.en
+                    this.arabicEditorData = this.editedItem.page.description.ar
+                }
                 this.dialog = true
             },
 
@@ -314,6 +332,8 @@ import moment from 'moment';
                     this.editedIndex = -1
                     this.ban= ''
                 }, 300)
+                this.editorData = ''
+                this.arabicEditorData = ''
             },
 
             save () {
@@ -326,11 +346,12 @@ import moment from 'moment';
                     var self = this
                     
 
-                    axios.patch('/api/cities', {
-                        id: this.editedItem.id,
+                    axios.patch('/api/city/'+ this.editedItem.slug, {
                         name: this.editedItem.name,
                         arabic_name: this.editedItem.arabic_name,
-                        country: this.editedItem.country
+                        country: this.editedItem.country,
+                        description: this.editorData,
+                        arabic_description : this.arabicEditorData
                     })
                         .then(function (response) {
                             flash('Changes Saved.', 'success');
@@ -339,7 +360,7 @@ import moment from 'moment';
 
                         })
                         .catch(function (error) {
-
+                            flash(error, 'error');
                         })
                         .finally( function() {
                             
@@ -355,7 +376,9 @@ import moment from 'moment';
                     axios.post('/api/cities', {
                         name: this.editedItem.name,
                         arabic_name: this.editedItem.arabic_name,
-                        country: this.editedItem.country
+                        country: this.editedItem.country,
+                        description: this.editorData,
+                        arabic_description : this.arabicEditorData
                     })
                         .then(function (response) {
                             self.initialize()
