@@ -13,6 +13,10 @@ class Mall extends Model
 
     protected $with = ['city', 'page'];
 
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+    
     public function city(){
         return $this->belongsTo(City::class);
     }   

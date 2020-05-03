@@ -109,7 +109,7 @@ class MallController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Mall $mall, Request $request)
     {
 
         $validatedData = $request->validate([
@@ -125,8 +125,6 @@ class MallController extends Controller
             'arabic_description' => 'required'
         ]);
 
-        $mall = Mall::find($request->id);
-       
         //$store->name = Str::of($request->name)->trim();
         $mall->setTranslation('name', 'en', $request->name);
         $mall->setTranslation('name', 'ar', $request->arabicName);

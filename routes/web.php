@@ -50,7 +50,7 @@ Route::group([
 
     Route::get('/malls', 'MallController@index')->name('all.malls');
     Route::post('/mall', 'MallController@store')->name('add.mall');
-    Route::patch('/mall', 'MallController@update')->name('update.mall');
+    Route::patch('/mall/{mall}', 'MallController@update')->name('update.mall');
 
     Route::get('/branches', 'BranchController@index')->name('all.branches');
     Route::post('/branch', 'BranchController@store')->name('add.branch');
