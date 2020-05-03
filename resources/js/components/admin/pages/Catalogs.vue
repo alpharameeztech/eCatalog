@@ -256,6 +256,10 @@
                                                         label="Description"
                                                         ></v-textarea>
                                                 </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text>Page Description</v-text>
+                                                    <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+                                                </v-col>
                                             </v-row>
                                         </v-container>
                                     </v-card-text>
@@ -305,6 +309,10 @@
                                                             label="Description in Arabic"
                                                         ></v-textarea>
                                                     </v-col>
+                                                    <v-col cols="12" sm="12" md="12">
+                                                        <v-text>Arabic Page Description</v-text>
+                                                        <ckeditor :editor="editor" v-model="arabicEditorData" :config="editorConfig"></ckeditor>
+                                                    </v-col>
                                                 </v-row>
                                             </v-container>
                                         </v-card-text>
@@ -344,11 +352,17 @@ import stores_api from "../../../mixins/apis/store";
 import tags_api from "../../../mixins/apis/tags";
 import branches_api from "../../../mixins/apis/branches";
 import moment from 'moment';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
     export default {
         mixins: [tags_api, stores_api, branches_api],
         data() {
             return {
+                editor: ClassicEditor,
+                editorData: '',
+                arabicEditorData: '',
+                editorConfig: {
+                },
                 search: '',
                 for_unlimited_time: false,
                 editingPassword: false,
@@ -486,6 +500,10 @@ import moment from 'moment';
                 if(this.editedItem.end_at == null){
                     this.for_unlimited_time = true
                 }
+                if(this.editedItem.page != null){
+                    this.editorData = this.editedItem.page.description.en
+                    this.arabicEditorData = this.editedItem.page.description.ar
+                }
                 this.dialog = true
             },
 
@@ -502,6 +520,8 @@ import moment from 'moment';
                     this.editedIndex = -1
                     this.ban= ''
                 }, 300)
+                this.editorData = ''
+                this.arabicEditorData = ''
             },
 
             save () {
@@ -521,8 +541,7 @@ import moment from 'moment';
                     this.desserts.push(this.editedItem)
                    // alert(this.editedItem.city_id.id);return;
                     //send the form data to server
-                    axios.patch('/api/catalog', {
-                        id: this.editedItem.id,
+                    axios.patch('/api/catalog/'+ this.editedItem.slug, {
                         name: this.editedItem.name,
                         arabic_name: this.editedItem.arabic_name,
                         description: this.editedItem.description,
@@ -540,7 +559,9 @@ import moment from 'moment';
                         tags: this.editedItem.tags,
                         branches: this.editedItem.branches,
                         featured: this.editedItem.featured,
-                        featured_expiry_at: this.editedItem.featured_expiry_at      
+                        featured_expiry_at: this.editedItem.featured_expiry_at,
+                        page_description: this.editorData,
+                        page_arabic_description : this.arabicEditorData      
                     })
                     .then(function (response) {
 
@@ -590,7 +611,9 @@ import moment from 'moment';
                         tags: this.editedItem.tags,
                         branches: this.editedItem.branches,
                         featured: this.editedItem.featured,
-                        featured_expiry_at: this.editedItem.featured_expiry_at
+                        featured_expiry_at: this.editedItem.featured_expiry_at,
+                        page_description: this.editorData,
+                        page_arabic_description : this.arabicEditorData
                     })
                     .then(function (response) {
 

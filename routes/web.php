@@ -64,7 +64,7 @@ Route::group([
 
     Route::get('/catalogs', 'CatalogController@index')->name('all.catalogs');
     Route::post('/catalog', 'CatalogController@store')->name('add.catalog');
-    Route::patch('/catalog', 'CatalogController@update')->name('update.catalog');
+    Route::patch('/catalog/{catalog}', 'CatalogController@update')->name('update.catalog');
     Route::patch('/reorder/catalog/images', 'CatalogController@reorderImages')->name('reorder.catalog.images');
     Route::patch('/toggle/catalog/status', 'CatalogController@toggleStatus')->name('toggle.catalog.status');
     Route::post('/catalog/images', 'CatalogController@storeImages')->name('add.catalog.images');

@@ -9,6 +9,7 @@ use App\Pdf;
 use App\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Page;
 
 class CatalogController extends Controller
 {
@@ -48,7 +49,9 @@ class CatalogController extends Controller
             'store' => 'required',
             'branches' => 'required',
             'description'=> 'required',
-            'arabic_description'=> 'required'
+            'arabic_description'=> 'required',
+            'page_description' => 'required',
+            'page_arabic_description' => 'required'
         ]);
 
         $catalog = new Catalog;
@@ -107,6 +110,12 @@ class CatalogController extends Controller
 
         // sync catalog with the branches
         $catalog->branches()->sync($request->branches);
+
+        // add the page description
+        $page = new Page; 
+        $page->setTranslation('description', 'en', $request->page_description);
+        $page->setTranslation('description', 'ar', $request->page_arabic_description);
+        $catalog->page()->save($page);
         
     }
 
@@ -139,7 +148,7 @@ class CatalogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Catalog $catalog, Request $request)
     {
        
         $validatedData = $request->validate([
@@ -149,11 +158,11 @@ class CatalogController extends Controller
             'store' => 'required',
             'branches' => 'required',
             'description'=> 'required',
-            'arabic_description'=> 'required'
+            'arabic_description'=> 'required',
+            'page_description' => 'required',
+            'page_arabic_description' => 'required'
         ]);
 
-        $catalog = Catalog::find($request->id);
-            
         //name
         $catalog->setTranslation('name', 'en', $request->name);
         $catalog->setTranslation('name', 'ar', $request->arabic_name);
@@ -224,6 +233,12 @@ class CatalogController extends Controller
         }else{
 
         }
+
+        //update the page description
+        $page = $catalog->page; 
+        $page->setTranslation('description', 'en', $request->page_description);
+        $page->setTranslation('description', 'ar', $request->page_arabic_description);
+        $catalog->page()->save($page);
 
     }
 

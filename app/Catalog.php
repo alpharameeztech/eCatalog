@@ -11,8 +11,12 @@ class Catalog extends Model
 
     public $translatable = ['name', 'description', 'start_at', 'end_at'];
 
-    protected $with = ['store', 'seoTags', 'images', 'tags', 'branches', 'pdfs'];
+    protected $with = ['store', 'seoTags', 'images', 'tags', 'branches', 'pdfs', 'page'];
 
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+    
     /**
      * Get all of the catalog's images.
      * in asc order
@@ -60,6 +64,14 @@ class Catalog extends Model
     public function branches()
     {
         return $this->belongsToMany('App\Branch');
+    }
+
+    /**
+     * Get the catalog's page description.
+     */
+    public function page()
+    {
+        return $this->morphOne('App\Page', 'pageable');
     }
     
 }
