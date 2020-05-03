@@ -197,16 +197,6 @@
                                                     <v-text-field v-model="editedItem.map_location" label="Location in Map"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
-                                                    <!-- <v-select
-                                                        v-model="editedItem.city"
-                                                        :items="cities"
-                                                        item-text="name.en"
-                                                        item-value="id"
-                                                        label="Select City"
-                                                        persistent-hint
-                                                        return-object
-                                                        single-line
-                                                        ></v-select> -->
                                                         <v-autocomplete
                                                             v-model="editedItem.city"
                                                             :items="cities"
@@ -218,16 +208,6 @@
                                                         ></v-autocomplete>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
-                                                    <!-- <v-select
-                                                        v-model="editedItem.store"
-                                                        :items="stores"
-                                                        item-text="name.en"
-                                                        item-value="id"
-                                                        label="Select Store"
-                                                        persistent-hint
-                                                        return-object
-                                                        single-line
-                                                        ></v-select> -->
                                                         <v-autocomplete
                                                             v-model="editedItem.store"
                                                             :items="stores"
@@ -240,16 +220,6 @@
 
                                                 </v-col>
                                                  <v-col cols="12" sm="12" md="12">
-                                                    <!-- <v-select
-                                                        v-model="editedItem.mall"
-                                                        :items="malls"
-                                                        item-text="name.en"
-                                                        item-value="id"
-                                                        label="Select a Mall if applicable"
-                                                        persistent-hint
-                                                        return-object
-                                                        single-line
-                                                        ></v-select> -->
                                                         <v-autocomplete
                                                             v-model="editedItem.mall"
                                                             :items="malls"
@@ -259,7 +229,6 @@
                                                             return-object
                                                             label="Select Mall if applicable"
                                                         ></v-autocomplete>
-                                                        
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-textarea
