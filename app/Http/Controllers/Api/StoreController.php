@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Page;
 use App\Seo;
 use App\Store;
 use Illuminate\Http\Request;
@@ -50,6 +51,8 @@ class StoreController extends Controller
                 'arabicName' => 'required',
                 'about' => 'required',
                 'arabicAbout' => 'required',
+                'description' => 'required',
+                'arabic_description' => 'required',
             ]);
     
             $store = new Store;
@@ -82,7 +85,13 @@ class StoreController extends Controller
             $seoTags->setTranslation('description', 'en', $request->seo_description);
             $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
             $store->seoTags()->save($seoTags);
-            
+
+            // add the page description
+            $page = new Page; 
+            $page->setTranslation('description', 'en', $request->description);
+            $page->setTranslation('description', 'ar', $request->arabic_description);
+            $store->page()->save($page);
+                
         }
        
     }
@@ -121,6 +130,8 @@ class StoreController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'about' => 'required',
+            'description' => 'required',
+            'arabic_description' => 'required',
         ]);
 
         $store = Store::find($request->id);
@@ -153,6 +164,12 @@ class StoreController extends Controller
         $store->seoTags()->save($seoTags);
 
         $store->save();
+
+        //update the page description
+        $page = $store->page; 
+        $page->setTranslation('description', 'en', $request->description);
+        $page->setTranslation('description', 'ar', $request->arabic_description);
+        $store->page()->save($page);
     }
     /**
      * Toggle the store status

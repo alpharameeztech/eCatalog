@@ -139,7 +139,7 @@
                         vertical
                     ></v-divider>
                     <v-spacer></v-spacer>
-                    <v-dialog v-model="dialog" max-width="500px">
+                    <v-dialog v-model="dialog" max-width="50%">
                         <template v-slot:activator="{ on }">
                             <v-btn color="primary" dark class="mb-2" v-on="on">Add Store</v-btn>
                         </template>
@@ -214,6 +214,10 @@
                                                         label="About us in English"
                                                         ></v-textarea>
                                                 </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text>Page Description</v-text>
+                                                    <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+                                                </v-col>
                                             </v-row>
                                         </v-container>
                                     </v-card-text>
@@ -258,6 +262,10 @@
                                                             label="About us in Arabic"
                                                             ></v-textarea>
                                                     </v-col>
+                                                    <v-col cols="12" sm="12" md="12">
+                                                        <v-text>Arabic Page Description</v-text>
+                                                        <ckeditor :editor="editor" v-model="arabicEditorData" :config="editorConfig"></ckeditor>
+                                                    </v-col>
                                                 </v-row>
                                             </v-container>
                                         </v-card-text>
@@ -295,11 +303,17 @@
 <script>
 import api from "../../../mixins/api";
 import moment from 'moment';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
     export default {
         mixins: [api],
         data() {
             return {
+                editor: ClassicEditor,
+                editorData: '',
+                arabicEditorData: '',
+                editorConfig: {
+                },
                 country: '',
                 search: '',
                 editingPassword: false,
@@ -436,6 +450,10 @@ import moment from 'moment';
                     this.editedItem.seo_description = item.seo_tags.description.en
                     this.editedItem.arabic_seo_description = item.seo_tags.description.ar
                 }
+                if(this.editedItem.page != null){
+                    this.editorData = this.editedItem.page.description.en
+                    this.arabicEditorData = this.editedItem.page.description.ar
+                }
                 
                 this.dialog = true
             },
@@ -453,6 +471,8 @@ import moment from 'moment';
                     this.editedIndex = -1
                     this.ban= ''
                 }, 300)
+                this.editorData = ''
+                this.arabicEditorData = ''
             },
 
             save () {
@@ -479,6 +499,8 @@ import moment from 'moment';
                 formData.append('arabic_seo_title', this.editedItem.arabic_seo_title);
                 formData.append('seo_description', this.editedItem.seo_description);
                 formData.append('arabic_seo_description', this.editedItem.arabic_seo_description);
+                formData.append('description', this.editorData);
+                formData.append('arabic_description', this.arabicEditorData);
                
                 if (this.editedIndex > -1) {
                     formData.append('id',this.editedItem.id);

@@ -9,7 +9,7 @@ class Store extends Model
 {
     use HasTranslations;
 
-    protected $with = ['seoTags'];
+    protected $with = ['seoTags', 'page'];
 
     public $translatable = ['name','about'];
 
@@ -31,6 +31,14 @@ class Store extends Model
     */
     public function branches(){
         return $this->hasMany(Branch::class);
+    }
+
+    /**
+     * Get the store's page description.
+     */
+    public function page()
+    {
+        return $this->morphOne('App\Page', 'pageable');
     }
     
 }
