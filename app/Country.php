@@ -15,6 +15,10 @@ class Country extends Model
 
     protected $with = ['page'];
 
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
     /**
      * Get the country's page description.
      */

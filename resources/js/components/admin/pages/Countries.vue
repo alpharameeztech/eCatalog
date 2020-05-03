@@ -277,9 +277,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     
                     var self = this
                     this.$root.$emit('loading', true);
-
-                    axios.patch('/api/countries', {
-                        id: this.editedItem.id,
+                    axios.patch('/api/country/' + this.editedItem.slug, {
                         name: this.editedItem.name,
                         arabic_name: this.editedItem.arabic_name,
                         description: this.editorData,

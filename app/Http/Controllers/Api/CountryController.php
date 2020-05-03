@@ -89,17 +89,14 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request )
+    public function update(Country $country, Request $request )
     {
         $validatedData = $request->validate([
-            'id' => 'required',
             'name' => 'required|max:255',
             'arabic_name' => 'required',
             'description' => 'required',
             'arabic_description' => 'required',
         ]);
-
-        $country = Country::find($request->id);
 
         $country->setTranslation('name', 'en', $request->name);
         $country->setTranslation('name', 'ar', $request->arabic_name);
