@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Page;
 
 class BranchController extends Controller
 {
@@ -45,7 +46,9 @@ class BranchController extends Controller
             'arabic_opening_hours' => 'required',
             'city' => 'required',
             'address' => 'required',
-            'arabic_address'=> 'required'
+            'arabic_address'=> 'required',
+            'description' => 'required',
+            'arabic_description' => 'required',
         ]);
 
         $branch = new Branch();
@@ -88,6 +91,12 @@ class BranchController extends Controller
         $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
         
         $branch->seoTags()->save($seoTags);
+
+        // add the page description
+        $page = new Page; 
+        $page->setTranslation('description', 'en', $request->description);
+        $page->setTranslation('description', 'ar', $request->arabic_description);
+        $branch->page()->save($page);
        
     }
 
@@ -129,7 +138,9 @@ class BranchController extends Controller
             'arabic_opening_hours' => 'required',
             'city' => 'required',
             'address' => 'required',
-            'arabic_address'=> 'required'
+            'arabic_address'=> 'required',
+            'description' => 'required',
+            'arabic_description' => 'required',
         ]);
 
         $branch = Branch::find($request->id);
@@ -171,6 +182,12 @@ class BranchController extends Controller
         $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
         
         $branch->seoTags()->save($seoTags);
+
+        //update the page description
+        $page = $branch->page; 
+        $page->setTranslation('description', 'en', $request->description);
+        $page->setTranslation('description', 'ar', $request->arabic_description);
+        $branch->page()->save($page);
 
     }
     /**

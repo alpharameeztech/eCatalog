@@ -11,7 +11,7 @@ class Branch extends Model
 
     public $translatable = ['name', 'opening_hours', 'address'];
     
-    protected $with = ['city', 'store', 'mall', 'seoTags'];
+    protected $with = ['city', 'store', 'mall', 'seoTags', 'page'];
 
     public function city(){
         return $this->belongsTo(City::class);
@@ -38,5 +38,13 @@ class Branch extends Model
      */
     public function catalogs(){
         return $this->belongsToMany(Catalog::class);
+    }
+
+    /**
+     * Get the branch's page description.
+     */
+    public function page()
+    {
+        return $this->morphOne('App\Page', 'pageable');
     }
 }

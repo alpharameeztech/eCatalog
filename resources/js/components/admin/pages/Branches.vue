@@ -138,7 +138,7 @@
                         vertical
                     ></v-divider>
                     <v-spacer></v-spacer>
-                    <v-dialog v-model="dialog" max-width="500px">
+                    <v-dialog v-model="dialog" max-width="45%">
                         <template v-slot:activator="{ on }">
                             <v-btn color="primary" dark class="mb-2" v-on="on">Add Store Branch</v-btn>
                         </template>
@@ -269,6 +269,10 @@
                                                         label="Address"
                                                         ></v-textarea>
                                                 </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text>Page Description</v-text>
+                                                    <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+                                                </v-col>
                                             </v-row>
                                         </v-container>
                                     </v-card-text>
@@ -315,6 +319,10 @@
                                                             label="Address in Arabic"
                                                             ></v-textarea>
                                                     </v-col>
+                                                    <v-col cols="12" sm="12" md="12">
+                                                        <v-text>Arabic Page Description</v-text>
+                                                        <ckeditor :editor="editor" v-model="arabicEditorData" :config="editorConfig"></ckeditor>
+                                                    </v-col>
                                                 </v-row>
                                             </v-container>
                                         </v-card-text>
@@ -352,11 +360,17 @@
 <script>
 import api from "../../../mixins/api";
 import moment from 'moment';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
     export default {
         mixins: [api],
         data() {
             return {
+                editor: ClassicEditor,
+                editorData: '',
+                arabicEditorData: '',
+                editorConfig: {
+                },
                 search: '',
                 editingPassword: false,
                 ban:'',
@@ -496,6 +510,10 @@ import moment from 'moment';
                     this.editedItem.seo_description = item.seo_tags.description.en
                     this.editedItem.arabic_seo_description = item.seo_tags.description.ar
                 }
+                if(this.editedItem.page != null){
+                    this.editorData = this.editedItem.page.description.en
+                    this.arabicEditorData = this.editedItem.page.description.ar
+                }
                 this.dialog = true
             },
 
@@ -512,6 +530,8 @@ import moment from 'moment';
                     this.editedIndex = -1
                     this.ban= ''
                 }, 300)
+                this.editorData = ''
+                this.arabicEditorData = ''
             },
 
             save () {
@@ -551,7 +571,9 @@ import moment from 'moment';
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,
-                        arabic_seo_description: this.editedItem.arabic_seo_description
+                        arabic_seo_description: this.editedItem,
+                        description: this.editorData,
+                        arabic_description : this.arabicEditorData
                     })
                     .then(function (response) {
 
@@ -601,7 +623,9 @@ import moment from 'moment';
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,
-                        arabic_seo_description: this.editedItem.arabic_seo_description
+                        arabic_seo_description: this.editedItem.arabic_seo_description,
+                        description: this.editorData,
+                        arabic_description : this.arabicEditorData
                     })
                     .then(function (response) {
 
