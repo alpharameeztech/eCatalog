@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Seo;
 use Throwable;
+use App\Page;
 
 class TagController extends Controller
 {
@@ -41,7 +42,9 @@ class TagController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'arabic_name' => 'required'
+            'arabic_name' => 'required',
+            'description' => 'required',
+            'arabic_description' => 'required',
         ]);
         
         try {
@@ -67,6 +70,12 @@ class TagController extends Controller
             $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
             
             $tag->seoTags()->save($seoTags);
+
+            // add the page description
+            $page = new Page; 
+            $page->setTranslation('description', 'en', $request->description);
+            $page->setTranslation('description', 'ar', $request->arabic_description);
+            $tag->page()->save($page);
 
         } catch (Throwable $e) {
             return [
@@ -106,19 +115,18 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Tag $tag, Request $request)
     {
         $validatedData = $request->validate([
-            'id' => 'required',
-            'name' => 'required|max:255',
-            'arabic_name' => 'required'
+            'name' => 'required',
+            'arabic_name' => 'required',
+            'description' => 'required',
+            'arabic_description' => 'required',
         ]);
         
         try {
             
             $slug = Str::slug($request->name , '-');
-
-            $tag = Tag::find($request->id);
 
             $tag->setTranslation('name', 'en', $request->name);
             $tag->setTranslation('name', 'ar', $request->arabic_name);
@@ -137,6 +145,12 @@ class TagController extends Controller
             $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
             
             $tag->seoTags()->save($seoTags);
+
+            //update the page description
+            $page = $tag->page; 
+            $page->setTranslation('description', 'en', $request->description);
+            $page->setTranslation('description', 'ar', $request->arabic_description);
+            $tag->page()->save($page);
 
         } catch (Throwable $e) {
             return [

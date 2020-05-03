@@ -11,7 +11,11 @@ class Tag extends Model
 
     public $translatable = ['name'];
     
-    protected $with = ['seoTags'];
+    protected $with = ['seoTags', 'page'];
+
+    public function getRouteKeyName(){
+        return 'slug';
+    }
 
     /**
      * Get the store's branch seo tags.
@@ -27,5 +31,13 @@ class Tag extends Model
     public function catalogs()
     {
         return $this->belongsToMany(Catalog::class);
+    }
+
+    /**
+     * Get the tag's page description.
+     */
+    public function page()
+    {
+        return $this->morphOne('App\Page', 'pageable');
     }
 }

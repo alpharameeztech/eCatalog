@@ -59,7 +59,7 @@ Route::group([
 
     Route::get('/tags', 'TagController@index')->name('all.tags');
     Route::post('/tag', 'TagController@store')->name('add.tag');
-    Route::patch('/tag', 'TagController@update')->name('update.tag');
+    Route::patch('/tag/{tag}', 'TagController@update')->name('update.tag');
     Route::patch('/toggle/tag/status', 'TagController@toggleStatus')->name('toggle.tag.status');
 
     Route::get('/catalogs', 'CatalogController@index')->name('all.catalogs');
