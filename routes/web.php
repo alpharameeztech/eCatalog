@@ -82,5 +82,10 @@ Route::group([
     Route::post('/term', 'TermController@store')->name('add.term');
     Route::patch('/term/{term}', 'TermController@update')->name('update.term');
     Route::patch('/toggle/term/status', 'TermController@toggleStatus');
+
+    Route::get('/blogs', 'BlogController@index')->name('all.blogs');
+    Route::post('/blog', 'BlogController@store')->name('add.blog');
+    Route::patch('/blog/{blog}', 'BlogController@update')->name('update.blog');
+    Route::patch('/toggle/blog/status', 'BlogController@toggleStatus');
 });
 //======================== public apis end ==========================

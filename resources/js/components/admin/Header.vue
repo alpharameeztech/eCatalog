@@ -183,6 +183,7 @@
                 { icon: 'picture_as_pdf', text: 'Catalog Pdfs', link: '/home/catalog/pdfs', hasAccess: ['admin', 'publisher'] },
                 { icon: 'question_answer', text: 'FAQs', link: '/home/faqs', hasAccess: ['admin', 'publisher'] },
                 { icon: 'flag', text: 'Terms & Conditions', link: '/home/terms', hasAccess: ['admin', 'publisher'] },
+                { icon: 'library_books', text: 'Blogs', link: '/home/blogs', hasAccess: ['admin', 'publisher'] },
             ]
 
         }),
