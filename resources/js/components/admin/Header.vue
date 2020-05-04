@@ -182,6 +182,7 @@
                 { icon: 'card_giftcard', text: 'Catalog Images', link: '/home/catalog/images', hasAccess: ['admin', 'publisher'] },
                 { icon: 'picture_as_pdf', text: 'Catalog Pdfs', link: '/home/catalog/pdfs', hasAccess: ['admin', 'publisher'] },
                 { icon: 'question_answer', text: 'FAQs', link: '/home/faqs', hasAccess: ['admin', 'publisher'] },
+                { icon: 'flag', text: 'Terms & Conditions', link: '/home/terms', hasAccess: ['admin', 'publisher'] },
             ]
 
         }),

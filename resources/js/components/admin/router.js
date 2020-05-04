@@ -10,6 +10,7 @@ import Catalogs from "./pages/Catalogs";
 import CatalogImages from "./pages/CatalogImages";
 import CatalogPdfs from "./pages/CatalogPdfs";
 import Faqs from "./pages/Faqs";
+import Terms from "./pages/Terms";
 
 const router = new VueRouter({
     mode: 'history',
@@ -67,6 +68,10 @@ const router = new VueRouter({
         {
             path: '/home/faqs',
             component: Faqs,
+        },
+        {
+            path: '/home/terms',
+            component: Terms,
         }
     ],
 });

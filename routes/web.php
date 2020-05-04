@@ -76,6 +76,11 @@ Route::group([
     Route::get('/faqs', 'FaqController@index')->name('all.faqs');
     Route::post('/faq', 'FaqController@store')->name('add.faq');
     Route::patch('/faq/{faq}', 'FaqController@update')->name('update.faq');
-    Route::patch('/toggle/faq/status', 'FaqController@toggleStatus')->name('update.faq');
+    Route::patch('/toggle/faq/status', 'FaqController@toggleStatus');
+
+    Route::get('/terms', 'TermController@index')->name('all.terms');
+    Route::post('/term', 'TermController@store')->name('add.term');
+    Route::patch('/term/{term}', 'TermController@update')->name('update.term');
+    Route::patch('/toggle/term/status', 'TermController@toggleStatus');
 });
 //======================== public apis end ==========================
