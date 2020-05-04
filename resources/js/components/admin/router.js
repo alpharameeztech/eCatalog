@@ -9,6 +9,7 @@ import Tags from "./pages/Tags";
 import Catalogs from "./pages/Catalogs";
 import CatalogImages from "./pages/CatalogImages";
 import CatalogPdfs from "./pages/CatalogPdfs";
+import Faqs from "./pages/Faqs";
 
 const router = new VueRouter({
     mode: 'history',
@@ -63,6 +64,10 @@ const router = new VueRouter({
             path: '/home/catalog/pdfs',
             component: CatalogPdfs,
         },
+        {
+            path: '/home/faqs',
+            component: Faqs,
+        }
     ],
 });
 export default router;

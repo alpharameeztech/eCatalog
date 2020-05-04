@@ -72,5 +72,10 @@ Route::group([
     Route::post('/toggle/featured/image', 'CatalogController@toggleFeaturedImage')->name('toggle.catalog.featured.image');
     Route::post('/catalog/pdf', 'CatalogController@storePdf')->name('add.catalog.pdf');
     Route::post('/delete/catalog/pdf', 'CatalogController@deletePdf')->name('delete.catalog.pdf');
+
+    Route::get('/faqs', 'FaqController@index')->name('all.faqs');
+    Route::post('/faq', 'FaqController@store')->name('add.faq');
+    Route::patch('/faq/{faq}', 'FaqController@update')->name('update.faq');
+    Route::patch('/toggle/faq/status', 'FaqController@toggleStatus')->name('update.faq');
 });
 //======================== public apis end ==========================
