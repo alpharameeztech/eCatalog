@@ -49,7 +49,7 @@ class FaqController extends Controller
         $faq->setTranslation('question', 'ar', $request->arabic_question);
 
         $faq->setTranslation('answer', 'en', $request->answer);
-        $faq->setTranslation('answer', 'ar', $request->arabic_question);
+        $faq->setTranslation('answer', 'ar', $request->arabic_answer);
 
         $faq->save();
         
@@ -97,7 +97,7 @@ class FaqController extends Controller
         $faq->setTranslation('question', 'ar', $request->arabic_question);
 
         $faq->setTranslation('answer', 'en', $request->answer);
-        $faq->setTranslation('answer', 'ar', $request->arabic_question);
+        $faq->setTranslation('answer', 'ar', $request->arabic_answer);
 
         $faq->save();
         
