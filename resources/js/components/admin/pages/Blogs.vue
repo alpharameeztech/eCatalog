@@ -307,8 +307,8 @@ import { VueEditor } from "vue2-editor";
                     this.editedItem = Object.assign({}, this.defaultItem)
                     this.editedIndex = -1
                 }, 300)
-                this.editorData = ''
-                this.arabicEditorData = ''
+                this.htmlForEditor = ''
+                this.htmlForEditor2 = ''
 
             },
 
