@@ -14,7 +14,9 @@ import Vuelidate from 'vuelidate';
 import '@mdi/font/css/materialdesignicons.css'
 import router from './components/admin/router'
 import CKEditor from '@ckeditor/ckeditor5-vue';
-
+import VueQuill from 'vue-quill'
+ 
+Vue.use(VueQuill)
 Vue.use(Vuetify);
 Vue.use(VueRouter);
 Vue.use(Vuelidate);

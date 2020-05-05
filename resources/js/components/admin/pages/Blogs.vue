@@ -5,7 +5,7 @@
         sort-by="slug"
         class="elevation-1"
     >
-        <!-- title -->  
+        <!-- Title -->  
             <template v-slot:item.title="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
@@ -76,7 +76,7 @@
 
         <template v-slot:top>
             <v-toolbar flat color="white">
-                <v-toolbar-title>Blogs</v-toolbar-title>
+                <v-toolbar-title>Blog</v-toolbar-title>
                 <v-divider
                     class="mx-4"
                     inset
@@ -114,7 +114,7 @@
                                                     <v-text-field v-model="editedItem.title" label="Title"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
-                                                    <v-text>Body</v-text>
+                                                    <v-text>Answer</v-text>
                                                     <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
                                                 </v-col>
                                             </v-row>
@@ -140,7 +140,7 @@
                                                     <v-text-field v-model="editedItem.arabic_title" label="Title in Arabic"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
-                                                    <v-text>Body in Arabic</v-text>
+                                                    <v-text>Answer in Arabic</v-text>
                                                     <ckeditor :editor="editor" v-model="arabicEditorData" :config="editorConfig"></ckeditor>
                                                 </v-col>
                                             </v-row>
@@ -170,7 +170,6 @@
 <script>
 import moment from 'moment';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
     export default {
         data() {
             return {
@@ -191,7 +190,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     {
                         text: 'Title',
                         align: 'left',
-                        sortable: true,
+                        sortable: false,
                         value: 'title',
                     },
                     {text: 'Status', value: 'status', width: 300},
@@ -241,7 +240,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
                 this.$root.$emit('loading', true);
 
-                axios.get('/api/terms')
+                axios.get('/api/blogs')
                     .then(function (response) {
 
                         self.desserts = response.data;
@@ -263,10 +262,10 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
             editItem (item) {
                 this.editedIndex = this.desserts.indexOf(item)
                 this.editedItem = Object.assign({}, item)
-                // this.editedItem.title = item.title.en
-                // this.editedItem.arabic_title = item.title.ar
-                // this.editorData = item.body.en
-                // this.arabicEditorData = item.body.ar
+                this.editedItem.title = item.title.en
+                this.editedItem.arabic_title = item.title.ar
+                this.editorData = item.answer.en
+                this.arabicEditorData = item.answer.ar
                 
                 this.dialog = true
             },
@@ -293,11 +292,11 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     
                     var self = this
                     this.$root.$emit('loading', true);
-                    axios.patch('/api/blog/' + this.editedItem.id, {
+                    axios.patch('/api/blog/' + this.editedItem.slug, {
                         title: this.editedItem.title,
                         arabic_title: this.editedItem.arabic_title,
-                        body: this.editorData,
-                        arabic_body : this.arabicEditorData
+                        answer: this.editorData,
+                        arabic_answer : this.arabicEditorData
                     })
                         .then(function (response) {
                             flash('Changes Saved.', 'success');
@@ -323,8 +322,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     axios.post('/api/blog', {
                         title: this.editedItem.title,
                         arabic_title: this.editedItem.arabic_title,
-                        body: this.editorData,
-                        arabic_body : this.arabicEditorData
+                        description: this.editorData,
+                        arabic_description : this.arabicEditorData
                     })
                         .then(function (response) {
                            
@@ -348,7 +347,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
                 this.$root.$emit('loading', true);
                 
-                axios.patch('/api/toggle/blog/status', {
+                axios.patch('/api/toggle/faq/status', {
                     id: item.id,
                 })
                 .then(function (response) {

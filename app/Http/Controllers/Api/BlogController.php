@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Blog;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -14,7 +16,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        return Blog::get();
     }
 
     /**
@@ -35,7 +37,25 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        \Log::info($request);
+        \Log::info($request);return;
+        // $validatedData = $request->validate([
+        //     'title' => 'required',
+        //     'arabic_title' => 'required',
+        //     'description' => 'required',
+        //     'arabic_description' => 'required',
+        // ]);
+
+        $blog = new Blog;
+        
+        $blog->slug = Str::of($request->title)->slug('-');
+        
+        $blog->setTranslation('title', 'en', $request->title);
+        $blog->setTranslation('title', 'ar', $request->arabic_title);
+
+        $blog->setTranslation('body', 'en', $request->body);
+        $blog->setTranslation('body', 'ar', $request->arabic_body);
+
+        $blog->save();
     }
 
     /**
@@ -67,9 +87,17 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Blog $blog)
     {
-        //
+        //$blog->slug = Str::of($request->title)->slug('-');
+        
+        $blog->setTranslation('title', 'en', $request->title);
+        $blog->setTranslation('title', 'ar', $request->arabic_title);
+
+        $blog->setTranslation('body', 'en', $request->body);
+        $blog->setTranslation('body', 'ar', $request->arabic_body);
+
+        $blog->save();
     }
 
     /**
