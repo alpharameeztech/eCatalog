@@ -85,7 +85,8 @@ Route::group([
 
     Route::get('/blogs', 'BlogController@index')->name('all.blogs');
     Route::post('/blog', 'BlogController@store')->name('add.blog');
+    Route::post('/blog/upload/image', 'BlogController@uploadImage');
     Route::patch('/blog/{blog}', 'BlogController@update')->name('update.blog');
-    Route::patch('/toggle/blog/status', 'BlogController@toggleStatus');
+    Route::patch('/toggle/blog/{blog}/status', 'BlogController@toggleStatus');
 });
 //======================== public apis end ==========================

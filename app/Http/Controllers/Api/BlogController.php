@@ -37,13 +37,12 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        \Log::info($request);return;
-        // $validatedData = $request->validate([
-        //     'title' => 'required',
-        //     'arabic_title' => 'required',
-        //     'description' => 'required',
-        //     'arabic_description' => 'required',
-        // ]);
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'arabic_title' => 'required',
+            'body' => 'required',
+            'arabic_body' => 'required',
+        ]);
 
         $blog = new Blog;
         
@@ -89,7 +88,15 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //$blog->slug = Str::of($request->title)->slug('-');
+
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'arabic_title' => 'required',
+            'body' => 'required',
+            'arabic_body' => 'required',
+        ]);
+
+        $blog->slug = Str::of($request->title)->slug('-');
         
         $blog->setTranslation('title', 'en', $request->title);
         $blog->setTranslation('title', 'ar', $request->arabic_title);
@@ -97,6 +104,27 @@ class BlogController extends Controller
         $blog->setTranslation('body', 'en', $request->body);
         $blog->setTranslation('body', 'ar', $request->arabic_body);
 
+        $blog->save();
+    }
+
+    /*
+    * Upload the image to the s3 
+    * and return the url
+    */
+    public function uploadImage(Request $request){
+
+        $image =  request()->file('image')->store('blog', 's3');
+
+        return 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' . $image;
+
+    }
+
+    /**
+     * Toggle the Blog status
+     */
+    public function toggleStatus(Blog $blog) {
+
+        $blog->status = !$blog->status;
         $blog->save();
     }
 

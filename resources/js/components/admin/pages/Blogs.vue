@@ -76,7 +76,7 @@
 
         <template v-slot:top>
             <v-toolbar flat color="white">
-                <v-toolbar-title>Blog</v-toolbar-title>
+                <v-toolbar-title>Blogs</v-toolbar-title>
                 <v-divider
                     class="mx-4"
                     inset
@@ -114,8 +114,8 @@
                                                     <v-text-field v-model="editedItem.title" label="Title"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
-                                                    <v-text>Answer</v-text>
-                                                    <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+                                                    <v-text>Description</v-text>
+                                                    <vue-editor id="editor" useCustomImageHandler @image-added="handleImageAdded" v-model="htmlForEditor"> </vue-editor>
                                                 </v-col>
                                             </v-row>
                                         </v-container>
@@ -140,8 +140,8 @@
                                                     <v-text-field v-model="editedItem.arabic_title" label="Title in Arabic"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
-                                                    <v-text>Answer in Arabic</v-text>
-                                                    <ckeditor :editor="editor" v-model="arabicEditorData" :config="editorConfig"></ckeditor>
+                                                    <v-text>Description in Arabic</v-text>
+                                                    <vue-editor id="editor2" useCustomImageHandler @image-added="handleImageAdded" v-model="htmlForEditor2"></vue-editor>
                                                 </v-col>
                                             </v-row>
                                         </v-container>
@@ -170,9 +170,15 @@
 <script>
 import moment from 'moment';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { VueEditor } from "vue2-editor";
     export default {
+        components: {
+            VueEditor
+        },
         data() {
             return {
+                htmlForEditor: '',
+                htmlForEditor2:'',
                 editor: ClassicEditor,
                 editorData: '',
                 arabicEditorData: '',
@@ -193,6 +199,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         sortable: false,
                         value: 'title',
                     },
+                    {text: 'Slug', value: 'slug', width: 300},
                     {text: 'Status', value: 'status', width: 300},
                     {text: 'Updated At', value: 'updated_at'},
                     {text: 'Created At', value: 'created_at'},
@@ -234,6 +241,25 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
         },
 
         methods: {
+            handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
+
+                var formData = new FormData();
+                formData.append("image", file);
+
+                axios({
+                    url: "/api/blog/upload/image",
+                    method: "POST",
+                    data: formData
+                })
+                    .then(result => {
+                    let url = result.data; // Get url from response
+                    Editor.insertEmbed(cursorLocation, "image", url);
+                    resetUploader();
+                    })
+                    .catch(err => {
+                    console.log(err);
+                    });
+            },
             initialize () {
 
                 var self = this;
@@ -264,8 +290,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 this.editedItem = Object.assign({}, item)
                 this.editedItem.title = item.title.en
                 this.editedItem.arabic_title = item.title.ar
-                this.editorData = item.answer.en
-                this.arabicEditorData = item.answer.ar
+                this.htmlForEditor = item.body.en
+                this.htmlForEditor2 = item.body.ar
                 
                 this.dialog = true
             },
@@ -295,8 +321,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     axios.patch('/api/blog/' + this.editedItem.slug, {
                         title: this.editedItem.title,
                         arabic_title: this.editedItem.arabic_title,
-                        answer: this.editorData,
-                        arabic_answer : this.arabicEditorData
+                        body: this.htmlForEditor,
+                        arabic_body : this.htmlForEditor2
                     })
                         .then(function (response) {
                             flash('Changes Saved.', 'success');
@@ -322,8 +348,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     axios.post('/api/blog', {
                         title: this.editedItem.title,
                         arabic_title: this.editedItem.arabic_title,
-                        description: this.editorData,
-                        arabic_description : this.arabicEditorData
+                        body: this.htmlForEditor,
+                        arabic_body : this.htmlForEditor2
                     })
                         .then(function (response) {
                            
@@ -332,7 +358,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                            flash('Changes Saved.', 'success');
                         })
                         .catch(function (error) {
-                            flash('Changes Saved.', 'error');
+                            flash(error, 'error');
                         })
                         .finally( function() {
                             self.$root.$emit('loading', false);
@@ -346,10 +372,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 var self = this
 
                 this.$root.$emit('loading', true);
-                
-                axios.patch('/api/toggle/faq/status', {
-                    id: item.id,
-                })
+                console.log(this.editedItem)
+                axios.patch('/api/toggle/blog/' + item.slug + '/status')
                 .then(function (response) {
 
                     self.initialize()
