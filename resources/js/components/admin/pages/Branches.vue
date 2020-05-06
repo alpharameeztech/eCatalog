@@ -539,7 +539,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,
-                        arabic_seo_description: this.editedItem,
+                        arabic_seo_description: this.editedItem.arabic_seo_description,
                         description: this.editorData,
                         arabic_description : this.arabicEditorData
                     })

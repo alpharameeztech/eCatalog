@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Blog;
 use App\Http\Controllers\Controller;
+use App\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -42,12 +43,16 @@ class BlogController extends Controller
             'arabic_title' => 'required',
             'body' => 'required',
             'arabic_body' => 'required',
+            'seo_title' => 'required',
+            'arabic_seo_title' => 'required',
+            'seo_description' => 'required',
+            'arabic_seo_description' => 'required'
         ]);
 
         $blog = new Blog;
-        
+
         $blog->slug = Str::of($request->title)->slug('-');
-        
+
         $blog->setTranslation('title', 'en', $request->title);
         $blog->setTranslation('title', 'ar', $request->arabic_title);
 
@@ -55,6 +60,16 @@ class BlogController extends Controller
         $blog->setTranslation('body', 'ar', $request->arabic_body);
 
         $blog->save();
+
+        /*
+        * add the blogs's seo tags
+        */
+        $seoTags = new Seo;
+        $seoTags->setTranslation('title', 'en', $request->seo_title);
+        $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+        $seoTags->setTranslation('description', 'en', $request->seo_description);
+        $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+        $blog->seoTags()->save($seoTags);
     }
 
     /**
@@ -94,10 +109,14 @@ class BlogController extends Controller
             'arabic_title' => 'required',
             'body' => 'required',
             'arabic_body' => 'required',
+            'seo_title' => 'required',
+            'arabic_seo_title' => 'required',
+            'seo_description' => 'required',
+            'arabic_seo_description' => 'required'
         ]);
 
         $blog->slug = Str::of($request->title)->slug('-');
-        
+
         $blog->setTranslation('title', 'en', $request->title);
         $blog->setTranslation('title', 'ar', $request->arabic_title);
 
@@ -105,10 +124,20 @@ class BlogController extends Controller
         $blog->setTranslation('body', 'ar', $request->arabic_body);
 
         $blog->save();
+
+        /*
+        * update the blog's seo tags
+        */
+        $seoTags = $blog->seoTags; 
+        $seoTags->setTranslation('title', 'en', $request->seo_title);
+        $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+        $seoTags->setTranslation('description', 'en', $request->seo_description);
+        $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+        $blog->seoTags()->save($seoTags);
     }
 
     /*
-    * Upload the image to the s3 
+    * Upload the image to the s3
     * and return the url
     */
     public function uploadImage(Request $request){

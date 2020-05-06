@@ -5,7 +5,7 @@
         sort-by="slug"
         class="elevation-1"
     >
-        <!-- Title -->  
+        <!-- Title -->
             <template v-slot:item.title="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
@@ -31,10 +31,10 @@
 
                     </v-row>
 
-            </template> 
+            </template>
         <!-- status -->
 
-        <!-- formatted created date -->    
+        <!-- formatted created date -->
             <template v-slot:item.created_at="{ item }">
                     <v-row  class="d-flex justify-start">
                         <v-chip
@@ -106,12 +106,22 @@
                                     <v-card-title>
                                         <span class="headline">{{ formTitle }}</span>
                                     </v-card-title>
-
                                     <v-card-text>
                                         <v-container>
                                             <v-row>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-text-field v-model="editedItem.title" label="Title"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.seo_title" label="SEO title"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-textarea
+                                                        v-model="editedItem.seo_description"
+                                                        outlined
+                                                        name="input-7-4"
+                                                        label="SEO description"
+                                                    ></v-textarea>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-text>Description</v-text>
@@ -140,6 +150,17 @@
                                                     <v-text-field v-model="editedItem.arabic_title" label="Title in Arabic"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
+                                                    <v-text-field v-model="editedItem.arabic_seo_title" label="SEO title in Arabic"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-textarea
+                                                        v-model="editedItem.arabic_seo_description"
+                                                        outlined
+                                                        name="input-7-4"
+                                                        label="SEO description in Arabic"
+                                                    ></v-textarea>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
                                                     <v-text>Description in Arabic</v-text>
                                                     <vue-editor id="editor2" useCustomImageHandler @image-added="handleImageAdded" v-model="htmlForEditor2"></vue-editor>
                                                 </v-col>
@@ -150,8 +171,8 @@
                             </v-tab-item>
                              <!-- arbaic tab item end -->
                      </v-tabs>
-                            
-                   
+
+
                 </v-dialog>
             </v-toolbar>
         </template>
@@ -164,7 +185,7 @@
                 edit
             </v-icon>
         </template>
-        
+
     </v-data-table>
 </template>
 <script>
@@ -292,7 +313,12 @@ import { VueEditor } from "vue2-editor";
                 this.editedItem.arabic_title = item.title.ar
                 this.htmlForEditor = item.body.en
                 this.htmlForEditor2 = item.body.ar
-                
+                if(this.editedItem.seo_tags != null){
+                    this.editedItem.seo_title = item.seo_tags.title.en
+                    this.editedItem.arabic_seo_title = item.seo_tags.title.ar
+                    this.editedItem.seo_description = item.seo_tags.description.en
+                    this.editedItem.arabic_seo_description = item.seo_tags.description.ar
+                }
                 this.dialog = true
             },
 
@@ -315,14 +341,18 @@ import { VueEditor } from "vue2-editor";
             save () {
                 if (this.editedIndex > -1) {
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
-                    
+
                     var self = this
                     this.$root.$emit('loading', true);
                     axios.patch('/api/blog/' + this.editedItem.slug, {
                         title: this.editedItem.title,
                         arabic_title: this.editedItem.arabic_title,
                         body: this.htmlForEditor,
-                        arabic_body : this.htmlForEditor2
+                        arabic_body : this.htmlForEditor2,
+                        seo_title: this.editedItem.seo_title,
+                        arabic_seo_title: this.editedItem.arabic_seo_title,
+                        seo_description: this.editedItem.seo_description,
+                        arabic_seo_description: this.editedItem.arabic_seo_description,
                     })
                         .then(function (response) {
                             flash('Changes Saved.', 'success');
@@ -332,6 +362,7 @@ import { VueEditor } from "vue2-editor";
                         })
                         .catch(function (error) {
                             self.$root.$emit('loading', false)
+                            flash(error.response.data.errors, 'error');
                         })
                         .finally( function() {
                             self.$root.$emit('loading', false);
@@ -349,16 +380,20 @@ import { VueEditor } from "vue2-editor";
                         title: this.editedItem.title,
                         arabic_title: this.editedItem.arabic_title,
                         body: this.htmlForEditor,
-                        arabic_body : this.htmlForEditor2
+                        arabic_body : this.htmlForEditor2,
+                        seo_title: this.editedItem.seo_title,
+                        arabic_seo_title: this.editedItem.arabic_seo_title,
+                        seo_description: this.editedItem.seo_description,
+                        arabic_seo_description: this.editedItem.arabic_seo_description,
                     })
                         .then(function (response) {
-                           
+
                            self.initialize()
-                           
+
                            flash('Changes Saved.', 'success');
                         })
                         .catch(function (error) {
-                            flash(error, 'error');
+                            flash(error.response.data.errors, 'error');
                         })
                         .finally( function() {
                             self.$root.$emit('loading', false);
@@ -377,11 +412,13 @@ import { VueEditor } from "vue2-editor";
                 .then(function (response) {
 
                     self.initialize()
-                    
+
                     flash('Changes Saved.', 'success');
                 })
                 .catch(function (error) {
-                    flash(error, 'error');
+
+                    flash(error.response.data.errors, 'error');
+
                 })
                 .finally( function() {
                     self.$root.$emit('loading', false);
