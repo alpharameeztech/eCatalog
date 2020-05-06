@@ -343,7 +343,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         })
                         .catch(function (error) {
                             self.$root.$emit('loading', false)
-                            flash('Changes Not Saved. ' + response.data.message, 'error');
+                            flash(error.response.data.errors, 'error');
+
                         })
                         .finally( function() {
                             self.$root.$emit('loading', false);
@@ -378,7 +379,9 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                             }                           
                         })
                         .catch(function (error) {
-                            flash('Changes Not Saved.', 'error');
+                            
+                            flash(error.response.data.errors, 'error');
+
                         })
                         .finally( function() {
                             self.$root.$emit('loading', false);
