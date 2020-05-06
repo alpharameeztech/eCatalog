@@ -359,7 +359,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
                         })
                         .catch(function (error) {
-                            flash(error, 'error');
+                            flash(error.response.data.errors, 'error');
+
                         })
                         .finally( function() {
                             
@@ -384,7 +385,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                             flash('Changes Saved.', 'success');
                         })
                         .catch(function (error) {
-                            flash('Changes Saved.', 'error');
+                            flash(error.response.data.errors, 'error');
+
                         })
                         .finally( function() {
                             self.$root.$emit('loading', false);
