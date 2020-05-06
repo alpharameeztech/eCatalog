@@ -12,6 +12,7 @@ import CatalogPdfs from "./pages/CatalogPdfs";
 import Faqs from "./pages/Faqs";
 import Terms from "./pages/Terms";
 import Blogs from "./pages/Blogs";
+import Settings from "./pages/Settings";
 
 const router = new VueRouter({
     mode: 'history',
@@ -77,6 +78,10 @@ const router = new VueRouter({
         {
             path: '/home/blogs',
             component: Blogs,
+        },
+        {
+            path: '/home/settings',
+            component: Settings,
         }
     ],
 });

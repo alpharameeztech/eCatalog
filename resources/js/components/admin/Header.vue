@@ -126,7 +126,7 @@
                         <v-list>
                             <v-list-item
 
-                                to="/admin/settings/"
+                                to="/home/settings/"
                             >
                                 <v-list-item-title>Settings</v-list-item-title>
                                 <v-icon>settings_applications</v-icon>

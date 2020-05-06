@@ -88,5 +88,8 @@ Route::group([
     Route::post('/blog/upload/image', 'BlogController@uploadImage');
     Route::patch('/blog/{blog}', 'BlogController@update')->name('update.blog');
     Route::patch('/toggle/blog/{blog}/status', 'BlogController@toggleStatus');
+
+    Route::get('/account/details', 'AuthController@index');
+    Route::patch('/account/details', 'AuthController@update');
 });
 //======================== public apis end ==========================
