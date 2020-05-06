@@ -457,9 +457,9 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     .catch(function (error) {
 
                         self.$root.$emit('loading', false)
-                        console.log(error)
 
-                        flash('Changes Not Saved', 'error')
+                        flash(error.response.data.errors, 'error');
+
                     })
                     .finally(function () {
                         self.$root.$emit('loading', false)
@@ -502,7 +502,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
                         self.$root.$emit('loading', false)
 
-                        flash('Changes Not Saved', 'error')
+                        flash(error.response.data.errors, 'error');
                     })
                     .finally(function () {
                         self.$root.$emit('loading', false)
