@@ -528,9 +528,9 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 })
                 .catch(function (error) {
 
-                    this.$root.$emit('loading', false)
+                    self.$root.$emit('loading', false)
+                    flash(error.response.data.errors, 'error');
 
-                    flash('Changes Not Saved', 'error')
                 })
                 .finally(function () {
                     this.$root.$emit('loading', false)
