@@ -263,23 +263,26 @@ import { VueEditor } from "vue2-editor";
 
         methods: {
             handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
-
+                var self = this;
                 var formData = new FormData();
                 formData.append("image", file);
-
+                this.$root.$emit('loading', true);
                 axios({
                     url: "/api/blog/upload/image",
                     method: "POST",
                     data: formData
                 })
-                    .then(result => {
+                .then(result => {
                     let url = result.data; // Get url from response
                     Editor.insertEmbed(cursorLocation, "image", url);
                     resetUploader();
-                    })
-                    .catch(err => {
+                    self.$root.$emit('loading', false)
+                })
+                .catch(err => {
                     console.log(err);
-                    });
+                    self.$root.$emit('loading', false)
+
+                });
             },
             initialize () {
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center">
+    <div class="text-center customLoader">
         <v-overlay :value="overlay" >
             <v-progress-circular indeterminate size="64"></v-progress-circular>
         </v-overlay>

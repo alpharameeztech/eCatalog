@@ -26,3 +26,7 @@ v-cloak {
   height: 400px;
   color: #000;
 }
+
+.customLoader .v-overlay {
+  z-index: 9999 !important;
+}
