@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Interfaces\StoreRepositoryInterface;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    private $storeRepository;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(StoreRepositoryInterface $storeRepository)
     {
-        $this->middleware('auth');
+        $this->storeRepository = $storeRepository;
     }
 
     /**
@@ -23,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $stores = $this->storeRepository->all();
+
+        return view('home',[
+            'stores' => $stores
+        ]);
     }
 }
