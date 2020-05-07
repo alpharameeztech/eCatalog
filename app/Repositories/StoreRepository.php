@@ -9,6 +9,6 @@ class StoreRepository implements StoreRepositoryInterface
 {
     public function all()
     {
-        return Store::all();
+        return Store::where('status', 1)->get();
     }
 }

@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Repositories\Interfaces;
+
+use App\Catalog;
+
+interface CatalogRepositoryInterface
+{
+    public function all();
+
+    public function latest($limit = 4);
+
+}

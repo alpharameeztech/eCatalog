@@ -11,6 +11,7 @@
 
     <link href="{{ mix('css/tailwind.css') }}" rel="stylesheet">
 
+
 </head>
 <body>
 <div class="flex-center position-ref full-height">
