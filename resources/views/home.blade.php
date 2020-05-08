@@ -13,7 +13,7 @@
 
     <!-- popular catalogs -->
     <h2 class="text-3xl mt-8">Popular Catalogs</h2>
-    @include('partials/catalog')
+    @include('partials/catalogs/latest')
     <!-- popular catalogs end-->
 
 @endsection

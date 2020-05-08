@@ -11,7 +11,7 @@
                 @endforeach
                 
                 <div class="px-6 py-4">
-                    <div class=" text-xl mb-2">{{$catalog->name}}</div>
+                    <div class=" text-base mb-2">{{$catalog->name}}</div>
                   
                     <p class="font-extrabold text-gray-700 text-base">
                         {{$catalog->start_at}}
@@ -24,8 +24,8 @@
                             {{$catalog->store->name}}
                         </a>
                     </p>
-                    <p class="text-gray-700 text-base">
-                        <a href="{{$catalog->slug}}" class="no-underline hover:underline text-blue-500 text-lg">View Details</a>
+                    <p class="text-gray text-base">
+                        <a href="{{$catalog->slug}}" class="no-underline hover:underline text-blue-500 ">View Details</a>
                     </p>
                 </div>
             </div>
