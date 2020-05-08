@@ -12,13 +12,16 @@
             @if ($image->featured)
                 <div class="card">
                     <img class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
+                    <p class="text-gray text-base text-center">
+                        <a href="" class="no-underline hover:underline text-blue-500 ">View Catalog</a>
+                    </p>
                 </div>
             @endif
 
         @endforeach
     </div>
 
-
+    {{--  catalog details  --}}
     <div class="col-sm-8">
         <div class="card">
             <div class="card-header">
@@ -59,7 +62,76 @@
             </div>
         </div>
     </div>
+</div>
+    {{--  -- Catalog details end  --}}
 
+    {{--  ======================= catalog availability ==========================  --}}
+
+    <div class="row">
+        <p class="text-lg">Available In</p>
+        <div id="accordion" class="col-sm-12">
+
+            @foreach ($catalog->branches as $branch)
+
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#{{$branch->slug}}" aria-expanded="true" aria-controls="{{$branch->slug}}">
+                        {{$branch->name}}
+                        </button>
+                        </h5>
+                    </div>
+
+                    <div id="{{$branch->slug}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row"><i class="material-icons">home</i></th>
+                                    <td>{{$branch->address}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i class="material-icons">phone</i></th>
+                                    <td>{{$branch->telephone}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i class="material-icons">contact_phone</i></th>
+                                    <td>{{$branch->fax}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i class="material-icons">email</i></th>
+                                    <td>{{$branch->email}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i class="material-icons">map</i></th>
+                                    <td>{{$branch->map_location}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i class="material-icons">access_time</i></th>
+                                    <td>{{$branch->opening_hours}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i class="material-icons">call_made</i></th>
+                                    <td>
+                                        <a href="{{$branch->slug}}" target="_blank">
+                                            View Branch Details
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            
+        </div>
+    </div>
+    {{--  ============================ catalog availability end==================  --}}
 </div>
 
 
