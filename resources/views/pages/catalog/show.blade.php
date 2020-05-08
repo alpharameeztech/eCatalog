@@ -86,7 +86,6 @@
                         <div class="card-body">
                             <table class="table table-hover">
                                 <thead>
-                                
                                 </thead>
                                 <tbody>
                                 <tr>
@@ -103,11 +102,17 @@
                                 </tr>
                                 <tr>
                                     <th scope="row"><i class="material-icons">email</i></th>
-                                    <td>{{$branch->email}}</td>
+                                    <td>
+                                        <a href="mailto:{{$branch->email}}">{{$branch->email}}</a>
+                                        
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><i class="material-icons">map</i></th>
-                                    <td>{{$branch->map_location}}</td>
+                                    <td>
+                                        <a href="{{$branch->map_location}}"> Map & Directions
+                                        </a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><i class="material-icons">access_time</i></th>
@@ -130,6 +135,17 @@
             @endforeach
             
         </div>
+
+        <div class="alert alert-success" role="alert" style="width: 100%">
+            <p>
+                Above listed store information and timings are to the best of our knowledge and may change without prior notice.
+            </p>
+            <p>
+                Timings may change during Ramadan and public holidays and hence kindly check with the stores to avoid last minute disappointments.
+            </p>
+        </div>
+
+
     </div>
     {{--  ============================ catalog availability end==================  --}}
 </div>

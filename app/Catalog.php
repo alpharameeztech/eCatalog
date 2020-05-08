@@ -73,5 +73,5 @@ class Catalog extends Model
     {
         return $this->morphOne('App\Page', 'pageable');
     }
-    
+
 }
