@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
     <link href="{{ mix('css/tailwind.css') }}" rel="stylesheet">
-
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
 </head>
 <body>

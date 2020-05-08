@@ -15,6 +15,8 @@ use Illuminate\Routing\Router;
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
+
 Auth::routes();
 
 Route::get('/about-us', function () {
