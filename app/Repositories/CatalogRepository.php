@@ -42,4 +42,16 @@ class CatalogRepository implements CatalogRepositoryInterface
         }
         return Arr::flatten($cities);
     }
+
+    /**
+     * The catalog just got viewed
+     * by somebody
+     * so increment the total_views
+     */
+    public function viewed(Catalog $catalog)
+    {
+        $catalog->total_views = ++$catalog->total_views;
+
+        $catalog->save();
+    }
 }

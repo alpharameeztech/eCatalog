@@ -12,4 +12,6 @@ interface CatalogRepositoryInterface
 
     public function inCities(Catalog $catalog);
 
+    public function viewed(Catalog $catalog);
+
 }

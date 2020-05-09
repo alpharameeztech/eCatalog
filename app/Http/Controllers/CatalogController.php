@@ -54,6 +54,8 @@ class CatalogController extends Controller
      */
     public function show(Store $store ,Catalog $catalog)
     {
+        //increment total_views of the catalog
+        $this->catalogRepository->viewed($catalog);
 
         return view('pages.catalog.show',[
             'catalog' => $catalog,
