@@ -191,7 +191,12 @@
 
     {{--  ============================ catalog's tag end ==================  --}}
 
-
+    
+    <!-- latest catalogs -->
+    <h2 class="text-3xl mt-8">Latest Catalogs</h2>
+    @include('partials/catalogs/latest')
+    <!-- latest catalogs end-->
+    
 </div>
 
 
