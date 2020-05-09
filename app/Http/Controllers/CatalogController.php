@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Catalog;
+use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Store;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
+    protected $catalogRepository;
+
+    public function __construct(CatalogRepositoryInterface $catalogRepository)
+    {
+        $this->catalogRepository = $catalogRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -47,8 +54,10 @@ class CatalogController extends Controller
      */
     public function show(Store $store ,Catalog $catalog)
     {
+
         return view('pages.catalog.show',[
             'catalog' => $catalog,
+            'catalog_cities' => $this->catalogRepository->inCities($catalog)
         ]);
 
     }

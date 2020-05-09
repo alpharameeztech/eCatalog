@@ -71,63 +71,26 @@
         <p class="text-lg">Available In</p>
         <div id="accordion" class="col-sm-12">
 
-            @foreach ($catalog->branches as $branch)
+            @foreach ($catalog_cities as $city)
 
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#{{$branch->slug}}" aria-expanded="true" aria-controls="{{$branch->slug}}">
-                        {{$branch->name}}
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#{{$city->slug}}" aria-expanded="true" aria-controls="{{$city->slug}}">
+                        {{$city->name}}
                         </button>
                         </h5>
                     </div>
 
-                    <div id="{{$branch->slug}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div id="{{$city->slug}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
-                            <table class="table table-hover">
-                                <thead>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row"><i class="material-icons">home</i></th>
-                                    <td>{{$branch->address}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><i class="material-icons">phone</i></th>
-                                    <td>{{$branch->telephone}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><i class="material-icons">contact_phone</i></th>
-                                    <td>{{$branch->fax}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><i class="material-icons">email</i></th>
-                                    <td>
-                                        <a href="mailto:{{$branch->email}}">{{$branch->email}}</a>
-                                        
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><i class="material-icons">map</i></th>
-                                    <td>
-                                        <a href="{{$branch->map_location}}"> Map & Directions
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><i class="material-icons">access_time</i></th>
-                                    <td>{{$branch->opening_hours}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><i class="material-icons">call_made</i></th>
-                                    <td>
-                                        <a href="{{$branch->slug}}" target="_blank">
-                                            View Branch Details
-                                        </a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                         
+                            @foreach($catalog->branches as $branch)
+                                @if($branch->city_id == $city->id)
+                                    <p>{{$branch->name}}</p>
+                                @endif
+
+                            @endforeach
                 
                         </div>
                     </div>

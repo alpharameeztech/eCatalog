@@ -10,4 +10,6 @@ interface CatalogRepositoryInterface
 
     public function latest($limit = 4);
 
+    public function inCities(Catalog $catalog);
+
 }
