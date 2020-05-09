@@ -171,6 +171,27 @@
 
     </div>
     {{--  ============================ catalog availability end==================  --}}
+
+    {{--  ============================ catalog's tag ==================  --}}
+            @if(count($catalog->tags))
+                <div class="card">
+
+                    <div class="card-body">
+                        @foreach ($catalog->tags as $tag)
+                        <a href="/{{$tag->slug}}">
+                            <button type="button" class="btn btn-primary">
+                                {{$tag->name}}
+                            </button>
+                        </a>
+                        @endforeach
+                    </div>
+
+                </div>
+            @endif
+
+    {{--  ============================ catalog's tag end ==================  --}}
+
+
 </div>
 
 
