@@ -17,6 +17,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
 
+Route::get('/tag/{tag}', 'TagController@show');
+
 Auth::routes();
 
 Route::get('/about-us', function () {

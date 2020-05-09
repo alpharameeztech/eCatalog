@@ -178,7 +178,7 @@
 
                     <div class="card-body">
                         @foreach ($catalog->tags as $tag)
-                        <a href="/{{$tag->slug}}">
+                        <a href="/tag/{{$tag->slug}}">
                             <button type="button" class="btn btn-primary">
                                 {{$tag->name}}
                             </button>
@@ -196,7 +196,7 @@
     <h2 class="text-3xl mt-8">Latest Catalogs</h2>
     @include('partials/catalogs/latest')
     <!-- latest catalogs end-->
-    
+
 </div>
 
 
