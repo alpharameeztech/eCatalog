@@ -76,7 +76,7 @@
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#{{$city->slug}}" aria-expanded="true" aria-controls="{{$city->slug}}">
+                        <button class="" data-toggle="collapse" data-target="#{{$city->slug}}" aria-expanded="true" aria-controls="{{$city->slug}}">
                         {{$city->name}}
                         </button>
                         </h5>
@@ -91,9 +91,11 @@
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
                                             <h5 class="mb-0">
-                                            <button class="btn btn-link">
-                                            {{$branch->name}}
-                                            </button>
+                                                <a href="/{{$branch->store->slug}}/{{$branch->city->slug}}/{{$branch->slug}}">
+                                                    <button class="btn btn-link">
+                                                        {{$branch->name}}
+                                                    </button>
+                                                </a>
                                             </h5>
                                         </div>
                         
