@@ -11,7 +11,7 @@
         <div class="card">
             <img class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$store->image}}" alt="Sunset in the mountains">
             <p class="text-gray text-base text-center">
-                <a href="" class="no-underline hover:underline text-blue-500 ">Browse this store catalogs</a>
+                <a href="/store/{{$store->slug}}/catalogs" class="no-underline hover:underline text-blue-500 ">Browse this store catalogs</a>
             </p>
         </div>
 

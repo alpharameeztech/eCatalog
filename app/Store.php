@@ -40,5 +40,12 @@ class Store extends Model
     {
         return $this->morphOne('App\Page', 'pageable');
     }
+
+    /**
+     * A store have many catalogs
+     */
+    public function catalogs(){
+        return $this->hasMany(Catalog::class);
+    }
     
 }

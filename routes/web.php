@@ -20,6 +20,7 @@ Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
 Route::get('/tag/{tag}', 'TagController@show');
 
 Route::get('/store/{store}', 'StoreController@show');
+Route::get('/store/{store}/catalogs', 'StoreController@showCatalogs');
 
 Auth::routes();
 

@@ -7,6 +7,7 @@ use App\Repositories\Interfaces\StoreRepositoryInterface;
 use App\City;
 use App\Country;
 use Illuminate\Support\Arr;
+use App\Support\Collection;
 
 class StoreRepository implements StoreRepositoryInterface
 {
@@ -35,5 +36,15 @@ class StoreRepository implements StoreRepositoryInterface
         }
         return Arr::flatten($cities);
        
+    }
+    /**
+     * pass all the store catalogs
+     * that have status true
+    */
+    public function catalogs(Store $store){
+
+        $catalogs = $store->catalogs->where('status',1)->paginate(16);
+
+        return $catalogs;
     }
 }

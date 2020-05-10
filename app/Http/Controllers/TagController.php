@@ -48,7 +48,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        $tag_catalogs = $tag->catalogs->paginate(16);
+        $tag_catalogs = $tag->catalogs->where('status',1)->paginate(16);
 
         return view('pages.tag.show',[
             'tag' => $tag,

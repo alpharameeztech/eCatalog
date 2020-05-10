@@ -9,4 +9,6 @@ interface StoreRepositoryInterface
     public function all();
 
     public function availableInCities(Store $store);
+
+    public function catalogs(Store $store);
 }

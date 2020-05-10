@@ -60,6 +60,17 @@ class StoreController extends Controller
     }
 
     /**
+     * Show the catalogs of a store
+     */
+    public function showCatalogs(Store $store){
+
+        return view('pages.store.show_catalogs',[
+            'store' => $store,
+            'catalogs' =>  $this->storeRepository->catalogs($store),
+        ]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
