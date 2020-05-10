@@ -55,6 +55,7 @@ class StoreController extends Controller
     {
         return view('pages.store.show',[
             'store' => $store,
+            'in_cities' =>  $this->storeRepository->availableInCities($store)
         ]);
     }
 

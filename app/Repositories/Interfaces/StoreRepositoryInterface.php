@@ -7,4 +7,6 @@ use App\Store;
 interface StoreRepositoryInterface
 {
     public function all();
+
+    public function availableInCities(Store $store);
 }
