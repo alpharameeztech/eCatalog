@@ -4,11 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Branch;
 use App\City;
+use App\Repositories\Interfaces\BranchRepositoryInterface;
 use App\Store;
 use Illuminate\Http\Request;
 
 class BranchController extends Controller
 {
+    protected $branchRepository;
+
+    public function __construct(BranchRepositoryInterface $branchRepository)
+    {
+        $this->branchRepository =  $branchRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -52,6 +60,7 @@ class BranchController extends Controller
             'store' => $store,
             'city' => $city,
             'branch' => $branch,
+            'catalogs' => $this->branchRepository->catalogs($branch)
         ]);
     }
 

@@ -123,7 +123,9 @@
 </div>
     {{--  -- store details end  --}}
 
-
+    <!-- catalogs of a branch -->
+    @include('pages/branch/catalog')
+    <!-- catalogs of a branch end -->
 
 </div>
 

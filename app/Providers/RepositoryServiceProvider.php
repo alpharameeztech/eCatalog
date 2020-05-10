@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Repositories\StoreRepository;
 use App\Repositories\CatalogRepository;
+use App\Repositories\BranchRepository;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
+use App\Repositories\Interfaces\BranchRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -20,6 +22,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             CatalogRepositoryInterface::class, 
             CatalogRepository::class
+        );
+
+        $this->app->bind(
+            BranchRepositoryInterface::class, 
+            BranchRepository::class
         );
     }
 }
