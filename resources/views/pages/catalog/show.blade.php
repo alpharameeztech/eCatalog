@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="row">
+<div class="row catalogInfo">
 
     <div class="col-sm-4">
         @foreach ($catalog->images as $image)
@@ -68,7 +68,7 @@
     {{--  ======================= catalog availability ==========================  --}}
 
     <div class="row">
-        <p class="text-lg">Available In</p>
+        <p class="text-lg col-sm-12">Available In</p>
         <div id="accordion" class="col-sm-12">
 
             @foreach ($catalog_cities as $city)
@@ -159,7 +159,7 @@
             
         </div>
 
-        <div class="alert alert-success" role="alert" style="width: 100%">
+        <div class="alert alert-success notice" role="alert">
             <p>
                 Above listed store information and timings are to the best of our knowledge and may change without prior notice.
             </p>
@@ -174,7 +174,7 @@
 
     {{--  ============================ catalog's tag ==================  --}}
             @if(count($catalog->tags))
-                <div class="card">
+                <div class="card tags">
 
                     <div class="card-body">
                         @foreach ($catalog->tags as $tag)
