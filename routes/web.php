@@ -22,6 +22,8 @@ Route::get('/tag/{tag}', 'TagController@show');
 Route::get('/store/{store}', 'StoreController@show');
 Route::get('/store/{store}/catalogs', 'StoreController@showCatalogs');
 
+Route::get('/{store}/{city}/{branch}', 'BranchController@show');
+
 Auth::routes();
 
 Route::get('/about-us', function () {
