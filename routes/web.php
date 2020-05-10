@@ -19,6 +19,8 @@ Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
 
 Route::get('/tag/{tag}', 'TagController@show');
 
+Route::get('/store/{store}', 'StoreController@show');
+
 Auth::routes();
 
 Route::get('/about-us', function () {

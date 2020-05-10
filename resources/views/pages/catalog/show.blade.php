@@ -29,7 +29,7 @@
             </div>
             <div class="card-body">
               <p class="card-text">{{$catalog->description}}.</p>
-              <p>By: <a href="{{$catalog->store->name}}">{{$catalog->store->name}}</a></p>
+              <p>By: <a class="no-underline hover:underline text-blue-500" href="/store/{{$catalog->store->name}}">{{$catalog->store->name}}</a></p>
 
               <table class="table table-hover">
                 <thead>
