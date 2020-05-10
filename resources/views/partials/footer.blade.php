@@ -2,7 +2,11 @@
     <div class="container bg-grey-lighter p-8 mt-8">
         <div class="sm:flex mb-4">
             <div class="sm:w-1/4 h-auto">
-                <div class="text-orange mb-2">Orange</div>
+                <div class="text-orange mb-2">
+                    <a href="/terms">
+                        Terms & Conditions
+                    </a>
+                    </div>
                 <div class="grid grid-cols-3 gap-4">
                     <div>
                         <a href="" class="hover:underline">Country</a>

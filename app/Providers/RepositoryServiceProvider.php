@@ -8,6 +8,8 @@ use App\Repositories\BranchRepository;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\BranchRepositoryInterface;
+use App\Repositories\Interfaces\TermRepositoryInterface;
+use App\Repositories\TermRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -27,6 +29,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             BranchRepositoryInterface::class, 
             BranchRepository::class
+        );
+
+        $this->app->bind(
+            TermRepositoryInterface::class, 
+            TermRepository::class
         );
     }
 }

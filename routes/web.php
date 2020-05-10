@@ -24,6 +24,7 @@ Route::get('/store/{store}/catalogs', 'StoreController@showCatalogs');
 
 Route::get('/{store}/{city}/{branch}', 'BranchController@show');
 
+Route::get('/terms', 'TermController@index');
 
 Auth::routes();
 
