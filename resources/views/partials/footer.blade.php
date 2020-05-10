@@ -9,7 +9,7 @@
                     </div>
                 <div class="grid grid-cols-3 gap-4">
                     <div>
-                        <a href="" class="hover:underline">Country</a>
+                        <a href="/faq" class="hover:underline">FAQ</a>
                     </div>
                 </div>
             </div>

@@ -5,9 +5,11 @@ namespace App\Providers;
 use App\Repositories\StoreRepository;
 use App\Repositories\CatalogRepository;
 use App\Repositories\BranchRepository;
+use App\Repositories\FaqRepository;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\BranchRepositoryInterface;
+use App\Repositories\Interfaces\FaqRepositoryInterface;
 use App\Repositories\Interfaces\TermRepositoryInterface;
 use App\Repositories\TermRepository;
 use Illuminate\Support\ServiceProvider;
@@ -34,6 +36,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             TermRepositoryInterface::class, 
             TermRepository::class
+        );
+
+        $this->app->bind(
+            FaqRepositoryInterface::class, 
+            FaqRepository::class
         );
     }
 }

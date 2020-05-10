@@ -26,6 +26,8 @@ Route::get('/{store}/{city}/{branch}', 'BranchController@show');
 
 Route::get('/terms', 'TermController@index');
 
+Route::get('/faq', 'FaqController@index');
+
 Auth::routes();
 
 Route::get('/about-us', function () {
