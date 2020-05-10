@@ -24,6 +24,7 @@ Route::get('/store/{store}/catalogs', 'StoreController@showCatalogs');
 
 Route::get('/{store}/{city}/{branch}', 'BranchController@show');
 
+
 Auth::routes();
 
 Route::get('/about-us', function () {
@@ -100,3 +101,5 @@ Route::group([
     Route::patch('/account/details', 'AuthController@update');
 });
 //======================== public apis end ==========================
+
+Route::get('/{city}/{mall}', 'MallController@show');
