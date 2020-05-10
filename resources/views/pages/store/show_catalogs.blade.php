@@ -26,12 +26,12 @@
                         @endif
                     </p>
                     <p class="text-gray-700 text-base">
-                        By <a  href="{{$catalog->store->name}}" class="no-underline hover:underline text-blue-400">
+                        By <a  href="/store/{{$store->slug}}" class="no-underline hover:underline text-blue-400">
                             {{$catalog->store->name}}
                         </a>
                     </p>
                     <p class="text-gray text-base">
-                        <a href="{{$catalog->store->slug}}/catalogs/{{$catalog->slug}}" class="no-underline hover:underline text-blue-500 ">View Details</a>
+                        <a href="/{{$store->slug}}/catalogs/{{$catalog->slug}}" class="no-underline hover:underline text-blue-500 ">View Details</a>
                     </p>
                 </div>
             </div>

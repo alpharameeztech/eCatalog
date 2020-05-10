@@ -20,7 +20,7 @@
                         @endif
                     </p>
                     <p class="text-gray-700 text-base">
-                        By <a  href="/store/{{$catalog->store->name}}" class="no-underline hover:underline text-blue-400">
+                        By <a  href="/store/{{$catalog->store->slug}}" class="no-underline hover:underline text-blue-400">
                             {{$catalog->store->name}}
                         </a>
                     </p>
