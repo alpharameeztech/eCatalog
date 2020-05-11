@@ -14,4 +14,16 @@ class BlogRepository implements BlogRepositoryInterface
         $blogs = Blog::where('status',1)->paginate(2);
         return $blogs;
     }
+
+    /**
+     * The blog just got viewed
+     * by somebody
+     * so increment the total_views
+     */
+    public function viewed(Blog $blog)
+    {
+        $blog->total_views = ++$blog->total_views;
+
+        $blog->save();
+    }
 }

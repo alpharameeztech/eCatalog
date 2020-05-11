@@ -55,6 +55,9 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
+        //increment total_views
+        $this->blogRepository->viewed($blog);
+
         return view('pages.blog.show',[
             'blog' => $blog
         ]);
