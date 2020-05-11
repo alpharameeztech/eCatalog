@@ -31,6 +31,16 @@ class CatalogRepository implements CatalogRepositoryInterface
                         ->get();
     }
 
+    public function featured()
+    {
+
+        return Catalog::where('status', 1)
+                        ->where('featured', 1)
+                        ->where('featured_expiry_at', '>=', date('Y-m-d'))
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+    }
+
     public function inCities(Catalog $catalog){
 
         $branches = $catalog->branches;

@@ -37,10 +37,13 @@ class HomeController extends Controller
         $stores = $this->storeRepository->all();
         $latest_catalogs = $this->catalogRepository->latest();
         $popular_catalogs =  $this->catalogRepository->popular();
+        $featured_catalogs = $this->catalogRepository->featured();
+
         return view('home',[
             'stores' => $stores,
             'latest_catalogs' => $latest_catalogs,
-            'popular_catalogs' => $popular_catalogs
+            'popular_catalogs' => $popular_catalogs,
+            'featured_catalogs' => $featured_catalogs
         ]);
     }
 }

@@ -12,6 +12,8 @@ interface CatalogRepositoryInterface
 
     public function popular($limit = 12);
 
+    public function featured();
+
     public function inCities(Catalog $catalog);
 
     public function viewed(Catalog $catalog);
