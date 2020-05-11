@@ -60,7 +60,8 @@ class CatalogController extends Controller
         return view('pages.catalog.show',[
             'catalog' => $catalog,
             'catalog_cities' => $this->catalogRepository->inCities($catalog),
-            'latest_catalogs'=> $this->catalogRepository->latest()
+            'latest_catalogs'=> $this->catalogRepository->latest(),
+            'page_description' => $catalog->page
         ]);
 
     }

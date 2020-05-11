@@ -9,7 +9,7 @@
     <!-- featured catalogs -->
     @include('partials/catalogs/featured')
     <!-- featured catalogs end-->
-    
+
     <!-- latest catalogs -->
     <h2 class="text-3xl mt-8">Latest Catalogs</h2>
     @include('partials/catalogs/latest')
@@ -20,6 +20,5 @@
     @include('partials/catalogs/popular')
     <!-- popular catalogs end-->
 
-    
 
 @endsection

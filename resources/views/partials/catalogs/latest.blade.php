@@ -25,7 +25,7 @@
                         </a>
                     </p>
                     <p class="text-gray text-base">
-                        <a href="{{$catalog->store->slug}}/catalogs/{{$catalog->slug}}" class="no-underline hover:underline text-blue-500 ">View Details</a>
+                        <a href="/{{$catalog->store->slug}}/catalogs/{{$catalog->slug}}" class="no-underline hover:underline text-blue-500 ">View Details</a>
                     </p>
                 </div>
             </div>

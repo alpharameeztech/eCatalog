@@ -49,7 +49,9 @@ class MallController extends Controller
     {
         return view('pages.mall.show',[
             'city' => $city,
-            'mall' => $mall
+            'mall' => $mall,
+            'page_description' => $mall->page
+
         ]);
     }
 

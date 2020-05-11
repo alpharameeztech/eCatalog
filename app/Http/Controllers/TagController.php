@@ -52,7 +52,8 @@ class TagController extends Controller
 
         return view('pages.tag.show',[
             'tag' => $tag,
-            'tag_catalogs' => $tag_catalogs
+            'tag_catalogs' => $tag_catalogs,
+            'page_description' => $tag->page
         ]); 
     }
 

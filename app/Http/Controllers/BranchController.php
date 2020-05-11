@@ -60,7 +60,9 @@ class BranchController extends Controller
             'store' => $store,
             'city' => $city,
             'branch' => $branch,
-            'catalogs' => $this->branchRepository->catalogs($branch)
+            'catalogs' => $this->branchRepository->catalogs($branch),
+            'page_description' => $branch->page
+
         ]);
     }
 

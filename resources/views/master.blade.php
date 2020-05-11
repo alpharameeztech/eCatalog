@@ -28,6 +28,10 @@
 
     </div>
 
+    <!-- page description -->
+    @include('partials/page_description')
+    <!-- page description end-->
+    
     @include('partials/footer')
 
 </div>
