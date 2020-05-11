@@ -33,12 +33,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+        
         $stores = $this->storeRepository->all();
         $latest_catalogs = $this->catalogRepository->latest();
+        $popular_catalogs =  $this->catalogRepository->popular();
         return view('home',[
             'stores' => $stores,
-            'latest_catalogs' => $latest_catalogs
+            'latest_catalogs' => $latest_catalogs,
+            'popular_catalogs' => $popular_catalogs
         ]);
     }
 }

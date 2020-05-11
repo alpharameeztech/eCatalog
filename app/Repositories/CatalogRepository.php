@@ -14,13 +14,21 @@ class CatalogRepository implements CatalogRepositoryInterface
         return Catalog::where('status', 1)->get();
     }
 
-    public function latest($limit = 4)
+    public function latest($limit = 12)
     {
         return Catalog::where('status', 1)
                     ->latest()
                     ->limit($limit)
                     ->where('status',1)
                     ->get();
+    }
+
+    public function popular($limit = 12)
+    {
+        return Catalog::where('status', 1)
+                        ->orderBy('total_views', 'desc')
+                        ->limit($limit)
+                        ->get();
     }
 
     public function inCities(Catalog $catalog){
