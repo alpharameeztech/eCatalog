@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Repositories\BlogRepository;
 use App\Repositories\StoreRepository;
 use App\Repositories\CatalogRepository;
 use App\Repositories\BranchRepository;
 use App\Repositories\FaqRepository;
+use App\Repositories\Interfaces\BlogRepositoryInterface;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\BranchRepositoryInterface;
@@ -41,6 +43,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             FaqRepositoryInterface::class, 
             FaqRepository::class
+        );
+
+        $this->app->bind(
+            BlogRepositoryInterface::class, 
+            BlogRepository::class
         );
     }
 }

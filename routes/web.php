@@ -28,6 +28,10 @@ Route::get('/terms', 'TermController@index');
 
 Route::get('/faq', 'FaqController@index');
 
+Route::get('/blog', 'BlogController@index');
+
+Route::get('/blog/{blog}', 'BlogController@show');
+
 Auth::routes();
 
 Route::get('/about-us', function () {
