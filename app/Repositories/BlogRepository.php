@@ -9,9 +9,9 @@ use App\Support\Collection;
 class BlogRepository implements BlogRepositoryInterface
 {
 
-    public function all(){
+    public function all($order = 'desc'){
 
-        $blogs = Blog::where('status',1)->paginate(2);
+        $blogs = Blog::where('status',1)->orderBy('created_at', $order)->paginate(2);
         return $blogs;
     }
 

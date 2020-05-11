@@ -6,7 +6,7 @@ use App\Blog;
 
 interface BlogRepositoryInterface
 {
-    public function all();
+    public function all($order = 'desc');
 
     public function viewed(Blog $blog);
 
