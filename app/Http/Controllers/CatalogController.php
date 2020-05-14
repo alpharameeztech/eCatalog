@@ -57,6 +57,11 @@ class CatalogController extends Controller
      */
     public function show(Store $store ,Catalog $catalog)
     {
+        // if($catalog->end_at >= date('Y-m-d')){
+        //     dd('not expired');
+        // }else{
+        //     dd('expried');
+        // }
         //increment total_views of the catalog
         $this->catalogRepository->viewed($catalog);
 

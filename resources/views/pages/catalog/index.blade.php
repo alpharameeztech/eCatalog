@@ -16,7 +16,7 @@
                         @endif
     
                     @endforeach
-                    
+
                     <div class="px-6 py-4">
                         <div class=" text-base mb-2">{{$catalog->name}}</div>
                       
@@ -34,6 +34,11 @@
                         <p class="text-gray text-base">
                             <a href="{{$catalog->store->slug}}/catalogs/{{$catalog->slug}}" class="no-underline hover:underline text-blue-500 ">View Details</a>
                         </p>
+                        @if(!empty($catalog->end_at))
+                            @if( $catalog->end_at <= date('Y-m-d'))
+                                <span class="badge badge-danger">Expired</span>
+                            @endif
+                        @endif
                     </div>
                 </div>
         @endforeach
