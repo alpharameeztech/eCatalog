@@ -108,6 +108,11 @@ Route::group([
 
     Route::get('/account/details', 'AuthController@index');
     Route::patch('/account/details', 'AuthController@update');
+
+    Route::get('/home', 'HomeController@index');
+    Route::post('/home/page', 'HomeController@store');
+    Route::patch('/home/page/{home}', 'HomeController@update');
+
 });
 //======================== public apis end ==========================
 

@@ -13,6 +13,7 @@ import Faqs from "./pages/Faqs";
 import Terms from "./pages/Terms";
 import Blogs from "./pages/Blogs";
 import Settings from "./pages/Settings";
+import Home from "./pages/Home";
 
 const router = new VueRouter({
     mode: 'history',
@@ -82,6 +83,10 @@ const router = new VueRouter({
         {
             path: '/home/settings',
             component: Settings,
+        },
+        {
+            path: '/home/homepage',
+            component: Home,
         }
     ],
 });
