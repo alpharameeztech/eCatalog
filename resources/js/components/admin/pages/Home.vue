@@ -27,10 +27,10 @@
         <!-- seo_description end-->
 
           <!-- page description -->
-            <template v-slot:item.page_description="{ item }">
+            <template v-slot:item.description="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
-                        <v-text> {{item.page_description.en}} </v-text>
+                        <v-text> {{item.description.en}} </v-text>
                     </v-col>
                 </v-row>
             </template>
@@ -187,7 +187,7 @@ import { VueEditor } from "vue2-editor";
                         text: 'Page Description',
                         align: 'left',
                         sortable: false,
-                        value: 'page_description',
+                        value: 'description',
                     },
                     // {text: 'Updated At', value: 'updated_at'},
                     // {text: 'Created At', value: 'created_at'},
@@ -257,8 +257,8 @@ import { VueEditor } from "vue2-editor";
             editItem (item) {
                 this.editedIndex = this.desserts.indexOf(item)
                 this.editedItem = Object.assign({}, item)
-                this.htmlForEditor = item.page_description.en
-                this.htmlForEditor2 = item.page_description.ar
+                this.htmlForEditor = item.description.en
+                this.htmlForEditor2 = item.description.ar
                 if(this.editedItem.seo_title != null){
                     this.editedItem.seo_title = item.seo_title.en
                     this.editedItem.arabic_seo_title = item.seo_title.ar
@@ -293,8 +293,8 @@ import { VueEditor } from "vue2-editor";
                     var self = this
                     this.$root.$emit('loading', true);
                     axios.patch('/api/home/page/' + this.editedItem.id, {
-                        page_description: this.htmlForEditor,
-                        arabic_page_description : this.htmlForEditor2,
+                        description: this.htmlForEditor,
+                        arabic_description : this.htmlForEditor2,
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,
@@ -323,8 +323,8 @@ import { VueEditor } from "vue2-editor";
                     this.desserts.push(this.editedItem)
 
                     axios.post('/api/home/page', {
-                        page_description: this.htmlForEditor,
-                        arabic_page_description : this.htmlForEditor2,
+                        description: this.htmlForEditor,
+                        arabic_description : this.htmlForEditor2,
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,

@@ -17,7 +17,7 @@ class CreateHomesTable extends Migration
             $table->id();
             $table->text('seo_title')->nullable();
             $table->text('seo_description')->nullable();
-            $table->text('page_description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

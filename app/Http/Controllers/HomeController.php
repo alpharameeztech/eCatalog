@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Home;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use Illuminate\Http\Request;
@@ -43,7 +44,8 @@ class HomeController extends Controller
             'stores' => $stores,
             'latest_catalogs' => $latest_catalogs,
             'popular_catalogs' => $popular_catalogs,
-            'featured_catalogs' => $featured_catalogs
+            'featured_catalogs' => $featured_catalogs,
+            'page_description' => Home::first()
         ]);
     }
 }

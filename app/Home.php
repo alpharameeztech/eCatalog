@@ -9,6 +9,6 @@ class Home extends Model
 {
     use HasTranslations;
 
-    public $translatable = ['seo_title', 'seo_description', 'page_description'];
+    public $translatable = ['seo_title', 'seo_description', 'description'];
 
 }

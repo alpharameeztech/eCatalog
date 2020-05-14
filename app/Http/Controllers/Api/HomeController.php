@@ -44,8 +44,8 @@ class HomeController extends Controller
             'arabic_seo_title' => 'required',
             'seo_description' => 'required',
             'arabic_seo_description' => 'required',
-            'page_description' => 'required',
-            'arabic_page_description' => 'required'
+            'description' => 'required',
+            'arabic_description' => 'required'
         ]);
 
 
@@ -57,8 +57,8 @@ class HomeController extends Controller
         $home->setTranslation('seo_description', 'en', $request->seo_description);
         $home->setTranslation('seo_description', 'ar', $request->arabic_seo_description);
 
-        $home->setTranslation('page_description', 'en', $request->page_description);
-        $home->setTranslation('page_description', 'ar', $request->arabic_page_description);
+        $home->setTranslation('description', 'en', $request->description);
+        $home->setTranslation('description', 'ar', $request->arabic_description);
 
         $home->save();
 
@@ -101,8 +101,8 @@ class HomeController extends Controller
             'arabic_seo_title' => 'required',
             'seo_description' => 'required',
             'arabic_seo_description' => 'required',
-            'page_description' => 'required',
-            'arabic_page_description' => 'required'
+            'description' => 'required',
+            'arabic_description' => 'required'
         ]);
 
 
@@ -112,8 +112,8 @@ class HomeController extends Controller
         $home->setTranslation('seo_description', 'en', $request->seo_description);
         $home->setTranslation('seo_description', 'ar', $request->arabic_seo_description);
 
-        $home->setTranslation('page_description', 'en', $request->page_description);
-        $home->setTranslation('page_description', 'ar', $request->arabic_page_description);
+        $home->setTranslation('description', 'en', $request->description);
+        $home->setTranslation('description', 'ar', $request->arabic_description);
 
         $home->save();
     }
