@@ -32,6 +32,8 @@ Route::get('/blog', 'BlogController@index');
 
 Route::get('/blog/{blog}', 'BlogController@show');
 
+Route::get('/catalogs', 'CatalogController@index');
+
 Auth::routes();
 
 Route::get('/about-us', function () {

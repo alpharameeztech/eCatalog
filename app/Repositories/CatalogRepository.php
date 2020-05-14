@@ -6,12 +6,13 @@ use App\Catalog;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\City;
 use Illuminate\Support\Arr;
+use App\Support\Collection;
 
 class CatalogRepository implements CatalogRepositoryInterface
 {
     public function all()
     {
-        return Catalog::where('status', 1)->get();
+        return Catalog::where('status', 1)->paginate(16);
     }
 
     public function latest($limit = 12)
