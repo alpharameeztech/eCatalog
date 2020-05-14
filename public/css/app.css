@@ -25536,6 +25536,10 @@ ul.pagination {
   margin: 20px 0px;
 }
 
+.card .viewer-container {
+  display: none !important;
+}
+
 @media (min-width: 640px){
   .sm\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;

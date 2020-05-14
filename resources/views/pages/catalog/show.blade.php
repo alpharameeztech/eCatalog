@@ -15,7 +15,7 @@
 
                     <img id="image" class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
                     <p class="text-gray text-base text-center">
-                        <a href="" class="no-underline hover:underline text-blue-500 ">View Catalog</a>
+                        {{--  <a href="" class="no-underline hover:underline text-blue-500 ">View Catalog</a>  --}}
                         @if(!empty($catalog->end_at))
                             @if( $catalog->end_at <= date('Y-m-d'))
                                 <div class="expired"><span class="badge badge-danger">Expired</span></div>
