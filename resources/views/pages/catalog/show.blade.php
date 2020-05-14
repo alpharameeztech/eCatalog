@@ -52,6 +52,16 @@
                     <th scope="row">Total Views</th>
                     <td colspan="2">{{$catalog->total_views}}</td>
                   </tr>
+                  @if(count($catalog->pdfs))
+                    <tr>
+                        <th scope="row">Attached PDfs</th>
+                        @foreach($catalog->pdfs as $pdf)
+                            <td colspan="2">
+                                <a target="_blanck" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">{{$pdf->pdf}}</a>
+                                </td>
+                        @endforeach
+                    </tr>
+                    @endif
                   <tr>
                     <th scope="row">Added On</th>
                     <td colspan="2">{{$catalog->created_at}}</td>
