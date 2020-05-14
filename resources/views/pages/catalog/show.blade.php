@@ -13,7 +13,7 @@
                 <div class="card">
                    
 
-                    <img class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
+                    <img id="image" class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
                     <p class="text-gray text-base text-center">
                         <a href="" class="no-underline hover:underline text-blue-500 ">View Catalog</a>
                         @if(!empty($catalog->end_at))
@@ -24,13 +24,15 @@
                        
                     </p>
                 </div>
+
+               
             @endif
 
         @endforeach
     </div>
 
     {{--  catalog details  --}}
-    <div class="col-sm-8">
+    <div class="col-sm-8 catalogDetails">
         <div class="card">
             <div class="card-header">
               {{ $catalog->name}}
@@ -79,6 +81,18 @@
 
             </div>
         </div>
+        <h2>Click on any image to browse catalog</h2>
+
+        <div class="col-sm-12">
+            <div>
+                <div class= "row" id="images">
+                    @foreach ($catalog->images as $image)
+                        <div class="col-sm-3"><img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Picture 1"></div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    
     </div>
 </div>
     {{--  -- Catalog details end  --}}
@@ -221,3 +235,9 @@
 
 
 @endsection
+
+<link href="{{ asset('css/viewer.css') }}" rel="stylesheet">
+
+<script src="{{ asset('js/viewer.js') }}" defer></script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>

@@ -27,6 +27,19 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+// const app = new Vue({
+//     el: '#app',
+// });
+
+import Viewer from 'viewerjs';
+
+// View an image
+const viewer = new Viewer(document.getElementById('image'), {
+    inline: true,
+    viewed() {
+      viewer.zoomTo(1);
+    },
+  });
+   
+  // View a list of images
+  const gallery = new Viewer(document.getElementById('images'));
