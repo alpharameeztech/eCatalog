@@ -113,6 +113,10 @@ Route::group([
     Route::post('/home/page', 'HomeController@store');
     Route::patch('/home/page/{home}', 'HomeController@update');
 
+    Route::get('/social', 'SocialController@index');
+    Route::post('/social', 'SocialController@store');
+    Route::patch('/social/{social}', 'SocialController@update');
+
 });
 //======================== public apis end ==========================
 

@@ -46,7 +46,7 @@
                 ></v-divider>
                 <v-spacer></v-spacer>
                 <v-dialog v-model="dialog" max-width="50%">
-                    <template v-slot:activator="{ on }" v-if="!desserts">
+                    <template v-slot:activator="{ on }" v-if="!desserts.length">
                         <v-btn color="primary" dark class="mb-2" v-on="on">Add Home Page Info</v-btn>
                     </template>
                      <v-tabs

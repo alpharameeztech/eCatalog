@@ -14,6 +14,7 @@ import Terms from "./pages/Terms";
 import Blogs from "./pages/Blogs";
 import Settings from "./pages/Settings";
 import Home from "./pages/Home";
+import Socials from "./pages/Socials";
 
 const router = new VueRouter({
     mode: 'history',
@@ -87,6 +88,10 @@ const router = new VueRouter({
         {
             path: '/home/homepage',
             component: Home,
+        },
+        {
+            path: '/home/socials',
+            component: Socials,
         }
     ],
 });

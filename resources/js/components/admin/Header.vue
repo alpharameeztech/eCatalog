@@ -185,6 +185,7 @@
                 { icon: 'flag', text: 'Terms & Conditions', link: '/home/terms', hasAccess: ['admin', 'publisher'] },
                 { icon: 'library_books', text: 'Blogs', link: '/home/blogs', hasAccess: ['admin', 'publisher'] },
                 { icon: 'home', text: 'Home Page', link: '/home/homepage', hasAccess: ['admin', 'publisher'] },
+                { icon: 'share', text: 'Social Media', link: '/home/socials', hasAccess: ['admin', 'publisher'] },
             ]
 
         }),
