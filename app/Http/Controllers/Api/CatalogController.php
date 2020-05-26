@@ -10,6 +10,7 @@ use App\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Page;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as ImageIntervention;
 
 class CatalogController extends Controller
@@ -281,25 +282,22 @@ class CatalogController extends Controller
             'file' => 'required'
         ]);
 
-        $img = ImageIntervention::make(public_path('img/1.png'));
+        $img = ImageIntervention::make(request()->file('file'));
    
         /* insert watermark at bottom-right corner with 10px offset */
         $watermark = ImageIntervention::make(public_path('img/logo.png'))->blur(15);
         $img->insert($watermark, 'bottom-right', 10, 10);
        
-        $img->save(public_path('img/main-new.png')); 
-        return;
+        $img = $img->save(public_path('img/main-new.png')); 
+        $name=now().$request->file->getClientOriginalName();
+        $filePath = 'catalogs/' . $name;
+        Storage::disk('s3')->put($filePath, $img->__toString());
 
-        $new_image = ImageIntervention::make(request()->file('file'));
-        /* insert watermark at bottom-right corner with 10px offset */
-        $new_image->insert(public_path('img/logo.png'), 'bottom-right', 10, 10);
-        $new_image = $new_image->store('catalogs', 's3');
-        
         $catalog = Catalog::find($request->id);
 
         $image = new Image;
 
-        $image->image = $new_image; 
+        $image->image = $name; 
         $response = $catalog->images()->save($image);
             
         /*
