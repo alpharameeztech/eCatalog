@@ -19,49 +19,23 @@
             :search="search"
         > 
 
-        <!-- name -->  
-            <template v-slot:item.name="{ item }">
-                <v-text> {{item.name.en}} </v-text>
+        <!-- image -->  
+            <template v-slot:item.image="{ item }">
+                <v-text> {{item.image.en}} </v-text>
             </template>
-        <!-- name end-->
+        <!-- image end-->
 
-        <!-- store name -->
-            <template v-slot:item.store_id="{ item }">
-                <v-text>{{ item.store.name.en }} </v-text>
+        <!-- url -->
+            <template v-slot:item.url="{ item }">
+                <v-text>{{ item.url.en }} </v-text>
             </template>
-        <!-- store name end-->
+        <!-- url end-->
 
-        <!-- featured -->
-            <template v-slot:item.featured="{ item }">
-                <v-text>{{ isFeatured(item.featured) }} </v-text>
+        <!-- ad -->
+            <template v-slot:item.ad="{ item }">
+                <v-text>{{ item.ad.en }} </v-text>
             </template>
-        <!-- featured end-->
-
-        <!-- description name -->
-            <template v-slot:item.description="{ item }">
-                <v-text>{{ item.description.en }} </v-text>
-            </template>
-        <!-- description name end-->
-
-        <!-- start at -->  
-            <template v-slot:item.start_at="{ item }">
-                <v-row  class="d-flex justify-start">
-                    <v-col cols="12" sm="12" md="12">
-                        <v-text> {{item.start_at.en}} </v-text>
-                    </v-col>
-                </v-row>
-            </template>
-        <!-- start at end-->
-
-        <!-- end at -->  
-            <template v-slot:item.end_at="{ item }">
-                <v-row  class="d-flex justify-start">
-                    <v-col cols="12" sm="12" md="12">
-                        <v-text v-if="item.end_at != null"> {{item.end_at.en}} </v-text>
-                    </v-col>
-                </v-row>
-            </template>
-        <!-- end at end-->
+        <!-- ad end-->
 
         <!-- status -->
             <template v-slot:item.status="{ item }">
@@ -290,18 +264,13 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         value: 'id',
                     },
                     {
-                        text: 'Name',
+                        text: 'Image',
                         sortable: true,
-                        value: 'name',
+                        value: 'image',
                     },
-                    {text: 'Slug', value: 'slug', width: 300},
-                    {text: 'Store', value: 'store_id'},
+                    {text: 'URL', value: 'url', width: 300},
+                    {text: 'Ad', value: 'ad'},
                     {text: 'Status', value: 'status'},
-                    {text: 'Featured', value: 'featured'},
-                    {text: 'Description', value: 'description'},
-                    {text: 'Starting from', value: 'start_at'},
-                    {text: 'End on', value: 'end_at'},
-                    {text: 'Total Views', value: 'total_views'},
                     {text: 'Updated At', value: 'updated_at'},
                     {text: 'Created At', value: 'created_at'},
                     {text: 'Actions', value: 'action', sortable: false},
@@ -366,7 +335,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
                 this.$root.$emit('loading', true);
 
-                axios.get('/api/catalogs')
+                axios.get('/api/banners')
                     .then(function (response) {
 
                         self.desserts = response.data;
@@ -554,9 +523,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
                 this.$root.$emit('loading', true);
                 
-                axios.patch('/api/toggle/catalog/status', {
+                axios.patch('/api/toggle/banner/status', {
                     id: item.id,
-                    status: item.status
                 })
                 .then(function (response) {
 

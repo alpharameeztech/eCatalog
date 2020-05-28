@@ -96,6 +96,17 @@ class BannerController extends Controller
 		//
 	}
 
+	public function toggleStatus(Request $request){
+        $validatedData = $request->validate([
+            'id' => 'required',
+        ]);
+            
+        $banner = Banner::find($request->id);
+        $banner->status = !$banner->status;
+        $banner->save();
+        
+    }
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
