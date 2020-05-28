@@ -56,6 +56,9 @@ class BannerController extends Controller
 			$arabicImage = request()->file('arabic_banner')->store('banners', 's3');
 			$banner->setTranslation('image', 'en', $image);
 			$banner->setTranslation('image', 'ar', $arabicImage);
+		}else{
+			$banner->setTranslation('image', 'en', 'undefined');
+			$banner->setTranslation('image', 'ar', 'undefined');
 		}
 
 	   $banner->save();

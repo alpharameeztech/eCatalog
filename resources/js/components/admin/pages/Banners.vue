@@ -21,19 +21,19 @@
 
         <!-- image -->  
             <template v-slot:item.image="{ item }">
-                <v-text> {{item.image.en}} </v-text>
+                <v-text v-show="item.image.en != 'undefined' "> {{item.image.en}} </v-text>
             </template>
         <!-- image end-->
 
         <!-- url -->
             <template v-slot:item.url="{ item }">
-                <v-text>{{ item.url.en }} </v-text>
+                <v-text v-show="item.url.en != 'undefined' ">{{ item.url.en }} </v-text>
             </template>
         <!-- url end-->
 
         <!-- ad -->
-            <template v-slot:item.ad="{ item }">
-                <v-text>{{ item.ad.en }} </v-text>
+            <template v-slot:item.ad="{ item }" >
+                <v-text  v-show="item.ad.en != 'undefined' ">{{ item.ad.en }} </v-text>
             </template>
         <!-- ad end-->
 
