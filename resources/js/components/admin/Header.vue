@@ -186,6 +186,8 @@
                 { icon: 'library_books', text: 'Blogs', link: '/home/blogs', hasAccess: ['admin', 'publisher'] },
                 { icon: 'home', text: 'Home Page', link: '/home/homepage', hasAccess: ['admin', 'publisher'] },
                 { icon: 'share', text: 'Social Media', link: '/home/socials', hasAccess: ['admin', 'publisher'] },
+                { icon: 'perm_media', text: 'Home Banner', link: '/home/banners', hasAccess: ['admin', 'publisher'] },
+
             ]
 
         }),

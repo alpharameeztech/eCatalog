@@ -117,6 +117,12 @@ Route::group([
     Route::post('/social', 'SocialController@store');
     Route::patch('/social/{social}', 'SocialController@update');
 
+    Route::get('/banners', 'BannerController@index')->name('all.banners');
+    Route::post('/banner', 'BannerController@store')->name('add.banner');
+    Route::patch('/toggle/banner/status', 'BannerController@toggleStatus')->name('toggle.banner.status');
+    // Route::patch('/toggle/store/featured', 'StoreController@toggleFeatured')->name('toggle.store.featured');
+    // Route::get('/store/{store}/branches', 'StoreController@storeBranches')->name('all.stores');
+
 });
 //======================== public apis end ==========================
 

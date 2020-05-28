@@ -15,6 +15,7 @@ import Blogs from "./pages/Blogs";
 import Settings from "./pages/Settings";
 import Home from "./pages/Home";
 import Socials from "./pages/Socials";
+import Banners from "./pages/Banners";
 
 const router = new VueRouter({
     mode: 'history',
@@ -92,6 +93,10 @@ const router = new VueRouter({
         {
             path: '/home/socials',
             component: Socials,
+        },
+        {
+            path: '/home/banners',
+            component: Banners,
         }
     ],
 });
