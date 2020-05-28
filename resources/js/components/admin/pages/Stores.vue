@@ -33,7 +33,7 @@
         <!-- image -->
             <template v-slot:item.image="{ item }">
                 <v-row  class="storeImage d-flex justify-start">
-                    <v-col cols="1" sm="1" md="1">
+                    <v-col cols="12" sm="12" md="12">
                         <v-img :src="storeImage(item.image)" ></v-img>
                     </v-col>
                 </v-row>
