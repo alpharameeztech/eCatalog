@@ -36,7 +36,10 @@ class BannerController extends Controller
 	 */
 	public function store(Request $request)
 	{
-
+		if($request->id){
+            // update the store information
+            return $this->update($request);
+        }
 	   $banner = new Banner;
 
 	   if($request->url){
@@ -94,9 +97,31 @@ class BannerController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id)
+	public function update(Request $request)
 	{
-		//
+
+		$banner = Banner::find($request->id);
+
+		if($request->url){
+			$banner->setTranslation('url', 'en', $request->url);
+			$banner->setTranslation('url', 'ar', $request->arabic_url);
+		   }
+		   
+		   if ($request->ad) {
+			$banner->setTranslation('ad', 'en', $request->ad);
+			$banner->setTranslation('ad', 'ar', $request->arabic_ad);
+	 
+		   }
+	
+		  
+		   if($request->banner != NULL){
+				$image = request()->file('banner')->store('banners', 's3');
+				$arabicImage = request()->file('arabic_banner')->store('banners', 's3');
+				$banner->setTranslation('image', 'en', $image);
+				$banner->setTranslation('image', 'ar', $arabicImage);
+			}
+	
+		   $banner->save();
 	}
 
 	public function toggleStatus(Request $request){

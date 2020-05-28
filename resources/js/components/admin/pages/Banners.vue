@@ -21,7 +21,12 @@
 
         <!-- image -->  
             <template v-slot:item.image="{ item }">
-                <v-text v-show="item.image.en != 'undefined' "> {{item.image.en}} </v-text>
+                <v-row  class=" d-flex justify-start">
+                    <!-- v-show="item.image.en != 'undefined' " -->
+                    <v-col v-show="item.image.en != 'null' " cols="12" sm="12" md="12" >
+                        <v-img  :src="storeImage(item.image.en)" ></v-img>
+                    </v-col>
+                </v-row>
             </template>
         <!-- image end-->
 
@@ -362,25 +367,11 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
             editItem (item) {
                 this.editedIndex = this.desserts.indexOf(item)
                 this.editedItem = Object.assign({}, item)
-                this.editedItem.name = item.name.en
-                this.editedItem.arabic_name = item.name.ar
-                this.editedItem.start_at = item.start_at.en
-                this.editedItem.arabic_start_at = item.start_at.ar
-                if(this.editedItem.end_at != null){
-                    this.editedItem.end_at = item.end_at.en
-                    this.editedItem.arabic_end_at = item.end_at.ar
-                }
-                this.editedItem.description = item.description.en
-                this.editedItem.arabic_description = item.description.ar
-                if(this.editedItem.seo_tags != null){
-                    this.editedItem.seo_title = item.seo_tags.title.en
-                    this.editedItem.arabic_seo_title = item.seo_tags.title.ar
-                    this.editedItem.seo_description = item.seo_tags.description.en
-                    this.editedItem.arabic_seo_description = item.seo_tags.description.ar
-                }
-                if(this.editedItem.end_at == null){
-                    this.for_unlimited_time = true
-                }
+                this.editedItem.url = item.url.en
+                this.editedItem.arabic_url = item.url.ar
+                this.editedItem.ad = item.ad.en
+                this.editedItem.arabic_ad = item.ad.ar
+              
                 if(this.editedItem.page != null){
                     this.editorData = this.editedItem.page.description.en
                     this.arabicEditorData = this.editedItem.page.description.ar
@@ -414,65 +405,10 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 /*
                     Add the form data we need to submit
                 */
-                if (this.editedIndex > -1) {
-                    formData.append('id',this.editedItem.id);
-                    Object.assign(this.desserts[this.editedIndex], this.editedItem)
-                    
-                    var self = this
-                    this.desserts.push(this.editedItem)
-                   // alert(this.editedItem.city_id.id);return;
-                    //send the form data to server
-                    axios.patch('/api/catalog/'+ this.editedItem.slug, {
-                        name: this.editedItem.name,
-                        arabic_name: this.editedItem.arabic_name,
-                        description: this.editedItem.description,
-                        arabic_description: this.editedItem.arabic_description,
-                        start_at: this.editedItem.start_at,
-                        arabic_start_at: this.editedItem.arabic_start_at,
-                        end_at: this.editedItem.end_at,
-                        arabic_end_at: this.editedItem.arabic_end_at,
-                        store: this.editedItem.store,
-                        seo_title: this.editedItem.seo_title,
-                        arabic_seo_title: this.editedItem.arabic_seo_title,
-                        seo_description: this.editedItem.seo_description,
-                        arabic_seo_description: this.editedItem.arabic_seo_description,
-                        for_unlimited_time: this.for_unlimited_time,
-                        tags: this.editedItem.tags,
-                        branches: this.editedItem.branches,
-                        featured: this.editedItem.featured,
-                        featured_expiry_at: this.editedItem.featured_expiry_at,
-                        page_description: this.editorData,
-                        page_arabic_description : this.arabicEditorData      
-                    })
-                    .then(function (response) {
 
-                        self.$root.$emit('loading', false)
-
-                        flash('Changes Saved')
-
-                        self.initialize()
-
-                    })
-                    .catch(function (error) {
-
-                        self.$root.$emit('loading', false)
-
-                        flash(error.response.data.errors, 'error');
-
-                    })
-                    .finally(function () {
-                        self.$root.$emit('loading', false)
-
-                    });
-                    this.close()
-                    this.initialize()
-                    
-
-                } else {
                     var self = this
                     this.$root.$emit('loading', true);
 
-                     let formData = new FormData();
                     /*
                         Add the form data we need to submit
                     */
@@ -482,6 +418,19 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     formData.append('arabic_url', this.editedItem.arabic_url);
                     formData.append('ad', this.editedItem.ad);
                     formData.append('arabic_ad', this.editedItem.arabic_ad);
+
+                     if (this.editedIndex > -1) {
+                        formData.append('id',this.editedItem.id);
+                        Object.assign(this.desserts[this.editedIndex], this.editedItem)
+                        
+                        var self = this
+                        this.desserts.push(this.editedItem)
+                        
+
+                    } else {
+                        var self = this
+                        this.desserts.push(this.editedItem)
+                    }
 
                     //alert(this.editedItem.start_at);return;
                     this.desserts.push(this.editedItem)
@@ -515,7 +464,6 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     });
                     this.close()
                     this.initialize()
-                }
                
             },
             toggleBan(item){
@@ -592,6 +540,9 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 reader.readAsDataURL(this.arabic_file)
                 this.arabicProfilePicture = this.arabic_file
             },
+            storeImage(image){
+               return 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + image;
+            }
 
         },
 
