@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Home;
+use App\Repositories\BannerRepository;
+use App\Repositories\Interfaces\BannerRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use Illuminate\Http\Request;
@@ -13,6 +15,9 @@ class HomeController extends Controller
 
     private $catalogRepository;
 
+    private $bannerRepository;
+
+
     /**
      * Create a new controller instance.
      *
@@ -20,11 +25,13 @@ class HomeController extends Controller
      */
     public function __construct(
         StoreRepositoryInterface $storeRepository,
-        CatalogRepositoryInterface $catalogRepository
+        CatalogRepositoryInterface $catalogRepository,
+        BannerRepositoryInterface $bannerRepository
     )
     {
         $this->storeRepository = $storeRepository;
         $this->catalogRepository = $catalogRepository;
+        $this->bannerRepository = $bannerRepository;
     }
 
     /**
@@ -45,7 +52,8 @@ class HomeController extends Controller
             'latest_catalogs' => $latest_catalogs,
             'popular_catalogs' => $popular_catalogs,
             'featured_catalogs' => $featured_catalogs,
-            'page_description' => Home::first()
+            'page_description' => Home::first(),
+            'banners' => $this->bannerRepository->all()
         ]);
     }
 }

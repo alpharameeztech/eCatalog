@@ -394,6 +394,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 }, 300)
                 this.editorData = ''
                 this.arabicEditorData = ''
+                this.profilePicture = ''
             },
 
             save () {
