@@ -25540,6 +25540,14 @@ ul.pagination {
   display: none !important;
 }
 
+.homeLogos {
+  border: 1px solid #0061a6;
+  padding: 30px 20px;
+  border-radius: 5px;
+  margin-top: 5%;
+  box-shadow: 0px 0px 9px 0px rgba(0, 97, 166, 0.38);
+}
+
 @media (min-width: 640px){
   .sm\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;
