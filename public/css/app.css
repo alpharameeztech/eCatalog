@@ -25548,6 +25548,24 @@ ul.pagination {
   box-shadow: 0px 0px 9px 0px rgba(0, 97, 166, 0.38);
 }
 
+.advertisement {
+  margin-top: 5%;
+  background-color: #ff7043;
+  padding: 3%;
+}
+
+.advertisement h2 {
+  color: #ffb672;
+}
+
+.advertisement p {
+  color: #fff6f3;
+}
+
+.advertisement .content {
+  margin-top: 7%;
+}
+
 @media (min-width: 640px){
   .sm\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;

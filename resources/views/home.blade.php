@@ -6,6 +6,10 @@
     @include('partials/logos')
     <!-- logos end -->
 
+    <!-- advertisements -->
+    @include('partials/advertisements')
+    <!-- advertisements end -->
+
     <!-- featured catalogs -->
     @include('partials/catalogs/featured')
     <!-- featured catalogs end-->
