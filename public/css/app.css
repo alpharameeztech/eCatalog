@@ -25566,6 +25566,18 @@ ul.pagination {
   margin-top: 7%;
 }
 
+.catalogDetails p {
+  font-size: 13px;
+}
+
+.catalogName {
+  font-weight: bold;
+}
+
+.textContainer p {
+  line-height: 4px;
+}
+
 @media (min-width: 640px){
   .sm\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;

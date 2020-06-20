@@ -1,33 +1,37 @@
-<div class="grid grid-cols-4 gap-4 mt-4">
+<div class="row">
     @foreach ($latest_catalogs as $catalog)
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
+            <div class="col-sm-3">
                
                 @foreach ($catalog->images as $image)
 
                     @if ($image->featured)
-                        <img class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
+                        <a href="/{{$catalog->store->slug}}/catalogs/{{$catalog->slug}}">
+                            <img class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
+                        </a>
                     @endif
 
                 @endforeach
-                
-                <div class="px-6 py-4">
-                    <div class=" text-base mb-2">{{$catalog->name}}</div>
-                  
-                    <p class="font-extrabold text-gray-700 text-base">
-                        {{$catalog->start_at}}
-                        @if($catalog->end_at)
-                            <span> - {{$catalog->end_at}}</span>
-                        @endif
-                    </p>
-                    <p class="text-gray-700 text-base">
-                        By <a  href="/store/{{$catalog->store->slug}}" class="no-underline hover:underline text-blue-400">
-                            {{$catalog->store->name}}
-                        </a>
-                    </p>
-                    <p class="text-gray text-base">
-                        <a href="/{{$catalog->store->slug}}/catalogs/{{$catalog->slug}}" class="no-underline hover:underline text-blue-500 ">View Details</a>
-                    </p>
+               
+                <div class="row catalogDetails">
+                    <div class="col-sm-12">
+                        <p class="catalogName">{{$catalog->name}}</p>
+                        <div class="textContainer">
+                            <p>
+                                {{$catalog->start_at}}
+                                @if($catalog->end_at)
+                                    <span> - {{$catalog->end_at}}</span>
+                                @endif
+                            </p>
+                            <p>
+                                {{$catalog->store->name}}
+                                {{--  <a  href="/store/{{$catalog->store->slug}}" class="no-underline hover:underline text-blue-400">
+                                    {{$catalog->store->name}}
+                                </a>  --}}
+                            </p>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
     @endforeach
     

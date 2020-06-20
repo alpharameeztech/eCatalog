@@ -26,11 +26,7 @@
     @include('partials/navigation')
     <!-- navigation end -->
 
-    <!-- banner -->
-    @include('partials/banner')
-    <!-- banner end -->
-
-    <div class="container mx-auto">
+    <div class="">
         @yield('content')
     </div>
 
