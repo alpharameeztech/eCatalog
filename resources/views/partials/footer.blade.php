@@ -70,11 +70,24 @@
             <div class="col-sm-3">
                 <p class="subHeading2">Cities</p>
 
+                @foreach ($recent_cities as $city)
+                    
+                    <p><a href="">{{$city->name}}</a></p>
+                    
+                @endforeach
+                
                 <p><a href="">All Citites</a></p>
 
             </div>
             <div class="col-sm-3">
                 <p class="subHeading2">Countries</p>
+
+                <p><a href="">UAE</a></p>
+
+                <p><a href="">Kuwait</a></p>
+
+                <p><a href="">Saudi Arabia</a></p>
+
             </div>
             <div class="col-sm-3">
                 <p class="subHeading2">Follow Us On</p>

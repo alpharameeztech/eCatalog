@@ -7,12 +7,14 @@ use App\Repositories\BannerRepository;
 use App\Repositories\StoreRepository;
 use App\Repositories\CatalogRepository;
 use App\Repositories\BranchRepository;
+use App\Repositories\CityRepository;
 use App\Repositories\FaqRepository;
 use App\Repositories\Interfaces\BlogRepositoryInterface;
 use App\Repositories\Interfaces\BannerRepositoryInterface;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\BranchRepositoryInterface;
+use App\Repositories\Interfaces\CityRepositoryInterface;
 use App\Repositories\Interfaces\FaqRepositoryInterface;
 use App\Repositories\Interfaces\TermRepositoryInterface;
 use App\Repositories\TermRepository;
@@ -55,6 +57,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             BannerRepositoryInterface::class, 
             BannerRepository::class
+        );
+
+        $this->app->bind(
+            CityRepositoryInterface::class, 
+            CityRepository::class
         );
     }
 }
