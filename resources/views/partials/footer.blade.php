@@ -82,11 +82,11 @@
             <div class="col-sm-3">
                 <p class="subHeading2">Countries</p>
 
-                <p><a href="">UAE</a></p>
-
-                <p><a href="">Kuwait</a></p>
-
-                <p><a href="">Saudi Arabia</a></p>
+                @foreach ($recent_countries as $country)
+                    
+                    <p><a href="">{{$country->name}}</a></p>
+                    
+                @endforeach
 
             </div>
             <div class="col-sm-3">

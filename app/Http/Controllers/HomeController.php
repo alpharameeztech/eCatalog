@@ -8,6 +8,7 @@ use App\Repositories\Interfaces\BannerRepositoryInterface;
 use App\Repositories\Interfaces\BlogRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\CityRepositoryInterface;
+use App\Repositories\Interfaces\CountryRepositoryInterface;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,8 @@ class HomeController extends Controller
 
     private $cityRepository;
 
+    private $countryRepository;
+
 
     /**
      * Create a new controller instance.
@@ -34,7 +37,8 @@ class HomeController extends Controller
         CatalogRepositoryInterface $catalogRepository,
         BannerRepositoryInterface $bannerRepository,
         BlogRepositoryInterface $blogRepository,
-        CityRepositoryInterface $cityRepository
+        CityRepositoryInterface $cityRepository,
+        CountryRepositoryInterface $countryRepository
     )
     {
         $this->storeRepository = $storeRepository;
@@ -42,6 +46,7 @@ class HomeController extends Controller
         $this->bannerRepository = $bannerRepository;
         $this->blogRepository = $blogRepository;
         $this->cityRepository = $cityRepository;
+        $this->countryRepository = $countryRepository;
     }
 
     /**
@@ -65,7 +70,8 @@ class HomeController extends Controller
             'banners' => $this->bannerRepository->all(),
             'latest_blog' => $this->blogRepository->latest(1),
             'recent_stores' => $this->storeRepository->get($limit=8),
-            'recent_cities' => $this->cityRepository->get($limit=8)
+            'recent_cities' => $this->cityRepository->get($limit=8),
+            'recent_countries' => $this->countryRepository->get($limit=5)
         ]);
     }
 }
