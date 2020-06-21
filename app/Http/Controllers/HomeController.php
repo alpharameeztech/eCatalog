@@ -43,7 +43,7 @@ class HomeController extends Controller
     {
         
         $stores = $this->storeRepository->all();
-        $latest_catalogs = $this->catalogRepository->latest();
+        $latest_catalogs = $this->catalogRepository->latest(4);
         $popular_catalogs =  $this->catalogRepository->popular();
         $featured_catalogs = $this->catalogRepository->featured();
 
