@@ -1,4 +1,4 @@
-<h2 class="">The most popular catalogs</h2>
+<h2>The most popular catalogs</h2>
 <div class="row popularCatalogsContainer">
     @foreach ($popular_catalogs as $key=>$catalog)
 
