@@ -15,7 +15,7 @@
 
     {{--  <link href="{{ asset('css/viewer.css') }}" rel="stylesheet">  --}}
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {{--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  --}}
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
 </head>
@@ -23,7 +23,7 @@
 <div class="flex-center position-ref full-height">
 
     <!-- navigation -->
-    @include('partials/navigation')
+    {{--  @include('partials/navigation')  --}}
     <!-- navigation end -->
 
     <div class="">
@@ -34,7 +34,7 @@
     @include('partials/page_description')
     <!-- page description end-->
     
-    @include('partials/footer')
+    {{--  @include('partials/footer')  --}}
 
 </div>
 
