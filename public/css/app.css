@@ -10671,3 +10671,7 @@ ul.pagination {
 .latestBlogContent p, .latestBlogContent a {
   color: #9a9a9a;
 }
+
+.aboutContent {
+  margin-top: 8%;
+}

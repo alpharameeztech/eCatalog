@@ -20,7 +20,7 @@
         <!-- featured catalogs end-->
 
         <!-- latest catalogs -->
-        <h2 class="text-3xl mt-8">Latest Catalogs</h2>
+        <h2 class="text-3xl mt-8">The latest catalogs</h2>
         @include('partials/catalogs/latest')
         <!-- latest catalogs end-->
 
@@ -39,6 +39,10 @@
         <!-- latest blog -->
         @include('partials/latest_blog')
         <!-- latest blog end -->
+
+        <!-- about -->
+        @include('partials/about')
+        <!-- about end-->
 
     </div>
 
