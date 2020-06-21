@@ -24,6 +24,10 @@
         @include('partials/catalogs/latest')
         <!-- latest catalogs end-->
 
+        <!-- find catalog banner -->
+        @include('partials/find')
+        <!-- find catalog banner end-->
+
         <!-- popular catalogs -->
         <h2 class="text-3xl mt-8">Popular Catalogs</h2>
         @include('partials/catalogs/popular')

@@ -67,6 +67,7 @@ ul.pagination{
 }
 .advertisement .content{
     margin-top: 7%;
+    position: relative;
 }
 .catalogDetails p{
     font-size: 13px;
@@ -76,4 +77,14 @@ ul.pagination{
 }
 .textContainer p {
     line-height: 4px;
+}
+.findCatalogCta {
+    position: absolute;
+    bottom: 30px;
+    background-color: #0061a6 !important;
+    border-color: #0061a6 !important;
+    width: 140px;
+    padding: 10px 0% !important;
+    border-radius: 10px !important;
+    font-size: 13px !important;
 }
