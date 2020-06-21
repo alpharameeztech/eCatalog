@@ -8,6 +8,8 @@ interface BlogRepositoryInterface
 {
     public function all($order = 'desc');
 
+    public function latest($limit = 5);
+
     public function viewed(Blog $blog);
 
 }

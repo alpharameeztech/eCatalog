@@ -10657,3 +10657,17 @@ ul.pagination {
 .customContainers {
   max-width: 23% !important;
 }
+
+.latestBlogContent {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.latestBlogContent .more {
+  float: right !important;
+}
+
+.latestBlogContent p, .latestBlogContent a {
+  color: #9a9a9a;
+}

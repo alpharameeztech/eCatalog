@@ -15,6 +15,13 @@ class BlogRepository implements BlogRepositoryInterface
         return $blogs;
     }
 
+    public function latest($limit = 5){
+
+        $blogs = Blog::where('status',1)->orderBy('created_at', 'desc')
+                        ->limit($limit)->get();
+        return $blogs;
+    }
+
     /**
      * The blog just got viewed
      * by somebody

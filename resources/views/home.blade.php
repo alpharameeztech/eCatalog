@@ -35,6 +35,11 @@
         <!-- advertisements2 -->
         @include('partials/advertisements2')
         <!-- advertisements2 end -->
+
+        <!-- latest blog -->
+        @include('partials/latest_blog')
+        <!-- latest blog end -->
+
     </div>
 
 @endsection
