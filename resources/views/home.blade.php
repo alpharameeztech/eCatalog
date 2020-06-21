@@ -31,6 +31,10 @@
         <!-- popular catalogs -->
         @include('partials/catalogs/popular')
         <!-- popular catalogs end-->
+
+        <!-- advertisements2 -->
+        @include('partials/advertisements2')
+        <!-- advertisements2 end -->
     </div>
 
 @endsection
