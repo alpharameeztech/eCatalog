@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                 <h2> {{$blog->title}}</h2>
                 <p>
-                    {!! $blog->body !!}
+                    {!! Illuminate\Support\Str::limit($blog->body, 400) !!}
                 </p>
 
                 <div class="row latestBlogContent">
