@@ -61,6 +61,8 @@ ul.pagination{
 }
 .advertisement h2{
     color: #ffb672;
+    font-size: 30px;
+    margin-bottom: 30px;
 }
 .advertisement p {
     color: #fff6f3;
@@ -74,9 +76,7 @@ ul.pagination{
 }
 .catalogName{
     font-weight: bold;
-}
-.textContainer p {
-    line-height: 4px;
+    margin-bottom: 5px;
 }
 .findCatalogCta {
     position: absolute;
@@ -87,4 +87,17 @@ ul.pagination{
     padding: 10px 0% !important;
     border-radius: 10px !important;
     font-size: 13px !important;
+}
+.popularCatalogsContainer > div{
+    margin: 10px 6px;
+    -webkit-box-shadow: -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
+}
+.topPopular{
+    display: block;
+    margin-top: 25%;
+}
+.customContainers{
+    max-width: 23% !important;
 }
