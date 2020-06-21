@@ -16,6 +16,14 @@ class StoreRepository implements StoreRepositoryInterface
         return Store::where('status', 1)->get();
     }
 
+    public function get($limit=5)
+    {
+        return Store::where('status', 1)
+                    ->orderBy('created_at', 'desc')
+                    ->limit($limit)
+                    ->get();
+    }
+
     public function availableInCities(Store $store){
         
         

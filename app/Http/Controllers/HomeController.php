@@ -51,7 +51,6 @@ class HomeController extends Controller
         $latest_catalogs = $this->catalogRepository->latest(4);
         $popular_catalogs =  $this->catalogRepository->popular();
         $featured_catalogs = $this->catalogRepository->featured();
-        
         return view('home',[
             'stores' => $stores,
             'latest_catalogs' => $latest_catalogs,
@@ -59,7 +58,8 @@ class HomeController extends Controller
             'featured_catalogs' => $featured_catalogs,
             'page_description' => Home::first(),
             'banners' => $this->bannerRepository->all(),
-            'latest_blog' => $this->blogRepository->latest(1)
+            'latest_blog' => $this->blogRepository->latest(1),
+            'recent_stores' => $this->storeRepository->get($limit=8)
         ]);
     }
 }

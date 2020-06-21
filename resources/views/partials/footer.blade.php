@@ -1,60 +1,95 @@
-<footer class="container mx-auto">
-    <div class="container bg-grey-lighter p-8 mt-8">
-        <div class="sm:flex mb-4">
-            <div class="sm:w-1/4 h-auto">
-                <div class="text-orange mb-2">
-                    <a href="/terms">
-                        Terms & Conditions
-                    </a>
-                    </div>
-                <div class="grid grid-cols-3 gap-4">
-                    <div>
-                        <a href="/faq" class="hover:underline">FAQ</a>
-                    </div>
+<div class="footer">
+
+    <div class="container">
+        
+        <nav role='navigation' class="main-nav" id="main-nav">
+            <ul id="main-nav-list">
+              <li>
+                <a href="#">
+                  <div>
+                    Home
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div>
+                    Stores
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div>
+                    Catalogs
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div>
+                    About Us
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div>
+                    FAQ
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div>
+                    Contact Us
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div>
+                    Sitemap
+                  </div>
+                </a>
+              </li>
+            </ul>
+        </nav>
+          
+        <div class="row subHeading">
+            <div class="col-sm-3">
+                <p class="subHeading2">Stores</p>
+
+                @foreach ($recent_stores as $store)
+                    <p><a href="/store/{{$store->slug}}">{{$store->name}}</a></p>
+                @endforeach
+                
+                <p><a href="">All Stores</a></p>
+
+            </div>
+            <div class="col-sm-3">
+                <p class="subHeading2">Cities</p>
+
+                <p><a href="">All Citites</a></p>
+
+            </div>
+            <div class="col-sm-3">
+                <p class="subHeading2">Countries</p>
+            </div>
+            <div class="col-sm-3">
+                <p class="subHeading2">Follow Us On</p>
+
+                <div class="social">
+                    <a href=""><img src="/img/icons/facebook.svg" /></a>
+                    <a href=""><img src="/img/icons/twitter.svg" /></a>
+                    <a href=""><img src="/img/icons/instagram.svg" /></a>
+                    <a href=""><img src="/img/icons/linkedin.svg" /></a>
+                    <a href=""><img src="/img/icons/youtube.svg" /></a>
+
                 </div>
             </div>
-            <div class="sm:w-1/4 h-auto sm:mt-0 mt-8">
-                <div class="text-blue mb-2">Blue</div>
-                <ul class="list-reset leading-normal">
-                    <li class="hover:text-blue text-grey-darker">One</li>
-                    <li class="hover:text-blue text-grey-darker">Two</li>
-                    <li class="hover:text-blue text-grey-darker">Three</li>
-                </ul>
-
-                <div class="text-blue-light mb-2 mt-4">Blue-light</div>
-                <ul class="list-reset leading-normal">
-                    <li class="hover:text-blue-light text-grey-darker">One</li>
-                    <li class="hover:text-blue-light text-grey-darker">Two</li>
-                    <li class="hover:text-blue-light text-grey-darker">Three</li>
-                </ul>
-
-            </div>
-            <div class="sm:w-1/4 h-auto sm:mt-0 mt-8">
-                <div class="text-green-dark mb-2">Green-dark</div>
-                <ul class="list-reset leading-normal">
-                    <li class="hover:text-green-dark text-grey-darker">One</li>
-                    <li class="hover:text-green-dark text-grey-darker">Two</li>
-                    <li class="hover:text-green-dark text-grey-darker">Three</li>
-                </ul>
-
-                <div class="text-green-light mb-2 mt-4">Green-light</div>
-                <ul class="list-reset leading-normal">
-                    <li class="hover:text-green-light text-grey-darker">One</li>
-                    <li class="hover:text-green-light text-grey-darker">Two</li>
-                    <li class="hover:text-green-light text-grey-darker">Three</li>
-                </ul>
-
-
-            </div>
-            <div class="sm:w-1/2 sm:mt-0 mt-8 h-auto">
-                <div class="text-red-light mb-2">Newsletter</div>
-                <p class="text-grey-darker leading-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, consectetur. </p>
-                <div class="mt-4 flex">
-                    <input type="text" class="p-2 border border-grey-light round text-grey-dark text-sm h-auto" placeholder="Your email address">
-                    <button class="bg-orange text-white rounded-sm h-auto text-xs p-3">Subscribe</button>
-                </div>
-            </div>
-
         </div>
+   
     </div>
-</footer>
+    
+</div>

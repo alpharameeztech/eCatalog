@@ -34,7 +34,7 @@
     @include('partials/page_description')
     <!-- page description end-->
     
-    {{--  @include('partials/footer')  --}}
+    @include('partials/footer')
 
 </div>
 

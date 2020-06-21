@@ -8,6 +8,8 @@ interface StoreRepositoryInterface
 {
     public function all();
 
+    public function get($limit=5);
+
     public function availableInCities(Store $store);
 
     public function catalogs(Store $store);
