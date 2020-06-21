@@ -10537,6 +10537,12 @@ h3 {
   }
 }
 
+@font-face {
+  font-family: "mada";
+
+  src: url("/fonts/mada/Mada-Black.ttf") format("opentype"), url("/fonts/mada/Mada-Bold.ttf") format("ttf"), url("/fonts/mada/Mada-ExtraLight.ttf") format("ttf"), url("/fonts/mada/Mada-Light.ttf") format("ttf"), url("/fonts/mada/Mada-Medium.ttf") format("ttf"), url("/fonts/mada/Mada-Regular.ttf") format("ttf"), url("/fonts/mada/Mada-SemiBold.ttf") format("ttf");
+}
+
 img {
   width: 100%;
 }
@@ -10545,6 +10551,7 @@ h2 {
   font-size: 1.875rem;
   margin-top: 2rem;
   font-weight: bold;
+  font-family: mada;
 }
 
 ul.pagination {
@@ -10623,6 +10630,7 @@ ul.pagination {
 .catalogName {
   font-weight: bold;
   margin-bottom: 5px;
+  font-family: mada;
 }
 
 .findCatalogCta {
