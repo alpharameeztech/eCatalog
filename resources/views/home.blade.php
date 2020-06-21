@@ -16,7 +16,7 @@
         <!-- advertisements end -->
 
         <!-- featured catalogs -->
-        @include('partials/catalogs/featured')
+        {{--  @include('partials/catalogs/featured')  --}}
         <!-- featured catalogs end-->
 
         <!-- latest catalogs -->
