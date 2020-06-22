@@ -11,6 +11,10 @@
         @include('partials/logos')
         <!-- logos end -->
 
+        <!-- about -->
+        @include('partials/search')
+        <!-- about end-->
+
         <!-- advertisements -->
         @include('partials/advertisements')
         <!-- advertisements end -->

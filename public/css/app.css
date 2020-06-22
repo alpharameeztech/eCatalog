@@ -10782,3 +10782,51 @@ ul.pagination {
 .subHeading2 {
   margin-bottom: 35px;
 }
+
+form.example input[type=text] {
+  padding: 20px;
+  font-size: 17px;
+  float: left;
+  width: 80%;
+  background: #fff;
+  border-radius: 5px 0 0 5px;
+  border: none;
+  border: 1px solid #0061a6;
+  box-shadow: 0px 0px 10px 0px #0061a6;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 20px;
+  background: #0061a6;
+  color: white;
+  font-size: 17px;
+  border-left: none;
+  cursor: pointer;
+  border-radius: 0px 5px 5px 0px;
+  border: none;
+  border: 1px solid #0061a6;
+  box-shadow: 0px 0px 10px 0px #0061a6;
+}
+
+form.example button:hover {
+  background: #0061a6;
+  border: none;
+  border: 1px solid #0061a6;
+  box-shadow: 0px 0px 10px 0px #0061a6;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.searchContainer {
+  margin-top: 5%;
+  background-image: url("/img/main-page/logo-search.png");
+  background-repeat: no-repeat;
+  background-position: 45px 1px;
+  padding-top: 24px;
+}
