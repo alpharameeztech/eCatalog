@@ -13,7 +13,7 @@
                 </p>
 
                 <div class="row latestBlogContent">
-                    <div class="col-sm-6"><p>{{$blog->created_at}}</p></div>
+                    <div class="col-sm-6"><p>{{ \Carbon\Carbon::parse($blog->created_at)->day }} {{ \Carbon\Carbon::parse($blog->created_at)->subMonth()->format('F') }}</p></div>
                     <div class="col-sm-6 more"><a class="more" href="/blog/{{$blog->slug}}">Learn more</a></div>
                 </div>
             </div>

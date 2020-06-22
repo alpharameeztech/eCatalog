@@ -16,14 +16,20 @@
                     <div class="col-sm-12">
                         <p class="catalogName">{{$catalog->name}}</p>
                         <div class="textContainer">
-                            <p>
-                                {{$catalog->start_at}}
+                            <p class="catalogDate">
+                                {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
+                                @if(!$catalog->end_at)
+                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                                @endif
+
                                 @if($catalog->end_at)
-                                    <span> - {{$catalog->end_at}}</span>
+                                    <span> - {{ \Carbon\Carbon::parse($catalog->end_at_at)->day }}
+                                        {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                                    </span>
                                 @endif
                             </p>
                             <p>
-                                {{$catalog->store->name}}
+                                Store {{$catalog->store->name}}
                                 {{--  <a  href="/store/{{$catalog->store->slug}}" class="no-underline hover:underline text-blue-400">
                                     {{$catalog->store->name}}
                                 </a>  --}}
