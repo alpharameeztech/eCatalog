@@ -90,7 +90,7 @@ ul.pagination{
     color: #fff6f3;
 }
 .advertisement .content{
-    margin-top: 7%;
+    margin-top: 5%;
     position: relative;
 }
 .catalogDetails p{
@@ -110,6 +110,9 @@ ul.pagination{
     padding: 10px 0% !important;
     border-radius: 10px !important;
     font-size: 13px !important;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,97,166,1);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(0,97,166,1);
+    box-shadow: 0px 0px 5px 1px rgba(0,97,166,1);
 }
 .popularCatalogsContainer > div{
     margin: 10px 6px;
@@ -290,4 +293,56 @@ form.example input[type=text] {
   }
 .catalogDate{
   font-size: 15px !important;
+}
+h2.lineBreaker{
+  border-bottom: 2px solid #0061a6;
+  padding-bottom: 4%;
+  margin-bottom: 6%;
+}
+.floatRight{
+  float: right !important;
+}
+.initialPosition{
+  position: none !important;
+}
+.checkStoresCta{
+  position: absolute;
+  bottom: 30px;
+  right: 0;
+  background-color: #0061a6 !important;
+  border-color: #0061a6 !important;
+  width: 140px;
+  padding: 16px 0% !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0,97,166,1);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(0,97,166,1);
+  box-shadow: 0px 0px 5px 1px rgba(0,97,166,1);
+}
+.checkStores{
+  margin-top: 5% !important;
+  margin-bottom: 5% !important;
+  
+}
+.noShadow{
+  box-shadow: none !Important;
+}
+.catalogNavigation{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3%;
+}
+.catalogNavigation .page-link{
+  border: none !important;
+  background: none !important;
+}
+.catalogNavigation .page-item.active .page-link{
+  color: #000 !important;
+  font-weight: bold;
+}
+.pages{
+  margin-top: 8px !important;
+  padding-right: 17px !important;
+  color: #9a9a9a;
+  font-family: mada;
 }

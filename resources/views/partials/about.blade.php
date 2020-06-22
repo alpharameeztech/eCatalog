@@ -7,7 +7,7 @@
             <div class="col-sm-6 aboutContent">
                 <p>
                     DealzBook provides you will all the latest sales and deals in your favorite stores near you.
-                    VIew all offers in one place with only a few clocks, from the comfort of your own home.
+                    View all offers in one place with only a few clocks, from the comfort of your own home.
                 </p>
 
             </div>

@@ -6,14 +6,35 @@ use App\Catalog;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Store;
 use Illuminate\Http\Request;
+use App\Repositories\Interfaces\StoreRepositoryInterface;
+use App\Repositories\Interfaces\CityRepositoryInterface;
+use App\Repositories\Interfaces\CountryRepositoryInterface;
 
 class CatalogController extends Controller
 {
     protected $catalogRepository;
 
-    public function __construct(CatalogRepositoryInterface $catalogRepository)
+    private $storeRepository;
+
+    private $cityRepository;
+
+    private $countryRepository;
+
+
+
+    public function __construct(
+        CatalogRepositoryInterface $catalogRepository,
+        StoreRepositoryInterface $storeRepository,
+        CityRepositoryInterface $cityRepository,
+        CountryRepositoryInterface $countryRepository
+
+    )
     {
         $this->catalogRepository = $catalogRepository;
+        $this->storeRepository = $storeRepository;
+        $this->cityRepository = $cityRepository;
+        $this->countryRepository = $countryRepository;
+
     }
     /**
      * Display a listing of the resource.
@@ -24,6 +45,10 @@ class CatalogController extends Controller
     {
         return view('pages.catalog.index',[
             'catalogs' => $this->catalogRepository->all(),
+            'recent_stores' => $this->storeRepository->get($limit=8),
+            'recent_cities' => $this->cityRepository->get($limit=8),
+            'recent_countries' => $this->countryRepository->get($limit=5)
+
         ]);
 
     }

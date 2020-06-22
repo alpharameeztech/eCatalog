@@ -3,12 +3,30 @@
 @section('content')
 
 
-    <!-- all catalogs -->
-    <h2 class="text-3xl mt-8">Catalogs</h2>
-    <div class="grid grid-cols-4 gap-4 mt-4">
-        @foreach ($catalogs as $catalog)
-                <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                   
+    <div class="bannerAd">
+        <img src="/img/other/banner-ad.png" />
+    </div>
+    <div class="container">
+        <!-- all catalogs -->
+        <h2 class="lineBreaker">Find your favorite stores offers on DealzBook</h2>
+
+        <div class="row popularCatalogsContainer">
+            @foreach ($catalogs as $key=>$catalog)
+
+                @if($key == 8)
+                    <!-- check all stores -->
+                    @include('partials/catalogs/check_all_stores')
+                    <!-- check all stores end-->
+                @endif
+
+                @if($key == 16)
+                    <!-- check all stores -->
+                    @include('partials/advertisements3')
+                    <!-- check all stores end-->
+                @endif
+        
+                <div class="col-sm-3 customContainers">
+                    
                     @foreach ($catalog->images as $image)
     
                         @if ($image->featured)
@@ -16,37 +34,51 @@
                         @endif
     
                     @endforeach
-
-                    <div class="px-6 py-4">
-                        <div class=" text-base mb-2">{{$catalog->name}}</div>
-                      
-                        <p class="font-extrabold text-gray-700 text-base">
-                            {{$catalog->start_at}}
-                            @if($catalog->end_at)
-                                <span> - {{$catalog->end_at}}</span>
-                            @endif
-                        </p>
-                        <p class="text-gray-700 text-base">
-                            By <a  href="/store/{{$catalog->store->name}}" class="no-underline hover:underline text-blue-400">
-                                {{$catalog->store->name}}
-                            </a>
-                        </p>
-                        <p class="text-gray text-base">
-                            <a href="{{$catalog->store->slug}}/catalogs/{{$catalog->slug}}" class="no-underline hover:underline text-blue-500 ">View Details</a>
-                        </p>
-                        @if(!empty($catalog->end_at))
-                            @if( $catalog->end_at <= date('Y-m-d'))
-                                <span class="badge badge-danger">Expired</span>
-                            @endif
-                        @endif
+                    
+                    <div class="row catalogDetails">
+                        <div class="col-sm-12">
+                            <p class="catalogName">{{$catalog->name}}</p>
+                        
+                            <div class="textContainer">
+                                <p class="catalogDate">
+                                    {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
+                                    @if(!$catalog->end_at)
+                                        {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                                    @endif
+    
+                                    @if($catalog->end_at)
+                                        <span> - {{ \Carbon\Carbon::parse($catalog->end_at_at)->day }}
+                                            {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                                        </span>
+                                    @endif
+                                </p>
+                                <p>
+                                    Store {{$catalog->store->name}}
+                                    {{--  <a  href="/store/{{$catalog->store->slug}}" class="no-underline hover:underline text-blue-400">
+                                        {{$catalog->store->name}}
+                                    </a>  --}}
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-        @endforeach
-    
+            @endforeach
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 catalogNavigation">
+                <span class="pages">Pages </span> {{ $catalogs->links() }}
+            </div>
+        </div>
+       
+
+        <!-- check all stores -->
+        @include('partials/browse_catalogs_banner')
+        <!-- check all stores end-->
+        
+        <!-- all catalogs end-->
     </div>
-    {{ $catalogs->links() }}
-    
-    <!-- all catalogs end-->
+   
 
 @endsection
 

@@ -12,7 +12,7 @@ class CatalogRepository implements CatalogRepositoryInterface
 {
     public function all()
     {
-        return Catalog::where('status', 1)->paginate(16);
+        return Catalog::where('status', 1)->paginate(20);
     }
 
     public function latest($limit = 12)
