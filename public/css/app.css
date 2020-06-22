@@ -10670,6 +10670,7 @@ ul.pagination {
 
 .latestBlogContent p, .latestBlogContent a {
   color: #9a9a9a;
+  font-family: mada;
 }
 
 .aboutContent {
