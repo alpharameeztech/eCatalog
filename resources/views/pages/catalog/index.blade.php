@@ -8,7 +8,42 @@
     </div>
     <div class="container">
         <!-- all catalogs -->
-        <h2 class="lineBreaker">Find your favorite stores offers on DealzBook</h2>
+        <h2 class="lineBreaker">Find your favorite store's offers on DealzBook</h2>
+
+        {{--  -----------sorting -----------  --}}
+        <div class="row sortingContainer">
+            <div class="col-sm-1">
+                <a href=""><span class="sortSpan">Sort by</span></a>
+            </div>
+            <div class="col-sm-9">
+                <nav role='navigation'>
+                    <ul class="sorting">
+                      <li>
+                        <a href="#">
+                          <div>
+                            All
+                          </div>
+                        </a>
+                      </li>
+                     @foreach ($tags as $key=>$tag)
+                        <li>
+                            <a href="/tags/{{$tag->slug}}">
+                                {{$tag->name}}
+                            </a>
+                      </li>
+                     @endforeach
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-sm-2">
+                <a href="" class="newestSort">
+                    <span>Newest</span>
+                    <img src="/img/icons/arrow-down.svg"/>
+                </a>
+            </div>
+        </div>
+        
+        {{--  -----------sorting end -----------  --}}
 
         <div class="row popularCatalogsContainer">
             @foreach ($catalogs as $key=>$catalog)

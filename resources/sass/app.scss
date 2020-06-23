@@ -346,3 +346,30 @@ h2.lineBreaker{
   color: #9a9a9a;
   font-family: mada;
 }
+.sorting{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  list-style: none;
+}
+.sorting li a{
+  color: #6a6a6a;
+  text-transform: capitalize;
+}
+.sortSpan{
+  color: black;
+  font-family: mada;
+}
+
+.sortingContainer{
+  margin-bottom: 50px;
+}
+.newestSort{
+  display: flex;
+  justify-content: flex-end;
+}
+.newestSort img{
+  width: 25px;
+}

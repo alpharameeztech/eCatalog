@@ -18,7 +18,9 @@ use App\Repositories\Interfaces\BranchRepositoryInterface;
 use App\Repositories\Interfaces\CityRepositoryInterface;
 use App\Repositories\Interfaces\CountryRepositoryInterface;
 use App\Repositories\Interfaces\FaqRepositoryInterface;
+use App\Repositories\Interfaces\TagRepositoryInterface;
 use App\Repositories\Interfaces\TermRepositoryInterface;
+use App\Repositories\TagRepository;
 use App\Repositories\TermRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -69,6 +71,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             CountryRepositoryInterface::class, 
             CountryRepository::class
+        );
+
+        $this->app->bind(
+            TagRepositoryInterface::class, 
+            TagRepository::class
         );
     }
 }
