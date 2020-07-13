@@ -54,17 +54,12 @@
         <div class="row popularCatalogsContainer">
         @foreach ($stores as $key=>$store)
 
-            @if($key == 8)
-                <!-- check all stores -->
-                @include('partials/catalogs/check_all_stores')
-                <!-- check all stores end-->
-            @endif
-
-            @if($key == 16)
+            @if($key == 12)
                 <!-- check all stores -->
                 @include('partials/advertisements3')
                 <!-- check all stores end-->
-                @endif
+            @endif
+
 
                 <div class="col-sm-3 customContainers bgWhite">
 
