@@ -36,9 +36,9 @@
                 </nav>
             </div>
             <div class="col-sm-2">
-                <a href="" class="newestSort">
+                <a href="/catalogs?tag=newest" class="newestSort">
                     <span>Newest</span>
-                    <img src="/img/icons/arrow-down.svg"/>
+                    <img src="/img/icons/arrow-down-black.svg"/>
                 </a>
             </div>
         </div>
