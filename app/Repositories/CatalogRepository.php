@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Catalog;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\City;
+use App\Tag;
 use Illuminate\Support\Arr;
 use App\Support\Collection;
 
@@ -12,6 +13,13 @@ class CatalogRepository implements CatalogRepositoryInterface
 {
     public function all()
     {
+        $tag = htmlspecialchars(request('tag'));
+
+        if($tag){
+            $tag = Tag::where('slug', $tag)->first();
+            return $tag->catalogs->paginate(20);
+        }
+
         return Catalog::where('status', 1)->paginate(20);
     }
 
@@ -45,11 +53,11 @@ class CatalogRepository implements CatalogRepositoryInterface
     public function inCities(Catalog $catalog){
 
         $branches = $catalog->branches;
-       
+
         $branches = collect($branches);
-        
+
         $city_ids = $branches->pluck('city_id');
-        
+
         $unique_city_ids = $city_ids->unique();
 
         $unique_city_ids_array = Arr::flatten($unique_city_ids);

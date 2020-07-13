@@ -10,7 +10,7 @@ class Tag extends Model
     use HasTranslations;
 
     public $translatable = ['name'];
-    
+
     protected $with = ['seoTags', 'page'];
 
     public function getRouteKeyName(){

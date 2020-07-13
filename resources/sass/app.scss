@@ -174,10 +174,10 @@ ul.pagination{
         background: #ccc;
         color: black;
         svg {
-          fill: green; 
+          fill: green;
         }
         span {
-          color: black; 
+          color: black;
         }
       }
     }
@@ -197,11 +197,11 @@ ul.pagination{
     }
     &.outlines {
       * {
-        outline: 1px solid rgba(red, 0.5); 
+        outline: 1px solid rgba(red, 0.5);
       }
     }
   }
-  
+
   .options {
     text-align: center;
     padding: 2rem 0;
@@ -209,7 +209,7 @@ ul.pagination{
       margin-right: 2rem;
     }
   }
-  
+
   @media (min-width: 1000px) {
     .main-nav {
       a {
@@ -250,9 +250,9 @@ form.example input[type=text] {
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,97,166,1);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0,97,166,1);
     box-shadow: 0px 0px 10px 0px rgba(0,97,166,1);
-   
+
   }
-  
+
   form.example button {
     float: left;
     width: 20%;
@@ -269,7 +269,7 @@ form.example input[type=text] {
     -moz-box-shadow: 0px 0px 10px 0px rgba(0,97,166,1);
     box-shadow: 0px 0px 10px 0px rgba(0,97,166,1);
   }
-  
+
   form.example button:hover {
     background: #0061a6;
     border: none;
@@ -278,7 +278,7 @@ form.example input[type=text] {
     -moz-box-shadow: 0px 0px 10px 0px rgba(0,97,166,1);
     box-shadow: 0px 0px 10px 0px rgba(0,97,166,1);
   }
-  
+
   form.example::after {
     content: "";
     clear: both;
@@ -322,7 +322,7 @@ h2.lineBreaker{
 .checkStores{
   margin-top: 5% !important;
   margin-bottom: 5% !important;
-  
+
 }
 .noShadow{
   box-shadow: none !Important;
@@ -372,4 +372,9 @@ h2.lineBreaker{
 }
 .newestSort img{
   width: 25px;
+}
+.activeTag{
+    border: 1px solid #008df2;
+    padding: 10px;
+    border-radius: 10px;
 }

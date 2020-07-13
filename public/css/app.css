@@ -10927,3 +10927,9 @@ h2.lineBreaker {
 .newestSort img {
   width: 25px;
 }
+
+.activeTag {
+  border: 1px solid #008df2;
+  padding: 10px;
+  border-radius: 10px;
+}
