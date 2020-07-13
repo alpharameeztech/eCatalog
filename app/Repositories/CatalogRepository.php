@@ -15,12 +15,12 @@ class CatalogRepository implements CatalogRepositoryInterface
     {
         $tag = htmlspecialchars(request('tag'));
 
-        if($tag && $tag='newest'){
+        if($tag && $tag == 'newest'){
             return Catalog::where('status', 1)
                             ->orderBy('created_at', 'desc')
                                 ->paginate(20);
         }
-        if($tag){
+        else if($tag){
             $tag = Tag::where('slug', $tag)->first();
             return $tag->catalogs->paginate(20);
         }
