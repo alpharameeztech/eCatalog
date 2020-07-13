@@ -16,41 +16,6 @@
         <!-- all catalogs -->
         <h2 class="lineBreaker"></h2>
 
-        {{--  -----------sorting -----------  --}}
-        <div class="row sortingContainer">
-            <div class="col-sm-1">
-                <a href=""><span class="sortSpan">Sort by</span></a>
-            </div>
-            <div class="col-sm-9">
-                <nav role='navigation'>
-                    <ul class="sorting">
-                        <li>
-                            <a href="/catalogs">
-                                <div>
-                                    All
-                                </div>
-                            </a>
-                        </li>
-                        @foreach ($tags as $key=>$tag)
-                            <li class="@if( request('tag') == $tag->slug) activeTag  @endif">
-                                <a href="/catalogs?tag={{$tag->slug}}">
-                                    {{$tag->name}}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-sm-2">
-                <a href="/catalogs?tag=newest" class="newestSort">
-                    <span>Newest</span>
-                    <img src="/img/icons/arrow-down-black.svg"/>
-                </a>
-            </div>
-        </div>
-
-        {{--  -----------sorting end -----------  --}}
-
         <div class="row popularCatalogsContainer">
         @foreach ($stores as $key=>$store)
 
