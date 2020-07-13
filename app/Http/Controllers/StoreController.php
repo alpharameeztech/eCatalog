@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Interfaces\CatalogRepositoryInterface;
+use App\Repositories\Interfaces\CityRepositoryInterface;
+use App\Repositories\Interfaces\CountryRepositoryInterface;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
+use App\Repositories\Interfaces\TagRepositoryInterface;
 use App\Store;
 use Illuminate\Http\Request;
 
@@ -10,10 +14,30 @@ class StoreController extends Controller
 {
     protected $storeRepository;
 
-    public function __construct(StoreRepositoryInterface $storeRepository)
+    protected $catalogRepository;
+
+    private $cityRepository;
+
+    private $countryRepository;
+
+    private $tagRepository;
+
+    public function __construct(
+        CatalogRepositoryInterface $catalogRepository,
+        StoreRepositoryInterface $storeRepository,
+        CityRepositoryInterface $cityRepository,
+        CountryRepositoryInterface $countryRepository,
+        TagRepositoryInterface $tagRepository
+    )
     {
-        $this->storeRepository =  $storeRepository;
+        $this->catalogRepository = $catalogRepository;
+        $this->storeRepository = $storeRepository;
+        $this->cityRepository = $cityRepository;
+        $this->countryRepository = $countryRepository;
+        $this->tagRepository = $tagRepository;
+
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +45,14 @@ class StoreController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.store.index',[
+            'stores' => $this->storeRepository->all(),
+            'recent_stores' => $this->storeRepository->get($limit=8),
+            'recent_cities' => $this->cityRepository->get($limit=8),
+            'recent_countries' => $this->countryRepository->get($limit=5),
+            'tags' => $this->tagRepository->all(),
+            'recent_stores' => $this->storeRepository->get($limit=8),
+        ]);
     }
 
     /**
