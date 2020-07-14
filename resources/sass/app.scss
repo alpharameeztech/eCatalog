@@ -411,3 +411,11 @@ div.lineBreaker{
     position: unset;
     margin-top: 50px;
 }
+.storeSocialIcons{
+    display: flex;
+    justify-content: flex-start;
+}
+.storeSocialIcons img{
+    width: 35px;
+    margin-right: 20px;
+}

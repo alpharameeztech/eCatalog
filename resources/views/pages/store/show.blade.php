@@ -30,6 +30,15 @@
 
                 <h2>{{ strtoupper($store->name) }}</h2>
 
+                <div class="storeSocialIcons">
+                    <a href="{{ $store->facebook_link }}" target="_blank">
+                        <img src="/img/icons/share-icon-facebook.svg">
+                    </a>
+                    <a href="{{ $store->twitter_link }}" target="_blank">
+                        <img src="/img/icons/share-icon-twitter.svg">
+                    </a>
+                </div>
+
                 <p>
                     {!! $store->about !!}
                 </p>
