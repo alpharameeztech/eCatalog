@@ -10960,3 +10960,18 @@ h2.lineBreaker {
 .storeContainerIndex p {
   margin-top: 18px;
 }
+
+div.lineBreaker {
+  border-bottom: 2px solid #0061a6;
+}
+
+.storeLogo {
+  margin-top: 2rem;
+}
+
+.storeLogo a {
+  margin: 0 auto;
+  display: block;
+  position: unset;
+  margin-top: 50px;
+}
