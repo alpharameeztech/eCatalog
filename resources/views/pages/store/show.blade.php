@@ -273,7 +273,7 @@
         <!-- store catalogs end-->
 
         <!-- check all stores -->
-    @include('partials/browse_catalogs_banner')
+    @include('partials/browse_our_stores_list')
     <!-- check all stores end-->
 
         <!-- all catalogs end-->
