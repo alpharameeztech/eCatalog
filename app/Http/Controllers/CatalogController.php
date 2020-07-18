@@ -100,7 +100,14 @@ class CatalogController extends Controller
             'page_description' => $catalog->page,
             'recent_stores' => $this->storeRepository->get($limit=8),
             'recent_cities' => $this->cityRepository->get($limit=8),
-            'recent_countries' => $this->countryRepository->get($limit=5)
+            'recent_countries' => $this->countryRepository->get($limit=5),
+            'store' => $store,
+            'in_cities' =>  $this->storeRepository->availableInCities($store),
+            'recent_stores' => $this->storeRepository->get($limit=8),
+            'recent_cities' => $this->cityRepository->get($limit=8),
+            'recent_countries' => $this->countryRepository->get($limit=5),
+            'page_description' => $store->page,
+            'store_catalogs' => $store->catalogs
 
         ]);
 

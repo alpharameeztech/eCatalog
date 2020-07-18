@@ -1,243 +1,298 @@
 @extends('master')
 
-@section('title', '- About Page')
-
 @section('content')
 
-<div class="row catalogInfo">
+    <style>
+        .accordion {
+            border: 1px solid #002247;
+        }
 
-    <div class="col-sm-4">
-        @foreach ($catalog->images as $image)
+        .accordion h3 {
+            background-color: #f3e9eb;
+            color: #222;
+            font-size: 16px;
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+        }
 
-            @if ($image->featured)
-                <div class="card">
-                   
+        .accordion .card-header {
+            padding: 0;
+        }
 
-                    <img id="image" class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
-                    <p class="text-gray text-base text-center">
-                        {{--  <a href="" class="no-underline hover:underline text-blue-500 ">View Catalog</a>  --}}
-                        @if(!empty($catalog->end_at))
-                            @if( $catalog->end_at <= date('Y-m-d'))
-                                <div class="expired"><span class="badge badge-danger">Expired</span></div>
-                            @endif
-                        @endif
-                       
-                    </p>
-                </div>
+        .accordion .card-header button {
+            text-align: left;
+            display: block;
+            width: 100%;
+            font-size: 18px;
+            color: #000000;
+            position: relative;
+        }
 
-               
-            @endif
+        .accordion .card-header button.collapsed::after {
+            position: absolute;
+            width: 2px;
+            height: 12px;
+            content: '';
+            background-color: #000;
+            right: 12px;
+            top: 54%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
 
-        @endforeach
+        .accordion .card-header button::before {
+            position: absolute;
+            width: 12px;
+            height: 2px;
+            content: '';
+            background-color: #000;
+            right: 7px;
+            top: 50%;
+        }
+
+        .accordion .card-header button:hover {
+            text-decoration: none;
+        }
+
+        .accordion .card-header button i {
+            float: right;
+            margin-top: 3px;
+        }
+
+        .accordion .card-body {
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        .accordion .card-body table {
+            margin: 0;
+        }
+
+        .accordion .card-body table a {
+            color: #000;
+        }
+
+        .accordion .card-body table span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .accordion ul.occasion_list a {
+            padding: 5px 15px;
+            color: #222;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        .accordion ul.occasion_list a:hover {
+            color: #002247;
+        }
+    </style>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <div class="bannerAd">
+        <img src="/img/other/banner-ad.png" />
     </div>
 
-    {{--  catalog details  --}}
-    <div class="col-sm-8 catalogDetails">
-        <div class="card">
-            <div class="card-header">
-              {{ $catalog->name}}
-            </div>
-            <div class="card-body">
-              <p class="card-text">{{$catalog->description}}.</p>
-              <p>By: <a class="no-underline hover:underline text-blue-500" href="/store/{{$catalog->store->name}}">{{$catalog->store->name}}</a></p>
+    <div class="container">
 
-              <table class="table table-hover">
-                <thead>
-                  
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Start Date</th>
-                    <td>{{$catalog->start_at}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">End Date</th>
-                    <td>{{$catalog->end_at}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Pages#</th>
-                    <td colspan="2">{{count($catalog->images)}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Total Views</th>
-                    <td colspan="2">{{$catalog->total_views}}</td>
-                  </tr>
-                  @if(count($catalog->pdfs))
-                    <tr>
-                        <th scope="row">Attached PDfs</th>
-                        @foreach($catalog->pdfs as $pdf)
-                            <td colspan="2">
-                                <a target="_blanck" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">{{$pdf->pdf}}</a>
-                                </td>
-                        @endforeach
-                    </tr>
-                    @endif
-                  <tr>
-                    <th scope="row">Added On</th>
-                    <td colspan="2">{{$catalog->created_at}}</td>
-                  </tr>
-                </tbody>
-              </table>
 
-            </div>
+        <div class="lineBreaker">
+            <p>Catalogs / {{ strtoupper($store->name) }} / {{ strtoupper($catalog->name) }}</p>
         </div>
-        <h2>Click on any image to browse catalog</h2>
 
-        <div class="col-sm-12">
-            <div>
-                <div class= "row" id="images">
-                    @foreach ($catalog->images as $image)
-                        <div class="col-sm-3"><img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Picture 1"></div>
-                    @endforeach
+        <div class="row catalogHeaderOne">
+            <div class="storeLeftSideBar col-sm-6">
+
+                <div class="storeLogo">
+
+                    <h2>{{ strtoupper($catalog->name) }}</h2>
+
                 </div>
+
             </div>
+
+            <div class="storeContentSection col-sm-6 catalogHeaderTwo">
+
+                <div class="storeSocialIcons">
+                    <a href="{{ $store->facebook_link }}" target="_blank">
+                        <img src="/img/icons/share-icon-facebook.svg">
+                    </a>
+                    <a href="{{ $store->twitter_link }}" target="_blank">
+                        <img src="/img/icons/share-icon-twitter.svg">
+                    </a>
+                </div>
+
+            </div>
+
         </div>
-    
-    </div>
-</div>
-    {{--  -- Catalog details end  --}}
 
-    {{--  ======================= catalog availability ==========================  --}}
+        <div class="row">
+            <div class="storeLeftSideBar col-sm-6">
 
-    <div class="row">
-        <p class="text-lg col-sm-12">Available In</p>
-        <div id="accordion" class="col-sm-12">
+                <div class="storeLogo">
 
-            @foreach ($catalog_cities as $city)
+                    <p>{{ strtoupper($catalog->name) }}</p>
 
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                        <button class="" data-toggle="collapse" data-target="#{{$city->slug}}" aria-expanded="true" aria-controls="{{$city->slug}}">
-                        {{$city->name}}
-                        </button>
-                        </h5>
-                    </div>
+                </div>
 
-                    <div id="{{$city->slug}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                         
-                            @foreach($catalog->branches as $branch)
+            </div>
+
+            <div class="storeContentSection col-sm-6">
+
+               {!! $catalog->description !!}
+
+            </div>
+
+        </div>
+
+        {{--  ======================= Store branches ==========================  --}}
+        @if(count($in_cities) > 0)
+            <h2 class="lineBreaker">Branches and information</h2>
+
+            <div class="container storeInCities">
+                <div class="accordion " id="accordionExample">
+                    @foreach ($in_cities as $city)
+
+                        <div class="card">
+                            <div class="card-header" >
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#p__detail" aria-expanded="true" aria-controls="p__detail">
+                                        {{ucfirst($city->name)}}
+                                    </button>
+                                </h2>
+                            </div>
+
+                            @foreach($store->branches as $branch)
                                 @if($branch->city_id == $city->id)
 
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
+                                    <div id="p__detail" class="collapse "  data-parent="#accordionExample">
+                                        <div class="card-body">
                                             <h5 class="mb-0">
-                                                <a href="/{{$branch->store->slug}}/{{$branch->city->slug}}/{{$branch->slug}}">
+                                                <a href="/{{$store->slug}}/{{$branch->city->slug}}/{{$branch->slug}}">
                                                     <button class="btn btn-link">
-                                                        {{$branch->name}}
+                                                        {{ ucfirst($branch->name) }}
                                                     </button>
                                                 </a>
                                             </h5>
-                                        </div>
-                        
-                                        <div id="{{$branch->slug}}" >
-                                            <div class="card-body">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <th scope="row"><i class="material-icons">home</i></th>
-                                                        <td>{{$branch->address}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><i class="material-icons">phone</i></th>
-                                                        <td>{{$branch->telephone}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><i class="material-icons">contact_phone</i></th>
-                                                        <td>{{$branch->fax}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><i class="material-icons">email</i></th>
-                                                        <td>
-                                                            <a href="mailto:{{$branch->email}}">{{$branch->email}}</a>
-                                                            
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><i class="material-icons">map</i></th>
-                                                        <td>
-                                                            <a href="{{$branch->map_location}}"> Map & Directions
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><i class="material-icons">access_time</i></th>
-                                                        <td>{{$branch->opening_hours}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><i class="material-icons">call_made</i></th>
-                                                        <td>
-                                                            <a href="{{$branch->slug}}" target="_blank">
-                                                                View Branch Details
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                    
+
+                                            <div id="{{$branch->slug}}" >
+                                                <div class="card-body">
+
+                                                    <div class="row">
+                                                        <div class="col-sm-4 subSection">
+                                                            <p class="subHeading">Address:</p>
+                                                            <p class="content">
+                                                                {{$branch->address}}
+                                                            </p>
+
+                                                            <p class="locationInMap">
+                                                            <span>
+                                                                <i class="material-icons">map</i>
+                                                            </span>
+                                                                <a href="{{$branch->map_location}}"> Look at the map</a>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-sm-4 subSection">
+                                                            <p class="subHeading">Phone:</p>
+                                                            <p class="content">
+                                                                {{$branch->telephone}}
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-sm-4 subSection">
+                                                            <p class="subHeading">Opening hours:</p>
+                                                            <p class="content">
+                                                                {{$branch->opening_hours}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
                                             </div>
+
+
                                         </div>
                                     </div>
+
 
                                 @endif
 
                             @endforeach
-                
+
                         </div>
-                    </div>
+
+                        {{--                <div class="card">--}}
+                        {{--                    <div class="card-header" >--}}
+                        {{--                        <h2 class="mb-0">--}}
+                        {{--                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#size__and__fit" aria-expanded="false" aria-controls="size__and__fit">--}}
+                        {{--                                How do I register?--}}
+                        {{--                            </button>--}}
+                        {{--                        </h2>--}}
+                        {{--                    </div>--}}
+                        {{--                    <div id="size__and__fit" class="collapse"  data-parent="#accordionExample">--}}
+                        {{--                        <div class="card-body">You can register yourself by clicking on this Registration Link. Once subscribed, you can enjoy regular updates and services from synergy consulting group.--}}
+                        {{--                        </div>--}}
+                        {{--                    </div>--}}
+                        {{--                </div>--}}
+                        {{--                <div class="card">--}}
+                        {{--                    <div class="card-header" >--}}
+                        {{--                        <h2 class="mb-0">--}}
+                        {{--                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#fabric__comp" aria-expanded="false" aria-controls="fabric__comp">--}}
+                        {{--                                Do I have to disclose my Email & Phone Number for Registration?--}}
+                        {{--                            </button>--}}
+                        {{--                        </h2>--}}
+                        {{--                    </div>--}}
+                        {{--                    <div id="fabric__comp" class="collapse"  data-parent="#accordionExample">--}}
+                        {{--                        <div class="card-body">Yes. This ensures a secure from your end.--}}
+                        {{--                        </div>--}}
+                        {{--                    </div>--}}
+                        {{--                </div>--}}
+                        {{--                <div class="card">--}}
+                        {{--                    <div class="card-header" >--}}
+                        {{--                        <h2 class="mb-0">--}}
+                        {{--                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#return__policy" aria-expanded="false" aria-controls="return__policy">--}}
+                        {{--                                Is my Personal Information secure at synergy consulting group--}}
+                        {{--                            </button>--}}
+                        {{--                        </h2>--}}
+                        {{--                    </div>--}}
+                        {{--                    <div id="return__policy" class="collapse" data-parent="#accordionExample">--}}
+                        {{--                        <div class="card-body">Yes. Please see our Privacy Policy to know more.--}}
+                        {{--                        </div>--}}
+                        {{--                    </div>--}}
+                        {{--                </div>--}}
+
+                    @endforeach
+                    @endif
+
+                    {{--  ============================ Store branches end==================  --}}
+
+
                 </div>
-            @endforeach
-            
-        </div>
-
-        <div class="alert alert-success notice" role="alert">
-            <p>
-                Above listed store information and timings are to the best of our knowledge and may change without prior notice.
-            </p>
-            <p>
-                Timings may change during Ramadan and public holidays and hence kindly check with the stores to avoid last minute disappointments.
-            </p>
-        </div>
+            </div>
 
 
+
+            <!-- check all stores -->
+        @include('partials/see_all_catalogs')
+        <!-- check all stores end-->
+
+            <!-- store catalogs -->
+        @include('partials/catalogs/catalogs_of_a_store')
+        <!-- store catalogs end-->
+
+            <!-- check all stores -->
+        @include('partials/browse_our_stores_list')
+        <!-- check all stores end-->
+
+            <!-- all catalogs end-->
     </div>
-    {{--  ============================ catalog availability end==================  --}}
-
-    {{--  ============================ catalog's tag ==================  --}}
-            @if(count($catalog->tags))
-                <div class="card tags">
-
-                    <div class="card-body">
-                        @foreach ($catalog->tags as $tag)
-                        <a href="/tag/{{$tag->slug}}">
-                            <button type="button" class="btn btn-primary">
-                                {{$tag->name}}
-                            </button>
-                        </a>
-                        @endforeach
-                    </div>
-
-                </div>
-            @endif
-
-    {{--  ============================ catalog's tag end ==================  --}}
-
-    
-    <!-- latest catalogs -->
-    <h2 class="text-3xl mt-8">Latest Catalogs</h2>
-    @include('partials/catalogs/latest')
-    <!-- latest catalogs end-->
-
-</div>
 
 
 @endsection
 
-<link href="{{ asset('css/viewer.css') }}" rel="stylesheet">
 
-<script src="{{ asset('js/viewer.js') }}" defer></script>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
