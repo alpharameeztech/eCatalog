@@ -11026,3 +11026,11 @@ div.lineBreaker {
   margin-top: 1rem !important;
   margin-bottom: 1rem !important;
 }
+
+.locationInMap span {
+  color: #fff;
+}
+
+.locationInMap span .material-icons {
+  font-size: 15px;
+}
