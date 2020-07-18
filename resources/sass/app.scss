@@ -25,6 +25,9 @@
 // @tailwind components;
 
 // @tailwind utilities;
+body{
+    background-color: #fff !important;
+}
 img{
     width: 100%;
 }
@@ -418,4 +421,33 @@ div.lineBreaker{
 .storeSocialIcons img{
     width: 35px;
     margin-right: 20px;
+}
+.storeInCities .card-header, .storeInCities .card-body{
+    background-color: #0061a6;
+}
+.storeInCities .card-header .btn, .storeInCities td, .storeInCities .card-body .btn{
+    color: #fff !important;
+}
+.storeInCities .card-body {
+    margin-left: 3%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+.storeInCities .subHeading{
+    color: #2a8cd2;
+    border-top: 1px solid #2a8cd2;
+    padding-top: 25px;
+}
+.storeInCities .content, .locationInMap a{
+    color: #fff;
+}
+.storeInCities .accordion .card-header button::before, .storeInCities .accordion .card-header button.collapsed::after{
+    background-color: #fff;
+}
+.storeInCities .accordion, .storeInCities .card{
+    border: none;
+}
+.storeInCities h2{
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
 }
