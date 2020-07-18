@@ -11034,3 +11034,13 @@ div.lineBreaker {
 .locationInMap span .material-icons {
   font-size: 15px;
 }
+
+.seeAllLatestCatalogCta {
+  background-color: #0061a6 !important;
+  border-color: #0061a6 !important;
+  width: 140px;
+  padding: 16px 0% !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  box-shadow: 0px 0px 5px 1px #0061a6;
+}

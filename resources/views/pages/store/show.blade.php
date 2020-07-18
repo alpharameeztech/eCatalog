@@ -265,7 +265,7 @@
 
 
         <!-- check all stores -->
-            @include('partials/catalogs/check_all_stores')
+            @include('partials/see_all_catalogs')
         <!-- check all stores end-->
 
         <!-- all catalogs -->
