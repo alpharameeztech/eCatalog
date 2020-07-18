@@ -268,19 +268,9 @@
             @include('partials/see_all_catalogs')
         <!-- check all stores end-->
 
-        <!-- all catalogs -->
-        <h2 class="lineBreaker"></h2>
-
-        <div class="row popularCatalogsContainer">
-
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12 catalogNavigation">
-{{--                <span class="pages">Pages </span> {{ $stores->links() }}--}}
-            </div>
-        </div>
-
+        <!-- store catalogs -->
+        @include('partials/catalogs/catalogs_of_a_store')
+        <!-- store catalogs end-->
 
         <!-- check all stores -->
     @include('partials/browse_catalogs_banner')

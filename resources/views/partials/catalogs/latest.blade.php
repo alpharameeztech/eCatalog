@@ -1,7 +1,7 @@
 <div class="row">
     @foreach ($latest_catalogs as $catalog)
             <div class="col-sm-3">
-               
+
                 @foreach ($catalog->images as $image)
 
                     @if ($image->featured)
@@ -11,7 +11,7 @@
                     @endif
 
                 @endforeach
-               
+
                 <div class="row catalogDetails">
                     <div class="col-sm-12">
                         <p class="catalogName">{{$catalog->name}}</p>
@@ -37,8 +37,8 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
     @endforeach
-    
+
 </div>

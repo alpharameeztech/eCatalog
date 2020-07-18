@@ -90,7 +90,8 @@ class StoreController extends Controller
             'recent_stores' => $this->storeRepository->get($limit=8),
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
-            'page_description' => $store->page
+            'page_description' => $store->page,
+            'store_catalogs' => $store->catalogs
         ]);
     }
 
