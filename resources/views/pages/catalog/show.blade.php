@@ -130,12 +130,64 @@
 
         </div>
 
-        <div class="row">
+        <div class="row catalogContainer">
             <div class="storeLeftSideBar col-sm-6">
 
-                <div class="storeLogo">
+                <div class="catalogInfo">
 
-                    <p>{{ strtoupper($catalog->name) }}</p>
+                    <div class="row">
+                        <div class="col-sm-8">
+
+                            <p class="fontMada">
+                                {{ $store->name }}
+                            </p>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <p>
+                                {{ count($catalog->images) }}
+                            </p>
+                            <span class="darkGray">Pages</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-sm-4">
+
+                            <p class="catalogDate">
+                                {{ \Carbon\Carbon::parse($catalog->created_at)->day }}
+                                {{ \Carbon\Carbon::parse($catalog->created_at)->subMonth()->format('F') }}
+                                {{ \Carbon\Carbon::parse($catalog->created_at)->subYear()->format('Y') }}
+                            </p>
+                            <p class="darkGray">
+                                Added On
+                            </p>
+                        </div>
+
+                        <div class="col-sm-4">
+
+                            <p class="catalogDate">
+                                {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
+                                {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                                {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }}
+                            </p>
+                            <p class="darkGray">
+                                Start Date
+                            </p>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <p class="catalogDate">
+                                {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
+                                {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                                {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
+                            </p>
+                            <p class="darkGray">
+                                End Date
+                            </p>
+                        </div>
+                    </div>
 
                 </div>
 

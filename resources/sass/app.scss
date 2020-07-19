@@ -476,3 +476,23 @@ div.lineBreaker{
 .catalogHeaderTwo{
     margin-top: 30px;
 }
+.fontMada{
+    font-family: mada;
+}
+.catalogInfo{
+    border: 1px solid #81b0d2;
+    padding: 30px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(129,176,210,1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(129,176,210,1);
+    box-shadow: 0px 0px 5px 0px rgba(129,176,210,1);
+}
+.catalogContainer{
+    margin-top: 5%;
+}
+.catalogDate{
+    font-size: 16px !important;
+}
+.darkGray{
+    color: #9a9a9a;
+}
