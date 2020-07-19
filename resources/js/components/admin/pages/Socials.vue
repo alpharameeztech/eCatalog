@@ -6,7 +6,7 @@
         class="elevation-1"
     >
 
-    
+
         <template v-slot:top>
             <v-toolbar flat color="white">
                 <v-toolbar-title>Social Media Links</v-toolbar-title>
@@ -20,7 +20,7 @@
                     <template v-slot:activator="{ on }" v-if="!desserts.length">
                         <v-btn color="primary" dark class="mb-2" v-on="on">Add Social Media Info</v-btn>
                     </template>
-                    
+
                         <v-card>
                         <v-card-title>
                             <span class="headline">{{ formTitle }}</span>
@@ -40,7 +40,7 @@
                                         <v-col cols="12" sm="12" md="12">
                                         <v-text-field v-model="editedItem.youtube" label="Youtube page link"></v-text-field>
                                     </v-col>
-                                    
+
                                 </v-row>
                             </v-container>
                         </v-card-text>
@@ -152,7 +152,7 @@ import { VueEditor } from "vue2-editor";
         },
 
         methods: {
-          
+
             initialize () {
 
                 var self = this;
@@ -269,9 +269,6 @@ import { VueEditor } from "vue2-editor";
 </script>
 
 <style>
-.ql-image{
-    display: none !important;
-}
 .ql-editor{
     color: #000;
 }

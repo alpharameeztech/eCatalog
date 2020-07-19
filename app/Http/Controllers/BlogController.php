@@ -4,15 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use App\Repositories\Interfaces\BlogRepositoryInterface;
+use App\Repositories\Interfaces\CatalogRepositoryInterface;
+use App\Repositories\Interfaces\CityRepositoryInterface;
+use App\Repositories\Interfaces\CountryRepositoryInterface;
+use App\Repositories\Interfaces\StoreRepositoryInterface;
+use App\Repositories\Interfaces\TagRepositoryInterface;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
     protected $blogRepository;
 
-    public function __construct(BlogRepositoryInterface $blogRepository)
+    protected $catalogRepository;
+
+    private $storeRepository;
+
+    private $cityRepository;
+
+    private $countryRepository;
+
+    private $tagRepository;
+
+    public function __construct(
+        CatalogRepositoryInterface $catalogRepository,
+        StoreRepositoryInterface $storeRepository,
+        CityRepositoryInterface $cityRepository,
+        CountryRepositoryInterface $countryRepository,
+        TagRepositoryInterface $tagRepository,
+        BlogRepositoryInterface $blogRepository
+    )
     {
+        $this->catalogRepository = $catalogRepository;
+        $this->storeRepository = $storeRepository;
+        $this->cityRepository = $cityRepository;
+        $this->countryRepository = $countryRepository;
+        $this->tagRepository = $tagRepository;
         $this->blogRepository = $blogRepository;
+
     }
     /**
      * Display a listing of the resource.
@@ -22,7 +50,10 @@ class BlogController extends Controller
     public function index()
     {
         return view('pages.blog.index',[
-            'blogs' => $this->blogRepository->all()
+            'blogs' => $this->blogRepository->all(),
+            'recent_stores' => $this->storeRepository->get($limit=8),
+            'recent_cities' => $this->cityRepository->get($limit=8),
+            'recent_countries' => $this->countryRepository->get($limit=5),
         ]);
     }
 
@@ -59,7 +90,10 @@ class BlogController extends Controller
         $this->blogRepository->viewed($blog);
 
         return view('pages.blog.show',[
-            'blog' => $blog
+            'blog' => $blog,
+            'recent_stores' => $this->storeRepository->get($limit=8),
+            'recent_cities' => $this->cityRepository->get($limit=8),
+            'recent_countries' => $this->countryRepository->get($limit=5),
         ]);
     }
 

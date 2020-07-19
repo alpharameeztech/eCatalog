@@ -110,6 +110,14 @@
                                         <v-container>
                                             <v-row>
                                                 <v-col cols="12" sm="12" md="12">
+                                                    <v-file-input
+                                                        v-model="file"
+                                                        label="Select Logo"
+                                                        accept="image/*"
+                                                        @change="onFileChange"
+                                                    ></v-file-input>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
                                                     <v-text-field v-model="editedItem.title" label="Title"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
@@ -240,7 +248,11 @@ import { VueEditor } from "vue2-editor";
                     calories: 0,
                     fat: 0,
                     carbs: 0,
-                }
+                },
+                avatar: false,
+                file: null,
+                imageUrl: null,
+                profilePicture: '',
             }
 
         },
@@ -347,6 +359,8 @@ import { VueEditor } from "vue2-editor";
 
                     var self = this
                     this.$root.$emit('loading', true);
+
+
                     axios.patch('/api/blog/' + this.editedItem.slug, {
                         title: this.editedItem.title,
                         arabic_title: this.editedItem.arabic_title,
@@ -379,28 +393,59 @@ import { VueEditor } from "vue2-editor";
 
                     this.desserts.push(this.editedItem)
 
-                    axios.post('/api/blog', {
-                        title: this.editedItem.title,
-                        arabic_title: this.editedItem.arabic_title,
-                        body: this.htmlForEditor,
-                        arabic_body : this.htmlForEditor2,
-                        seo_title: this.editedItem.seo_title,
-                        arabic_seo_title: this.editedItem.arabic_seo_title,
-                        seo_description: this.editedItem.seo_description,
-                        arabic_seo_description: this.editedItem.arabic_seo_description,
+                    let formData = new FormData();
+                    /*
+                        Add the form data we need to submit
+                    */
+                    formData.append('profilePicture', this.profilePicture);
+                    formData.append('title', this.editedItem.title);
+                    formData.append('arabic_title', this.editedItem.arabic_title);
+                    formData.append('body', this.htmlForEditor);
+                    formData.append('arabic_body', this.htmlForEditor2);
+                    formData.append('seo_title', this.editedItem.seo_title);
+                    formData.append('arabic_seo_title', this.editedItem.arabic_seo_title);
+                    formData.append('seo_description', this.editedItem.seo_description);
+                    formData.append('arabic_seo_description', this.editedItem.arabic_seo_description);
+
+                    axios.post('/api/blog/', formData,{
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            'enctype' : 'multipart/form-data'
+                        }
                     })
                         .then(function (response) {
+                            flash('Changes Saved.', 'success');
 
-                           self.initialize()
+                            self.initialize()
 
-                           flash('Changes Saved.', 'success');
                         })
                         .catch(function (error) {
+                            self.$root.$emit('loading', false)
                             flash(error.response.data.errors, 'error');
                         })
                         .finally( function() {
                             self.$root.$emit('loading', false);
                         });
+
+
+                    // axios.post('/api/blog', formData, {
+                    //     headers: {
+                    //         'Content-Type': 'multipart/form-data',
+                    //         'enctype' : 'multipart/form-data'
+                    //     }
+                    // })
+                    //     .then(function (response) {
+                    //
+                    //        self.initialize()
+                    //
+                    //        flash('Changes Saved.', 'success');
+                    //     })
+                    //     .catch(function (error) {
+                    //         flash(error.response.data.errors, 'error');
+                    //     })
+                    //     .finally( function() {
+                    //         self.$root.$emit('loading', false);
+                    //     });
 
                     this.initialize()
                 }
@@ -434,6 +479,19 @@ import { VueEditor } from "vue2-editor";
 
                 return moment.utc(date).fromNow();
 
+            },
+            onFileChange() {
+                let reader = new FileReader()
+                reader.onload = () => {
+                    this.imageUrl = reader.result
+                }
+                reader.readAsDataURL(this.file)
+                this.profilePicture = this.file
+            },
+
+            removeImage: function (e) {
+                this.profilePicture = ''
+                this.file = ''
             },
         },
 

@@ -38,7 +38,10 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+//        \Log::info($request);
+//        return;
         $validatedData = $request->validate([
+            'profilePicture' => 'required',
             'title' => 'required',
             'arabic_title' => 'required',
             'body' => 'required',
@@ -50,6 +53,8 @@ class BlogController extends Controller
         ]);
 
         $blog = new Blog;
+
+        $blog->image = request()->file('profilePicture')->store('blog', 's3');
 
         $blog->slug = Str::of($request->title)->slug('-');
 
@@ -128,7 +133,7 @@ class BlogController extends Controller
         /*
         * update the blog's seo tags
         */
-        $seoTags = $blog->seoTags; 
+        $seoTags = $blog->seoTags;
         $seoTags->setTranslation('title', 'en', $request->seo_title);
         $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
         $seoTags->setTranslation('description', 'en', $request->seo_description);

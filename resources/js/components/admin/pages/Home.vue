@@ -35,7 +35,7 @@
                 </v-row>
             </template>
         <!-- page description end-->
-    
+
         <template v-slot:top>
             <v-toolbar flat color="white">
                 <v-toolbar-title>Home Page</v-toolbar-title>
@@ -82,7 +82,7 @@
                                                         label="SEO description"
                                                     ></v-textarea>
                                                 </v-col>
-                                                <v-col cols="12" sm="12" md="12">
+                                                <v-col cols="12" sm="12" md="12" class="home">
                                                     <v-text>Page Description</v-text>
                                                     <vue-editor id="editor" useCustomImageHandler v-model="htmlForEditor"> </vue-editor>
                                                 </v-col>
@@ -229,7 +229,7 @@ import { VueEditor } from "vue2-editor";
         },
 
         methods: {
-          
+
             initialize () {
 
                 var self = this;
@@ -360,7 +360,7 @@ import { VueEditor } from "vue2-editor";
 </script>
 
 <style>
-.ql-image{
+.home .ql-image{
     display: none !important;
 }
 .ql-editor{
