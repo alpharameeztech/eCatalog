@@ -384,7 +384,14 @@
             </div>
 
 
+{{--        ========================= tags =========================--}}
+            <div class="row catalogInfo">
 
+                @foreach($catalog->tags as $tag)
+                    <a href="/tags/{{$tag->slug}}" class="tag">{{ $tag->name }}</a>
+                @endforeach
+            </div>
+{{--        ========================= tags end =====================--}}
 
 
             <!-- store catalogs -->
