@@ -104,141 +104,262 @@
             <p>Catalogs / {{ strtoupper($store->name) }} / {{ strtoupper($catalog->name) }}</p>
         </div>
 
-        <div class="row catalogHeaderOne">
-            <div class="storeLeftSideBar col-sm-6">
 
-                <div class="storeLogo">
+{{--        ================================== catalog has image =========================--}}
+        @if(count($catalog->images))
+        <div class="catalogParentDiv">
+            <div class="row catalogHeaderOne">
+                <div class="storeLeftSideBar col-sm-6">
 
-                    <h2>{{ strtoupper($catalog->name) }}</h2>
+                    <div class="storeLogo">
 
-                </div>
+                        <h2>{{ strtoupper($catalog->name) }}</h2>
 
-            </div>
-
-            <div class="storeContentSection col-sm-6 catalogHeaderTwo">
-
-                <div class="storeSocialIcons">
-                    <a href="{{ $store->facebook_link }}" target="_blank">
-                        <img src="/img/icons/share-icon-facebook.svg">
-                    </a>
-                    <a href="{{ $store->twitter_link }}" target="_blank">
-                        <img src="/img/icons/share-icon-twitter.svg">
-                    </a>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="row catalogContainer">
-            <div class="storeLeftSideBar col-sm-6">
-
-                <div class="catalogInfo">
-
-                    <div class="row">
-                        <div class="col-sm-8">
-
-                            <p class="fontMada">
-                                {{ $store->name }}
-                            </p>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <p>
-                                {{ count($catalog->images) }}
-                            </p>
-                            <span class="darkGray">Pages</span>
-                        </div>
                     </div>
 
-                    <div class="row">
+                </div>
 
-                        <div class="col-sm-4">
+                <div class="storeContentSection col-sm-6 catalogHeaderTwo">
 
-                            <p class="catalogDate">
-                                {{ \Carbon\Carbon::parse($catalog->created_at)->day }}
-                                {{ \Carbon\Carbon::parse($catalog->created_at)->subMonth()->format('F') }}
-                                {{ \Carbon\Carbon::parse($catalog->created_at)->subYear()->format('Y') }}
-                            </p>
-                            <p class="darkGray">
-                                Added On
-                            </p>
-                        </div>
-
-                        <div class="col-sm-4">
-
-                            <p class="catalogDate">
-                                {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
-                                {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
-                                {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }}
-                            </p>
-                            <p class="darkGray">
-                                Start Date
-                            </p>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <p class="catalogDate">
-                                {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
-                                {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
-                                {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
-                            </p>
-                            <p class="darkGray">
-                                End Date
-                            </p>
-                        </div>
+                    <div class="storeSocialIcons">
+                        <a href="{{ $store->facebook_link }}" target="_blank">
+                            <img src="/img/icons/share-icon-facebook.svg">
+                        </a>
+                        <a href="{{ $store->twitter_link }}" target="_blank">
+                            <img src="/img/icons/share-icon-twitter.svg">
+                        </a>
                     </div>
 
                 </div>
 
             </div>
 
-            <div class="storeContentSection col-sm-6">
+            <div class="row catalogContainer">
+                <div class="storeLeftSideBar col-sm-6">
 
-                {!! $catalog->description !!}
+                    <div class="catalogInfo">
 
-            </div>
+                        <div class="row">
+                            <div class="col-sm-8">
 
-            <div class="row">
-
-                <div class="col-sm-6">
-
-                    @foreach ($catalog->images as $image)
-
-                        @if ($image->featured)
-                            <div class="card">
-
-                                <img id="image" class="w-full"
-                                     src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
-                                     alt="Sunset in the mountains">
-
+                                <p class="fontMada">
+                                    {{ $store->name }}
+                                </p>
                             </div>
-                        @endif
-                    @endforeach
+
+                            <div class="col-sm-4">
+                                <p>
+                                    {{ count($catalog->images) }}
+                                </p>
+                                <span class="darkGray">Pages</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-4">
+
+                                <p class="catalogDate">
+                                    {{ \Carbon\Carbon::parse($catalog->created_at)->day }}
+                                    {{ \Carbon\Carbon::parse($catalog->created_at)->subMonth()->format('F') }}
+                                    {{ \Carbon\Carbon::parse($catalog->created_at)->subYear()->format('Y') }}
+                                </p>
+                                <p class="darkGray">
+                                    Added On
+                                </p>
+                            </div>
+
+                            <div class="col-sm-4">
+
+                                <p class="catalogDate">
+                                    {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
+                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }}
+                                </p>
+                                <p class="darkGray">
+                                    Start Date
+                                </p>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <p class="catalogDate">
+                                    {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
+                                    {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                                    {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
+                                </p>
+                                <p class="darkGray">
+                                    End Date
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="col-sm-6">
+                <div class="storeContentSection col-sm-6">
 
-                    <div class="row" id="images">
-                        @foreach ($catalog_images as $image)
-                            <div class="col-sm-4 catalogImages"><img
-                                    src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
-                                    alt="Picture 1"></div>
+                    {!! $catalog->description !!}
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-6">
+
+                        @foreach ($catalog->images as $image)
+
+                            @if ($image->featured)
+                                <div class="card">
+
+                                    <img id="image" class="w-full"
+                                         src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
+                                         alt="Sunset in the mountains">
+
+                                </div>
+                            @endif
                         @endforeach
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-12 catalogNavigation">
-                            <span class="pages">Pages </span> {{ $catalog_images->links() }}
+                    <div class="col-sm-6">
+
+                        <div class="row" id="images">
+                            @foreach ($catalog_images as $image)
+                                <div class="col-sm-4 catalogImages"><img
+                                        src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
+                                        alt="Picture 1"></div>
+                            @endforeach
                         </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 catalogNavigation">
+                                <span class="pages">Pages </span> {{ $catalog_images->links() }}
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        @endif
+{{--        ================================== catalog has image end =========================--}}
+
+        {{--        ================================== catalog has pdf =========================--}}
+        @if(count($catalog->pdfs))
+            <div class="catalogParentDiv">
+                <div class="row catalogHeaderOne">
+                    <div class="storeLeftSideBar col-sm-12">
+
+                        <div class="storeLogo">
+
+                            <h2>{{ strtoupper($catalog->name) }}</h2>
+
+                        </div>
+
                     </div>
 
                 </div>
 
+                <div class="row">
+                    <div class="col-sm-6">
+                        @foreach ($catalog->images as $image)
 
+                            @if ($image->featured)
+                                <div class="card">
+
+                                    @foreach($catalog->pdfs as $pdf)
+                                        <td colspan="2">
+                                            <a target="_blanck" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">
+                                                <img id="image" class="w-full"
+                                                     src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
+                                                     alt="Sunset in the mountains">
+                                            </a>
+                                        </td>
+
+
+                                    @endforeach
+
+
+                                </div>
+
+                                <p class="textCenter">
+                                    @foreach($catalog->pdfs as $pdf)
+                                        <a target="_blank" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">Click here to view</a>
+                                    @endforeach
+                                </p>
+
+
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="col-sm-6">
+
+                        <div class="row catalogInfo">
+
+                            <div class="col-sm-4">
+
+                                <p class="catalogDate">
+                                    {{ \Carbon\Carbon::parse($catalog->created_at)->day }}
+                                    {{ \Carbon\Carbon::parse($catalog->created_at)->subMonth()->format('F') }}
+                                    {{ \Carbon\Carbon::parse($catalog->created_at)->subYear()->format('Y') }}
+                                </p>
+                                <p class="darkGray">
+                                    Added On
+                                </p>
+                            </div>
+
+                            <div class="col-sm-4">
+
+                                <p class="catalogDate">
+                                    {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
+                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }}
+                                </p>
+                                <p class="darkGray">
+                                    Start Date
+                                </p>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <p class="catalogDate">
+                                    {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
+                                    {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                                    {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
+                                </p>
+                                <p class="darkGray">
+                                    End Date
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="storeContentSection catalogHeaderTwo">
+
+                            <div class="storeSocialIcons">
+                                <a href="{{ $store->facebook_link }}" target="_blank">
+                                    <img src="/img/icons/share-icon-facebook.svg">
+                                </a>
+                                <a href="{{ $store->twitter_link }}" target="_blank">
+                                    <img src="/img/icons/share-icon-twitter.svg">
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class="storeContentSection" style="margin-top: 5%">
+
+                            {!! $catalog->description !!}
+
+                        </div>
+
+                    </div>
+                </div>
             </div>
+        @endif
+        {{--        ================================== catalog has pdf end =========================--}}
 
-        </div>
 
         {{-- ================================= advertisement =====================--}}
         <div class="row">
