@@ -199,6 +199,35 @@
 
             </div>
 
+            <div class="row">
+
+                <div class="col-sm-6">
+
+                    @foreach ($catalog->images as $image)
+
+                        @if ($image->featured)
+                            <div class="card">
+
+                                <img id="image" class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
+
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+
+                <div class="col-sm-6">
+
+                    <div class="row" id="images">
+                        @foreach ($catalog->images as $image)
+                            <div class="col-sm-3"><img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Picture 1"></div>
+                        @endforeach
+                    </div>
+
+                </div>
+
+
+            </div>
+
         </div>
 
         {{--  ======================= Store branches ==========================  --}}
@@ -345,6 +374,8 @@
 
 @endsection
 
+<link href="{{ asset('css/viewer.css') }}" rel="stylesheet">
 
+<script src="{{ asset('js/viewer.js') }}" defer></script>
 
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
