@@ -40,41 +40,49 @@ class BlogController extends Controller
     {
 //        \Log::info($request);
 //        return;
-        $validatedData = $request->validate([
-            'profilePicture' => 'required',
-            'title' => 'required',
-            'arabic_title' => 'required',
-            'body' => 'required',
-            'arabic_body' => 'required',
-            'seo_title' => 'required',
-            'arabic_seo_title' => 'required',
-            'seo_description' => 'required',
-            'arabic_seo_description' => 'required'
-        ]);
 
-        $blog = new Blog;
+        if($request->id){
+            // update the store information
+            return $this->update($request);
+        }
+        else{
+            $validatedData = $request->validate([
+                'profilePicture' => 'required',
+                'title' => 'required',
+                'arabic_title' => 'required',
+                'body' => 'required',
+                'arabic_body' => 'required',
+                'seo_title' => 'required',
+                'arabic_seo_title' => 'required',
+                'seo_description' => 'required',
+                'arabic_seo_description' => 'required'
+            ]);
 
-        $blog->image = request()->file('profilePicture')->store('blog', 's3');
+            $blog = new Blog;
 
-        $blog->slug = Str::of($request->title)->slug('-');
+            $blog->image = request()->file('profilePicture')->store('blog', 's3');
 
-        $blog->setTranslation('title', 'en', $request->title);
-        $blog->setTranslation('title', 'ar', $request->arabic_title);
+            $blog->slug = Str::of($request->title)->slug('-');
 
-        $blog->setTranslation('body', 'en', $request->body);
-        $blog->setTranslation('body', 'ar', $request->arabic_body);
+            $blog->setTranslation('title', 'en', $request->title);
+            $blog->setTranslation('title', 'ar', $request->arabic_title);
 
-        $blog->save();
+            $blog->setTranslation('body', 'en', $request->body);
+            $blog->setTranslation('body', 'ar', $request->arabic_body);
 
-        /*
-        * add the blogs's seo tags
-        */
-        $seoTags = new Seo;
-        $seoTags->setTranslation('title', 'en', $request->seo_title);
-        $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
-        $seoTags->setTranslation('description', 'en', $request->seo_description);
-        $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
-        $blog->seoTags()->save($seoTags);
+            $blog->save();
+
+            /*
+            * add the blogs's seo tags
+            */
+            $seoTags = new Seo;
+            $seoTags->setTranslation('title', 'en', $request->seo_title);
+            $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+            $seoTags->setTranslation('description', 'en', $request->seo_description);
+            $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+            $blog->seoTags()->save($seoTags);
+        }
+
     }
 
     /**
@@ -106,7 +114,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request)
     {
 
         $validatedData = $request->validate([
@@ -119,6 +127,11 @@ class BlogController extends Controller
             'seo_description' => 'required',
             'arabic_seo_description' => 'required'
         ]);
+        $blog = Blog::find($request->id);
+
+        if (!empty(request()->file('profilePicture'))) {
+            $blog->image = request()->file('profilePicture')->store('blog', 's3');
+        }
 
         $blog->slug = Str::of($request->title)->slug('-');
 

@@ -360,16 +360,26 @@ import { VueEditor } from "vue2-editor";
                     var self = this
                     this.$root.$emit('loading', true);
 
+                    let formData = new FormData();
+                    /*
+                        Add the form data we need to submit
+                    */
+                    formData.append('id',this.editedItem.id);
+                    formData.append('profilePicture', this.profilePicture);
+                    formData.append('title', this.editedItem.title);
+                    formData.append('arabic_title', this.editedItem.arabic_title);
+                    formData.append('body', this.htmlForEditor);
+                    formData.append('arabic_body', this.htmlForEditor2);
+                    formData.append('seo_title', this.editedItem.seo_title);
+                    formData.append('arabic_seo_title', this.editedItem.arabic_seo_title);
+                    formData.append('seo_description', this.editedItem.seo_description);
+                    formData.append('arabic_seo_description', this.editedItem.arabic_seo_description);
 
-                    axios.patch('/api/blog/' + this.editedItem.slug, {
-                        title: this.editedItem.title,
-                        arabic_title: this.editedItem.arabic_title,
-                        body: this.htmlForEditor,
-                        arabic_body : this.htmlForEditor2,
-                        seo_title: this.editedItem.seo_title,
-                        arabic_seo_title: this.editedItem.arabic_seo_title,
-                        seo_description: this.editedItem.seo_description,
-                        arabic_seo_description: this.editedItem.arabic_seo_description,
+                    axios.post('/api/blog/', formData,{
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            'enctype' : 'multipart/form-data'
+                        }
                     })
                         .then(function (response) {
                             flash('Changes Saved.', 'success');
