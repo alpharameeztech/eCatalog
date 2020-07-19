@@ -11,7 +11,7 @@
 
             @if ($image->featured)
                 <div class="card">
-                   
+
 
                     <img id="image" class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
                     <p class="text-gray text-base text-center">
@@ -21,11 +21,11 @@
                                 <div class="expired"><span class="badge badge-danger">Expired</span></div>
                             @endif
                         @endif
-                       
+
                     </p>
                 </div>
 
-               
+
             @endif
 
         @endforeach
@@ -43,7 +43,7 @@
 
               <table class="table table-hover">
                 <thead>
-                  
+
                 </thead>
                 <tbody>
                   <tr>
@@ -92,7 +92,7 @@
                 </div>
             </div>
         </div>
-    
+
     </div>
 </div>
     {{--  -- Catalog details end  --}}
@@ -116,7 +116,7 @@
 
                     <div id="{{$city->slug}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
-                         
+
                             @foreach($catalog->branches as $branch)
                                 @if($branch->city_id == $city->id)
 
@@ -130,7 +130,7 @@
                                                 </a>
                                             </h5>
                                         </div>
-                        
+
                                         <div id="{{$branch->slug}}" >
                                             <div class="card-body">
                                                 <table class="table table-hover">
@@ -153,7 +153,7 @@
                                                         <th scope="row"><i class="material-icons">email</i></th>
                                                         <td>
                                                             <a href="mailto:{{$branch->email}}">{{$branch->email}}</a>
-                                                            
+
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -177,7 +177,7 @@
                                                     </tr>
                                                     </tbody>
                                                 </table>
-                                    
+
                                             </div>
                                         </div>
                                     </div>
@@ -185,12 +185,12 @@
                                 @endif
 
                             @endforeach
-                
+
                         </div>
                     </div>
                 </div>
             @endforeach
-            
+
         </div>
 
         <div class="alert alert-success notice" role="alert">
@@ -225,7 +225,7 @@
 
     {{--  ============================ catalog's tag end ==================  --}}
 
-    
+
     <!-- latest catalogs -->
     <h2 class="text-3xl mt-8">Latest Catalogs</h2>
     @include('partials/catalogs/latest')

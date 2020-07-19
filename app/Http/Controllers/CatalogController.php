@@ -107,7 +107,8 @@ class CatalogController extends Controller
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
             'page_description' => $store->page,
-            'store_catalogs' => $store->catalogs
+            'store_catalogs' => $store->catalogs,
+            'catalog_images' => $catalog->images->paginate(9)
 
         ]);
 

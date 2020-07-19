@@ -218,9 +218,15 @@
                 <div class="col-sm-6">
 
                     <div class="row" id="images">
-                        @foreach ($catalog->images as $image)
-                            <div class="col-sm-3"><img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Picture 1"></div>
+                        @foreach ($catalog_images as $image)
+                            <div class="col-sm-4 catalogImages"><img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Picture 1"></div>
                         @endforeach
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 catalogNavigation">
+                            <span class="pages">Pages </span> {{ $catalog_images->links() }}
+                        </div>
                     </div>
 
                 </div>
