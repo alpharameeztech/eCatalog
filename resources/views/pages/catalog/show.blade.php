@@ -94,7 +94,7 @@
     </style>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <div class="bannerAd">
-        <img src="/img/other/banner-ad.png" />
+        <img src="/img/other/banner-ad.png"/>
     </div>
 
     <div class="container">
@@ -195,7 +195,7 @@
 
             <div class="storeContentSection col-sm-6">
 
-               {!! $catalog->description !!}
+                {!! $catalog->description !!}
 
             </div>
 
@@ -208,7 +208,9 @@
                         @if ($image->featured)
                             <div class="card">
 
-                                <img id="image" class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
+                                <img id="image" class="w-full"
+                                     src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
+                                     alt="Sunset in the mountains">
 
                             </div>
                         @endif
@@ -219,7 +221,9 @@
 
                     <div class="row" id="images">
                         @foreach ($catalog_images as $image)
-                            <div class="col-sm-4 catalogImages"><img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Picture 1"></div>
+                            <div class="col-sm-4 catalogImages"><img
+                                    src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
+                                    alt="Picture 1"></div>
                         @endforeach
                     </div>
 
@@ -237,22 +241,22 @@
         </div>
 
         {{-- ================================= advertisement =====================--}}
-            <div class="row">
+        <div class="row">
 
-                <div class="col-sm-3">
-
-                </div>
-
-                <div class="col-sm-9">
-
-                </div>
+            <div class="col-sm-3">
 
             </div>
+
+            <div class="col-sm-9">
+
+            </div>
+
+        </div>
         {{-- ================================= advertisement ends=================--}}
 
-            <!-- see all the catalogs -->
-                @include('partials/see_all_catalogs')
-            <!-- see all the catalogs  end-->
+    <!-- see all the catalogs -->
+        @include('partials/see_all_catalogs')
+    <!-- see all the catalogs  end-->
 
         {{--  ======================= Store branches ==========================  --}}
         @if(count($in_cities) > 0)
@@ -263,9 +267,10 @@
                     @foreach ($in_cities as $city)
 
                         <div class="card">
-                            <div class="card-header" >
+                            <div class="card-header">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#p__detail" aria-expanded="true" aria-controls="p__detail">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#p__detail" aria-expanded="true" aria-controls="p__detail">
                                         {{ucfirst($city->name)}}
                                     </button>
                                 </h2>
@@ -274,7 +279,7 @@
                             @foreach($store->branches as $branch)
                                 @if($branch->city_id == $city->id)
 
-                                    <div id="p__detail" class="collapse "  data-parent="#accordionExample">
+                                    <div id="p__detail" class="collapse " data-parent="#accordionExample">
                                         <div class="card-body">
                                             <h5 class="mb-0">
                                                 <a href="/{{$store->slug}}/{{$branch->city->slug}}/{{$branch->slug}}">
@@ -284,7 +289,7 @@
                                                 </a>
                                             </h5>
 
-                                            <div id="{{$branch->slug}}" >
+                                            <div id="{{$branch->slug}}">
                                                 <div class="card-body">
 
                                                     <div class="row">
