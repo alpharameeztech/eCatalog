@@ -385,24 +385,20 @@
 
 
 {{--        ========================= tags =========================--}}
-            <div class="row catalogInfo">
+        <div class="row catalogInfo">
 
-                @foreach($catalog->tags as $tag)
-                    <a href="/tags/{{$tag->slug}}" class="tag">{{ $tag->name }}</a>
-                @endforeach
-            </div>
+            @foreach($catalog->tags as $tag)
+                <a href="/tags/{{$tag->slug}}" class="tag">{{ $tag->name }}</a>
+            @endforeach
+        </div>
 {{--        ========================= tags end =====================--}}
 
 
-            <!-- store catalogs -->
-        @include('partials/catalogs/catalogs_of_a_store')
-        <!-- store catalogs end-->
+        <!-- latest catalogs -->
+        <h2 class="text-3xl mt-8">The latest catalogs</h2>
+        @include('partials/catalogs/latest')
+        <!-- latest catalogs end-->
 
-            <!-- check all stores -->
-        @include('partials/browse_our_stores_list')
-        <!-- check all stores end-->
-
-            <!-- all catalogs end-->
     </div>
 
 
