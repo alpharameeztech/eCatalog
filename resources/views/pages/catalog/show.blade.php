@@ -236,6 +236,24 @@
 
         </div>
 
+        {{-- ================================= advertisement =====================--}}
+            <div class="row">
+
+                <div class="col-sm-3">
+
+                </div>
+
+                <div class="col-sm-9">
+
+                </div>
+
+            </div>
+        {{-- ================================= advertisement ends=================--}}
+
+            <!-- see all the catalogs -->
+                @include('partials/see_all_catalogs')
+            <!-- see all the catalogs  end-->
+
         {{--  ======================= Store branches ==========================  --}}
         @if(count($in_cities) > 0)
             <h2 class="lineBreaker">Branches and information</h2>
@@ -362,9 +380,7 @@
 
 
 
-            <!-- check all stores -->
-        @include('partials/see_all_catalogs')
-        <!-- check all stores end-->
+
 
             <!-- store catalogs -->
         @include('partials/catalogs/catalogs_of_a_store')
