@@ -9,7 +9,7 @@
 
     <div class="container">
 
-
+{{--        ===================== latest blog posts =================--}}
         <h2 class="lineBreaker">The latest blog posts</h2>
 
         <div class="row">
@@ -21,39 +21,37 @@
                 </div>
             @endforeach
         </div>
-
-        {{-- ================================= advertisement =====================--}}
-        <div class="row">
-
-            <div class="col-sm-3">
-
-            </div>
-
-            <div class="col-sm-9">
-
-            </div>
-
-        </div>
-        {{-- ================================= advertisement ends=================--}}
+        {{--        ===================== latest blog posts end =================--}}
 
     <!-- see all the catalogs -->
         @include('partials/see_all_catalogs')
     <!-- see all the catalogs  end-->
 
-            {{--        ========================= tags =========================--}}
-            <div class="row catalogInfo">
+        {{--        ===================== popular blog posts =================--}}
+        <h2 class="lineBreaker">Popular blog posts</h2>
 
-{{--                @foreach($catalog->tags as $tag)--}}
-{{--                    <a href="/tags/{{$tag->slug}}" class="tag">{{ $tag->name }}</a>--}}
-{{--                @endforeach--}}
-            </div>
-        {{--        ========================= tags end =====================--}}
+        <div class="row">
+            @foreach($popular_blogs as $blog)
+                <div class="col-sm-6">
+                    <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
+                    <h3 class="fontMada">{{$blog->title}}</h3>
+                    <p>{!! Str::limit($blog->body, 200, '') !!}...</p>
+                </div>
+            @endforeach
+        </div>
+        {{--        ===================== popular blog posts end =================--}}
 
+        <!-- check all stores -->
+        @include('partials/browse_our_stores_list')
+        <!-- check all stores end-->
 
         <!-- latest catalogs -->
             <h2 class="text-3xl mt-8">The latest catalogs</h2>
         @include('partials/catalogs/latest')
         <!-- latest catalogs end-->
+
+
+
 
     </div>
 

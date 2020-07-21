@@ -52,6 +52,7 @@ class BlogController extends Controller
         return view('pages.blog.index',[
             'blogs' => $this->blogRepository->all(),
             'latest_blogs' => $this->blogRepository->latest($limit=4),
+            'popular_blogs' => $this->blogRepository->popular($limit=4),
             'recent_stores' => $this->storeRepository->get($limit=8),
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),

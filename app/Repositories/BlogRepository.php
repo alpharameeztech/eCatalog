@@ -22,6 +22,13 @@ class BlogRepository implements BlogRepositoryInterface
         return $blogs;
     }
 
+    public function popular($limit = 5){
+
+        $blogs = Blog::where('status',1)->orderBy('total_views', 'desc')
+            ->limit($limit)->get();
+        return $blogs;
+    }
+
     /**
      * The blog just got viewed
      * by somebody

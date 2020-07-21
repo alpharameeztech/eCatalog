@@ -10,6 +10,8 @@ interface BlogRepositoryInterface
 
     public function latest($limit = 5);
 
+    public function popular($limit = 5);
+
     public function viewed(Blog $blog);
 
 }
