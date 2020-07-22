@@ -10,7 +10,7 @@
     <div class="container">
 
         <!-- check all stores -->
-            @include('partials/catalogs/check_all_stores')
+            @include('partials/catalogs/check_all_stores_without_cta')
         <!-- check all stores end-->
 
         <!-- all catalogs -->
