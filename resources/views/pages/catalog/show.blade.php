@@ -509,7 +509,7 @@
         <div class="row catalogInfo">
 
             @foreach($catalog->tags as $tag)
-                <a href="/tags/{{$tag->slug}}" class="tag">{{ $tag->name }}</a>
+                <a href="/catalogs?tag={{$tag->slug}}" class="tag">{{ $tag->name }}</a>
             @endforeach
         </div>
 {{--        ========================= tags end =====================--}}
