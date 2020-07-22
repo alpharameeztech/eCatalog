@@ -554,3 +554,15 @@ div.lineBreaker{
 .textCenter{
     text-align: center;
 }
+.readMoreBlog{
+    display: flex;
+    justify-content: flex-end;
+}
+.readMoreBlog p{
+    padding-top: 7px;
+    padding-right: 15px;
+}
+.arrowIcon{
+    width: 5%;
+    height: 36px;
+}

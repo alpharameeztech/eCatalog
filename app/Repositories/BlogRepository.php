@@ -11,7 +11,7 @@ class BlogRepository implements BlogRepositoryInterface
 
     public function all($order = 'desc'){
 
-        $blogs = Blog::where('status',1)->orderBy('created_at', $order)->paginate(10);
+        $blogs = Blog::where('status',1)->orderBy('created_at', $order)->paginate(1);
         return $blogs;
     }
 

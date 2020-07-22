@@ -9,6 +9,42 @@
 
     <div class="container">
 
+        <div class="row">
+            <div class="col-sm-9">
+
+                @foreach($blogs as $blog)
+                    <div>
+
+                        <h2>{{ strtoupper($blog->title) }}</h2>
+
+                        <p>
+                            {!! Str::limit($blog->body, 400, '') !!}...
+                        </p>
+
+                        <div class="readMoreBlog">
+                            <p><a href="/blog/{{$blog->slug}}">Read post</a></p>
+                            <a class="arrowIcon" href="/blog/{{$blog->slug}}">
+                                <img src="/img/icons/right-icon.png" />
+                            </a>
+                        </div>
+                        <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
+
+                    </div>
+                @endforeach
+
+                    <div class="row">
+                        <div class="col-sm-12 catalogNavigation">
+                            <span class="pages">Pages </span> {{ $blogs->links() }}
+                        </div>
+                    </div>
+
+            </div>
+
+            <div class="col-sm-3">
+
+            </div>
+        </div>
+
 {{--        ===================== latest blog posts =================--}}
         <h2 class="lineBreaker">The latest blog posts</h2>
 
