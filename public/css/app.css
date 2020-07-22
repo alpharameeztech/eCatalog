@@ -11156,3 +11156,7 @@ div.lineBreaker {
   width: 5%;
   height: 36px;
 }
+
+.latestBlogContainer a, .popularBlogContainer a {
+  color: #000;
+}

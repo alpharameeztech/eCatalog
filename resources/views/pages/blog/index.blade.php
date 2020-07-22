@@ -48,11 +48,13 @@
 {{--        ===================== latest blog posts =================--}}
         <h2 class="lineBreaker">The latest blog posts</h2>
 
-        <div class="row">
+        <div class="row latestBlogContainer">
             @foreach($latest_blogs as $blog)
                 <div class="col-sm-6">
-                    <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
-                    <h3 class="fontMada">{{$blog->title}}</h3>
+                    <a href="/blog/{{$blog->slug}}">
+                        <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
+                    </a>
+                    <h3 class="fontMada"><a href="/blog/{{$blog->slug}}">{{$blog->title}}</a></h3>
                     <p>{!! Str::limit($blog->body, 200, '') !!}...</p>
                 </div>
             @endforeach
@@ -66,11 +68,13 @@
         {{--        ===================== popular blog posts =================--}}
         <h2 class="lineBreaker">Popular blog posts</h2>
 
-        <div class="row">
+        <div class="row popularBlogContainer">
             @foreach($popular_blogs as $blog)
                 <div class="col-sm-6">
-                    <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
-                    <h3 class="fontMada">{{$blog->title}}</h3>
+                    <a href="/blog/{{$blog->slug}}">
+                        <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
+                    </a>
+                    <h3 class="fontMada"><a href="/blog/{{$blog->slug}}">{{$blog->title}}</a></h3>
                     <p>{!! Str::limit($blog->body, 200, '') !!}...</p>
                 </div>
             @endforeach
