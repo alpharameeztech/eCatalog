@@ -365,11 +365,35 @@
         <div class="row">
 
             <div class="col-sm-3">
+                @foreach($catalog_small_sections as $advertisement)
+                    @if( $advertisement->image != "undefined")
+                        <div class="storeRightAdvertisement">
+                            <a href="{{$advertisement->url}}" target="_blank">
+                                <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                            </a>
+                        </div>
+                    @else
 
+                        {!! $advertisement->ad !!}
+                    @endif
+
+                @endforeach
             </div>
 
             <div class="col-sm-9">
+                @foreach($catalog_large_sections as $advertisement)
+                    @if( $advertisement->image != "undefined")
+                        <div class="storeRightAdvertisement">
+                            <a href="{{$advertisement->url}}" target="_blank">
+                                <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                            </a>
+                        </div>
+                    @else
 
+                        {!! $advertisement->ad !!}
+                    @endif
+
+                @endforeach
             </div>
 
         </div>

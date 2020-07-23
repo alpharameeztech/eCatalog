@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Catalog;
+use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Store;
 use Illuminate\Http\Request;
@@ -23,12 +24,16 @@ class CatalogController extends Controller
 
     private $tagRepository;
 
+    private $advertisementRepository;
+
+
     public function __construct(
         CatalogRepositoryInterface $catalogRepository,
         StoreRepositoryInterface $storeRepository,
         CityRepositoryInterface $cityRepository,
         CountryRepositoryInterface $countryRepository,
-        TagRepositoryInterface $tagRepository
+        TagRepositoryInterface $tagRepository,
+        AdvertisementRepositoryInterface $advertisementRepository
     )
     {
         $this->catalogRepository = $catalogRepository;
@@ -36,6 +41,7 @@ class CatalogController extends Controller
         $this->cityRepository = $cityRepository;
         $this->countryRepository = $countryRepository;
         $this->tagRepository = $tagRepository;
+        $this->advertisementRepository = $advertisementRepository;
 
     }
     /**
@@ -108,7 +114,9 @@ class CatalogController extends Controller
             'recent_countries' => $this->countryRepository->get($limit=5),
             'page_description' => $store->page,
             'store_catalogs' => $store->catalogs,
-            'catalog_images' => $catalog->images->paginate(9)
+            'catalog_images' => $catalog->images->paginate(9),
+            'catalog_small_sections' => $this->advertisementRepository->get('catalog-small-section'),
+            'catalog_large_sections' => $this->advertisementRepository->get('catalog-large-section')
 
         ]);
 

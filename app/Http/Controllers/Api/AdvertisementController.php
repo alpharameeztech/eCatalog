@@ -96,8 +96,10 @@ class AdvertisementController extends Controller
 
         if ($request->banner != NULL) {
             $image = request()->file('banner')->store('banners', 's3');
-            $arabicImage = request()->file('arabic_banner')->store('banners', 's3');
             $advertisement->setTranslation('image', 'en', $image);
+        }
+        if ($request->arabic_banner != NULL) {
+            $arabicImage = request()->file('arabic_banner')->store('banners', 's3');
             $advertisement->setTranslation('image', 'ar', $arabicImage);
         }
         $advertisement->location = $request->location;

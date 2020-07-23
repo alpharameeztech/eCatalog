@@ -153,7 +153,6 @@
             <div class="storeRightSideBar col-sm-3">
 
                 @foreach($store_right_sections as $advertisement)
-
                     @if( $advertisement->image != "undefined")
                         <div class="storeRightAdvertisement">
                             <a href="{{$advertisement->url}}" target="_blank">
