@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\AdvertisementRepository;
 use App\Repositories\BlogRepository;
 use App\Repositories\BannerRepository;
+use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
 use App\Repositories\StoreRepository;
 use App\Repositories\CatalogRepository;
 use App\Repositories\BranchRepository;
@@ -29,53 +31,58 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            StoreRepositoryInterface::class, 
+            StoreRepositoryInterface::class,
             StoreRepository::class
         );
 
         $this->app->bind(
-            CatalogRepositoryInterface::class, 
+            CatalogRepositoryInterface::class,
             CatalogRepository::class
         );
 
         $this->app->bind(
-            BranchRepositoryInterface::class, 
+            BranchRepositoryInterface::class,
             BranchRepository::class
         );
 
         $this->app->bind(
-            TermRepositoryInterface::class, 
+            TermRepositoryInterface::class,
             TermRepository::class
         );
 
         $this->app->bind(
-            FaqRepositoryInterface::class, 
+            FaqRepositoryInterface::class,
             FaqRepository::class
         );
 
         $this->app->bind(
-            BlogRepositoryInterface::class, 
+            BlogRepositoryInterface::class,
             BlogRepository::class
         );
 
         $this->app->bind(
-            BannerRepositoryInterface::class, 
+            BannerRepositoryInterface::class,
             BannerRepository::class
         );
 
         $this->app->bind(
-            CityRepositoryInterface::class, 
+            CityRepositoryInterface::class,
             CityRepository::class
         );
 
         $this->app->bind(
-            CountryRepositoryInterface::class, 
+            CountryRepositoryInterface::class,
             CountryRepository::class
         );
 
         $this->app->bind(
-            TagRepositoryInterface::class, 
+            TagRepositoryInterface::class,
             TagRepository::class
+        );
+
+        $this->app->bind(
+            AdvertisementRepositoryInterface::class,
+            AdvertisementRepository::class
         );
     }
 }

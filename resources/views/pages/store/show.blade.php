@@ -114,6 +114,21 @@
 
                 </div>
 
+            @foreach($store_left_sections as $advertisement)
+
+                    @if( $advertisement->image != "undefined")
+                        <div class="storeLeftAdvertisement">
+                            <a href="{{$advertisement->url}}" target="_blank">
+                                <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                            </a>
+                        </div>
+                    @else
+
+                        {!! $advertisement->ad !!}
+                    @endif
+
+            @endforeach
+
             </div>
 
             <div class="storeContentSection col-sm-6">
@@ -135,7 +150,24 @@
 
             </div>
 
-            <div class="storeRightSideBar col-sm-3"></div>
+            <div class="storeRightSideBar col-sm-3">
+
+                @foreach($store_right_sections as $advertisement)
+
+                    @if( $advertisement->image != "undefined")
+                        <div class="storeRightAdvertisement">
+                            <a href="{{$advertisement->url}}" target="_blank">
+                                <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                            </a>
+                        </div>
+                    @else
+
+                        {!! $advertisement->ad !!}
+                    @endif
+
+                @endforeach
+
+            </div>
         </div>
 
         {{--  ======================= Store branches ==========================  --}}

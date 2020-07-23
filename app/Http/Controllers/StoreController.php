@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\CityRepositoryInterface;
 use App\Repositories\Interfaces\CountryRepositoryInterface;
@@ -22,12 +23,15 @@ class StoreController extends Controller
 
     private $tagRepository;
 
+    private $advertisementRepository;
+
     public function __construct(
         CatalogRepositoryInterface $catalogRepository,
         StoreRepositoryInterface $storeRepository,
         CityRepositoryInterface $cityRepository,
         CountryRepositoryInterface $countryRepository,
-        TagRepositoryInterface $tagRepository
+        TagRepositoryInterface $tagRepository,
+        AdvertisementRepositoryInterface $advertisementRepository
     )
     {
         $this->catalogRepository = $catalogRepository;
@@ -35,6 +39,7 @@ class StoreController extends Controller
         $this->cityRepository = $cityRepository;
         $this->countryRepository = $countryRepository;
         $this->tagRepository = $tagRepository;
+        $this->advertisementRepository = $advertisementRepository;
 
     }
 
@@ -84,6 +89,7 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
+
         return view('pages.store.show',[
             'store' => $store,
             'in_cities' =>  $this->storeRepository->availableInCities($store),
@@ -91,7 +97,9 @@ class StoreController extends Controller
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
             'page_description' => $store->page,
-            'store_catalogs' => $store->catalogs
+            'store_catalogs' => $store->catalogs,
+            'store_left_sections' => $this->advertisementRepository->get('store-left-section'),
+            'store_right_sections' => $this->advertisementRepository->get('store-right-section')
         ]);
     }
 
