@@ -277,6 +277,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         text: 'Id',
                         value: 'id',
                     },
+                    {text: 'Location', value: 'location'},
                     {
                         text: 'Image',
                         sortable: true,
@@ -482,8 +483,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 var self = this
 
                 this.$root.$emit('loading', true);
-
-                axios.patch('/api/toggle/advertisements/status', {
+                //alert(item.id); return;
+                axios.post('/api/toggle/advertisements/status', {
                     id: item.id,
                 })
                 .then(function (response) {
@@ -493,7 +494,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     flash('Changes Saved.', 'success');
                 })
                 .catch(function (error) {
-                    flash('Changes Saved.', 'error');
+                    console.log(error)
+                    flash('Changes Not Saved.', 'error');
                 })
                 .finally( function() {
                     self.$root.$emit('loading', false);

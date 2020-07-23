@@ -126,7 +126,7 @@ Route::group([
 
     Route::get('/advertisements', 'AdvertisementController@index')->name('all.advertisements');
     Route::post('/advertisements', 'AdvertisementController@store')->name('add.advertisement');
-    Route::patch('/toggle/advertisements/status', 'AdvertisementController@toggleStatus')->name('toggle.advertisement.status');
+    Route::post('/toggle/advertisements/status', 'AdvertisementController@toggleStatus')->name('toggle.advertisement.status');
 
 });
 //======================== public apis end ==========================
