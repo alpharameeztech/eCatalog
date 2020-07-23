@@ -3,7 +3,7 @@
 
         <v-card>
         <v-card-title>
-            Catalogs
+            Home Banners
             <v-spacer></v-spacer>
             <v-text-field
                 v-model="search"
@@ -17,9 +17,9 @@
             :headers="headers"
             :items="desserts"
             :search="search"
-        > 
+        >
 
-        <!-- image -->  
+        <!-- image -->
             <template v-slot:item.image="{ item }">
                 <v-row  class=" d-flex justify-start">
                     <!-- v-show="item.image.en != 'undefined' " -->
@@ -58,10 +58,10 @@
 
                     </v-row>
 
-            </template> 
+            </template>
         <!-- status -->
 
-        <!-- formatted created date -->    
+        <!-- formatted created date -->
             <template v-slot:item.created_at="{ item }">
                     <v-row  class="d-flex justify-end">
                         <v-chip
@@ -99,7 +99,7 @@
                     </v-chip>
                 </v-row>
             </template>
-                <!-- formatted updated date end--> 
+                <!-- formatted updated date end-->
 
             <!-- add/update modal -->
             <template v-slot:top>
@@ -177,7 +177,7 @@
                             <v-tab-item>
 
                                     <v-card>
-                                   
+
                                         <v-card-text>
                                             <v-container>
                                                 <v-row>
@@ -211,7 +211,7 @@
 
                         </v-tabs>
                         <!-- tabs end -->
-                      
+
                     </v-dialog>
                 </v-toolbar>
             </template>
@@ -263,7 +263,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 dialog: false,
                 publishers: [],
                 headers: [
-                    
+
                     {
                         text: 'Id',
                         value: 'id',
@@ -320,7 +320,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
             formTitle () {
                 return this.editedIndex === -1 ? 'Add a Banner' : 'Edit a Banner'
             },
-            
+
         },
 
         watch: {
@@ -371,7 +371,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 this.editedItem.arabic_url = item.url.ar
                 this.editedItem.ad = item.ad.en
                 this.editedItem.arabic_ad = item.ad.ar
-              
+
                 if(this.editedItem.page != null){
                     this.editorData = this.editedItem.page.description.en
                     this.arabicEditorData = this.editedItem.page.description.ar
@@ -423,10 +423,10 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                      if (this.editedIndex > -1) {
                         formData.append('id',this.editedItem.id);
                         Object.assign(this.desserts[this.editedIndex], this.editedItem)
-                        
+
                         var self = this
                         this.desserts.push(this.editedItem)
-                        
+
 
                     } else {
                         var self = this
@@ -465,20 +465,20 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     });
                     this.close()
                     this.initialize()
-               
+
             },
             toggleBan(item){
                 var self = this
 
                 this.$root.$emit('loading', true);
-                
+
                 axios.patch('/api/toggle/banner/status', {
                     id: item.id,
                 })
                 .then(function (response) {
 
                     self.initialize()
-                    
+
                     flash('Changes Saved.', 'success');
                 })
                 .catch(function (error) {
@@ -506,23 +506,23 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 textTwo.indexOf(searchText) > -1
             },
             storeSelected () {
-                
+
                 var store = this.editedItem.store
 
                 var self = this;
 
                 self.$root.$emit('loading', true);
-                
+
                 axios.get('/api/store/'+ store.slug + '/branches')
                     .then(function (response) {
                         self.branches = response.data
                     })
                     .catch(function (error) {
-                            
+
                     })
                     .finally(function () {
                         self.$root.$emit('loading', false);
-                    });  
+                    });
 
             },
             onFileChange() {
