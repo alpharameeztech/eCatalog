@@ -124,6 +124,10 @@ Route::group([
     // Route::patch('/toggle/store/featured', 'StoreController@toggleFeatured')->name('toggle.store.featured');
     // Route::get('/store/{store}/branches', 'StoreController@storeBranches')->name('all.stores');
 
+    Route::get('/advertisements', 'AdvertisementController@index')->name('all.advertisements');
+    Route::post('/advertisements', 'AdvertisementController@store')->name('add.advertisement');
+    Route::patch('/toggle/advertisements/status', 'AdvertisementController@toggleStatus')->name('toggle.advertisement.status');
+
 });
 //======================== public apis end ==========================
 

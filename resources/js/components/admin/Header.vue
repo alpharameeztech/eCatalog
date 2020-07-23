@@ -187,7 +187,7 @@
                 { icon: 'home', text: 'Home Page', link: '/home/homepage', hasAccess: ['admin', 'publisher'] },
                 { icon: 'share', text: 'Social Media', link: '/home/socials', hasAccess: ['admin', 'publisher'] },
                 { icon: 'perm_media', text: 'Home Banner', link: '/home/banners', hasAccess: ['admin', 'publisher'] },
-
+                { icon: 'theaters', text: 'Advertisements', link: '/home/advertisements', hasAccess: ['admin', 'publisher'] },
             ]
 
         }),
