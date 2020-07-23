@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
 use App\Repositories\Interfaces\BlogRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\CityRepositoryInterface;
@@ -25,13 +26,17 @@ class BlogController extends Controller
 
     private $tagRepository;
 
+    private $advertisementRepository;
+
+
     public function __construct(
         CatalogRepositoryInterface $catalogRepository,
         StoreRepositoryInterface $storeRepository,
         CityRepositoryInterface $cityRepository,
         CountryRepositoryInterface $countryRepository,
         TagRepositoryInterface $tagRepository,
-        BlogRepositoryInterface $blogRepository
+        BlogRepositoryInterface $blogRepository,
+        AdvertisementRepositoryInterface $advertisementRepository
     )
     {
         $this->catalogRepository = $catalogRepository;
@@ -40,6 +45,7 @@ class BlogController extends Controller
         $this->countryRepository = $countryRepository;
         $this->tagRepository = $tagRepository;
         $this->blogRepository = $blogRepository;
+        $this->advertisementRepository = $advertisementRepository;
 
     }
     /**
@@ -57,6 +63,7 @@ class BlogController extends Controller
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
             'latest_catalogs'=> $this->catalogRepository->latest($limit=4),
+            'blog_right_sections' => $this->advertisementRepository->get('blog-right-section')
 
         ]);
     }
@@ -101,6 +108,7 @@ class BlogController extends Controller
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
             'latest_catalogs'=> $this->catalogRepository->latest($limit=4),
+            'blog_right_sections' => $this->advertisementRepository->get('blog-right-section')
         ]);
     }
 
