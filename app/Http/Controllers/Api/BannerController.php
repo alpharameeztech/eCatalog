@@ -46,14 +46,14 @@ class BannerController extends Controller
 		$banner->setTranslation('url', 'en', $request->url);
 		$banner->setTranslation('url', 'ar', $request->arabic_url);
 	   }
-	   
+
 	   if ($request->ad) {
 		$banner->setTranslation('ad', 'en', $request->ad);
 		$banner->setTranslation('ad', 'ar', $request->arabic_ad);
- 
+
 	   }
 
-	  
+
 	   if($request->banner){
 			$image = request()->file('banner')->store('banners', 's3');
 			$arabicImage = request()->file('arabic_banner')->store('banners', 's3');
@@ -106,21 +106,24 @@ class BannerController extends Controller
 			$banner->setTranslation('url', 'en', $request->url);
 			$banner->setTranslation('url', 'ar', $request->arabic_url);
 		   }
-		   
+
 		   if ($request->ad) {
 			$banner->setTranslation('ad', 'en', $request->ad);
 			$banner->setTranslation('ad', 'ar', $request->arabic_ad);
-	 
+
 		   }
-	
-		  
+
+
 		   if($request->banner != NULL){
 				$image = request()->file('banner')->store('banners', 's3');
-				$arabicImage = request()->file('arabic_banner')->store('banners', 's3');
 				$banner->setTranslation('image', 'en', $image);
-				$banner->setTranslation('image', 'ar', $arabicImage);
 			}
-	
+
+        if($request->arabic_banner != NULL){
+            $arabicImage = request()->file('arabic_banner')->store('banners', 's3');
+            $banner->setTranslation('image', 'ar', $arabicImage);
+        }
+
 		   $banner->save();
 	}
 
@@ -128,11 +131,11 @@ class BannerController extends Controller
         $validatedData = $request->validate([
             'id' => 'required',
         ]);
-            
+
         $banner = Banner::find($request->id);
         $banner->status = !$banner->status;
         $banner->save();
-        
+
     }
 
 	/**
