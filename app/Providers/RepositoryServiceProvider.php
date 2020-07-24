@@ -6,6 +6,8 @@ use App\Repositories\AdvertisementRepository;
 use App\Repositories\BlogRepository;
 use App\Repositories\BannerRepository;
 use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
+use App\Repositories\Interfaces\SocialRepositoryInterface;
+use App\Repositories\SocialRepository;
 use App\Repositories\StoreRepository;
 use App\Repositories\CatalogRepository;
 use App\Repositories\BranchRepository;
@@ -83,6 +85,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             AdvertisementRepositoryInterface::class,
             AdvertisementRepository::class
+        );
+
+        $this->app->bind(
+            SocialRepositoryInterface::class,
+            SocialRepository::class
         );
     }
 }

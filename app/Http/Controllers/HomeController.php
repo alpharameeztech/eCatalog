@@ -9,6 +9,7 @@ use App\Repositories\Interfaces\BlogRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\CityRepositoryInterface;
 use App\Repositories\Interfaces\CountryRepositoryInterface;
+use App\Repositories\Interfaces\SocialRepositoryInterface;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,9 @@ class HomeController extends Controller
 
     private $countryRepository;
 
+    protected $socialRepository;
+
+
 
     /**
      * Create a new controller instance.
@@ -38,7 +42,9 @@ class HomeController extends Controller
         BannerRepositoryInterface $bannerRepository,
         BlogRepositoryInterface $blogRepository,
         CityRepositoryInterface $cityRepository,
-        CountryRepositoryInterface $countryRepository
+        CountryRepositoryInterface $countryRepository,
+        SocialRepositoryInterface $socialRepository
+
     )
     {
         $this->storeRepository = $storeRepository;
@@ -47,6 +53,8 @@ class HomeController extends Controller
         $this->blogRepository = $blogRepository;
         $this->cityRepository = $cityRepository;
         $this->countryRepository = $countryRepository;
+        $this->socialRepository = $socialRepository;
+
     }
 
     /**
@@ -56,7 +64,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+
         $stores = $this->storeRepository->all();
         $latest_catalogs = $this->catalogRepository->latest(4);
         $popular_catalogs =  $this->catalogRepository->popular();
@@ -71,7 +79,8 @@ class HomeController extends Controller
             'latest_blog' => $this->blogRepository->latest(1),
             'recent_stores' => $this->storeRepository->get($limit=8),
             'recent_cities' => $this->cityRepository->get($limit=8),
-            'recent_countries' => $this->countryRepository->get($limit=5)
+            'recent_countries' => $this->countryRepository->get($limit=5),
+            'social'=> $this->socialRepository->all()
         ]);
     }
 }
