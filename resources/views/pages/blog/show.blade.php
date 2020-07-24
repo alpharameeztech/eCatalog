@@ -3,9 +3,7 @@
 @section('content')
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-    <div class="bannerAd">
-        <img src="/img/other/banner-ad.png"/>
-    </div>
+
 
     <div class="container">
 

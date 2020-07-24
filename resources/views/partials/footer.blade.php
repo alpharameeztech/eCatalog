@@ -5,21 +5,21 @@
         <nav role='navigation' class="main-nav" id="main-nav">
             <ul id="main-nav-list">
               <li>
-                <a href="#">
+                <a href="/">
                   <div>
                     Home
                   </div>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/stores">
                   <div>
                     Stores
                   </div>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/catalogs">
                   <div>
                     Catalogs
                   </div>
@@ -46,13 +46,7 @@
                   </div>
                 </a>
               </li>
-              <li>
-                <a href="#">
-                  <div>
-                    Sitemap
-                  </div>
-                </a>
-              </li>
+
             </ul>
         </nav>
 

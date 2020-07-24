@@ -2,10 +2,6 @@
 
 @section('content')
 
-
-    <div class="bannerAd">
-        <img src="/img/other/banner-ad.png" />
-    </div>
     <div class="container">
         <!-- all catalogs -->
         <h2 class="lineBreaker">Find your favorite store's offers on DealzBook</h2>

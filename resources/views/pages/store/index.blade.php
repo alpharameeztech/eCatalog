@@ -3,10 +3,6 @@
 @section('content')
 
 
-    <div class="bannerAd">
-        <img src="/img/other/banner-ad.png" />
-    </div>
-
     <div class="container">
 
         <!-- check all stores -->
