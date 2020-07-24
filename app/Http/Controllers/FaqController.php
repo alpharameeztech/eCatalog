@@ -9,15 +9,15 @@ use App\Repositories\Interfaces\SocialRepositoryInterface;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use Illuminate\Http\Request;
 
-class FaqController extends Controller
+class FaqController extends BaseController
 {
     protected $faqRepository;
 
-    private $storeRepository;
+    protected $storeRepository;
 
-    private $cityRepository;
+    protected $cityRepository;
 
-    private $countryRepository;
+    protected $countryRepository;
 
     protected $socialRepository;
 
