@@ -10,6 +10,8 @@ interface CatalogRepositoryInterface
 
     public function latest($limit = 12);
 
+    public function search($name);
+
     public function popular($limit = 12);
 
     public function featured();

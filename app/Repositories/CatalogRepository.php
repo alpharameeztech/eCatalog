@@ -37,6 +37,14 @@ class CatalogRepository implements CatalogRepositoryInterface
                     ->get();
     }
 
+    public function search($name)
+    {
+        return Catalog::where('status', 1)
+            ->where('name', 'LIKE', "%$name%")
+            ->orWhere('description', 'LIKE', "%$name%")
+            ->paginate(20);
+    }
+
     public function popular($limit = 12)
     {
         return Catalog::where('status', 1)

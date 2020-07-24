@@ -62,6 +62,24 @@ class CatalogController extends Controller
 
     }
 
+    public function search( Request $request)
+    {
+        $validatedData = $request->validate([
+            'search' => 'required'
+        ]);
+
+        return view('pages.catalog.search',[
+            'searched_item' => $request->search,
+            'catalogs' => $this->catalogRepository->search($request->search),
+            'recent_stores' => $this->storeRepository->get($limit=8),
+            'recent_cities' => $this->cityRepository->get($limit=8),
+            'recent_countries' => $this->countryRepository->get($limit=5),
+            'tags' => $this->tagRepository->all(),
+            'recent_stores' => $this->storeRepository->get($limit=8),
+        ]);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

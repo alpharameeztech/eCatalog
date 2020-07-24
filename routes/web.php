@@ -44,6 +44,8 @@ Route::get('/home', function(){
 })->name('admin.dashboard')
     ->middleware('auth');
 
+Route::post('/search/catalogs', 'CatalogController@search')->name('search.catalogs');
+
 //
 //======================== public apis ==========================
 Route::group([
