@@ -2,16 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Interfaces\CityRepositoryInterface;
+use App\Repositories\Interfaces\CountryRepositoryInterface;
 use App\Repositories\Interfaces\FaqRepositoryInterface;
+use App\Repositories\Interfaces\StoreRepositoryInterface;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
     protected $faqRepository;
 
-    public function __construct(FaqRepositoryInterface $faqRepository)
+    private $storeRepository;
+
+    private $cityRepository;
+
+    private $countryRepository;
+
+    public function __construct(
+        FaqRepositoryInterface $faqRepository,
+        StoreRepositoryInterface $storeRepository,
+        CityRepositoryInterface $cityRepository,
+        CountryRepositoryInterface $countryRepository
+    )
     {
         $this->faqRepository = $faqRepository;
+        $this->storeRepository = $storeRepository;
+        $this->cityRepository = $cityRepository;
+        $this->countryRepository = $countryRepository;
     }
     /**
      * Display a listing of the resource.
@@ -22,6 +39,9 @@ class FaqController extends Controller
     {
         return view('pages.faq',[
             'faqs' => $this->faqRepository->all(),
+            'recent_stores' => $this->storeRepository->get($limit=8),
+            'recent_cities' => $this->cityRepository->get($limit=8),
+            'recent_countries' => $this->countryRepository->get($limit=5)
         ]);
     }
 
