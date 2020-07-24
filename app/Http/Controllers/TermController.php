@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Interfaces\CityRepositoryInterface;
+use App\Repositories\Interfaces\CountryRepositoryInterface;
+use App\Repositories\Interfaces\StoreRepositoryInterface;
 use App\Repositories\Interfaces\TermRepositoryInterface;
 use App\Term;
 use Illuminate\Http\Request;
@@ -10,9 +13,24 @@ class TermController extends Controller
 {
     protected $termRepository;
 
-    public function __construct(TermRepositoryInterface $termRepository)
+    private $storeRepository;
+
+    private $cityRepository;
+
+    private $countryRepository;
+
+
+    public function __construct(
+        TermRepositoryInterface $termRepository,
+        StoreRepositoryInterface $storeRepository,
+        CityRepositoryInterface $cityRepository,
+        CountryRepositoryInterface $countryRepository
+        )
     {
         $this->termRepository = $termRepository;
+        $this->storeRepository = $storeRepository;
+        $this->cityRepository = $cityRepository;
+        $this->countryRepository = $countryRepository;
     }
     /**
      * Display a listing of the resource.
@@ -23,6 +41,9 @@ class TermController extends Controller
     {
         return view('pages.terms',[
             'terms' => $this->termRepository->all(),
+            'recent_stores' => $this->storeRepository->get($limit=8),
+            'recent_cities' => $this->cityRepository->get($limit=8),
+            'recent_countries' => $this->countryRepository->get($limit=5)
         ]);
     }
 

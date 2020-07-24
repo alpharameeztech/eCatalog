@@ -1,7 +1,7 @@
 <div class="footer">
 
     <div class="container">
-        
+
         <nav role='navigation' class="main-nav" id="main-nav">
             <ul id="main-nav-list">
               <li>
@@ -55,7 +55,7 @@
               </li>
             </ul>
         </nav>
-          
+
         <div class="row subHeading">
             <div class="col-sm-3">
                 <p class="subHeading2">Stores</p>
@@ -63,7 +63,7 @@
                 @foreach ($recent_stores as $store)
                     <p><a href="/store/{{$store->slug}}">{{$store->name}}</a></p>
                 @endforeach
-                
+
                 <p><a href="">All Stores</a></p>
 
             </div>
@@ -71,22 +71,17 @@
                 <p class="subHeading2">Cities</p>
 
                 @foreach ($recent_cities as $city)
-                    
+
                     <p><a href="">{{$city->name}}</a></p>
-                    
+
                 @endforeach
-                
+
                 <p><a href="">All Citites</a></p>
 
             </div>
             <div class="col-sm-3">
-                <p class="subHeading2">Countries</p>
 
-                @foreach ($recent_countries as $country)
-                    
-                    <p><a href="">{{$country->name}}</a></p>
-                    
-                @endforeach
+                <p class="subHeading2"><a href="/terms">Terms & Conditions</a></p>
 
             </div>
             <div class="col-sm-3">
@@ -102,7 +97,7 @@
                 </div>
             </div>
         </div>
-   
+
     </div>
-    
+
 </div>
