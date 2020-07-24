@@ -37,9 +37,7 @@ Route::get('/catalogs', 'CatalogController@index');
 
 Auth::routes();
 
-Route::get('/about-us', function () {
-    return view('pages.about');
-})->name('about.us');
+Route::get('/about-us', 'AboutController@index')->name('about.us');
 
 Route::get('/home', function(){
     return view('admin.dashboard');

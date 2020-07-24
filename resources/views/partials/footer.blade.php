@@ -26,14 +26,14 @@
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/about-us">
                   <div>
                     About Us
                   </div>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/faq">
                   <div>
                     FAQ
                   </div>
