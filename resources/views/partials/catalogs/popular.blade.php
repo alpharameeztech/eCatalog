@@ -1,10 +1,12 @@
 <h2>The most popular catalogs</h2>
 <div class="row popularCatalogsContainer">
     @foreach ($popular_catalogs as $key=>$catalog)
+        @if($catalog->ifExistInTheCity())
+
 
             @if($key == 0)
             <div class="col-sm-6">
-               
+
                 <div class="row">
                     <div class="col-sm-7">
                         @foreach ($catalog->images as $image)
@@ -16,7 +18,7 @@
                             @endif
 
                         @endforeach
-               
+
                     </div>
                     <div class="col-sm-5 catalogDetails topPopular">
                         <div class="col-sm-12">
@@ -27,7 +29,7 @@
                                     @if(!$catalog->end_at)
                                         {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
                                     @endif
-    
+
                                     @if($catalog->end_at)
                                         <span> - {{ \Carbon\Carbon::parse($catalog->end_at_at)->day }}
                                             {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
@@ -44,13 +46,13 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
             </div>
             @endif
 
             <div class="col-sm-3 customContainers">
-               
+
                 @foreach ($catalog->images as $image)
 
                     @if ($image->featured)
@@ -60,7 +62,7 @@
                     @endif
 
                 @endforeach
-               
+
                 <div class="row catalogDetails">
                     <div class="col-sm-12">
                         <p class="catalogName">{{$catalog->name}}</p>
@@ -86,8 +88,11 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
+
+        @endif
+
     @endforeach
-    
+
 </div>
