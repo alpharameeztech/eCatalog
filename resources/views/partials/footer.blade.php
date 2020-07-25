@@ -66,11 +66,11 @@
 
                 @foreach ($recent_cities as $city)
 
-                    <p><a href="">{{$city->name}}</a></p>
+                    <p><a href="/?city={{$city->slug}}">{{$city->name}}</a></p>
 
                 @endforeach
 
-                <p><a href="">All Citites</a></p>
+                <p><a href="/">All Citites</a></p>
 
             </div>
             <div class="col-sm-3">
