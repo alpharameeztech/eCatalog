@@ -40,9 +40,17 @@
                     <!-- Dropdown -->
                     <div>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">City</a>
+                            @if(request('city'))
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">{{ucfirst(request('city'))}}</a>
+
+                                @else
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">City</a>
+                            @endif
+
                             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+
                                 <a class="dropdown-item" href="/">All</a>
                                 @foreach($all_cites as $city)
                                     <a class="dropdown-item" href="?city={{$city->slug}}">{{$city->name}}</a>
