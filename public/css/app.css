@@ -11191,3 +11191,19 @@ div.lineBreaker {
   display: flex;
   justify-content: space-around !important;
 }
+
+.customMainNav .navbar-nav .active a {
+  font-family: mada;
+}
+
+.customMainNav .dropdown-menu, .customMainNav .dropdown-item:hover, .dropdown-item:focus {
+  background-color: #0061a6;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff !important;
+}
+
+.dropdown-item {
+  color: #fff;
+}

@@ -55,6 +55,10 @@ class HomeController extends Controller
         $this->countryRepository = $countryRepository;
         $this->socialRepository = $socialRepository;
 
+        if(request('language')){
+            app()->setLocale(request('language'));
+        }
+
     }
 
     /**
@@ -64,7 +68,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+        //dd(app()->getLocale());
+       // app()->setLocale('ar');
         $stores = $this->storeRepository->all();
         $latest_catalogs = $this->catalogRepository->latest(4);
         $popular_catalogs =  $this->catalogRepository->popular();

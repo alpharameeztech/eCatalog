@@ -46,6 +46,8 @@ Route::get('/home', function(){
 
 Route::post('/search/catalogs', 'CatalogController@search')->name('search.catalogs');
 
+Route::get('/language/{language}', 'LanguageController@setLanguage');
+
 //
 //======================== public apis ==========================
 Route::group([

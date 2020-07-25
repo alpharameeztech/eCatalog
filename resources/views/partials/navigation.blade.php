@@ -3,6 +3,7 @@
     .navbar-brand img{
         width: 50%;
     }
+
 </style>
     <nav class="customMainNav navbar navbar-expand-lg navbar-dark primary-color">
         <div class="container">
@@ -55,6 +56,27 @@
                                 @foreach($all_cites as $city)
                                     <a class="dropdown-item" href="?city={{$city->slug}}">{{$city->name}}</a>
                                 @endforeach
+                            </div>
+                        </li>
+                    </div>
+
+                    <!-- Dropdown -->
+                    <div>
+                        <li class="nav-item dropdown">
+                            @if(request('language'))
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">{{ucfirst(request('language'))}}</a>
+
+                            @else
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">Language</a>
+                            @endif
+
+
+                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+
+                                <a class="dropdown-item" href="/">English</a>
+                                <a class="dropdown-item" href="/?language=ar">Arabic</a>
                             </div>
                         </li>
                     </div>
