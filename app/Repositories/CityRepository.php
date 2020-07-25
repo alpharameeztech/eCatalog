@@ -16,5 +16,9 @@ class CityRepository implements CityRepositoryInterface
                     ->get();
 
     }
-   
+
+    public function all(){
+        return  City::get();
+    }
+
 }

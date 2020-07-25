@@ -78,6 +78,7 @@ class HomeController extends Controller
             'banners' => $this->bannerRepository->all(),
             'latest_blog' => $this->blogRepository->latest(1),
             'recent_stores' => $this->storeRepository->get($limit=8),
+            'all_cites' => $this->cityRepository->all(),
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
             'social'=> $this->socialRepository->all()
