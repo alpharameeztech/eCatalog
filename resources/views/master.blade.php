@@ -23,7 +23,7 @@
 <div class="flex-center position-ref full-height">
 
     <!-- navigation -->
-    {{--  @include('partials/navigation')  --}}
+      @include('partials/navigation')
     <!-- navigation end -->
 
     <div class="">
@@ -33,7 +33,7 @@
     <!-- page description -->
     @include('partials/page_description')
     <!-- page description end-->
-    
+
     @include('partials/footer')
 
 </div>

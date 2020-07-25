@@ -11176,3 +11176,16 @@ div.lineBreaker {
 .footer .active {
   color: #fff;
 }
+
+.customMainNav {
+  background-color: #0061a6;
+}
+
+.navbar-expand-lg .navbar-collapse {
+  display: block !important;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-around !important;
+}

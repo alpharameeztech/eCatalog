@@ -8,6 +8,7 @@ use App\Repositories\Interfaces\BlogRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\CityRepositoryInterface;
 use App\Repositories\Interfaces\CountryRepositoryInterface;
+use App\Repositories\Interfaces\SocialRepositoryInterface;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use App\Repositories\Interfaces\TagRepositoryInterface;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class BlogController extends Controller
 
     private $advertisementRepository;
 
+    protected $socialRepository;
 
     public function __construct(
         CatalogRepositoryInterface $catalogRepository,
@@ -36,7 +38,9 @@ class BlogController extends Controller
         CountryRepositoryInterface $countryRepository,
         TagRepositoryInterface $tagRepository,
         BlogRepositoryInterface $blogRepository,
-        AdvertisementRepositoryInterface $advertisementRepository
+        AdvertisementRepositoryInterface $advertisementRepository,
+        SocialRepositoryInterface $socialRepository
+
     )
     {
         $this->catalogRepository = $catalogRepository;
@@ -46,6 +50,7 @@ class BlogController extends Controller
         $this->tagRepository = $tagRepository;
         $this->blogRepository = $blogRepository;
         $this->advertisementRepository = $advertisementRepository;
+        $this->socialRepository = $socialRepository;
 
     }
     /**
@@ -63,7 +68,8 @@ class BlogController extends Controller
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
             'latest_catalogs'=> $this->catalogRepository->latest($limit=4),
-            'blog_right_sections' => $this->advertisementRepository->get('blog-right-section')
+            'blog_right_sections' => $this->advertisementRepository->get('blog-right-section'),
+            'social'=> $this->socialRepository->all()
 
         ]);
     }
