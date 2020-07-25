@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Catalog;
 use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
+use App\Repositories\Interfaces\SocialRepositoryInterface;
 use App\Store;
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
@@ -26,6 +27,7 @@ class CatalogController extends Controller
 
     private $advertisementRepository;
 
+    protected $socialRepository;
 
     public function __construct(
         CatalogRepositoryInterface $catalogRepository,
@@ -33,7 +35,9 @@ class CatalogController extends Controller
         CityRepositoryInterface $cityRepository,
         CountryRepositoryInterface $countryRepository,
         TagRepositoryInterface $tagRepository,
-        AdvertisementRepositoryInterface $advertisementRepository
+        AdvertisementRepositoryInterface $advertisementRepository,
+        SocialRepositoryInterface $socialRepository
+
     )
     {
         $this->catalogRepository = $catalogRepository;
@@ -42,6 +46,8 @@ class CatalogController extends Controller
         $this->countryRepository = $countryRepository;
         $this->tagRepository = $tagRepository;
         $this->advertisementRepository = $advertisementRepository;
+        $this->socialRepository = $socialRepository;
+
 
     }
     /**
@@ -58,6 +64,8 @@ class CatalogController extends Controller
             'recent_countries' => $this->countryRepository->get($limit=5),
             'tags' => $this->tagRepository->all(),
             'recent_stores' => $this->storeRepository->get($limit=8),
+            'social'=> $this->socialRepository->all()
+
         ]);
 
     }
@@ -76,6 +84,8 @@ class CatalogController extends Controller
             'recent_countries' => $this->countryRepository->get($limit=5),
             'tags' => $this->tagRepository->all(),
             'recent_stores' => $this->storeRepository->get($limit=8),
+            'social'=> $this->socialRepository->all()
+
         ]);
 
     }
@@ -134,7 +144,9 @@ class CatalogController extends Controller
             'store_catalogs' => $store->catalogs,
             'catalog_images' => $catalog->images->paginate(9),
             'catalog_small_sections' => $this->advertisementRepository->get('catalog-small-section'),
-            'catalog_large_sections' => $this->advertisementRepository->get('catalog-large-section')
+            'catalog_large_sections' => $this->advertisementRepository->get('catalog-large-section'),
+            'social'=> $this->socialRepository->all()
+
 
         ]);
 

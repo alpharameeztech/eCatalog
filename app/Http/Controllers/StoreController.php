@@ -6,6 +6,7 @@ use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\CityRepositoryInterface;
 use App\Repositories\Interfaces\CountryRepositoryInterface;
+use App\Repositories\Interfaces\SocialRepositoryInterface;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use App\Repositories\Interfaces\TagRepositoryInterface;
 use App\Store;
@@ -25,13 +26,17 @@ class StoreController extends Controller
 
     private $advertisementRepository;
 
+    protected $socialRepository;
+
     public function __construct(
         CatalogRepositoryInterface $catalogRepository,
         StoreRepositoryInterface $storeRepository,
         CityRepositoryInterface $cityRepository,
         CountryRepositoryInterface $countryRepository,
         TagRepositoryInterface $tagRepository,
-        AdvertisementRepositoryInterface $advertisementRepository
+        AdvertisementRepositoryInterface $advertisementRepository,
+        SocialRepositoryInterface $socialRepository
+
     )
     {
         $this->catalogRepository = $catalogRepository;
@@ -40,6 +45,7 @@ class StoreController extends Controller
         $this->countryRepository = $countryRepository;
         $this->tagRepository = $tagRepository;
         $this->advertisementRepository = $advertisementRepository;
+        $this->socialRepository = $socialRepository;
 
     }
 
@@ -57,6 +63,8 @@ class StoreController extends Controller
             'recent_countries' => $this->countryRepository->get($limit=5),
             'tags' => $this->tagRepository->all(),
             'recent_stores' => $this->storeRepository->get($limit=8),
+            'social'=> $this->socialRepository->all()
+
         ]);
     }
 
@@ -99,7 +107,9 @@ class StoreController extends Controller
             'page_description' => $store->page,
             'store_catalogs' => $store->catalogs,
             'store_left_sections' => $this->advertisementRepository->get('store-left-section'),
-            'store_right_sections' => $this->advertisementRepository->get('store-right-section')
+            'store_right_sections' => $this->advertisementRepository->get('store-right-section'),
+            'social'=> $this->socialRepository->all()
+
         ]);
     }
 
