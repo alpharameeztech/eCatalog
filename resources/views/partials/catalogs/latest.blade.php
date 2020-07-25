@@ -1,5 +1,8 @@
 <div class="row">
     @foreach ($latest_catalogs as $catalog)
+
+    @if($catalog->ifExistInTheCity())
+
             <div class="col-sm-3">
 
                 @foreach ($catalog->images as $image)
@@ -39,6 +42,8 @@
                 </div>
 
             </div>
+    @endif
+
     @endforeach
 
 </div>

@@ -16,7 +16,7 @@ class Catalog extends Model
     public function getRouteKeyName(){
         return 'slug';
     }
-    
+
     /**
      * Get all of the catalog's images.
      * in asc order
@@ -72,6 +72,33 @@ class Catalog extends Model
     public function page()
     {
         return $this->morphOne('App\Page', 'pageable');
+    }
+
+    public function  ifExistInTheCity(){
+
+        $city = htmlspecialchars(request('city'));
+        $city = City::where('slug', $city)->first();
+
+        if($city){
+
+            $branches = $this->branches;
+
+            foreach ($branches as $branch){
+
+                if($city->id == $branch->city_id){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+
+            }
+
+        }else{
+            return true;
+        }
+
+
     }
 
 }
