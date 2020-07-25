@@ -11172,3 +11172,7 @@ div.lineBreaker {
 .storeRightAdvertisement {
   margin-top: 50px;
 }
+
+.footer .active {
+  color: #fff;
+}

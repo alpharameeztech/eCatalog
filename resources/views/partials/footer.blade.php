@@ -66,7 +66,7 @@
 
                 @foreach ($recent_cities as $city)
 
-                    <p><a href="/?city={{$city->slug}}">{{$city->name}}</a></p>
+                    <p><a class="@if(!empty (request('city') && request('city') == $city->slug )) active @endif" href="/?city={{$city->slug}}">{{$city->name}}</a></p>
 
                 @endforeach
 
