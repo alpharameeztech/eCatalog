@@ -49,13 +49,24 @@ class StoreController extends Controller
 
     }
 
+    protected function setLocale($request)
+    {
+        $value = $request->session()->get('locale');
+
+        app()->setLocale($value);
+
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $this->setLocale($request);
+
         return view('pages.store.index',[
             'stores' => $this->storeRepository->all(),
             'recent_stores' => $this->storeRepository->get($limit=8),
@@ -96,8 +107,10 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Store $store)
+    public function show(Request $request, Store $store)
     {
+
+        $this->setLocale($request);
 
         return view('pages.store.show',[
             'store' => $store,
