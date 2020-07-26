@@ -85,7 +85,8 @@ class CatalogController extends Controller
             'recent_countries' => $this->countryRepository->get($limit=5),
             'tags' => $this->tagRepository->all(),
             'recent_stores' => $this->storeRepository->get($limit=8),
-            'social'=> $this->socialRepository->all()
+            'social'=> $this->socialRepository->all(),
+            'all_cites' => $this->cityRepository->all()
 
         ]);
 
@@ -146,7 +147,8 @@ class CatalogController extends Controller
             'catalog_images' => $catalog->images->paginate(9),
             'catalog_small_sections' => $this->advertisementRepository->get('catalog-small-section'),
             'catalog_large_sections' => $this->advertisementRepository->get('catalog-large-section'),
-            'social'=> $this->socialRepository->all()
+            'social'=> $this->socialRepository->all(),
+            'all_cites' => $this->cityRepository->all()
 
 
         ]);

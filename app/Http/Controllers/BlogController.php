@@ -69,7 +69,9 @@ class BlogController extends Controller
             'recent_countries' => $this->countryRepository->get($limit=5),
             'latest_catalogs'=> $this->catalogRepository->latest($limit=4),
             'blog_right_sections' => $this->advertisementRepository->get('blog-right-section'),
-            'social'=> $this->socialRepository->all()
+            'social'=> $this->socialRepository->all(),
+            'all_cites' => $this->cityRepository->all(),
+
 
         ]);
     }
@@ -114,7 +116,9 @@ class BlogController extends Controller
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
             'latest_catalogs'=> $this->catalogRepository->latest($limit=4),
-            'blog_right_sections' => $this->advertisementRepository->get('blog-right-section')
+            'blog_right_sections' => $this->advertisementRepository->get('blog-right-section'),
+            'all_cites' => $this->cityRepository->all(),
+
         ]);
     }
 

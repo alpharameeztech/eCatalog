@@ -63,7 +63,8 @@ class StoreController extends Controller
             'recent_countries' => $this->countryRepository->get($limit=5),
             'tags' => $this->tagRepository->all(),
             'recent_stores' => $this->storeRepository->get($limit=8),
-            'social'=> $this->socialRepository->all()
+            'social'=> $this->socialRepository->all(),
+            'all_cites' => $this->cityRepository->all(),
 
         ]);
     }
@@ -108,7 +109,8 @@ class StoreController extends Controller
             'store_catalogs' => $store->catalogs,
             'store_left_sections' => $this->advertisementRepository->get('store-left-section'),
             'store_right_sections' => $this->advertisementRepository->get('store-right-section'),
-            'social'=> $this->socialRepository->all()
+            'social'=> $this->socialRepository->all(),
+            'all_cites' => $this->cityRepository->all(),
 
         ]);
     }
