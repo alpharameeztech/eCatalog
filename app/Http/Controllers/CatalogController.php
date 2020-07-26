@@ -89,6 +89,8 @@ class CatalogController extends Controller
             'search' => 'required'
         ]);
 
+        $this->setLocale($request);
+        
         return view('pages.catalog.search',[
             'searched_item' => $request->search,
             'catalogs' => $this->catalogRepository->search($request->search),
@@ -131,8 +133,11 @@ class CatalogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Store $store ,Catalog $catalog)
+    public function show(Request $request, Store $store ,Catalog $catalog)
     {
+
+        $this->setLocale($request);
+
         // if($catalog->end_at >= date('Y-m-d')){
         //     dd('not expired');
         // }else{

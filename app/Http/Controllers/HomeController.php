@@ -72,12 +72,9 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        
 
         $this->setLocale($request);
-
-        //dd(app()->getLocale());
-       // app()->setLocale('ar');
+   
         $stores = $this->storeRepository->all();
         $latest_catalogs = $this->catalogRepository->latest(4);
         $popular_catalogs =  $this->catalogRepository->popular();
