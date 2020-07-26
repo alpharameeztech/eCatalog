@@ -53,13 +53,25 @@ class BlogController extends Controller
         $this->socialRepository = $socialRepository;
 
     }
+
+    protected function setLocale($request)
+    {
+        $value = $request->session()->get('locale');
+
+        app()->setLocale($value);
+
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $this->setLocale($request);
+
         return view('pages.blog.index',[
             'blogs' => $this->blogRepository->all(),
             'latest_blogs' => $this->blogRepository->latest($limit=4),
@@ -103,8 +115,11 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
+    public function show(Request $request, Blog $blog)
     {
+
+        $this->setLocale($request);
+
         //increment total_views
         $this->blogRepository->viewed($blog);
 
@@ -117,6 +132,7 @@ class BlogController extends Controller
             'recent_countries' => $this->countryRepository->get($limit=5),
             'latest_catalogs'=> $this->catalogRepository->latest($limit=4),
             'blog_right_sections' => $this->advertisementRepository->get('blog-right-section'),
+            'social'=> $this->socialRepository->all(),
             'all_cites' => $this->cityRepository->all(),
 
         ]);
