@@ -75,8 +75,8 @@
 
                             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
 
-                                <a class="dropdown-item" href="/">English</a>
-                                <a class="dropdown-item" href="/?language=ar">Arabic</a>
+                                <a class="dropdown-item" href="/language/en">English</a>
+                                <a class="dropdown-item" href="/language/ar">Arabic</a>
                             </div>
                         </li>
                     </div>

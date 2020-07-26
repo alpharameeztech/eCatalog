@@ -12,6 +12,7 @@ use App\Repositories\Interfaces\CountryRepositoryInterface;
 use App\Repositories\Interfaces\SocialRepositoryInterface;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
@@ -44,7 +45,6 @@ class HomeController extends Controller
         CityRepositoryInterface $cityRepository,
         CountryRepositoryInterface $countryRepository,
         SocialRepositoryInterface $socialRepository
-
     )
     {
         $this->storeRepository = $storeRepository;
@@ -55,19 +55,27 @@ class HomeController extends Controller
         $this->countryRepository = $countryRepository;
         $this->socialRepository = $socialRepository;
 
-        if(request('language')){
-            app()->setLocale(request('language'));
-        }
 
     }
 
+    protected function setLocale($request)
+    {
+        $value = $request->session()->get('locale');
+
+        app()->setLocale($value);
+
+    }
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        
+
+        $this->setLocale($request);
+
         //dd(app()->getLocale());
        // app()->setLocale('ar');
         $stores = $this->storeRepository->all();

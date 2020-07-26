@@ -50,13 +50,25 @@ class CatalogController extends Controller
 
 
     }
+
+    protected function setLocale($request)
+    {
+        $value = $request->session()->get('locale');
+
+        app()->setLocale($value);
+
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $this->setLocale($request);
+        
         return view('pages.catalog.index',[
             'catalogs' => $this->catalogRepository->all(),
             'recent_stores' => $this->storeRepository->get($limit=8),
