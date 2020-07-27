@@ -53,9 +53,13 @@
                             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
 
                                 <a class="dropdown-item" href="/">All</a>
+                                @if(count($all_cites))
                                 @foreach($all_cites as $city)
                                     <a class="dropdown-item" href="?city={{$city->slug}}">{{$city->name}}</a>
                                 @endforeach
+                                @endif
+
+                               
                             </div>
                         </li>
                     </div>
