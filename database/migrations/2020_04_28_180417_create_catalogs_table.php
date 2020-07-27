@@ -19,10 +19,10 @@ class CreateCatalogsTable extends Migration
             //image id refer to the featured image from catalog images
             $table->unsignedBigInteger('image_id')->nullable();
             $table->mediumText('name');
-            $table->string('slug',500)->unique();
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->string('start_at',500);
-            $table->string('end_at',500)->nullable();
+            $table->string('start_at');
+            $table->string('end_at')->nullable();
             $table->unsignedInteger('total_views')->nullable();
             $table->boolean('featured')->default(0);
             $table->boolean('status')->default(1);
