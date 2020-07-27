@@ -82,10 +82,13 @@
                 <p class="subHeading2">Follow Us On</p>
 
                 <div class="social">
+                  @if($social)
                     <a href="{{$social->facebook}}"><img src="/img/icons/facebook.svg" /></a>
                     <a href="{{$social->twitter}}"><img src="/img/icons/twitter.svg" /></a>
                     <a href="{{$social->instagram}}"><img src="/img/icons/instagram.svg" /></a>
                     <a href="{{$social->youtube}}"><img src="/img/icons/youtube.svg" /></a>
+                  @endif
+                   
 
                 </div>
             </div>
