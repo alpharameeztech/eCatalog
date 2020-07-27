@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
         //check if current locale is empty if so a default locale must be provided 
         if(!Session::has('locale')) {
             app()->setLocale('en');
+            session(['locale' => 'en']);
         }
 
 
