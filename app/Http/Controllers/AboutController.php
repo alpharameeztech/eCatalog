@@ -2,10 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Interfaces\CityRepositoryInterface;
+use App\Repositories\Interfaces\CountryRepositoryInterface;
+use App\Repositories\Interfaces\SocialRepositoryInterface;
+use App\Repositories\Interfaces\StoreRepositoryInterface;
 use Illuminate\Http\Request;
 
-class AboutController extends BaseController
+class AboutController extends Controller
 {
+
+    protected $storeRepository;
+
+    protected $cityRepository;
+
+    protected $countryRepository;
+
+    protected $socialRepository;
+
+    function __construct(
+        StoreRepositoryInterface $storeRepository,
+        CityRepositoryInterface $cityRepository,
+        CountryRepositoryInterface $countryRepository,
+        SocialRepositoryInterface $socialRepository
+    )
+    {
+        $this->storeRepository = $storeRepository;
+        $this->cityRepository = $cityRepository;
+        $this->countryRepository = $countryRepository;
+        $this->socialRepository = $socialRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +43,8 @@ class AboutController extends BaseController
             'recent_stores' => $this->storeRepository->get($limit=8),
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
-            'social'=> $this->socialRepository->all()
+            'social'=> $this->socialRepository->all(),
+            'all_cites' => $this->cityRepository->all(),
         ]);
     }
 
