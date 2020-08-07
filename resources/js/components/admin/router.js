@@ -17,6 +17,7 @@ import Home from "./pages/Home";
 import Socials from "./pages/Socials";
 import Banners from "./pages/Banners";
 import Advertisements from "./pages/Advertisements";
+import About from "./pages/About";
 
 const router = new VueRouter({
     mode: 'history',
@@ -102,6 +103,10 @@ const router = new VueRouter({
         {
             path: '/home/advertisements',
             component: Advertisements,
+        },
+        {
+            path: '/home/about',
+            component: About,
         }
     ],
 });

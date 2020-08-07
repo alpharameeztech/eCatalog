@@ -103,6 +103,9 @@ Route::group([
     Route::patch('/term/{term}', 'TermController@update')->name('update.term');
     Route::patch('/toggle/term/status', 'TermController@toggleStatus');
 
+    Route::post('/about', 'AboutController@store')->name('add.about');
+    Route::get('/about', 'AboutController@index')->name('about');
+
     Route::get('/blogs', 'BlogController@index')->name('all.blogs');
     Route::post('/blog', 'BlogController@store')->name('add.blog');
     Route::post('/blog/upload/image', 'BlogController@uploadImage');
