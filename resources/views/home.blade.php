@@ -18,7 +18,7 @@
         <!-- advertisements -->
         @if(!empty($home_long_ad_1))
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 advertisement">
                     @if( $home_long_ad_1->url != "undefined")
 
                         <a href="{{$home_long_ad_1->url}}">
@@ -44,7 +44,7 @@
         <!-- advertisements 2-->
         @if(!empty($home_long_ad_2))
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 advertisement">
                     @if( $home_long_ad_2->url != "undefined")
 
                         <a href="{{$home_long_ad_2->url}}">
@@ -65,7 +65,7 @@
         <!-- advertisements 3-->
         @if(!empty($home_long_ad_3))
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 advertisement">
                     @if( $home_long_ad_3->url != "undefined")
 
                         <a href="{{$home_long_ad_3->url}}">

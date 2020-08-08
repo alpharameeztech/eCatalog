@@ -98,7 +98,7 @@ class HomeController extends Controller
             'social'=> $this->socialRepository->all(),
             'home_long_ad_1' => $this->advertisementRepository->get('home-long-ad-1'),
             'home_long_ad_2' => $this->advertisementRepository->get('home-long-ad-2'),
-            'home_long_ad_3' => '',
+            'home_long_ad_3' => $this->advertisementRepository->get('home-long-ad-3'),
 
         ]);
     }
