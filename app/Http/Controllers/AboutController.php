@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\About;
 use App\Repositories\Interfaces\CityRepositoryInterface;
 use App\Repositories\Interfaces\CountryRepositoryInterface;
 use App\Repositories\Interfaces\SocialRepositoryInterface;
@@ -39,12 +40,16 @@ class AboutController extends Controller
      */
     public function index()
     {
+
+        $about = About::get();
+
         return view('pages.about', [
             'recent_stores' => $this->storeRepository->get($limit=8),
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
             'social'=> $this->socialRepository->all(),
             'all_cites' => $this->cityRepository->all(),
+            'about' => $about
         ]);
     }
 
