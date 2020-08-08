@@ -68,7 +68,7 @@ class CatalogController extends Controller
     {
 
         $this->setLocale($request);
-        
+
         return view('pages.catalog.index',[
             'catalogs' => $this->catalogRepository->all(),
             'recent_stores' => $this->storeRepository->get($limit=8),
@@ -78,6 +78,9 @@ class CatalogController extends Controller
             'recent_stores' => $this->storeRepository->get($limit=8),
             'social'=> $this->socialRepository->all(),
             'all_cites' => $this->cityRepository->all(),
+            'all_catalogs_page_long_ad_1' => $this->advertisementRepository->get('all-catalogs-page-long-ad-1'),
+            'all_catalogs_page_long_ad_2' => $this->advertisementRepository->get('all-catalogs-page-long-ad-2'),
+            'all_catalogs_page_long_ad_3' => $this->advertisementRepository->get('all-catalogs-page-long-ad-3'),
 
         ]);
 
@@ -90,7 +93,7 @@ class CatalogController extends Controller
         ]);
 
         $this->setLocale($request);
-        
+
         return view('pages.catalog.search',[
             'searched_item' => $request->search,
             'catalogs' => $this->catalogRepository->search($request->search),

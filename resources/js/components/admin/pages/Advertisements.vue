@@ -498,6 +498,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     this.close()
                     this.initialize()
 
+                this.$router.push('home')
+
             },
             toggleBan(item){
                 var self = this

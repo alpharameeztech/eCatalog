@@ -45,15 +45,38 @@
             @foreach ($catalogs as $key=>$catalog)
 
                 @if($key == 8)
-                    <!-- check all stores -->
-                    @include('partials/catalogs/check_all_stores')
-                    <!-- check all stores end-->
-                @endif
+                    <!-- advertisements -->
+                    @if(!empty($all_catalogs_page_long_ad_1))
+                        <div class="advertisement checkStores noShadow">
+                            @if( $all_catalogs_page_long_ad_1->url != "undefined")
+
+                                <a href="{{$all_catalogs_page_long_ad_1->url}}">
+                                    <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$all_catalogs_page_long_ad_1->image}}" class="d-block w-100" alt="...">
+                                </a>
+                            @else
+                                {!! $all_catalogs_page_long_ad_1->ad !!}
+                            @endif
+                        </div>
+                    @endif
+                    <!-- advertisements end -->
+
+                    @endif
 
                 @if($key == 16)
-                    <!-- check all stores -->
-                    @include('partials/advertisements3')
-                    <!-- check all stores end-->
+                    <!-- advertisements -->
+                        @if(!empty($all_catalogs_page_long_ad_2))
+                            <div class="advertisement checkStores noShadow">
+                                @if( $all_catalogs_page_long_ad_2->url != "undefined")
+
+                                    <a href="{{$all_catalogs_page_long_ad_2->url}}">
+                                        <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$all_catalogs_page_long_ad_2->image}}" class="d-block w-100" alt="...">
+                                    </a>
+                                @else
+                                    {!! $all_catalogs_page_long_ad_2->ad !!}
+                                @endif
+                            </div>
+                        @endif
+                    <!-- advertisements end -->
                 @endif
 
                 <div class="col-sm-3 customContainers">
@@ -105,9 +128,20 @@
         </div>
 
 
-        <!-- check all stores -->
-        @include('partials/browse_catalogs_banner')
-        <!-- check all stores end-->
+        <!-- advertisements -->
+        @if(!empty($all_catalogs_page_long_ad_1))
+            <div class="advertisement checkStores noShadow">
+                @if( $all_catalogs_page_long_ad_3->url != "undefined")
+
+                    <a href="{{$all_catalogs_page_long_ad_3->url}}">
+                        <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$all_catalogs_page_long_ad_3->image}}" class="d-block w-100" alt="...">
+                    </a>
+                @else
+                    {!! $all_catalogs_page_long_ad_3->ad !!}
+                @endif
+            </div>
+        @endif
+    <!-- advertisements end -->
 
         <!-- all catalogs end-->
     </div>
