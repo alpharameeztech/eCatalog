@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Home;
 use App\Repositories\BannerRepository;
+use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
 use App\Repositories\Interfaces\BannerRepositoryInterface;
 use App\Repositories\Interfaces\BlogRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
+    private $advertisementRepository;
+
     private $storeRepository;
 
     private $catalogRepository;
@@ -44,7 +47,9 @@ class HomeController extends Controller
         BlogRepositoryInterface $blogRepository,
         CityRepositoryInterface $cityRepository,
         CountryRepositoryInterface $countryRepository,
-        SocialRepositoryInterface $socialRepository
+        SocialRepositoryInterface $socialRepository,
+        AdvertisementRepositoryInterface $advertisementRepository
+
     )
     {
         $this->storeRepository = $storeRepository;
@@ -54,8 +59,7 @@ class HomeController extends Controller
         $this->cityRepository = $cityRepository;
         $this->countryRepository = $countryRepository;
         $this->socialRepository = $socialRepository;
-
-
+        $this->advertisementRepository = $advertisementRepository;
     }
 
     protected function setLocale($request)
@@ -74,7 +78,7 @@ class HomeController extends Controller
     {
 
         $this->setLocale($request);
-   
+
         $stores = $this->storeRepository->all();
         $latest_catalogs = $this->catalogRepository->latest(4);
         $popular_catalogs =  $this->catalogRepository->popular();
@@ -91,7 +95,11 @@ class HomeController extends Controller
             'all_cites' => $this->cityRepository->all(),
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
-            'social'=> $this->socialRepository->all()
+            'social'=> $this->socialRepository->all(),
+            'home_long_ad_1' => $this->advertisementRepository->get('home-long-ad-1'),
+            'home_long_ad_2' => $this->advertisementRepository->get('home-long-ad-2'),
+            'home_long_ad_3' => '',
+
         ]);
     }
 }

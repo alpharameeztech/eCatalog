@@ -13,7 +13,7 @@ class AdvertisementRepository implements AdvertisementRepositoryInterface
 
         return Advertisement::where('location', $location)
             ->where('status', 1)
-            ->get();
+            ->first();
 
     }
 
