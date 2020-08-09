@@ -76,6 +76,9 @@ class StoreController extends Controller
             'recent_stores' => $this->storeRepository->get($limit=8),
             'social'=> $this->socialRepository->all(),
             'all_cites' => $this->cityRepository->all(),
+            'all_stores_page_long_ad_1' => $this->advertisementRepository->get('all-stores-page-long-ad-1'),
+            'all_stores_page_long_ad_2' => $this->advertisementRepository->get('all-stores-page-long-ad-2'),
+            'all_stores_page_long_ad_3' => $this->advertisementRepository->get('all-stores-page-long-ad-3'),
 
         ]);
     }
