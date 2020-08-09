@@ -132,6 +132,8 @@ class BlogController extends Controller
             'recent_countries' => $this->countryRepository->get($limit=5),
             'latest_catalogs'=> $this->catalogRepository->latest($limit=4),
             'blog_right_sections' => $this->advertisementRepository->get('blog-right-section'),
+            'blog_long_ad_1' => $this->advertisementRepository->get('blog-large-add-1'),
+            'blog_long_ad_2' => $this->advertisementRepository->get('blog-large-add-2'),
             'social'=> $this->socialRepository->all(),
             'all_cites' => $this->cityRepository->all(),
 

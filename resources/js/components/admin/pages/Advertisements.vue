@@ -273,6 +273,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     'blog-right-section',
                     'all-blogs-page-long-ad-1',
                     'all-blogs-page-long-ad-2',
+                    'blog-large-add-1',
+                    'blog-large-add-2'
                 ],
                 editor: ClassicEditor,
                 editorData: '',
