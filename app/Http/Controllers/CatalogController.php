@@ -167,6 +167,7 @@ class CatalogController extends Controller
             'catalog_images' => $catalog->images->paginate(9),
             'catalog_small_sections' => $this->advertisementRepository->get('catalog-small-section'),
             'catalog_large_sections' => $this->advertisementRepository->get('catalog-large-section'),
+            'catalog_large_ad_1' => $this->advertisementRepository->get('catalog-large-ad-1'),
             'social'=> $this->socialRepository->all(),
             'all_cites' => $this->cityRepository->all()
 

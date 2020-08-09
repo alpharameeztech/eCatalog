@@ -396,9 +396,23 @@
         </div>
         {{-- ================================= advertisement ends=================--}}
 
-    <!-- see all the catalogs -->
-        @include('partials/see_all_catalogs')
-    <!-- see all the catalogs  end-->
+    <!-- advertisements -->
+        @foreach($catalog_large_ad_1 as $advertisement)
+            @if(!empty($advertisement))
+                <div class="advertisement checkStores noShadow">
+                    @if( $advertisement->url != "undefined")
+
+                        <a href="{{$advertisement->url}}">
+                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}"
+                                 class="d-block w-100" alt="...">
+                        </a>
+                    @else
+                        {!! $advertisement->ad !!}
+                    @endif
+                </div>
+            @endif
+        @endforeach
+    <!-- advertisements end -->
 
         {{--  ======================= Store branches ==========================  --}}
         @if(count($in_cities) > 0)
