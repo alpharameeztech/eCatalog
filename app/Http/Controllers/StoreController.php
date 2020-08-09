@@ -125,6 +125,8 @@ class StoreController extends Controller
             'store_catalogs' => $store->catalogs,
             'store_left_sections' => $this->advertisementRepository->get('store-left-section'),
             'store_right_sections' => $this->advertisementRepository->get('store-right-section'),
+            'store_long_ad_1' => $this->advertisementRepository->get('store-long-ad-1'),
+            'store_long_ad_2' => $this->advertisementRepository->get('store-long-ad-2'),
             'social'=> $this->socialRepository->all(),
             'all_cites' => $this->cityRepository->all(),
 

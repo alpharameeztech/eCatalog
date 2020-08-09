@@ -292,18 +292,43 @@
         </div>
 
 
+        <!-- advertisements -->
+        @foreach($store_long_ad_1 as $advertisement)
+            @if(!empty($advertisement))
+                <div class="advertisement checkStores noShadow">
+                    @if( $advertisement->url != "undefined")
 
-        <!-- check all stores -->
-            @include('partials/see_all_catalogs')
-        <!-- check all stores end-->
+                        <a href="{{$advertisement->url}}">
+                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" class="d-block w-100" alt="...">
+                        </a>
+                    @else
+                        {!! $advertisement->ad !!}
+                    @endif
+                </div>
+            @endif
+        @endforeach
+        <!-- advertisements end -->
 
         <!-- store catalogs -->
         @include('partials/catalogs/catalogs_of_a_store')
         <!-- store catalogs end-->
 
-        <!-- check all stores -->
-    @include('partials/browse_our_stores_list')
-    <!-- check all stores end-->
+        <!-- advertisements -->
+        @foreach($store_long_ad_2 as $advertisement)
+            @if(!empty($advertisement))
+                <div class="advertisement checkStores noShadow">
+                    @if( $advertisement->url != "undefined")
+
+                        <a href="{{$advertisement->url}}">
+                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" class="d-block w-100" alt="...">
+                        </a>
+                    @else
+                        {!! $advertisement->ad !!}
+                    @endif
+                </div>
+            @endif
+        @endforeach
+        <!-- advertisements end -->
 
         <!-- all catalogs end-->
     </div>
