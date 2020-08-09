@@ -16,6 +16,7 @@ class LanguageController extends Controller
 //        dd($catalog->name);
 //        dd(app()->getLocale());
        // return redirect('/');
-        return redirect()->back();
+        //return redirect()->back();
+         return redirect('/');
     }
 }
