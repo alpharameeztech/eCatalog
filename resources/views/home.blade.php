@@ -16,20 +16,23 @@
         <!-- about end-->
 
         <!-- advertisements -->
-        @if(!empty($home_long_ad_1))
-            <div class="row">
-                <div class="col-sm-12 advertisement">
-                    @if( $home_long_ad_1->url != "undefined")
+        @foreach($home_long_ad_1 as $advertisement)
+            @if(!empty($advertisement))
+                <div class="row">
+                    <div class="col-sm-12 advertisement">
+                        @if( $advertisement->url != "undefined")
 
-                        <a href="{{$home_long_ad_1->url}}">
-                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$home_long_ad_1->image}}" class="d-block w-100" alt="...">
-                        </a>
-                    @else
-                        {!! $home_long_ad_1->ad !!}
-                    @endif
+                            <a href="{{$advertisement->url}}">
+                                <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" class="d-block w-100" alt="...">
+                            </a>
+                        @else
+                            {!! $advertisement->ad !!}
+                        @endif
+                    </div>
                 </div>
-            </div>
-        @endif
+            @endif
+        @endforeach
+
         <!-- advertisements end -->
 
         <!-- featured catalogs -->
@@ -41,43 +44,45 @@
         @include('partials/catalogs/latest')
         <!-- latest catalogs end-->
 
-        <!-- advertisements 2-->
-        @if(!empty($home_long_ad_2))
-            <div class="row">
-                <div class="col-sm-12 advertisement">
-                    @if( $home_long_ad_2->url != "undefined")
+        <!-- advertisements -->
+        @foreach($home_long_ad_2 as $advertisement)
+            @if(!empty($advertisement))
+                <div class="row">
+                    <div class="col-sm-12 advertisement">
+                        @if( $advertisement->url != "undefined")
 
-                        <a href="{{$home_long_ad_2->url}}">
-                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$home_long_ad_2->image}}" class="d-block w-100" alt="...">
-                        </a>
-                    @else
-                        {!! $home_long_ad_2->ad !!}
-                    @endif
+                            <a href="{{$advertisement->url}}">
+                                <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" class="d-block w-100" alt="...">
+                            </a>
+                        @else
+                            {!! $advertisement->ad !!}
+                        @endif
+                    </div>
                 </div>
-            </div>
-        @endif
-        <!-- advertisements 2 end -->
+            @endif
+        @endforeach
 
         <!-- popular catalogs -->
         @include('partials/catalogs/popular')
         <!-- popular catalogs end-->
 
-        <!-- advertisements 3-->
-        @if(!empty($home_long_ad_3))
-            <div class="row">
-                <div class="col-sm-12 advertisement">
-                    @if( $home_long_ad_3->url != "undefined")
+        <!-- advertisements -->
+        @foreach($home_long_ad_3 as $advertisement)
+            @if(!empty($advertisement))
+                <div class="row">
+                    <div class="col-sm-12 advertisement">
+                        @if( $advertisement->url != "undefined")
 
-                        <a href="{{$home_long_ad_3->url}}">
-                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$home_long_ad_3->image}}" class="d-block w-100" alt="...">
-                        </a>
-                    @else
-                        {!! $home_long_ad_3->ad !!}
-                    @endif
+                            <a href="{{$advertisement->url}}">
+                                <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" class="d-block w-100" alt="...">
+                            </a>
+                        @else
+                            {!! $advertisement->ad !!}
+                        @endif
+                    </div>
                 </div>
-            </div>
-        @endif
-        <!-- advertisements 3 end -->
+            @endif
+        @endforeach
 
 
         <!-- latest blog -->

@@ -46,36 +46,40 @@
 
                 @if($key == 8)
                     <!-- advertisements -->
-                    @if(!empty($all_catalogs_page_long_ad_1))
-                        <div class="advertisement checkStores noShadow">
-                            @if( $all_catalogs_page_long_ad_1->url != "undefined")
+                    @foreach($all_catalogs_page_long_ad_1 as $advertisement)
+                            @if(!empty($advertisement))
+                                <div class="advertisement checkStores noShadow">
+                                    @if( $advertisement->url != "undefined")
 
-                                <a href="{{$all_catalogs_page_long_ad_1->url}}">
-                                    <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$all_catalogs_page_long_ad_1->image}}" class="d-block w-100" alt="...">
-                                </a>
-                            @else
-                                {!! $all_catalogs_page_long_ad_1->ad !!}
+                                        <a href="{{$advertisement->url}}">
+                                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" class="d-block w-100" alt="...">
+                                        </a>
+                                    @else
+                                        {!! $advertisement->ad !!}
+                                    @endif
+                                </div>
                             @endif
-                        </div>
-                    @endif
+                    @endforeach
                     <!-- advertisements end -->
 
                     @endif
 
                 @if($key == 16)
                     <!-- advertisements -->
-                        @if(!empty($all_catalogs_page_long_ad_2))
-                            <div class="advertisement checkStores noShadow">
-                                @if( $all_catalogs_page_long_ad_2->url != "undefined")
+                        @foreach($all_catalogs_page_long_ad_2 as $advertisement)
+                            @if(!empty($advertisement))
+                                <div class="advertisement checkStores noShadow">
+                                    @if( $advertisement->url != "undefined")
 
-                                    <a href="{{$all_catalogs_page_long_ad_2->url}}">
-                                        <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$all_catalogs_page_long_ad_2->image}}" class="d-block w-100" alt="...">
-                                    </a>
-                                @else
-                                    {!! $all_catalogs_page_long_ad_2->ad !!}
-                                @endif
-                            </div>
-                        @endif
+                                        <a href="{{$advertisement->url}}">
+                                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" class="d-block w-100" alt="...">
+                                        </a>
+                                    @else
+                                        {!! $advertisement->ad !!}
+                                    @endif
+                                </div>
+                            @endif
+                        @endforeach
                     <!-- advertisements end -->
                 @endif
 
@@ -129,19 +133,22 @@
 
 
         <!-- advertisements -->
-        @if(!empty($all_catalogs_page_long_ad_1))
-            <div class="advertisement checkStores noShadow">
-                @if( $all_catalogs_page_long_ad_3->url != "undefined")
+        @foreach($all_catalogs_page_long_ad_3 as $advertisement)
+            @if(!empty($advertisement))
+                <div class="advertisement checkStores noShadow">
+                    @if( $advertisement->url != "undefined")
 
-                    <a href="{{$all_catalogs_page_long_ad_3->url}}">
-                        <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$all_catalogs_page_long_ad_3->image}}" class="d-block w-100" alt="...">
-                    </a>
-                @else
-                    {!! $all_catalogs_page_long_ad_3->ad !!}
-                @endif
-            </div>
-        @endif
-    <!-- advertisements end -->
+                        <a href="{{$advertisement->url}}">
+                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}"
+                                 class="d-block w-100" alt="...">
+                        </a>
+                    @else
+                        {!! $advertisement->ad !!}
+                    @endif
+                </div>
+            @endif
+        @endforeach
+        <!-- advertisements end -->
 
         <!-- all catalogs end-->
     </div>
