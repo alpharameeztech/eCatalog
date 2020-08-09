@@ -72,9 +72,23 @@
         </div>
         {{--        ===================== latest blog posts end =================--}}
 
-    <!-- see all the catalogs -->
-        @include('partials/see_all_catalogs')
-    <!-- see all the catalogs  end-->
+        <!-- advertisements -->
+            @foreach($all_blogs_page_long_ad_1 as $advertisement)
+                @if(!empty($advertisement))
+                    <div class="advertisement checkStores noShadow">
+                        @if( $advertisement->url != "undefined")
+
+                            <a href="{{$advertisement->url}}">
+                                <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}"
+                                     class="d-block w-100" alt="...">
+                            </a>
+                        @else
+                            {!! $advertisement->ad !!}
+                        @endif
+                    </div>
+                @endif
+            @endforeach
+        <!-- advertisements end -->
 
         {{--        ===================== popular blog posts =================--}}
         <h2 class="lineBreaker">Popular blog posts</h2>
@@ -92,9 +106,23 @@
         </div>
         {{--        ===================== popular blog posts end =================--}}
 
-        <!-- check all stores -->
-        @include('partials/browse_our_stores_list')
-        <!-- check all stores end-->
+    <!-- advertisements -->
+        @foreach($all_blogs_page_long_ad_2 as $advertisement)
+            @if(!empty($advertisement))
+                <div class="advertisement checkStores noShadow">
+                    @if( $advertisement->url != "undefined")
+
+                        <a href="{{$advertisement->url}}">
+                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}"
+                                 class="d-block w-100" alt="...">
+                        </a>
+                    @else
+                        {!! $advertisement->ad !!}
+                    @endif
+                </div>
+        @endif
+    @endforeach
+    <!-- advertisements end -->
 
         <!-- latest catalogs -->
             <h2 class="text-3xl mt-8">The latest catalogs</h2>

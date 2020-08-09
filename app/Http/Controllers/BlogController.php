@@ -83,8 +83,8 @@ class BlogController extends Controller
             'blog_right_sections' => $this->advertisementRepository->get('blog-right-section'),
             'social'=> $this->socialRepository->all(),
             'all_cites' => $this->cityRepository->all(),
-
-
+            'all_blogs_page_long_ad_1' => $this->advertisementRepository->get('all-blogs-page-long-ad-1'),
+            'all_blogs_page_long_ad_2' => $this->advertisementRepository->get('all-blogs-page-long-ad-2'),
         ]);
     }
 
