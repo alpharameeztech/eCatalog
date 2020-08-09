@@ -110,7 +110,7 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Store $store)
+    public function show($lang, Request $request, Store $store)
     {
 
         $this->setLocale($request);

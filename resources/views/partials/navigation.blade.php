@@ -27,13 +27,13 @@
                         <a class="nav-link" href="/">Home </a>
                     </li>
                     <li class="@if(request()->path() == 'catalogs') active @endif nav-item">
-                        <a class="nav-link" href="/catalogs">Catalogs</a>
+                        <a class="nav-link" href="/{{ session('locale') }}/catalogs">Catalogs</a>
                     </li>
                     <li class="@if(request()->path() == 'stores') active @endif nav-item">
-                        <a class="nav-link" href="/stores">Stores</a>
+                        <a class="nav-link" href="/{{ session('locale') }}/stores">Stores</a>
                     </li>
                     <li class="@if(request()->path() == 'blog') active @endif nav-item">
-                        <a class="nav-link" href="/blog">Blog</a>
+                        <a class="nav-link" href="/{{ session('locale') }}/blog">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact Us</a>
@@ -54,12 +54,12 @@
 
                                 <a class="dropdown-item" href="/">All</a>
                                 @if(count($all_cites) > 0)
-                                
+
                                     @foreach($all_cites as $city)
                                         <a class="dropdown-item" href="?city={{$city->slug}}">{{$city->name}}</a>
                                     @endforeach
                                 @endif
-                               
+
                             </div>
                         </li>
                     </div>

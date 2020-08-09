@@ -136,7 +136,7 @@ class CatalogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Store $store ,Catalog $catalog)
+    public function show($lang, Request $request, Store $store ,Catalog $catalog)
     {
 
         $this->setLocale($request);

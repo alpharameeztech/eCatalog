@@ -3,12 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Catalog;
+use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
+use App\Repositories\Interfaces\CatalogRepositoryInterface;
+use App\Repositories\Interfaces\CityRepositoryInterface;
+use App\Repositories\Interfaces\CountryRepositoryInterface;
+use App\Repositories\Interfaces\SocialRepositoryInterface;
+use App\Repositories\Interfaces\StoreRepositoryInterface;
+use App\Repositories\Interfaces\TagRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Tag;
 use App\Support\Collection;
 
 class TagController extends Controller
 {
+
+    private $cityRepository;
+    protected $storeRepository;
+    private $countryRepository;
+    protected $socialRepository;
+
+    public function __construct(
+        CityRepositoryInterface $cityRepository,
+        CountryRepositoryInterface $countryRepository,
+        StoreRepositoryInterface $storeRepository,
+        SocialRepositoryInterface $socialRepository
+    )
+    {
+        $this->cityRepository = $cityRepository;
+        $this->countryRepository = $countryRepository;
+        $this->storeRepository = $storeRepository;
+        $this->socialRepository = $socialRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -53,8 +80,13 @@ class TagController extends Controller
         return view('pages.tag.show',[
             'tag' => $tag,
             'tag_catalogs' => $tag_catalogs,
-            'page_description' => $tag->page
-        ]); 
+            'recent_stores' => $this->storeRepository->get($limit=8),
+            'page_description' => $tag->page,
+            'all_cites' => $this->cityRepository->all(),
+            'recent_cities' => $this->cityRepository->get($limit=8),
+            'recent_countries' => $this->countryRepository->get($limit=5),
+            'social'=> $this->socialRepository->all(),
+        ]);
     }
 
     /**

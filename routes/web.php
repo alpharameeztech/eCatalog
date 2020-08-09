@@ -13,27 +13,68 @@ use Illuminate\Routing\Router;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', function () {
 
-Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
+    $locale = session('locale');
+
+     if(empty($locale)){
+         $locale = 'en';
+         app()->setLocale($locale);
+         session(['locale' => $locale]);
+         redirect('/en');
+     }
+     else{
+        return redirect("/{$locale}");
+     }
+});
+
+Route::middleware(['locale'])->group(function () {
+    Route::get('/stores', 'StoreController@index');
+    Route::get('/store/{store}', 'StoreController@show');
+    Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
+
+    Route::get('/catalogs', 'CatalogController@index');
+
+    Route::get('/blog', 'BlogController@index');
+
+    Route::get('/blog/{blog}', 'BlogController@show');
+
+    Route::get('/terms', 'TermController@index');
+
+    Route::get('/faq', 'FaqController@index');
+});
+
+
+Route::prefix('/{lang}')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
+    Route::get('/stores', 'StoreController@index');
+    Route::get('/store/{store}', 'StoreController@show');
+    Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
+
+    Route::get('/catalogs', 'CatalogController@index');
+
+    Route::get('/blog', 'BlogController@index');
+    Route::get('/blog/{blog}', 'BlogController@show');
+
+    Route::get('/terms', 'TermController@index');
+
+    Route::get('/faq', 'FaqController@index');
+
+});
+
+
 
 Route::get('/tag/{tag}', 'TagController@show');
 
-Route::get('/stores', 'StoreController@index');
-Route::get('/store/{store}', 'StoreController@show');
 Route::get('/store/{store}/catalogs', 'StoreController@showCatalogs');
 
 Route::get('/{store}/{city}/{branch}', 'BranchController@show');
 
-Route::get('/terms', 'TermController@index');
 
-Route::get('/faq', 'FaqController@index');
 
-Route::get('/blog', 'BlogController@index');
 
-Route::get('/blog/{blog}', 'BlogController@show');
 
-Route::get('/catalogs', 'CatalogController@index');
 
 Auth::routes();
 

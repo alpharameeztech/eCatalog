@@ -115,7 +115,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Blog $blog)
+    public function show($lang, Request $request, Blog $blog)
     {
 
         $this->setLocale($request);
