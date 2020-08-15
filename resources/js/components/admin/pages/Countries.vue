@@ -5,7 +5,7 @@
         sort-by="slug"
         class="elevation-1"
     >
-        <!-- name -->  
+        <!-- name -->
             <template v-slot:item.name="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
@@ -15,7 +15,7 @@
             </template>
         <!-- name end-->
 
-        <!-- formatted created date -->    
+        <!-- formatted created date -->
             <template v-slot:item.created_at="{ item }">
                     <v-row  class="d-flex justify-end">
                         <v-chip
@@ -95,6 +95,14 @@
                                                     <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
+                                                    <v-file-input
+                                                        v-model="file"
+                                                        label="Select Logo"
+                                                        accept="image/*"
+                                                        @change="onFileChange"
+                                                    ></v-file-input>
+                                                </v-col>
+                                                <v-col cols="12" sm="12" md="12">
                                                     <v-text>Page Description</v-text>
                                                     <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
                                                 </v-col>
@@ -131,8 +139,8 @@
                             </v-tab-item>
                              <!-- arbaic tab item end -->
                      </v-tabs>
-                            
-                   
+
+
                 </v-dialog>
             </v-toolbar>
         </template>
@@ -165,6 +173,10 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 countries: '',
                 dialog: false,
                 countries: [],
+                avatar: false,
+                file: null,
+                imageUrl: null,
+                profilePicture: '',
                 headers: [
                     {
                         text: 'Id',
@@ -251,10 +263,23 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     this.editorData = this.editedItem.page.description.en
                     this.arabicEditorData = this.editedItem.page.description.ar
                 }
-                
+
                 this.dialog = true
             },
 
+            onFileChange() {
+                let reader = new FileReader()
+                reader.onload = () => {
+                    this.imageUrl = reader.result
+                }
+                reader.readAsDataURL(this.file)
+                this.profilePicture = this.file
+            },
+
+            removeImage: function (e) {
+                this.profilePicture = ''
+                this.file = ''
+            },
             deleteItem (item) {
                 const index = this.desserts.indexOf(item)
                 confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
@@ -268,70 +293,63 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 }, 300)
                 this.editorData = ''
                 this.arabicEditorData = ''
+                this.file = ''
+                this.profilePicture = ''
 
             },
 
             save () {
+
+                var self = this
+                this.$root.$emit('loading', true);
+
+                let formData = new FormData();
+                /*
+                    Add the form data we need to submit
+                */
+                formData.append('profilePicture', this.profilePicture);
+                formData.append('name', this.editedItem.name);
+                formData.append('arabic_name', this.editedItem.arabic_name);
+                formData.append('description', this.editedItem.editorData);
+                formData.append('arabic_description', this.editedItem.arabicEditorData);
+
                 if (this.editedIndex > -1) {
+                    formData.append('id',this.editedItem.id);
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
-                    
+
                     var self = this
-                    this.$root.$emit('loading', true);
-                    axios.patch('/api/country/' + this.editedItem.slug, {
-                        name: this.editedItem.name,
-                        arabic_name: this.editedItem.arabic_name,
-                        description: this.editorData,
-                        arabic_description : this.arabicEditorData
-                    })
-                        .then(function (response) {
-                            flash('Changes Saved.', 'success');
-
-                            self.initialize()
-
-                        })
-                        .catch(function (error) {
-                            self.$root.$emit('loading', false)
-                            flash(error.response.data.errors, 'error');
-
-                        })
-                        .finally( function() {
-                            self.$root.$emit('loading', false);
-                        });
-
+                    this.desserts.push(this.editedItem)
 
                 } else {
                     var self = this
-
-                    this.$root.$emit('loading', true);
-
                     this.desserts.push(this.editedItem)
-
-                    axios.post('/api/countries', {
-                        name: this.editedItem.name,
-                        arabic_name: this.editedItem.arabic_name,
-                        description: this.editorData,
-                        arabic_description : this.arabicEditorData
-                    })
-                        .then(function (response) {
-                           
-                           self.initialize()
-                           
-                           flash('Changes Saved.', 'success');
-                        })
-                        .catch(function (error) {
-            
-                            flash(error.response.data.errors, 'error');
-            
-                        })
-                        .finally( function() {
-                            self.$root.$emit('loading', false);
-                        });
-
-                    this.initialize()
                 }
+
+                axios.post('/api/countries', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'enctype': 'multipart/form-data'
+                    }
+                })
+                .then(function (response) {
+
+                    self.initialize()
+
+                    flash('Changes Saved.', 'success');
+                })
+                .catch(function (error) {
+
+                    flash(error.response.data.errors, 'error');
+
+                })
+                .finally( function() {
+                    self.$root.$emit('loading', false);
+                });
+
+                this.initialize()
                 this.close()
             },
-            
+
             ago(date){
 
                 moment.locale();

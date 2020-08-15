@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Country;
 use App\Http\Controllers\Controller;
+use App\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Page;
@@ -38,27 +39,35 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:countries|max:255',
-            'arabic_name' => 'required',
-            'description' => 'required',
-            'arabic_description' => 'required',
-        ]);
+        if($request->id){
+            // update the store information
+            return $this->update($request);
+        }
+        else{
+            $validatedData = $request->validate([
+                'name' => 'required|unique:countries|max:255',
+                'arabic_name' => 'required',
+                'description' => 'required',
+                'arabic_description' => 'required',
+            ]);
 
-        $country = new Country;
+            $country = new Country;
+            $country->image = request()->file('profilePicture')->store('banners', 's3');
 
-        $country->setTranslation('name', 'en', $request->name);
-        $country->setTranslation('name', 'ar', $request->arabic_name);
+            $country->setTranslation('name', 'en', $request->name);
+            $country->setTranslation('name', 'ar', $request->arabic_name);
 
-        $country->slug = Str::slug($request->name , '-');
-        $country->save();
-        
-        // add the page description
-        $page = new Page; 
-        $page->setTranslation('description', 'en', $request->description);
-        $page->setTranslation('description', 'ar', $request->arabic_description);
-        $country->page()->save($page);
-    }
+            $country->slug = Str::slug($request->name , '-');
+            $country->save();
+
+            // add the page description
+            $page = new Page;
+            $page->setTranslation('description', 'en', $request->description);
+            $page->setTranslation('description', 'ar', $request->arabic_description);
+            $country->page()->save($page);
+
+        }
+     }
 
     /**
      * Display the specified resource.
@@ -89,7 +98,7 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Country $country, Request $request )
+    public function update(Request $request)
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
@@ -98,6 +107,12 @@ class CountryController extends Controller
             'arabic_description' => 'required',
         ]);
 
+        $country = Country::find($request->id);
+
+        if (!empty(request()->file('profilePicture'))) {
+            $country->image = request()->file('profilePicture')->store('banners', 's3');
+        }
+
         $country->setTranslation('name', 'en', $request->name);
         $country->setTranslation('name', 'ar', $request->arabic_name);
 
@@ -105,7 +120,7 @@ class CountryController extends Controller
         $country->save();
 
         //update the page description
-        $page = $country->page; 
+        $page = $country->page;
         $page->setTranslation('description', 'en', $request->description);
         $page->setTranslation('description', 'ar', $request->arabic_description);
         $country->page()->save($page);
