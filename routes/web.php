@@ -12,6 +12,7 @@ use Illuminate\Routing\Router;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', function () {
 
@@ -76,7 +77,6 @@ Route::get('/{store}/{city}/{branch}', 'BranchController@show');
 
 
 
-Auth::routes();
 
 Route::get('/about-us', 'AboutController@index')->name('about.us');
 
