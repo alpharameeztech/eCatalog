@@ -13,7 +13,10 @@ use Illuminate\Routing\Router;
 |
 */
 Auth::routes();
-
+Route::get('/home', function(){
+    return view('admin.dashboard');
+})->name('admin.dashboard')
+    ->middleware('auth');
 Route::get('/', function () {
 
     $locale = session('locale');
@@ -80,10 +83,7 @@ Route::get('/{store}/{city}/{branch}', 'BranchController@show');
 
 Route::get('/about-us', 'AboutController@index')->name('about.us');
 
-Route::get('/home', function(){
-    return view('admin.dashboard');
-})->name('admin.dashboard')
-    ->middleware('auth');
+
 
 Route::post('/search/catalogs', 'CatalogController@search')->name('search.catalogs');
 
