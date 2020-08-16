@@ -38,6 +38,37 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact Us</a>
                     </li>
+
+                    <!-- Country Dropdown -->
+                    <div>
+                        <li class="nav-item dropdown">
+                            @if(request('country'))
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">{{ucfirst(request('country'))}}</a>
+
+                            @else
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">Country</a>
+                            @endif
+
+                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+
+                                <a class="dropdown-item" href="/">All</a>
+                                @if(count($all_countries) > 0)
+
+                                    @foreach($all_countries as $country)
+                                        <a class="dropdown-item" href="?city={{$country->slug}}">
+                                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$country->image}}" class="country d-block w-100" alt="...">
+                                        </a>
+                                    @endforeach
+                                @endif
+
+                            </div>
+                        </li>
+                    </div>
+
+                    <!-- Country Dropdown end -->
+
                     <!-- Dropdown -->
                     <div>
                         <li class="nav-item dropdown">

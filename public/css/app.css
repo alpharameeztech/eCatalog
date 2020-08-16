@@ -11207,3 +11207,7 @@ div.lineBreaker {
 .dropdown-item {
   color: #fff;
 }
+
+img.country {
+  width: 20% !important;
+}

@@ -16,5 +16,12 @@ class CountryRepository implements CountryRepositoryInterface
                     ->get();
 
     }
-   
+
+    public function all(){
+
+        return  Country::orderBy('created_at', 'desc')
+            ->get();
+
+    }
+
 }

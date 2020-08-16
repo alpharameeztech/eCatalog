@@ -95,6 +95,7 @@ class HomeController extends Controller
             'all_cites' => $this->cityRepository->all(),
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
+            'all_countries' => $this->countryRepository->all(),
             'social'=> $this->socialRepository->all(),
             'home_long_ad_1' => $this->advertisementRepository->get('home-long-ad-1'),
             'home_long_ad_2' => $this->advertisementRepository->get('home-long-ad-2'),
