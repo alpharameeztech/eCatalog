@@ -13,83 +13,7 @@ use Illuminate\Routing\Router;
 |
 */
 Auth::routes();
-Route::get('/home', function(){
-    return view('admin.dashboard');
-})->name('admin.dashboard')
-    ->middleware('auth');
-Route::get('/', function () {
 
-    $locale = session('locale');
-
-     if(empty($locale)){
-         $locale = 'en';
-         app()->setLocale($locale);
-         session(['locale' => $locale]);
-         redirect('/en');
-     }
-     else{
-        return redirect("/{$locale}");
-     }
-});
-
-Route::middleware(['locale'])->group(function () {
-    Route::get('/stores', 'StoreController@index');
-    Route::get('/store/{store}', 'StoreController@show');
-    Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
-
-    Route::get('/catalogs', 'CatalogController@index');
-
-    Route::get('/blog', 'BlogController@index');
-
-    Route::get('/blog/{blog}', 'BlogController@show');
-
-    Route::get('/terms', 'TermController@index');
-
-    Route::get('/faq', 'FaqController@index');
-});
-
-
-Route::prefix('/{lang}')->group(function () {
-    Route::get('/', 'HomeController@index')->name('home');
-
-    Route::get('/stores', 'StoreController@index');
-    Route::get('/store/{store}', 'StoreController@show');
-    Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
-
-    Route::get('/catalogs', 'CatalogController@index');
-
-    Route::get('/blog', 'BlogController@index');
-    Route::get('/blog/{blog}', 'BlogController@show');
-
-    Route::get('/terms', 'TermController@index');
-
-    Route::get('/faq', 'FaqController@index');
-
-});
-
-
-
-Route::get('/tag/{tag}', 'TagController@show');
-
-Route::get('/store/{store}/catalogs', 'StoreController@showCatalogs');
-
-Route::get('/{store}/{city}/{branch}', 'BranchController@show');
-
-
-
-
-
-
-
-Route::get('/about-us', 'AboutController@index')->name('about.us');
-
-
-
-Route::post('/search/catalogs', 'CatalogController@search')->name('search.catalogs');
-
-Route::get('/language/{language}', 'LanguageController@setLanguage');
-
-//
 //======================== public apis ==========================
 Route::group([
     'prefix'        => 'api',
@@ -176,5 +100,85 @@ Route::group([
 
 });
 //======================== public apis end ==========================
+
+Route::get('/home', function(){
+    return view('admin.dashboard');
+})->name('admin.dashboard')
+    ->middleware('auth');
+Route::get('/', function () {
+
+    $locale = session('locale');
+
+     if(empty($locale)){
+         $locale = 'en';
+         app()->setLocale($locale);
+         session(['locale' => $locale]);
+         redirect('/en');
+     }
+     else{
+        return redirect("/{$locale}");
+     }
+});
+
+Route::middleware(['locale'])->group(function () {
+    Route::get('/stores', 'StoreController@index');
+    Route::get('/store/{store}', 'StoreController@show');
+    Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
+
+    Route::get('/catalogs', 'CatalogController@index');
+
+    Route::get('/blog', 'BlogController@index');
+
+    Route::get('/blog/{blog}', 'BlogController@show');
+
+    Route::get('/terms', 'TermController@index');
+
+    Route::get('/faq', 'FaqController@index');
+});
+
+
+Route::prefix('/{lang}')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/city/{city}', 'CityController@filter');
+
+    Route::get('/stores', 'StoreController@index');
+    Route::get('/store/{store}', 'StoreController@show');
+    Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
+
+    Route::get('/catalogs', 'CatalogController@index');
+
+    Route::get('/blog', 'BlogController@index');
+    Route::get('/blog/{blog}', 'BlogController@show');
+
+    Route::get('/terms', 'TermController@index');
+
+    Route::get('/faq', 'FaqController@index');
+
+});
+
+
+
+Route::get('/tag/{tag}', 'TagController@show');
+
+Route::get('/store/{store}/catalogs', 'StoreController@showCatalogs');
+
+Route::get('/{store}/{city}/{branch}', 'BranchController@show');
+
+
+
+
+
+
+
+Route::get('/about-us', 'AboutController@index')->name('about.us');
+
+
+
+Route::post('/search/catalogs', 'CatalogController@search')->name('search.catalogs');
+
+Route::get('/language/{language}', 'LanguageController@setLanguage');
+
+//
+
 
 Route::get('/{city}/{mall}', 'MallController@show');

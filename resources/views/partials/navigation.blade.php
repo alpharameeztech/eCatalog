@@ -72,14 +72,14 @@
                     <!-- Dropdown -->
                     <div>
                         <li class="nav-item dropdown">
-                            @if(request('city'))
+                            @isset($current_city)
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">{{ucfirst(request('city'))}}</a>
+                                   aria-haspopup="true" aria-expanded="false">{{ucfirst($current_city->name)}}</a>
 
                                 @else
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">City</a>
-                            @endif
+                            @endisset
 
                             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
 
@@ -87,7 +87,7 @@
                                 @if(count($all_cites) > 0)
 
                                     @foreach($all_cites as $city)
-                                        <a class="dropdown-item" href="/{{session('locale')}}?city={{$city->slug}}">{{$city->name}}</a>
+                                        <a class="dropdown-item" href="/{{session('locale')}}/city/{{$city->slug}}">{{$city->name}}</a>
                                     @endforeach
                                 @endif
 

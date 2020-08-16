@@ -14,11 +14,9 @@ use App\Support\Collection;
 
 class StoreRepository implements StoreRepositoryInterface
 {
-    public function all()
+    public function all($city=null)
     {
         $tag = htmlspecialchars(request('tag'));
-
-        $city = htmlspecialchars(request('city'));
 
         if($tag && $tag == 'newest'){
             return Catalog::where('status', 1)
@@ -32,8 +30,7 @@ class StoreRepository implements StoreRepositoryInterface
 
         // return all the stores whose branches
         // exist on the 'city' query string
-        else if($city){
-            $city = City::where('slug', $city)->first();
+        else if($city != null){
 
             $city_stores = Branch::where('city_id', $city->id)
                             ->where('status',1)

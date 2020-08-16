@@ -8,11 +8,11 @@ interface CatalogRepositoryInterface
 {
     public function all();
 
-    public function latest($limit = 12);
+    public function latest( $limit = 12, $city=null);
 
     public function search($name);
 
-    public function popular($limit = 12);
+    public function popular($limit = 12, $city=null);
 
     public function featured();
 

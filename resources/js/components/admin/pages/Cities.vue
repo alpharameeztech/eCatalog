@@ -17,9 +17,9 @@
             :headers="headers"
             :items="desserts"
             :search="search"
-        >   
-      
-        <!-- name -->  
+        >
+
+        <!-- name -->
             <template v-slot:item.name="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
@@ -34,8 +34,8 @@
                      <v-text>{{ item.country.name.en }} </v-text>
             </template>
         <!-- country name end-->
-            
-        <!-- formatted created date -->    
+
+        <!-- formatted created date -->
             <template v-slot:item.created_at="{ item }">
                     <v-row  class="d-flex justify-start">
                         <v-chip
@@ -76,9 +76,9 @@
                 <!-- formatted updated date end-->
 
 
-        
-        
-       
+
+
+
         <!-- add/update city -->
             <template v-slot:top>
                 <v-toolbar flat color="white">
@@ -167,15 +167,15 @@
                             </v-tab-item>
                              <!-- arbaic tab item end -->
                      </v-tabs>
-                            
-                   
+
+
                 </v-dialog>
                 </v-toolbar>
             </template>
         <!-- add/update city end -->
 
         <!-- action -->
-         <template v-slot:item.action="{ item }">
+         <template v-slot:item.action="{ item }">count
             <v-icon
                 small
                 class="mr-2"
@@ -218,7 +218,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 dialog: false,
                 publishers: [],
                 headers: [
-                    
+
                     {
                         text: 'Id',
                         value: 'id',
@@ -336,14 +336,14 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
             },
 
             save () {
-                
+
                 this.$root.$emit('loading', true);
 
                 if (this.editedIndex > -1) {
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
 
                     var self = this
-                    
+
 
                     axios.patch('/api/city/'+ this.editedItem.slug, {
                         name: this.editedItem.name,
@@ -363,7 +363,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
                         })
                         .finally( function() {
-                            
+
                             self.$root.$emit('loading', false);
                         });
 
@@ -372,7 +372,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     var self = this
 
                     this.desserts.push(this.editedItem)
-                    
+
                     axios.post('/api/cities', {
                         name: this.editedItem.name,
                         arabic_name: this.editedItem.arabic_name,

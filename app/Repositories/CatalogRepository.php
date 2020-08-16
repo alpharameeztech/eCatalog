@@ -28,13 +28,23 @@ class CatalogRepository implements CatalogRepositoryInterface
         return Catalog::where('status', 1)->paginate(20);
     }
 
-    public function latest($limit = 12)
+    public function latest( $limit = 12, $city=null)
     {
-        return Catalog::where('status', 1)
-                    ->latest()
-                    ->limit($limit)
-                    ->where('status',1)
-                    ->get();
+        if($city != null){
+            return Catalog::where('status', 1)
+                ->latest()
+                ->where('city_id', $city->id)
+                ->limit($limit)
+                ->where('status',1)
+                ->get();
+        }else{
+            return Catalog::where('status', 1)
+                ->latest()
+                ->limit($limit)
+                ->where('status',1)
+                ->get();
+        }
+
     }
 
     public function search($name)
@@ -45,12 +55,21 @@ class CatalogRepository implements CatalogRepositoryInterface
             ->paginate(20);
     }
 
-    public function popular($limit = 12)
+    public function popular($limit = 12, $city=null)
     {
-        return Catalog::where('status', 1)
-                        ->orderBy('total_views', 'desc')
-                        ->limit($limit)
-                        ->get();
+        if($city != null){
+            return Catalog::where('status', 1)
+                ->orderBy('total_views', 'desc')
+                ->where('city_id', $city->id)
+                ->limit($limit)
+                ->get();
+        }else{
+            return Catalog::where('status', 1)
+                ->orderBy('total_views', 'desc')
+                ->limit($limit)
+                ->get();
+        }
+
     }
 
     public function featured()

@@ -17,9 +17,9 @@
             :headers="headers"
             :items="desserts"
             :search="search"
-        > 
+        >
 
-        <!-- name -->  
+        <!-- name -->
             <template v-slot:item.name="{ item }">
                 <v-text> {{item.name.en}} </v-text>
             </template>
@@ -31,7 +31,7 @@
             </template>
         <!-- store name end-->
 
-        <!-- featured -->
+             <!-- featured -->
             <template v-slot:item.featured="{ item }">
                 <v-text>{{ isFeatured(item.featured) }} </v-text>
             </template>
@@ -43,7 +43,7 @@
             </template>
         <!-- description name end-->
 
-        <!-- start at -->  
+        <!-- start at -->
             <template v-slot:item.start_at="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
@@ -53,7 +53,7 @@
             </template>
         <!-- start at end-->
 
-        <!-- end at -->  
+        <!-- end at -->
             <template v-slot:item.end_at="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
@@ -79,10 +79,10 @@
 
                     </v-row>
 
-            </template> 
+            </template>
         <!-- status -->
 
-        <!-- formatted created date -->    
+        <!-- formatted created date -->
             <template v-slot:item.created_at="{ item }">
                     <v-row  class="d-flex justify-end">
                         <v-chip
@@ -120,7 +120,7 @@
                     </v-chip>
                 </v-row>
             </template>
-                <!-- formatted updated date end--> 
+                <!-- formatted updated date end-->
 
             <!-- add/update modal -->
             <template v-slot:top>
@@ -214,7 +214,7 @@
 
                                                 <v-col cols="12" sm="12" md="12">
                                                     <!-- <v-select
-                                                        
+
                                                         v-model="editedItem.store"
                                                         :items="stores"
                                                         item-text="name.en"
@@ -235,9 +235,21 @@
                                                             label="Store"
                                                             @change="storeSelected"
                                                         ></v-autocomplete>
-                                                        
+
                                                 </v-col>
-                                                 <v-col cols="12" sm="12" md="12">
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-autocomplete
+                                                        v-model="editedItem.city"
+                                                        :items="cities"
+                                                        item-value="id"
+                                                        :filter="customFilter"
+                                                        item-text="name.en"
+                                                        return-object
+                                                        label="City"
+                                                    ></v-autocomplete>
+                                                </v-col>
+
+                                                <v-col cols="12" sm="12" md="12">
                                                      <v-select
                                                         v-model="editedItem.branches"
                                                         :items="branches"
@@ -277,7 +289,7 @@
                             <v-tab-item>
 
                                     <v-card>
-                                   
+
                                         <v-card-text>
                                             <v-container>
                                                 <v-row>
@@ -324,7 +336,7 @@
 
                         </v-tabs>
                         <!-- tabs end -->
-                      
+
                     </v-dialog>
                 </v-toolbar>
             </template>
@@ -351,11 +363,13 @@
 import stores_api from "../../../mixins/apis/store";
 import tags_api from "../../../mixins/apis/tags";
 import branches_api from "../../../mixins/apis/branches";
+import cities_api from "../../../mixins/apis/cities";
+
 import moment from 'moment';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
     export default {
-        mixins: [tags_api, stores_api, branches_api],
+        mixins: [tags_api, stores_api, branches_api, cities_api],
         data() {
             return {
                 editor: ClassicEditor,
@@ -380,7 +394,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 dialog: false,
                 publishers: [],
                 headers: [
-                    
+
                     {
                         text: 'Id',
                         value: 'id',
@@ -434,7 +448,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
             formTitle () {
                 return this.editedIndex === -1 ? 'Add a Catalog' : 'Edit a Catalog'
             },
-            
+
         },
 
         watch: {
@@ -536,7 +550,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 if (this.editedIndex > -1) {
                     formData.append('id',this.editedItem.id);
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
-                    
+
                     var self = this
                     this.desserts.push(this.editedItem)
                    // alert(this.editedItem.city_id.id);return;
@@ -551,6 +565,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         end_at: this.editedItem.end_at,
                         arabic_end_at: this.editedItem.arabic_end_at,
                         store: this.editedItem.store,
+                        city: this.editedItem.city,
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,
@@ -561,7 +576,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         featured: this.editedItem.featured,
                         featured_expiry_at: this.editedItem.featured_expiry_at,
                         page_description: this.editorData,
-                        page_arabic_description : this.arabicEditorData      
+                        page_arabic_description : this.arabicEditorData
                     })
                     .then(function (response) {
 
@@ -585,7 +600,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     });
                     this.close()
                     this.initialize()
-                    
+
 
                 } else {
                     var self = this
@@ -604,6 +619,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         end_at: this.editedItem.end_at,
                         arabic_end_at: this.editedItem.arabic_end_at,
                         store: this.editedItem.store,
+                        city: this.editedItem.city,
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,
@@ -639,13 +655,13 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     this.close()
                     this.initialize()
                 }
-               
+
             },
             toggleBan(item){
                 var self = this
 
                 this.$root.$emit('loading', true);
-                
+
                 axios.patch('/api/toggle/catalog/status', {
                     id: item.id,
                     status: item.status
@@ -653,7 +669,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 .then(function (response) {
 
                     self.initialize()
-                    
+
                     flash('Changes Saved.', 'success');
                 })
                 .catch(function (error) {
@@ -681,23 +697,23 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 textTwo.indexOf(searchText) > -1
             },
             storeSelected () {
-                
+
                 var store = this.editedItem.store
 
                 var self = this;
 
                 self.$root.$emit('loading', true);
-                
+
                 axios.get('/api/store/'+ store.slug + '/branches')
                     .then(function (response) {
                         self.branches = response.data
                     })
                     .catch(function (error) {
-                            
+
                     })
                     .finally(function () {
                         self.$root.$emit('loading', false);
-                    });  
+                    });
 
             }
 

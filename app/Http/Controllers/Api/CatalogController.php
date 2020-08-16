@@ -41,12 +41,13 @@ class CatalogController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $validatedData = $request->validate([
             'name' => 'required|max:500',
             'arabic_name' => 'required|max:255',
             'start_at' => 'required',
             'store' => 'required',
+            'city' => 'required',
             'branches' => 'required',
             'description'=> 'required',
             'arabic_description'=> 'required',
@@ -55,21 +56,21 @@ class CatalogController extends Controller
         ]);
 
         $catalog = new Catalog;
-            
+
         //name
         $catalog->setTranslation('name', 'en', $request->name);
         $catalog->setTranslation('name', 'ar', $request->arabic_name);
-       
+
         $catalog->slug = Str::of($request->name)->slug('-');
-        
+
         //description
         $catalog->setTranslation('description', 'en', $request->description);
         $catalog->setTranslation('description', 'ar', $request->arabic_description);
-        
+
         //start at
         $catalog->setTranslation('start_at', 'en', $request->start_at);
         $catalog->setTranslation('start_at', 'ar', $request->arabic_start_at);
-        
+
         //if catalog has no expiry
         //then set the to null
         if ($request->for_unlimited_time) {
@@ -80,8 +81,9 @@ class CatalogController extends Controller
             $catalog->setTranslation('end_at', 'en', $request->end_at);
             $catalog->setTranslation('end_at', 'ar', $request->arabic_end_at);
         }
-        
+
         $catalog->store_id = $request->store['id'];
+        $catalog->city_id = $request->city['id'];
 
         //check whether the catalog is
         //marked as featured
@@ -97,14 +99,14 @@ class CatalogController extends Controller
         * associate the seo tags with
         * the store's catalog
         */
-        $seoTags = new Seo; 
+        $seoTags = new Seo;
         $seoTags->setTranslation('title', 'en', $request->seo_title);
         $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
         $seoTags->setTranslation('description', 'en', $request->seo_description);
         $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
-        
+
         $catalog->seoTags()->save($seoTags);
-         
+
         // sync the catalog tags
         $catalog->tags()->sync($request->tags);
 
@@ -112,11 +114,11 @@ class CatalogController extends Controller
         $catalog->branches()->sync($request->branches);
 
         // add the page description
-        $page = new Page; 
+        $page = new Page;
         $page->setTranslation('description', 'en', $request->page_description);
         $page->setTranslation('description', 'ar', $request->page_arabic_description);
         $catalog->page()->save($page);
-        
+
     }
 
     /**
@@ -150,12 +152,13 @@ class CatalogController extends Controller
      */
     public function update(Catalog $catalog, Request $request)
     {
-       
+
         $validatedData = $request->validate([
             'name' => 'required|max:500',
             'arabic_name' => 'required|max:255',
             'start_at' => 'required',
             'store' => 'required',
+            'city' => 'required',
             'branches' => 'required',
             'description'=> 'required',
             'arabic_description'=> 'required',
@@ -166,17 +169,17 @@ class CatalogController extends Controller
         //name
         $catalog->setTranslation('name', 'en', $request->name);
         $catalog->setTranslation('name', 'ar', $request->arabic_name);
-       
+
         $catalog->slug = Str::of($request->name)->slug('-');
-        
+
         //description
         $catalog->setTranslation('description', 'en', $request->description);
         $catalog->setTranslation('description', 'ar', $request->arabic_description);
-        
+
         //start at
         $catalog->setTranslation('start_at', 'en', $request->start_at);
         $catalog->setTranslation('start_at', 'ar', $request->arabic_start_at);
-        
+
         //if catalog has no expiry
         //then set the to null
         if ($request->for_unlimited_time) {
@@ -187,7 +190,7 @@ class CatalogController extends Controller
             $catalog->setTranslation('end_at', 'en', $request->end_at);
             $catalog->setTranslation('end_at', 'ar', $request->arabic_end_at);
         }
-        
+
         //check whether the catalog is
         //marked as featured
         //if yes, then save it
@@ -200,6 +203,7 @@ class CatalogController extends Controller
         }
 
         $catalog->store_id = $request->store['id'];
+        $catalog->city_id = $request->city['id'];
 
         $catalog->save();
 
@@ -212,11 +216,11 @@ class CatalogController extends Controller
         $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
         $seoTags->setTranslation('description', 'en', $request->seo_description);
         $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
-        
+
         $catalog->seoTags()->save($seoTags);
 
         // sync the catalog tags
-        // if the user has updated 
+        // if the user has updated
         if( count($request->tags) && !is_array($request->tags[0])){
             $catalog->tags()->sync($request->tags); // if provided with tags
         }elseif( count($request->tags) == 0){
@@ -235,7 +239,7 @@ class CatalogController extends Controller
         }
 
         //update the page description
-        $page = $catalog->page; 
+        $page = $catalog->page;
         $page->setTranslation('description', 'en', $request->page_description);
         $page->setTranslation('description', 'ar', $request->page_arabic_description);
         $catalog->page()->save($page);
@@ -248,7 +252,7 @@ class CatalogController extends Controller
      */
     public function reorderImages(Request $request)
     {
-        
+
         foreach($request->images as $key=> $image){
             $imageModel = Image::find($image['id']);
             $imageModel->update(['order' => ++$key]);
@@ -281,22 +285,22 @@ class CatalogController extends Controller
         ]);
 
         $new_image = request()->file('file')->store('catalogs', 's3');
-        
+
         $catalog = Catalog::find($request->id);
 
         $image = new Image;
 
-        $image->image = $new_image; 
+        $image->image = $new_image;
         $response = $catalog->images()->save($image);
-            
+
         /*
-        * if this imag has been marked as 
+        * if this imag has been marked as
         * featured, then save with the catalog
         */
         if($request->featured == 'true'){
             // $catalog->image_id = $response->id;
             // $catalog->save();
-            $image->featured = true; 
+            $image->featured = true;
 
             $response = $catalog->images()->save($image);
         }
@@ -312,25 +316,25 @@ class CatalogController extends Controller
         ]);
 
         $new_pdf = request()->file('file')->store('catalogs', 's3');
-        
+
         $catalog = Catalog::find($request->id);
 
         $pdf = new Pdf;
 
-        $pdf->pdf = $new_pdf; 
+        $pdf->pdf = $new_pdf;
         $catalog->pdfs()->save($pdf);
-            
+
     }
 
     public function toggleFeaturedImage(Request $request){
         $validatedData = $request->validate([
             'image' => 'required',
         ]);
-            
+
         $image = Image::find($request->image['id']);
         $image->featured = !$image->featured;
         $image->save();
-        
+
     }
 
     /**
