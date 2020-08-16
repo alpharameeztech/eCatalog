@@ -57,7 +57,7 @@
                                 @if(count($all_countries) > 0)
 
                                     @foreach($all_countries as $country)
-                                        <a class="dropdown-item" href="?city={{$country->slug}}">
+                                        <a class="dropdown-item" href="/{{session('locale')}}?country={{$country->slug}}">
                                             <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$country->image}}" class="country d-block w-100" alt="...">
                                         </a>
                                     @endforeach
@@ -87,7 +87,7 @@
                                 @if(count($all_cites) > 0)
 
                                     @foreach($all_cites as $city)
-                                        <a class="dropdown-item" href="?city={{$city->slug}}">{{$city->name}}</a>
+                                        <a class="dropdown-item" href="/{{session('locale')}}?city={{$city->slug}}">{{$city->name}}</a>
                                     @endforeach
                                 @endif
 
