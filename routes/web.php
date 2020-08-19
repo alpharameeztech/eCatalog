@@ -140,6 +140,7 @@ Route::middleware(['locale'])->group(function () {
 Route::prefix('/{lang}')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/city/{city}', 'CityController@filter');
+    Route::get('/country/{country}', 'CountryController@filter');
 
     Route::get('/stores', 'StoreController@index');
     Route::get('/store/{store}', 'StoreController@show');

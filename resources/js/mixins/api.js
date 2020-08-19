@@ -29,7 +29,7 @@ export default {
             .then(function (response) {
 
                 self.countries = response.data;
-
+                console.log(self.countries)
                 self.$root.$emit('loading', false);
 
             })
@@ -41,7 +41,7 @@ export default {
             });
 
         },
-        
+
         Cities() {
 
             var self = this;

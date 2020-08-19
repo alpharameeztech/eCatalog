@@ -48,6 +48,7 @@ class CatalogController extends Controller
             'start_at' => 'required',
             'store' => 'required',
             'city' => 'required',
+            'country' => 'required',
             'branches' => 'required',
             'description'=> 'required',
             'arabic_description'=> 'required',
@@ -84,7 +85,7 @@ class CatalogController extends Controller
 
         $catalog->store_id = $request->store['id'];
         $catalog->city_id = $request->city['id'];
-
+        $catalog->country_id = $request->country['id'];
         //check whether the catalog is
         //marked as featured
         //if yes, then save it
@@ -159,12 +160,28 @@ class CatalogController extends Controller
             'start_at' => 'required',
             'store' => 'required',
             'city' => 'required',
+            'country' => 'required',
             'branches' => 'required',
             'description'=> 'required',
             'arabic_description'=> 'required',
             'page_description' => 'required',
             'page_arabic_description' => 'required'
         ]);
+
+        $country_id = '';
+        $city_id = '';
+
+        if(is_array($request->country)){
+            $country_id = $request->country['id'];
+        }else{
+            $country_id = $request->country;
+        }
+
+        if(is_array($request->city)){
+            $city_id = $request->city['id'];
+        }else{
+            $city_id = $request->city;
+        }
 
         //name
         $catalog->setTranslation('name', 'en', $request->name);
@@ -204,6 +221,7 @@ class CatalogController extends Controller
 
         $catalog->store_id = $request->store['id'];
         $catalog->city_id = $request->city['id'];
+        $catalog->country_id = $country_id;
 
         $catalog->save();
 

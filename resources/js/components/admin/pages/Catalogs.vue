@@ -239,13 +239,25 @@
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
                                                     <v-autocomplete
-                                                        v-model="editedItem.city"
+                                                        v-model="editedItem.country_id"
+                                                        :items="countries"
+                                                        item-value="id"
+                                                        :filter="customFilter"
+                                                        item-text="name.en"
+                                                        return-object
+                                                        label="Select Country"
+                                                    ></v-autocomplete>
+                                                </v-col>
+
+                                                <v-col cols="12" sm="12" md="12">
+                                                    <v-autocomplete
+                                                        v-model="editedItem.city_id"
                                                         :items="cities"
                                                         item-value="id"
                                                         :filter="customFilter"
                                                         item-text="name.en"
                                                         return-object
-                                                        label="City"
+                                                        label="Select City"
                                                     ></v-autocomplete>
                                                 </v-col>
 
@@ -364,12 +376,12 @@ import stores_api from "../../../mixins/apis/store";
 import tags_api from "../../../mixins/apis/tags";
 import branches_api from "../../../mixins/apis/branches";
 import cities_api from "../../../mixins/apis/cities";
-
+import countries_api from "../../../mixins/apis/countries";
 import moment from 'moment';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
     export default {
-        mixins: [tags_api, stores_api, branches_api, cities_api],
+        mixins: [tags_api, stores_api, branches_api, cities_api, countries_api],
         data() {
             return {
                 editor: ClassicEditor,
@@ -565,7 +577,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         end_at: this.editedItem.end_at,
                         arabic_end_at: this.editedItem.arabic_end_at,
                         store: this.editedItem.store,
-                        city: this.editedItem.city,
+                        city: this.editedItem.city_id,
+                        country: this.editedItem.country_id,
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,
@@ -619,7 +632,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         end_at: this.editedItem.end_at,
                         arabic_end_at: this.editedItem.arabic_end_at,
                         store: this.editedItem.store,
-                        city: this.editedItem.city,
+                        city: this.editedItem.city_id,
+                        country: this.editedItem.country_id,
                         seo_title: this.editedItem.seo_title,
                         arabic_seo_title: this.editedItem.arabic_seo_title,
                         seo_description: this.editedItem.seo_description,

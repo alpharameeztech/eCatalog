@@ -17,9 +17,9 @@
             :headers="headers"
             :items="desserts"
             :search="search"
-        > 
+        >
 
-        <!-- name -->  
+        <!-- name -->
             <template v-slot:item.name="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
@@ -47,22 +47,22 @@
             </template>
         <!-- mall name end-->
 
-        <!-- address -->  
+        <!-- address -->
             <template v-slot:item.address="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
-                        
+
                         <v-text> {{item.address.en}} </v-text>
                     </v-col>
                 </v-row>
             </template>
         <!-- address end-->
 
-        <!-- opening hours -->  
+        <!-- opening hours -->
             <template v-slot:item.opening_hours="{ item }">
                 <v-row  class="d-flex justify-start">
                     <v-col cols="12" sm="12" md="12">
-                        
+
                         <v-text> {{item.opening_hours.en}} </v-text>
                     </v-col>
                 </v-row>
@@ -85,10 +85,10 @@
 
                     </v-row>
 
-            </template> 
+            </template>
         <!-- status -->
 
-        <!-- formatted created date -->    
+        <!-- formatted created date -->
             <template v-slot:item.created_at="{ item }">
                     <v-row  class="d-flex justify-end">
                         <v-chip
@@ -126,7 +126,7 @@
                     </v-chip>
                 </v-row>
             </template>
-                <!-- formatted updated date end--> 
+                <!-- formatted updated date end-->
 
             <!-- add/update modal -->
             <template v-slot:top>
@@ -197,6 +197,18 @@
                                                     <v-text-field v-model="editedItem.map_location" label="Location in Map"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12" md="12">
+                                                    <v-autocomplete
+                                                        v-model="editedItem.country_id"
+                                                        :items="countries"
+                                                        item-value="id"
+                                                        :filter="customFilter"
+                                                        item-text="name.en"
+                                                        return-object
+                                                        label="Select Country"
+                                                    ></v-autocomplete>
+                                                </v-col>
+
+                                                <v-col cols="12" sm="12" md="12">
                                                         <v-autocomplete
                                                             v-model="editedItem.city"
                                                             :items="cities"
@@ -259,7 +271,7 @@
                             <v-tab-item>
 
                                     <v-card>
-                                   
+
                                         <v-card-text>
                                             <v-container>
                                                 <v-row>
@@ -303,7 +315,7 @@
 
                         </v-tabs>
                         <!-- tabs end -->
-                      
+
                     </v-dialog>
                 </v-toolbar>
             </template>
@@ -356,7 +368,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 dialog: false,
                 publishers: [],
                 headers: [
-                    
+
                     {
                         text: 'Id',
                         value: 'id',
@@ -417,7 +429,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
             formTitle () {
                 return this.editedIndex === -1 ? 'Add a Store Branch' : 'Edit a Store Branch'
             },
-            
+
         },
 
         watch: {
@@ -512,11 +524,11 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 /*
                     Add the form data we need to submit
                 */
-               
+
                 if (this.editedIndex > -1) {
                     formData.append('id',this.editedItem.id);
                     Object.assign(this.desserts[this.editedIndex], this.editedItem)
-                    
+
                     var self = this
 
                     this.desserts.push(this.editedItem)
@@ -533,6 +545,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         opening_hours: this.editedItem.opening_hours,
                         arabic_opening_hours: this.editedItem.arabic_opening_hours,
                         map_location: this.editedItem.map_location,
+                        country: this.editedItem.country_id,
                         city: this.editedItem.city,
                         store: this.editedItem.store,
                         mall: this.editedItem.mall,
@@ -558,7 +571,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         console.log(error)
 
                         flash(error.response.data.errors, 'error');
-                        
+
                     })
                     .finally(function () {
                         self.$root.$emit('loading', false)
@@ -566,7 +579,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     });
                     this.close()
                     this.initialize()
-                    
+
 
                 } else {
                     var self = this
@@ -586,6 +599,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         opening_hours: this.editedItem.opening_hours,
                         arabic_opening_hours: this.editedItem.arabic_opening_hours,
                         map_location: this.editedItem.map_location,
+                        country: this.editedItem.country_id,
                         city: this.editedItem.city,
                         store: this.editedItem.store,
                         mall: this.editedItem.mall,
@@ -610,7 +624,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         self.$root.$emit('loading', false)
 
                         flash(error.response.data.errors, 'error');
-                        
+
                     })
                     .finally(function () {
                         self.$root.$emit('loading', false)
@@ -619,13 +633,13 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                     this.close()
                     this.initialize()
                 }
-               
+
             },
             toggleBan(item){
                 var self = this
 
                 this.$root.$emit('loading', true);
-                
+
                 axios.patch('/api/toggle/branch/status', {
                     id: item.id,
                     status: item.status
@@ -633,7 +647,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 .then(function (response) {
 
                     self.initialize()
-                    
+
                     flash('Changes Saved.', 'success');
                 })
                 .catch(function (error) {

@@ -6,7 +6,7 @@ use App\Store;
 
 interface StoreRepositoryInterface
 {
-    public function all($city=null);
+    public function all($city=null,$country=null);
 
     public function get($limit=5);
 

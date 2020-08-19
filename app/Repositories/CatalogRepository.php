@@ -28,7 +28,7 @@ class CatalogRepository implements CatalogRepositoryInterface
         return Catalog::where('status', 1)->paginate(20);
     }
 
-    public function latest( $limit = 12, $city=null)
+    public function latest( $limit = 12, $city=null, $country = null)
     {
         if($city != null){
             return Catalog::where('status', 1)

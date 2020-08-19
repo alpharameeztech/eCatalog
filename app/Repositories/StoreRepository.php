@@ -14,7 +14,7 @@ use App\Support\Collection;
 
 class StoreRepository implements StoreRepositoryInterface
 {
-    public function all($city=null)
+    public function all($city=null, $country=null)
     {
         $tag = htmlspecialchars(request('tag'));
 
@@ -35,6 +35,23 @@ class StoreRepository implements StoreRepositoryInterface
             $city_stores = Branch::where('city_id', $city->id)
                             ->where('status',1)
                             ->pluck('store_id')->unique();
+
+            $stores =collect();
+
+            foreach ($city_stores as $store){
+                $store = Store::where('id', $store)->get();
+                $stores->push($store);
+            }
+
+            $stores = $stores->flatten(1);
+
+            return $stores->values()->all();
+        }
+
+        else if($country != null){
+            $city_stores = Branch::where('status',1)
+                ->where('country_id', $country->id)
+                ->pluck('store_id')->unique();
 
             $stores =collect();
 

@@ -8,7 +8,7 @@ interface CatalogRepositoryInterface
 {
     public function all();
 
-    public function latest( $limit = 12, $city=null);
+    public function latest( $limit = 12, $city=null, $country=null);
 
     public function search($name);
 

@@ -45,6 +45,7 @@ class BranchController extends Controller
             'opening_hours' => 'required',
             'arabic_opening_hours' => 'required',
             'city' => 'required',
+            'country' => 'required',
             'address' => 'required',
             'arabic_address'=> 'required',
             'description' => 'required',
@@ -52,11 +53,17 @@ class BranchController extends Controller
         ]);
 
         $branch = new Branch();
-       
+        $country_id = '';
+
+        if(is_array($request->country)){
+            $country_id = $request->country['id'];
+        }else{
+            $country_id = $request->country;
+        }
         //$store->name = Str::of($request->name)->trim();
         $branch->setTranslation('name', 'en', $request->name);
         $branch->setTranslation('name', 'ar', $request->arabic_name);
-       
+
         $branch->slug = Str::of($request->name)->slug('-');
 
         $branch->telephone = $request->telephone;
@@ -68,13 +75,14 @@ class BranchController extends Controller
 
         $branch->map_location = $request->map_location;
         $branch->city_id = $request->city['id'];
+        $branch->country_id = $country_id;
         $branch->store_id = $request->store['id'];
 
         if($request->mall){
             $branch->mall_id = $request->mall['id'];
         }
-    
-        
+
+
         $branch->setTranslation('address', 'en', $request->address);
         $branch->setTranslation('address', 'ar', $request->arabic_address);
 
@@ -84,20 +92,20 @@ class BranchController extends Controller
         * associate the seo tags with
         * the store's branch
         */
-        $seoTags = new Seo; 
+        $seoTags = new Seo;
         $seoTags->setTranslation('title', 'en', $request->seo_title);
         $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
         $seoTags->setTranslation('description', 'en', $request->seo_description);
         $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
-        
+
         $branch->seoTags()->save($seoTags);
 
         // add the page description
-        $page = new Page; 
+        $page = new Page;
         $page->setTranslation('description', 'en', $request->description);
         $page->setTranslation('description', 'ar', $request->arabic_description);
         $branch->page()->save($page);
-       
+
     }
 
     /**
@@ -131,22 +139,30 @@ class BranchController extends Controller
      */
     public function update(Branch $branch, Request $request)
     {
+        \Log::info($request->country);
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'arabic_name' => 'required|max:255',
             'opening_hours' => 'required',
             'arabic_opening_hours' => 'required',
             'city' => 'required',
+            'country' => 'required',
             'address' => 'required',
             'arabic_address'=> 'required',
             'description' => 'required',
             'arabic_description' => 'required',
         ]);
+        $country_id = '';
 
+        if(is_array($request->country)){
+            $country_id = $request->country['id'];
+        }else{
+            $country_id = $request->country;
+        }
         //$store->name = Str::of($request->name)->trim();
         $branch->setTranslation('name', 'en', $request->name);
         $branch->setTranslation('name', 'ar', $request->arabic_name);
-       
+
         $branch->slug = Str::of($request->name)->slug('-');
 
         $branch->telephone = $request->telephone;
@@ -158,13 +174,14 @@ class BranchController extends Controller
 
         $branch->map_location = $request->map_location;
         $branch->city_id = $request->city['id'];
+        $branch->country_id = $country_id;
         $branch->store_id = $request->store['id'];
 
         if($request->mall){
             $branch->mall_id = $request->mall['id'];
         }
-    
-        
+
+
         $branch->setTranslation('address', 'en', $request->address);
         $branch->setTranslation('address', 'ar', $request->arabic_address);
 
@@ -173,16 +190,16 @@ class BranchController extends Controller
         /*
         * update the store's seo tags
         */
-        $seoTags = $branch->seoTags; 
+        $seoTags = $branch->seoTags;
         $seoTags->setTranslation('title', 'en', $request->seo_title);
         $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
         $seoTags->setTranslation('description', 'en', $request->seo_description);
         $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
-        
+
         $branch->seoTags()->save($seoTags);
 
         //update the page description
-        $page = $branch->page; 
+        $page = $branch->page;
         $page->setTranslation('description', 'en', $request->description);
         $page->setTranslation('description', 'ar', $request->arabic_description);
         $branch->page()->save($page);
