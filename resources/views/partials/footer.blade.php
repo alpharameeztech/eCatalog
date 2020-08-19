@@ -26,7 +26,7 @@
                 </a>
               </li>
               <li>
-                <a href="/about-us">
+                <a href="/{{session('locale')}}/about-us">
                   <div>
                     About Us
                   </div>
@@ -66,7 +66,7 @@
 
                 @foreach ($recent_cities as $city)
 
-                    <p><a class="@if(!empty (request('city') && request('city') == $city->slug )) active @endif" href="/?city={{$city->slug}}">{{$city->name}}</a></p>
+                    <p><a class="@if(!empty (request('city') && request('city') == $city->slug )) active @endif" href="/{{session('locale')}}/city/{{$city->slug}}">{{$city->name}}</a></p>
 
                 @endforeach
 
@@ -88,7 +88,7 @@
                     <a href="{{$social->instagram}}"><img src="/img/icons/instagram.svg" /></a>
                     <a href="{{$social->youtube}}"><img src="/img/icons/youtube.svg" /></a>
                   @endif
-                   
+
 
                 </div>
             </div>

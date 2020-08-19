@@ -155,6 +155,8 @@ Route::prefix('/{lang}')->group(function () {
 
     Route::get('/faq', 'FaqController@index');
 
+    Route::get('/about-us', 'AboutController@index');
+
 });
 
 
@@ -171,7 +173,6 @@ Route::get('/{store}/{city}/{branch}', 'BranchController@show');
 
 
 
-Route::get('/about-us', 'AboutController@index')->name('about.us');
 
 
 

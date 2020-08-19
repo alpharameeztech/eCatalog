@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\About;
 use App\Home;
 use App\Repositories\BannerRepository;
 use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
@@ -100,6 +101,7 @@ class HomeController extends Controller
             'home_long_ad_1' => $this->advertisementRepository->get('home-long-ad-1'),
             'home_long_ad_2' => $this->advertisementRepository->get('home-long-ad-2'),
             'home_long_ad_3' => $this->advertisementRepository->get('home-long-ad-3'),
+            'about' => About::get()
 
         ]);
     }

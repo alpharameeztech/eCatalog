@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\About;
 use App\City;
 use App\Country;
 use App\Home;
@@ -97,7 +98,9 @@ class CountryController extends Controller
             'home_long_ad_1' => $this->advertisementRepository->get('home-long-ad-1'),
             'home_long_ad_2' => $this->advertisementRepository->get('home-long-ad-2'),
             'home_long_ad_3' => $this->advertisementRepository->get('home-long-ad-3'),
-            'current_country' => $country
+            'current_country' => $country,
+            'about' => About::get()
+
 
         ]);
 
