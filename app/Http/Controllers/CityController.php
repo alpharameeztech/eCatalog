@@ -100,6 +100,8 @@ class CityController extends Controller
      */
     public function filter(Request  $request, $lang, City $city)
     {
+        $this->setLocale($request);
+
         $stores = $this->storeRepository->all($city);
         $latest_catalogs = $this->catalogRepository->latest(4, $city);
         $popular_catalogs =  $this->catalogRepository->popular(15, $city);

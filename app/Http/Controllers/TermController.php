@@ -44,8 +44,10 @@ class TermController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request  $request)
     {
+        $this->setLocale($request);
+
         return view('pages.terms',[
             'terms' => $this->termRepository->all(),
             'recent_stores' => $this->storeRepository->get($limit=8),

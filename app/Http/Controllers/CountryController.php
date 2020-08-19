@@ -75,6 +75,7 @@ class CountryController extends Controller
 
     public function filter(Request  $request, $lang, Country $country)
     {
+        $this->setLocale($request);
 
         $stores = $this->storeRepository->all(null,$country);
         $latest_catalogs = $this->catalogRepository->latest(4, null, $country);

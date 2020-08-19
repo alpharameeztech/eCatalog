@@ -49,14 +49,6 @@ class StoreController extends Controller
 
     }
 
-    protected function setLocale($request)
-    {
-        $value = $request->session()->get('locale');
-
-        app()->setLocale($value);
-
-    }
-
     /**
      * Display a listing of the resource.
      *

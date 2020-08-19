@@ -43,8 +43,10 @@ class FaqController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Request  $request)
     {
+        $this->setLocale($request);
+
         return view('pages.faq',[
             'faqs' => $this->faqRepository->all(),
             'recent_stores' => $this->storeRepository->get($limit=8),
