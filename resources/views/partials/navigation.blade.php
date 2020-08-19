@@ -42,9 +42,10 @@
                     <!-- Country Dropdown -->
                     <div>
                         <li class="nav-item dropdown">
-                            @if(request('country'))
+                            @if(isset($current_country))
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">{{ucfirst(request('country'))}}</a>
+                                   aria-haspopup="true" aria-expanded="false">{{ucfirst($current_country->name)}}
+                                </a>
 
                             @else
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -98,9 +99,9 @@
                     <!-- Dropdown -->
                     <div>
                         <li class="nav-item dropdown">
-                            @if(request('language'))
+                            @if(session('locale'))
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">{{ucfirst(request('language'))}}</a>
+                                   aria-haspopup="true" aria-expanded="false">{{ucfirst(session('locale'))}}</a>
 
                             @else
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"

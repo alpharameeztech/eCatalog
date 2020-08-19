@@ -77,9 +77,9 @@ class CountryController extends Controller
     {
 
         $stores = $this->storeRepository->all(null,$country);
-        $latest_catalogs = $this->catalogRepository->latest(4, $country);
-        dd($latest_catalogs);
-        $popular_catalogs =  $this->catalogRepository->popular(15, $city);
+        $latest_catalogs = $this->catalogRepository->latest(4, null, $country);
+        $popular_catalogs =  $this->catalogRepository->popular(15, null, $country);
+
         return view('home',[
             'stores' => $stores,
             'latest_catalogs' => $latest_catalogs,

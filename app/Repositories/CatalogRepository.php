@@ -37,6 +37,13 @@ class CatalogRepository implements CatalogRepositoryInterface
                 ->limit($limit)
                 ->where('status',1)
                 ->get();
+        }else if($country != null){
+            return Catalog::where('status', 1)
+                ->latest()
+                ->where('country_id', $country->id)
+                ->limit($limit)
+                ->where('status',1)
+                ->get();
         }else{
             return Catalog::where('status', 1)
                 ->latest()
@@ -55,12 +62,18 @@ class CatalogRepository implements CatalogRepositoryInterface
             ->paginate(20);
     }
 
-    public function popular($limit = 12, $city=null)
+    public function popular($limit = 12, $city=null, $country=null)
     {
         if($city != null){
             return Catalog::where('status', 1)
                 ->orderBy('total_views', 'desc')
                 ->where('city_id', $city->id)
+                ->limit($limit)
+                ->get();
+        }else if($country != null ){
+            return Catalog::where('status', 1)
+                ->orderBy('total_views', 'desc')
+                ->where('country_id', $country->id)
                 ->limit($limit)
                 ->get();
         }else{

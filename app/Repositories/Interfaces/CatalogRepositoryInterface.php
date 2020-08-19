@@ -12,7 +12,7 @@ interface CatalogRepositoryInterface
 
     public function search($name);
 
-    public function popular($limit = 12, $city=null);
+    public function popular($limit = 12, $city=null, $country=null);
 
     public function featured();
 
