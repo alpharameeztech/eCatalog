@@ -19,6 +19,9 @@ return [
     'follow' => 'Follow Us On',
     'all_cities' => 'All Cities',
     'all_stores' => 'All Stores',
-
+    'find_your_catalog' => 'Find your catalog',
+    'search' => 'Search',
+    'branches_and_information' => 'Branches and information',
+    'store_catalogs' => 'Store catalogs',
 
 ];
