@@ -1,5 +1,5 @@
 <div class="latestBlog">
-    <h2>The latest blog posts</h2>
+    <h2>{{ trans('index.the_latest_blog_posts') }}</h2>
     <div class="container">
         @foreach ($latest_blog as $blog)
         <div class="row">
@@ -20,5 +20,5 @@
         </div>
         @endforeach
     </div>
-   
+
 </div>

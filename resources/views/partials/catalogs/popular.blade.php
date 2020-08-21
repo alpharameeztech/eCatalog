@@ -1,4 +1,4 @@
-<h2>The most popular catalogs</h2>
+<h2>{{ trans('index.the_most_popular_catalogs') }}</h2>
 <div class="row popularCatalogsContainer">
     @foreach ($popular_catalogs as $key=>$catalog)
         @if($catalog->ifExistInTheCity())

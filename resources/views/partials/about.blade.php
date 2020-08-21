@@ -1,5 +1,5 @@
 <div class="about">
-    <h2>About</h2>
+    <h2>{{ trans('index.about') }}</h2>
     <div class="container">
         @foreach ($latest_blog as $blog)
         <div class="row">

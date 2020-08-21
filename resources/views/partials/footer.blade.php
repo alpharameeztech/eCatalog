@@ -7,42 +7,42 @@
               <li>
                 <a href="/">
                   <div>
-                    Home
+                      {{ trans('index.home')}}
                   </div>
                 </a>
               </li>
               <li>
                 <a href="/stores">
                   <div>
-                    Stores
+                      {{ trans('index.stores')}}
                   </div>
                 </a>
               </li>
               <li>
                 <a href="/catalogs">
                   <div>
-                    Catalogs
+                      {{ trans('index.catalogs')}}
                   </div>
                 </a>
               </li>
               <li>
                 <a href="/{{session('locale')}}/about-us">
                   <div>
-                    About Us
+                      {{ trans('index.about')}}
                   </div>
                 </a>
               </li>
               <li>
                 <a href="/faq">
                   <div>
-                    FAQ
+                      {{ trans('index.faq')}}
                   </div>
                 </a>
               </li>
               <li>
                 <a href="#">
                   <div>
-                    Contact Us
+                      {{ trans('index.contact_us')}}
                   </div>
                 </a>
               </li>
@@ -52,17 +52,17 @@
 
         <div class="row subHeading">
             <div class="col-sm-3">
-                <p class="subHeading2">Stores</p>
+                <p class="subHeading2">{{ trans('index.stores')}}</p>
 
                 @foreach ($recent_stores as $store)
                     <p><a href="/store/{{$store->slug}}">{{$store->name}}</a></p>
                 @endforeach
 
-                <p><a href="">All Stores</a></p>
+                <p><a href="">{{ trans('index.all_stores') }}</a></p>
 
             </div>
             <div class="col-sm-3">
-                <p class="subHeading2">Cities</p>
+                <p class="subHeading2">{{ trans('index.cities') }}</p>
 
                 @foreach ($recent_cities as $city)
 
@@ -70,16 +70,16 @@
 
                 @endforeach
 
-                <p><a href="/">All Citites</a></p>
+                <p><a href="/">{{ trans('index.all_cities')}}</a></p>
 
             </div>
             <div class="col-sm-3">
 
-                <p class="subHeading2"><a href="/terms">Terms & Conditions</a></p>
+                <p class="subHeading2"><a href="/terms">{{ trans('index.terms') }}</a></p>
 
             </div>
             <div class="col-sm-3">
-                <p class="subHeading2">Follow Us On</p>
+                <p class="subHeading2">{{ trans('index.follow') }}</p>
 
                 <div class="social">
                   @if($social)

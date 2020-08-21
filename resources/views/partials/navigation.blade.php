@@ -24,19 +24,19 @@
                 <!-- Links -->
                 <ul class="navbar-nav mr-auto">
                     <li class="@if(request()->path() == '/') active @endif  nav-item">
-                        <a class="nav-link" href="/">Home </a>
+                        <a class="nav-link" href="/">{{ trans('index.home')}} </a>
                     </li>
                     <li class="@if(request()->path() == 'catalogs') active @endif nav-item">
-                        <a class="nav-link" href="/{{ session('locale') }}/catalogs">Catalogs</a>
+                        <a class="nav-link" href="/{{ session('locale') }}/catalogs">{{ trans('index.catalogs')}}</a>
                     </li>
                     <li class="@if(request()->path() == 'stores') active @endif nav-item">
-                        <a class="nav-link" href="/{{ session('locale') }}/stores">Stores</a>
+                        <a class="nav-link" href="/{{ session('locale') }}/stores">{{ trans('index.stores')}}</a>
                     </li>
                     <li class="@if(request()->path() == 'blog') active @endif nav-item">
-                        <a class="nav-link" href="/{{ session('locale') }}/blog">Blog</a>
+                        <a class="nav-link" href="/{{ session('locale') }}/blog">{{ trans('index.blog') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="#">{{ trans('index.contact_us') }}</a>
                     </li>
 
                     <!-- Country Dropdown -->
@@ -49,7 +49,7 @@
 
                             @else
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">Country</a>
+                                   aria-haspopup="true" aria-expanded="false">{{ trans('index.country') }}</a>
                             @endif
 
                             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
@@ -79,7 +79,7 @@
 
                                 @else
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">City</a>
+                                   aria-haspopup="true" aria-expanded="false">{{ trans('index.city') }}</a>
                             @endisset
 
                             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
