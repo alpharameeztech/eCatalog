@@ -11265,3 +11265,21 @@ img.country {
   margin-top: 6%;
   margin-bottom: 6%;
 }
+
+.contactUsNowCta {
+  background-color: #0061a6 !important;
+  border-color: #0061a6 !important;
+  color: #fff;
+  width: 80%;
+  margin: 8% 10%;
+  padding: 10px 0% !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  box-shadow: 0px 0px 3px 1px #0061a6;
+}
+
+.centered {
+  margin: auto;
+  width: 400px;
+  height: 200px;
+}

@@ -80,6 +80,12 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="centered">
+            <h2 class="textAlignCenter">{{ trans('index.ready_to_advertise_with_us') }}</h2>
+            <button class="contactUsNowCta" type="submit">Contact us now</button>
+        </div>
+    </div>
 
 @endsection
 

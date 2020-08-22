@@ -40,6 +40,8 @@ return [
     'user_friendly_catalog_display' =>'User-Friendly catalog display',
     'user_friendly_catalog_display_paragraph' => 'The customers have the ability to easily browse offers and find what they need, through the website and the apps',
     'bigger_reach' => 'Bigger Reach',
-    'bigger_reach_paragraph' => 'You can choose one of our advertisement bundles to feature your offers to reach the largest number of clients'
+    'bigger_reach_paragraph' => 'You can choose one of our advertisement bundles to feature your offers to reach the largest number of clients',
+    'ready_to_advertise_with_us' => 'Ready to advertise with us?',
+    'contact_us_now' => 'Contact us now'
 
 ];
