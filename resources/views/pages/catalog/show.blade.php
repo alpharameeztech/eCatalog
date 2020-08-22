@@ -97,8 +97,8 @@
     <div class="container">
 
 
-        <div class="lineBreaker">
-            <p>Catalogs / {{ strtoupper($store->name) }} / {{ strtoupper($catalog->name) }}</p>
+        <div class="lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">
+            <p>{{ trans('index.catalogs') }} / {{ strtoupper($store->name) }} / {{ strtoupper($catalog->name) }}</p>
         </div>
 
 
@@ -110,7 +110,7 @@
 
                     <div class="storeLogo">
 
-                        <h2>{{ strtoupper($catalog->name) }}</h2>
+                        <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($catalog->name) }}</h2>
 
                     </div>
 
