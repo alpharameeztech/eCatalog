@@ -11211,3 +11211,7 @@ div.lineBreaker {
 img.country {
   width: 20% !important;
 }
+
+.textAlignRight {
+  text-align: end;
+}

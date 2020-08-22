@@ -1,5 +1,5 @@
 <div class="about">
-    <h2>{{ trans('index.about') }}</h2>
+    <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.about') }}</h2>
     <div class="container">
         @foreach ($latest_blog as $blog)
         <div class="row">

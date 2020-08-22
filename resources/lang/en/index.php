@@ -23,5 +23,6 @@ return [
     'search' => 'Search',
     'branches_and_information' => 'Branches and information',
     'store_catalogs' => 'Store catalogs',
+    'store' => 'Store'
 
 ];

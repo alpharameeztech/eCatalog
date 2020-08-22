@@ -1,4 +1,4 @@
-<h2>{{ trans('index.the_most_popular_catalogs') }}</h2>
+<h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_most_popular_catalogs') }}</h2>
 <div class="row popularCatalogsContainer">
     @foreach ($popular_catalogs as $key=>$catalog)
         @if($catalog->ifExistInTheCity())
@@ -65,9 +65,9 @@
 
                 <div class="row catalogDetails">
                     <div class="col-sm-12">
-                        <p class="catalogName">{{$catalog->name}}</p>
+                        <p class="catalogName @if(session('locale') == 'ar') textAlignRight @endif">{{$catalog->name}}</p>
                         <div class="textContainer">
-                            <p class="catalogDate">
+                            <p class="catalogDate @if(session('locale') == 'ar') textAlignRight @endif">
                                 {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
                                 @if(!$catalog->end_at)
                                     {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
@@ -79,8 +79,8 @@
                                     </span>
                                 @endif
                             </p>
-                            <p>
-                               Store {{$catalog->store->name}}
+                            <p class="@if(session('locale') == 'ar') textAlignRight @endif">
+                                {{ trans('index.store') }} {{$catalog->store->name}}
                                 {{--  <a  href="/store/{{$catalog->store->slug}}" class="no-underline hover:underline text-blue-400">
                                     {{$catalog->store->name}}
                                 </a>  --}}

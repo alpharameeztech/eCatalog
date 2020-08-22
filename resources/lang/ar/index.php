@@ -23,5 +23,6 @@ return [
     'search' => 'البحث',
     'branches_and_information' => 'الفروع والمعلومات',
     'store_catalogs' => 'عروض المتجر',
+    'store' => 'متجر'
 
 ];

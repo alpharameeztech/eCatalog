@@ -1,5 +1,5 @@
 <div class="latestBlog">
-    <h2>{{ trans('index.the_latest_blog_posts') }}</h2>
+    <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_blog_posts') }}</h2>
     <div class="container">
         @foreach ($latest_blog as $blog)
         <div class="row">
@@ -7,8 +7,8 @@
                 <img src="/img/main-page/banner-2.png" />
             </div>
             <div class="col-sm-6">
-                <h2> {{$blog->title}}</h2>
-                <p>
+                <h2 class="@if(session('locale') == 'ar') textAlignRight @endif"> {{$blog->title}}</h2>
+                <p class="@if(session('locale') == 'ar') textAlignRight @endif">
                     {!! Illuminate\Support\Str::limit($blog->body, 400) !!}
                 </p>
 
