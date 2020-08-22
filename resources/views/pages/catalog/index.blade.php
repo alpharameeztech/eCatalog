@@ -4,12 +4,12 @@
 
     <div class="container">
         <!-- all catalogs -->
-        <h2 class="lineBreaker">Find your favorite store's offers on DealzBook</h2>
+        <h2 class="lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.find_your_favorite_stores_offers_on_dealzbook') }}</h2>
 
         {{--  -----------sorting -----------  --}}
         <div class="row sortingContainer">
             <div class="col-sm-1">
-                <a href=""><span class="sortSpan">Sort by</span></a>
+                <a href=""><span class="sortSpan">{{ trans('index.sort_by') }}</span></a>
             </div>
             <div class="col-sm-9">
                 <nav role='navigation'>
@@ -17,7 +17,7 @@
                       <li>
                         <a href="/catalogs">
                           <div>
-                            All
+                              {{ trans('index.all') }}
                           </div>
                         </a>
                       </li>
@@ -33,7 +33,7 @@
             </div>
             <div class="col-sm-2">
                 <a href="/catalogs?tag=newest" class="newestSort">
-                    <span>Newest</span>
+                    <span>{{ trans('index.newest') }}</span>
                     <img src="/img/icons/arrow-down-black.svg"/>
                 </a>
             </div>
@@ -97,10 +97,10 @@
 
                     <div class="row catalogDetails">
                         <div class="col-sm-12">
-                            <p class="catalogName">{{$catalog->name}}</p>
+                            <p class="catalogName @if(session('locale') == 'ar') textAlignRight @endif">{{$catalog->name}}</p>
 
                             <div class="textContainer">
-                                <p class="catalogDate">
+                                <p class="catalogDate @if(session('locale') == 'ar') textAlignRight @endif">
                                     {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
                                     @if(!$catalog->end_at)
                                         {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
@@ -112,8 +112,8 @@
                                         </span>
                                     @endif
                                 </p>
-                                <p>
-                                    Store {{$catalog->store->name}}
+                                <p class="@if(session('locale') == 'ar') textAlignRight @endif">
+                                    {{ trans('index.store') }} {{$catalog->store->name}}
                                     {{--  <a  href="/store/{{$catalog->store->slug}}" class="no-underline hover:underline text-blue-400">
                                         {{$catalog->store->name}}
                                     </a>  --}}

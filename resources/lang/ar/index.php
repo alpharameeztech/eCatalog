@@ -23,6 +23,10 @@ return [
     'search' => 'البحث',
     'branches_and_information' => 'الفروع والمعلومات',
     'store_catalogs' => 'عروض المتجر',
-    'store' => 'متجر'
+    'store' => 'متجر',
+    'find_your_favorite_stores_offers_on_dealzbook' => 'ابحث عن عروض متجرك المفضل على',
+    'sort_by' => 'صنف حسب',
+    'all' => 'الكل',
+    'newest' => 'الأحدث'
 
 ];

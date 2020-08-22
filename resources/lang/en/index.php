@@ -23,6 +23,10 @@ return [
     'search' => 'Search',
     'branches_and_information' => 'Branches and information',
     'store_catalogs' => 'Store catalogs',
-    'store' => 'Store'
+    'store' => 'Store',
+    'find_your_favorite_stores_offers_on_dealzbook' => 'Find your favorite store\'s offers on DealzBook',
+    'sort_by' => 'Sort by',
+    'all' => 'All',
+    'newest' => 'Newest'
 
 ];
