@@ -615,3 +615,32 @@ img.country{
 .textAlignRight{
     text-align: end;
 }
+.contactUsBg{
+    height: 70vh;
+    background-image: url("/img/contact/Component1.png");
+}
+.contactUsBg .heading{
+    color: #fff;
+    font-family: mada;
+    margin-top: 10vh;
+    font-size: 52px;
+    line-height: 10vh;
+}
+.contactUsBg .subHeading{
+    font-size:30px;
+    color:red;
+}
+.contactUsBg .join{
+    color: #fff;
+    font-size: 16px;
+}
+.joinDiv img{
+    width: 7%;
+    margin-left: 1%;
+}
+.textAlignCenter{
+    text-align: center;
+}
+.fontWeightMada{
+    font-family: mada !important;
+}

@@ -27,6 +27,12 @@ return [
     'find_your_favorite_stores_offers_on_dealzbook' => 'Find your favorite store\'s offers on DealzBook',
     'sort_by' => 'Sort by',
     'all' => 'All',
-    'newest' => 'Newest'
+    'newest' => 'Newest',
+    'contact_us_heading' => 'Reach a huge audience that is interested in offers and shopping',
+    'contact_us_sub_heading' => 'Join the biggest offers platform in the Middle East',
+    'benefits_of_advertising_with_us' => 'Benefits of advertising with us',
+    'reach_a_large_number_of_clients' => 'Reach a large number of clients',
+    'interested_audience' => 'Interested audience',
+    'expand_your_customer_base' => 'Expand your customer base'
 
 ];

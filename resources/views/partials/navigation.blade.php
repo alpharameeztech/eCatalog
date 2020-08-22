@@ -36,7 +36,7 @@
                         <a class="nav-link" href="/{{ session('locale') }}/blog">{{ trans('index.blog') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{ trans('index.contact_us') }}</a>
+                        <a class="nav-link" href="/{{ session('locale') }}/contact-us">{{ trans('index.contact_us') }}</a>
                     </li>
 
                     <!-- Country Dropdown -->

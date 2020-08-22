@@ -157,6 +157,8 @@ Route::prefix('/{lang}')->group(function () {
 
     Route::get('/about-us', 'AboutController@index');
 
+    Route::get('/contact-us', 'ContactController@index');
+
 });
 
 
