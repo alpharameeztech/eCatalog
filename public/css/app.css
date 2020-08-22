@@ -11251,3 +11251,17 @@ img.country {
 .fontWeightMada {
   font-family: mada !important;
 }
+
+.whyJoinUs .shadowBox {
+  border-radius: 8px;
+  box-shadow: 4px 3px 8px 0px rgba(0, 0, 0, 0.75);
+}
+
+.whyJoinUs .subContent {
+  padding: 7%;
+}
+
+.advertiseWithUs .row, .whyJoinUs .row {
+  margin-top: 6%;
+  margin-bottom: 6%;
+}

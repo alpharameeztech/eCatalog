@@ -31,6 +31,7 @@ return [
     'benefits_of_advertising_with_us' => 'Benefits of advertising with us',
     'reach_a_large_number_of_clients' => 'Reach a large number of clients',
     'interested_audience' => 'Interested audience',
-    'expand_your_customer_base' => 'Expand your customer base'
+    'expand_your_customer_base' => 'Expand your customer base',
+    'why_join_us' => 'Why join us'
 
 ];

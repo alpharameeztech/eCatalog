@@ -33,6 +33,13 @@ return [
     'benefits_of_advertising_with_us' => 'Benefits of advertising with us',
     'reach_a_large_number_of_clients' => 'Reach a large number of clients',
     'interested_audience' => 'Interested audience',
-    'expand_your_customer_base' => 'Expand your customer base'
+    'expand_your_customer_base' => 'Expand your customer base',
+    'why_join_us' => 'Why join us',
+    'interested_customers' => 'Interested Customers',
+    'interested_customers_paragraph' => 'Reach a large number of potential customers that are interested in offers in your country',
+    'user_friendly_catalog_display' =>'User-Friendly catalog display',
+    'user_friendly_catalog_display_paragraph' => 'The customers have the ability to easily browse offers and find what they need, through the website and the apps',
+    'bigger_reach' => 'Bigger Reach',
+    'bigger_reach_paragraph' => 'You can choose one of our advertisement bundles to feature your offers to reach the largest number of clients'
 
 ];
