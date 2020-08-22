@@ -169,7 +169,7 @@
 
         {{--  ======================= Store branches ==========================  --}}
         @if(count($in_cities) > 0)
-            <h2 class="lineBreaker">Branches and information</h2>
+            <h2 class="lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">Branches and information</h2>
 
             <div class="container storeInCities">
                 <div class="accordion " id="accordionExample">

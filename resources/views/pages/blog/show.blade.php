@@ -12,7 +12,7 @@
 
                 <div>
 
-                    <h2>{{ strtoupper($blog->title) }}</h2>
+                    <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($blog->title) }}</h2>
 
                     <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
 
@@ -63,13 +63,13 @@
     <!-- advertisements end -->
 
         {{--        ===================== popular blog posts =================--}}
-        <h2 class="lineBreaker">Popular blog posts</h2>
+        <h2 class="lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">{{trans('index.the_most_popular_catalogs')}}</h2>
 
         <div class="row">
             @foreach($popular_blogs as $blog)
                 <div class="col-sm-6">
                     <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
-                    <h3 class="fontMada">{{$blog->title}}</h3>
+                    <h3 class="fontMada @if(session('locale') == 'ar') textAlignRight @endif">{{$blog->title}}</h3>
                     <p>{!! Str::limit($blog->body, 200, '') !!}...</p>
                 </div>
             @endforeach
@@ -95,7 +95,7 @@
     <!-- advertisements end -->
 
         <!-- latest catalogs -->
-        <h2 class="text-3xl mt-8">The latest catalogs</h2>
+        <h2 class="text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_catalogs') }}</h2>
     @include('partials/catalogs/latest')
     <!-- latest catalogs end-->
 

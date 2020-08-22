@@ -416,7 +416,7 @@
 
         {{--  ======================= Store branches ==========================  --}}
         @if(count($in_cities) > 0)
-            <h2 class="lineBreaker">Branches and information</h2>
+            <h2 class="lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.branches_and_information') }}</h2>
 
             <div class="container storeInCities">
                 <div class="accordion " id="accordionExample">
@@ -424,8 +424,8 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                <h2 class="mb-0 @if(session('locale') == 'ar') textAlignRight @endif">
+                                    <button class="btn btn-link collapsed " type="button" data-toggle="collapse"
                                             data-target="#p__detail" aria-expanded="true" aria-controls="p__detail">
                                         {{ucfirst($city->name)}}
                                     </button>
@@ -437,7 +437,7 @@
 
                                     <div id="p__detail" class="collapse " data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <h5 class="mb-0">
+                                            <h5 class="mb-0 @if(session('locale') == 'ar') textAlignRight @endif">
                                                 <a href="/{{$store->slug}}/{{$branch->city->slug}}/{{$branch->slug}}">
                                                     <button class="btn btn-link">
                                                         {{ ucfirst($branch->name) }}
@@ -450,12 +450,12 @@
 
                                                     <div class="row">
                                                         <div class="col-sm-4 subSection">
-                                                            <p class="subHeading">Address:</p>
-                                                            <p class="content">
+                                                            <p class="subHeading @if(session('locale') == 'ar') textAlignRight @endif">Address:</p>
+                                                            <p class="content @if(session('locale') == 'ar') textAlignRight @endif">
                                                                 {{$branch->address}}
                                                             </p>
 
-                                                            <p class="locationInMap">
+                                                            <p class="locationInMap @if(session('locale') == 'ar') textAlignRight @endif">
                                                             <span>
                                                                 <i class="material-icons">map</i>
                                                             </span>
@@ -463,14 +463,14 @@
                                                             </p>
                                                         </div>
                                                         <div class="col-sm-4 subSection">
-                                                            <p class="subHeading">Phone:</p>
-                                                            <p class="content">
+                                                            <p class="subHeading @if(session('locale') == 'ar') textAlignRight @endif">Phone:</p>
+                                                            <p class="content @if(session('locale') == 'ar') textAlignRight @endif">
                                                                 {{$branch->telephone}}
                                                             </p>
                                                         </div>
                                                         <div class="col-sm-4 subSection">
-                                                            <p class="subHeading">Opening hours:</p>
-                                                            <p class="content">
+                                                            <p class="subHeading @if(session('locale') == 'ar') textAlignRight @endif">Opening hours:</p>
+                                                            <p class="content @if(session('locale') == 'ar') textAlignRight @endif">
                                                                 {{$branch->opening_hours}}
                                                             </p>
                                                         </div>
@@ -551,7 +551,7 @@
 
 
         <!-- latest catalogs -->
-        <h2 class="text-3xl mt-8">The latest catalogs</h2>
+        <h2 class="text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_catalogs') }}</h2>
         @include('partials/catalogs/latest')
         <!-- latest catalogs end-->
 
