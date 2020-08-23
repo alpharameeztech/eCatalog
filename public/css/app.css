@@ -11295,7 +11295,7 @@ img.country {
   height: 200px;
 }
 
-.submiButton {
+.submitButton {
   display: flex;
   justify-content: flex-end;
 }

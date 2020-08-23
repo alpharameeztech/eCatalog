@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use App\Repositories\Interfaces\CityRepositoryInterface;
 use App\Repositories\Interfaces\CountryRepositoryInterface;
 use App\Repositories\Interfaces\SocialRepositoryInterface;
@@ -69,9 +70,33 @@ class ContactController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
+        {
+            $validatedData = $request->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'phone_number' => 'required',
+                'email' => 'required',
+                'subject' => 'required',
+                'message' => 'required',
+            ]);
+
+            $contact = new Contact;
+
+            if (!empty(request()->file('file'))) {
+                $contact->file = request()->file('file')->store('contacts', 's3');
+            }
+
+            $contact->first_name = $request->first_name;
+            $contact->last_name = $request->last_name;
+            $contact->phone_number = $request->phone_number;
+            $contact->email = $request->email;
+            $contact->subject = $request->subject;
+            $contact->message = $request->message;
+
+            $contact->save();
+
+            return redirect()->back()->with('message', 'Thank you for contacting us. We will get back to you!');
+        }
 
     /**
      * Display the specified resource.

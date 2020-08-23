@@ -29,44 +29,59 @@
         </div>
     </div>
 
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            <h2 class="textAlignCenter">{{ session()->get('message') }}</h2>
+        </div>
+    @endif
     <div class="container">
         <div class="formBg">
             <h2 class="red"> {{ trans('index.join_us_today') }} </h2>
             <p>{{ trans('index.required_fields') }}</p>
-            <form action="" method="post" action="{{ route('contact.store') }}">
+            <form method="post" action="{{ route('contact.store') }}" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">{{ trans('index.first_name') }}</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input name="first_name" type="text" class="form-control" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{ trans('index.last_name') }}</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1">
+                            <input name="last_name" type="text" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{ trans('index.phone_number') }}</label>
-                            <input type="number" class="form-control" id="exampleInputPassword1" max="100">
+                            <input name="phone_number" type="number" class="form-control" >
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">{{ trans('index.email_address') }}</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input name="email" type="email" class="form-control" aria-describedby="emailHelp">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">{{ trans('index.subject') }}</label>
-                            <input type="text" class="form-control" aria-describedby="emailHelp">
+                            <input name="subject" type="text" class="form-control" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">{{ trans('index.message') }}</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea name="message" class="form-control" rows="3"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">{{ trans('index.upload_a_file') }}</label>
-                            <input type="file" class="form-control-file inputFile" id="exampleFormControlFile1">
+                            <input name="file" type="file" class="form-control-file inputFile">
                         </div>
-                        <div class="forum-group submiButton">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="forum-group submitButton">
                             <button class="contactUsSubmit" type="submit">{{ trans('index.submit') }}</button>
                         </div>
                     </div>
