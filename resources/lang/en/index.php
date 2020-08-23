@@ -42,6 +42,15 @@ return [
     'bigger_reach' => 'Bigger Reach',
     'bigger_reach_paragraph' => 'You can choose one of our advertisement bundles to feature your offers to reach the largest number of clients',
     'ready_to_advertise_with_us' => 'Ready to advertise with us?',
-    'contact_us_now' => 'Contact us now'
-
+    'contact_us_now' => 'Contact us now',
+    'join_us_today' => 'Join Us Today!',
+    'required_fields' => 'All fields with (*) symbol are required.',
+    'first_name' => 'First Name*',
+    'last_name' => 'Last Name*',
+    'phone_number' => 'Phone Number*',
+    'email_address' => 'Email Address*',
+    'subject' => 'Subject*',
+    'message' => 'Message*',
+    'submit' => 'Submit',
+    'upload_a_file' => 'Upload a file (optional)'
 ];

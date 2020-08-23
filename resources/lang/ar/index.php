@@ -40,7 +40,8 @@ return [
     'bigger_reach' => 'Bigger Reach',
     'bigger_reach_paragraph' => 'You can choose one of our advertisement bundles to feature your offers to reach the largest number of clients',
     'ready_to_advertise_with_us' => 'Ready to advertise with us?',
-    'contact_us_now' => 'Contact us now'
-
+    'contact_us_now' => 'Contact us now',
+    'join_us_today' => 'Join Us Today!',
+    'required_fields' => 'All fields with (*) symbol are required.'
 
 ];

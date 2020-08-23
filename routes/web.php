@@ -161,6 +161,7 @@ Route::prefix('/{lang}')->group(function () {
 
 });
 
+Route::post('/contact-us', 'ContactController@post')->name('contact.store');
 
 
 Route::get('/tag/{tag}', 'TagController@show');
