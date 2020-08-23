@@ -78,6 +78,7 @@ class ContactController extends Controller
                 'email' => 'required',
                 'subject' => 'required',
                 'message' => 'required',
+                'g-recaptcha-response' => 'required|captcha'
             ]);
 
             $contact = new Contact;

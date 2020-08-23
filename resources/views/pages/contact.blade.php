@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-
+    {!! NoCaptcha::renderJs() !!}
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
     <div class="contactUsBg">
@@ -81,6 +81,7 @@
                                 </ul>
                             </div>
                         @endif
+                        {!! NoCaptcha::display() !!}
                         <div class="forum-group submitButton">
                             <button class="contactUsSubmit" type="submit">{{ trans('index.submit') }}</button>
                         </div>
