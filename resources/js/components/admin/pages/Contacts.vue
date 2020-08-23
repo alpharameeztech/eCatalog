@@ -19,6 +19,15 @@
             :search="search"
         >
 
+             <!-- file -->
+             <template v-slot:item.file="{ item }" >
+                 <v-row  class="storeImage d-flex justify-start">
+                     <v-col  cols="12" sm="12" md="12">
+                         <a target="_blank" v-if="item.file" :href="showFile(item.file)">Click Here</a>
+                     </v-col>
+                 </v-row>
+             </template>
+             <!-- image end-->
 
         <!-- formatted created date -->
             <template v-slot:item.created_at="{ item }">
@@ -314,6 +323,9 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                         self.$root.$emit('loading', false);
                     });
 
+            },
+            showFile(file){
+                return 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + file;
             },
              ago(date){
 
