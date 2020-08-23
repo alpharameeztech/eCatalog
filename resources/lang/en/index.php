@@ -52,5 +52,6 @@ return [
     'subject' => 'Subject*',
     'message' => 'Message*',
     'submit' => 'Submit',
-    'upload_a_file' => 'Upload a file (optional)'
+    'upload_a_file' => 'Upload a file (optional)',
+    'join_us' => 'Join Us'
 ];
