@@ -1,4 +1,5 @@
 @extends('master')
+<script src="/js/jquery.js" ></script>
 
 @section('content')
     {!! NoCaptcha::renderJs() !!}
@@ -38,7 +39,7 @@
         <div class="formBg">
             <h2 class="red @if(session('locale') == 'ar') textAlignRight @endif"> {{ trans('index.join_us_today') }} </h2>
             <p class="@if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.required_fields') }}</p>
-            <form method="post" action="{{ route('contact.store') }}" enctype="multipart/form-data">
+            <form id="contactUsForm" method="post" action="{{ route('contact.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-sm-6">
@@ -83,7 +84,7 @@
                         @endif
                         {!! NoCaptcha::display() !!}
                         <div class="forum-group submitButton">
-                            <button class="contactUsSubmit" type="submit">{{ trans('index.submit') }}</button>
+                            <button id="contactUsSubmit" class="contactUsSubmit" type="submit">{{ trans('index.submit') }}</button>
                         </div>
                     </div>
                 </div>
@@ -152,4 +153,15 @@
 
 @endsection
 
+<script>
+    $(document).ready(function(){
+        $('#contactUsSubmit').on('click', function () {
+            var myForm = $("#contactUsForm");
+            if (myForm) {
+                $(this).prop('disabled', true);
+                $(myForm).submit();
+            }
+        });
+    });
+</script>
 

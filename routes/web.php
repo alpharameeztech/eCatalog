@@ -18,6 +18,7 @@ Auth::routes();
 Route::group([
     'prefix'        => 'api',
     'namespace'     => 'Api',
+    'middleware' => 'auth'
 ], function (Router $router) {
     Route::get('/countries', 'CountryController@index')->name('all.countries');
     Route::post('/countries', 'CountryController@store')->name('add.country');
@@ -36,6 +37,8 @@ Route::group([
     Route::get('/malls', 'MallController@index')->name('all.malls');
     Route::post('/mall', 'MallController@store')->name('add.mall');
     Route::patch('/mall/{mall}', 'MallController@update')->name('update.mall');
+
+    Route::get('/contacts', 'ContactController@index')->name('all.contacts');
 
     Route::get('/branches', 'BranchController@index')->name('all.branches');
     Route::post('/branch', 'BranchController@store')->name('add.branch');
