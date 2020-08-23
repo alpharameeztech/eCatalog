@@ -12,6 +12,11 @@ use Illuminate\Routing\Router;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/home', function(){
+    return view('admin.dashboard');
+})->name('admin.dashboard')
+    ->middleware('auth');
 Auth::routes();
 
 //======================== public apis ==========================
@@ -104,10 +109,6 @@ Route::group([
 });
 //======================== public apis end ==========================
 
-Route::get('/home', function(){
-    return view('admin.dashboard');
-})->name('admin.dashboard')
-    ->middleware('auth');
 Route::get('/', function () {
 
     $locale = session('locale');
