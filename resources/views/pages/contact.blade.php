@@ -36,60 +36,123 @@
         </div>
     @endif
     <div class="container"  id="contactForm">
-        <div class="formBg">
-            <h2 class="red @if(session('locale') == 'ar') textAlignRight @endif"> {{ trans('index.join_us_today') }} </h2>
-            <p class="@if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.required_fields') }}</p>
-            <form id="contactUsForm" method="post" action="{{ route('contact.store') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.first_name') }}</label>
-                            <input name="first_name" type="text" class="form-control" aria-describedby="emailHelp">
-                        </div>
-                        <div class="form-group">
-                            <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputPassword1">{{ trans('index.last_name') }}</label>
-                            <input name="last_name" type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputPassword1">{{ trans('index.phone_number') }}</label>
-                            <input name="phone_number" type="number" class="form-control" >
-                        </div>
-                        <div class="form-group">
-                            <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.email_address') }}</label>
-                            <input name="email" type="email" class="form-control" aria-describedby="emailHelp">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.subject') }}</label>
-                            <input name="subject" type="text" class="form-control" aria-describedby="emailHelp">
-                        </div>
-                        <div class="form-group">
-                            <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.message') }}</label>
-                            <textarea name="message" class="form-control" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.upload_a_file') }}</label>
-                            <input name="file" type="file" class="form-control-file inputFile">
-                        </div>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
+        <!-- english form layout -->
+        @if(session('locale') == 'en')
+            <div class="formBg">
+                <h2 class="red @if(session('locale') == 'ar') textAlignRight @endif"> {{ trans('index.join_us_today') }} </h2>
+                <p class="@if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.required_fields') }}</p>
+                <form id="contactUsForm" method="post" action="{{ route('contact.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.first_name') }}</label>
+                                <input name="first_name" type="text" class="form-control" aria-describedby="emailHelp">
                             </div>
-                        @endif
-                        {!! NoCaptcha::display() !!}
-                        <div class="forum-group submitButton">
-                            <button id="contactUsSubmit" class="contactUsSubmit" type="submit">{{ trans('index.submit') }}</button>
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputPassword1">{{ trans('index.last_name') }}</label>
+                                <input name="last_name" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputPassword1">{{ trans('index.phone_number') }}</label>
+                                <input name="phone_number" type="number" class="form-control" >
+                            </div>
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.email_address') }}</label>
+                                <input name="email" type="email" class="form-control" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.subject') }}</label>
+                                <input name="subject" type="text" class="form-control" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.message') }}</label>
+                                <textarea name="message" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.upload_a_file') }}</label>
+                                <input name="file" type="file" class="form-control-file inputFile">
+                            </div>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            {!! NoCaptcha::display() !!}
+                            <div class="forum-group submitButton">
+                                <button id="contactUsSubmit" class="contactUsSubmit" type="submit">{{ trans('index.submit') }}</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        @endif
+        <!-- english form layout -->
+
+        <!-- arabic form layout -->
+        @if(session('locale') == 'ar')
+            <div class="formBg">
+                <h2 class="red @if(session('locale') == 'ar') textAlignRight @endif"> {{ trans('index.join_us_today') }} </h2>
+                <p class="@if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.required_fields') }}</p>
+                <form id="contactUsForm" method="post" action="{{ route('contact.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.subject') }}</label>
+                                <input name="subject" type="text" class="form-control" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.message') }}</label>
+                                <textarea name="message" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.upload_a_file') }}</label>
+                                <input name="file" type="file" class="form-control-file inputFile">
+                            </div>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            {!! NoCaptcha::display() !!}
+                            <div class="forum-group submitButton">
+                                <button id="contactUsSubmit" class="contactUsSubmit" type="submit">{{ trans('index.submit') }}</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.first_name') }}</label>
+                                <input name="first_name" type="text" class="form-control" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputPassword1">{{ trans('index.last_name') }}</label>
+                                <input name="last_name" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputPassword1">{{ trans('index.phone_number') }}</label>
+                                <input name="phone_number" type="number" class="form-control" >
+                            </div>
+                            <div class="form-group">
+                                <label class="@if(session('locale') == 'ar') flexEnd @endif" for="exampleInputEmail1">{{ trans('index.email_address') }}</label>
+                                <input name="email" type="email" class="form-control" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        @endif
+        <!-- arabic form layout ends -->
 
     </div>
 

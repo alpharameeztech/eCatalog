@@ -617,6 +617,9 @@ img.country{
 }
 .contactUsBg{
     height: 70vh;
+    background-repeat: no-repeat;
+    width: 100%;
+    background-size: 100%;
     background-image: url("/img/contact/Component1.png");
 }
 .contactUsBg .heading{

@@ -43,7 +43,7 @@ return [
     'bigger_reach_paragraph' => 'يمكنك اختيار إحدى باقاتنا الإعلانية لتمييز عروضك للوصول إلى أكبر عدد من العملاء',
     'ready_to_advertise_with_us' => 'جاهز للإعلان معنا؟',
     'contact_us_now' => 'اتصل بنا الآن',
-    'join_us_today' => 'انضم إلينا اليوم!',
+    'join_us_today' => '!انضم إلينا اليوم',
     'required_fields' => 'جميع الحقول التي بها رمز (*) مطلوبة.',
     'first_name' => 'الاسم الاول*',
     'last_name' => 'الكنية*',
