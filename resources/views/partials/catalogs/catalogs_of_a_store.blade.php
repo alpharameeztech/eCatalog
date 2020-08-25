@@ -1,7 +1,7 @@
 
 <div class="storeCatalogs">
 
-    <h2 class="text-3xl mt-8">{{ trans('index.store_catalogs')}}</h2>
+    <h2 class="text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.store_catalogs')}}</h2>
     <div class="row">
         @foreach ($store_catalogs as $catalog)
                 <div class="col-sm-3">

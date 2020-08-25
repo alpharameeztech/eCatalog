@@ -56,5 +56,9 @@ return [
     'join_us' => 'Join Us',
     'read_post' => 'Read post',
     'pages' => 'Pages',
-    'browse_catalogs' => 'Browse catalogs'
+    'browse_catalogs' => 'Browse catalogs',
+    'opening_hours' => 'Opening hours',
+    'phone' => 'Phone',
+    'address' => 'Address',
+    'look_at_the_map' => 'Look at the map'
 ];

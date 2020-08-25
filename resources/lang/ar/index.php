@@ -56,6 +56,10 @@ return [
     'join_us' => 'انضم إلينا',
     'read_post' => 'قراءة المقال',
     'pages' => 'الصفحات',
-    'browse_catalogs' => 'تصفح الكتالوجات'
+    'browse_catalogs' => 'تصفح الكتالوجات',
+    'opening_hours' => 'ساعات العمل',
+    'phone' => 'هاتف',
+    'address' => 'عنوان',
+    'look_at_the_map' => 'انظر الى الخريطة'
 
 ];
