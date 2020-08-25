@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="readMoreBlog">
-                                <p><a href="/blog/{{$blog->slug}}">{{ trans('read_post') }}</a></p>
+                                <p><a href="/blog/{{$blog->slug}}">{{ trans('index.read_post') }}</a></p>
                                 <a class="arrowIcon" href="/blog/{{$blog->slug}}">
                                     <img src="/img/icons/right-icon.png" />
                                 </a>
