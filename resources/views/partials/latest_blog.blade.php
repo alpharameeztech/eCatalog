@@ -8,9 +8,12 @@
             </div>
             <div class="col-sm-6">
                 <h2 class="@if(session('locale') == 'ar') textAlignRight @endif"> {{$blog->title}}</h2>
-                <p class="@if(session('locale') == 'ar') textAlignRight @endif">
-                    {!! Illuminate\Support\Str::limit($blog->body, 400) !!}
-                </p>
+
+               <div class="@if(session('locale') == 'ar') richTextBody @endif">
+                   <p class="@if(session('locale') == 'ar') textAlignRight @endif">
+                        {!! Illuminate\Support\Str::limit($blog->body, 400) !!}
+                   </p>
+               </div>
 
                 <div class="row latestBlogContent">
                     <div class="col-sm-6"><p>{{ \Carbon\Carbon::parse($blog->created_at)->day }} {{ \Carbon\Carbon::parse($blog->created_at)->subMonth()->format('F') }}</p></div>

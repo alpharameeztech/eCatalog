@@ -7,7 +7,7 @@
             <div class="col-sm-6 aboutContent">
 
                 @foreach($about as $content)
-                    <div>
+                    <div class="@if(session('locale') == 'ar') richTextBody @endif">
 
                         <p>
                             {!! Str::limit($content->body, '200') !!}
