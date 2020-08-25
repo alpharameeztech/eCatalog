@@ -55,5 +55,6 @@ return [
     'upload_a_file' => 'Upload a file (optional)',
     'join_us' => 'Join Us',
     'read_post' => 'Read post',
-    'pages' => 'Pages'
+    'pages' => 'Pages',
+    'browse_catalogs' => 'Browse catalogs'
 ];

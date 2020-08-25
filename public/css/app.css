@@ -11349,3 +11349,11 @@ img.country {
 .justify-content-start {
   justify-content: flex-start;
 }
+
+.flexEnd {
+  justify-content: flex-end;
+}
+
+.margiBottom {
+  margin-bottom: 5%;
+}

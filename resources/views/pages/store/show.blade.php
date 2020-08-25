@@ -97,79 +97,156 @@
 
     <div class="container">
 
+        @if(session('locale') == 'en')
+            <div class="lineBreaker">
+                <p>Stores / {{ strtoupper($store->name) }}</p>
+            </div>
+        @endif
 
-        <div class="lineBreaker">
-            <p>Stores / {{ strtoupper($store->name) }}</p>
-        </div>
+        @if(session('locale') == 'ar')
+            <div class="lineBreaker textAlignRight">
+                <p>{{ trans('index.stores') }} / {{ strtoupper($store->name) }}</p>
+            </div>
+        @endif
 
-        <div class="row">
-            <div class="storeLeftSideBar col-sm-3">
+            @if(session('locale') == 'en')
+                <div class="row">
+                    <div class="storeLeftSideBar col-sm-3">
 
-                <div class="storeLogo">
-                    <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$store->image}}" />
+                        <div class="storeLogo">
+                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$store->image}}" />
 
-                    <a class="btn btn-primary checkStoresCta" href="/catalogs" role="button">Browse catalogs</a>
+                            <a class="btn btn-primary checkStoresCta" href="/catalogs" role="button">{{ trans('index.browse_catalogs') }}</a>
 
-                </div>
+                        </div>
 
-            @foreach($store_left_sections as $advertisement)
+                        @foreach($store_left_sections as $advertisement)
 
-                    @if( $advertisement->image != "undefined")
-                        <div class="storeLeftAdvertisement">
-                            <a href="{{$advertisement->url}}" target="_blank">
-                                <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                            @if( $advertisement->image != "undefined")
+                                <div class="storeLeftAdvertisement">
+                                    <a href="{{$advertisement->url}}" target="_blank">
+                                        <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                                    </a>
+                                </div>
+                            @else
+
+                                {!! $advertisement->ad !!}
+                            @endif
+
+                        @endforeach
+
+                    </div>
+
+                    <div class="storeContentSection col-sm-6">
+
+                        <h2>{{ strtoupper($store->name) }}</h2>
+
+                        <div class="storeSocialIcons">
+                            <a href="{{ $store->facebook_link }}" target="_blank">
+                                <img src="/img/icons/share-icon-facebook.svg">
+                            </a>
+                            <a href="{{ $store->twitter_link }}" target="_blank">
+                                <img src="/img/icons/share-icon-twitter.svg">
                             </a>
                         </div>
-                    @else
 
-                        {!! $advertisement->ad !!}
-                    @endif
+                        <p>
+                            {!! $store->about !!}
+                        </p>
 
-            @endforeach
+                    </div>
 
-            </div>
+                    <div class="storeRightSideBar col-sm-3">
 
-            <div class="storeContentSection col-sm-6">
+                        @foreach($store_right_sections as $advertisement)
+                            @if( $advertisement->image != "undefined")
+                                <div class="storeRightAdvertisement">
+                                    <a href="{{$advertisement->url}}" target="_blank">
+                                        <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                                    </a>
+                                </div>
+                            @else
 
-                <h2>{{ strtoupper($store->name) }}</h2>
+                                {!! $advertisement->ad !!}
+                            @endif
 
-                <div class="storeSocialIcons">
-                    <a href="{{ $store->facebook_link }}" target="_blank">
-                        <img src="/img/icons/share-icon-facebook.svg">
-                    </a>
-                    <a href="{{ $store->twitter_link }}" target="_blank">
-                        <img src="/img/icons/share-icon-twitter.svg">
-                    </a>
+                        @endforeach
+
+                    </div>
                 </div>
+            @endif
 
-                <p>
-                    {!! $store->about !!}
-                </p>
+            @if(session('locale') == 'ar')
+                <div class="row">
+                    <div class="storeRightSideBar col-sm-3">
 
-            </div>
+                        @foreach($store_right_sections as $advertisement)
+                            @if( $advertisement->image != "undefined")
+                                <div class="storeRightAdvertisement">
+                                    <a href="{{$advertisement->url}}" target="_blank">
+                                        <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                                    </a>
+                                </div>
+                            @else
 
-            <div class="storeRightSideBar col-sm-3">
+                                {!! $advertisement->ad !!}
+                            @endif
 
-                @foreach($store_right_sections as $advertisement)
-                    @if( $advertisement->image != "undefined")
-                        <div class="storeRightAdvertisement">
-                            <a href="{{$advertisement->url}}" target="_blank">
-                                <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                        @endforeach
+
+                    </div>
+                    <div class="storeContentSection col-sm-6">
+
+                        <h2 class="textAlignRight">{{ strtoupper($store->name) }}</h2>
+
+                        <div class="storeSocialIcons flexEnd margiBottom">
+                            <a href="{{ $store->facebook_link }}" target="_blank">
+                                <img src="/img/icons/share-icon-facebook.svg">
+                            </a>
+                            <a href="{{ $store->twitter_link }}" target="_blank">
+                                <img src="/img/icons/share-icon-twitter.svg">
                             </a>
                         </div>
-                    @else
 
-                        {!! $advertisement->ad !!}
-                    @endif
+                        <div class="richTextBody">
+                            <p>
+                                {!! $store->about !!}
+                            </p>
+                        </div>
 
-                @endforeach
 
-            </div>
-        </div>
+                    </div>
+                    <div class="storeLeftSideBar col-sm-3">
+
+                        <div class="storeLogo">
+                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$store->image}}" />
+
+                            <a class="btn btn-primary checkStoresCta" href="/catalogs" role="button">{{ trans('index.browse_catalogs') }}</a>
+
+                        </div>
+
+                        @foreach($store_left_sections as $advertisement)
+
+                            @if( $advertisement->image != "undefined")
+                                <div class="storeLeftAdvertisement">
+                                    <a href="{{$advertisement->url}}" target="_blank">
+                                        <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                                    </a>
+                                </div>
+                            @else
+
+                                {!! $advertisement->ad !!}
+                            @endif
+
+                        @endforeach
+
+                    </div>
+                </div>
+            @endif
 
         {{--  ======================= Store branches ==========================  --}}
         @if(count($in_cities) > 0)
-            <h2 class="lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">Branches and information</h2>
+            <h2 class="lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.branches_and_information') }}</h2>
 
             <div class="container storeInCities">
                 <div class="accordion " id="accordionExample">
