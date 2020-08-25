@@ -88,7 +88,8 @@
                     @foreach ($catalog->images as $image)
 
                         @if ($image->featured)
-                            <a href="/{{$catalog->store->name}}/catalogs/{{$catalog->slug}}">
+                            {{$catalog->store->name}}
+                            <a href="/{{session('locale')}}/catalog/{{$catalog->slug}}">
                                  <img class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
                             </a>
                         @endif
@@ -126,8 +127,8 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12 catalogNavigation">
-                <span class="pages">Pages </span> {{ $catalogs->links() }}
+            <div class="col-sm-12 catalogNavigation  @if(session('locale') == 'ar') justify-content-start @endif">
+                <span class="pages">{{ trans('index.pages') }} </span> {{ $catalogs->links() }}
             </div>
         </div>
 

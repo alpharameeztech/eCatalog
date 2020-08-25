@@ -127,7 +127,6 @@ Route::get('/', function () {
 Route::middleware(['locale'])->group(function () {
     Route::get('/stores', 'StoreController@index');
     Route::get('/store/{store}', 'StoreController@show');
-    Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
 
     Route::get('/catalogs', 'CatalogController@index');
 
@@ -148,7 +147,7 @@ Route::prefix('/{lang}')->group(function () {
 
     Route::get('/stores', 'StoreController@index');
     Route::get('/store/{store}', 'StoreController@show');
-    Route::get('/{store}/catalogs/{catalog}', 'CatalogController@show');
+    Route::get('/catalog/{catalog}', 'CatalogController@show');
 
     Route::get('/catalogs', 'CatalogController@index');
 

@@ -131,7 +131,7 @@ class CatalogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($lang, Request $request, Store $store ,Catalog $catalog)
+    public function show($lang,Catalog $catalog,Request $request)
     {
 
         $this->setLocale($request);
@@ -152,14 +152,14 @@ class CatalogController extends Controller
             'recent_stores' => $this->storeRepository->get($limit=8),
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
-            'store' => $store,
-            'in_cities' =>  $this->storeRepository->availableInCities($store),
+            'store' => $catalog->store,
+            'in_cities' =>  $this->storeRepository->availableInCities($catalog->store),
             'recent_stores' => $this->storeRepository->get($limit=8),
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
             'all_countries' => $this->countryRepository->all(),
-            'page_description' => $store->page,
-            'store_catalogs' => $store->catalogs,
+            'page_description' => $catalog->store->page,
+            'store_catalogs' => $catalog->store->catalogs,
             'catalog_images' => $catalog->images->paginate(9),
             'catalog_small_sections' => $this->advertisementRepository->get('catalog-small-section'),
             'catalog_large_sections' => $this->advertisementRepository->get('catalog-large-section'),
