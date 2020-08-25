@@ -6,55 +6,114 @@
 
     <div class="container">
 
-        <div class="row">
-            <div class="col-sm-9">
+        @if(session('locale') == 'en')
+            <div class="row">
+                <div class="col-sm-9">
 
-                @foreach($blogs as $blog)
-                    <div>
+                    @foreach($blogs as $blog)
+                        <div>
 
-                        <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($blog->title) }}</h2>
+                            <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($blog->title) }}</h2>
 
-                        <p>
-                            {!! Str::limit($blog->body, 400, '') !!}...
-                        </p>
+                            <div>
+                                <p>
+                                    {!! Str::limit($blog->body, 400, '') !!}...
+                                </p>
+                            </div>
 
-                        <div class="readMoreBlog">
-                            <p><a href="/blog/{{$blog->slug}}">Read post</a></p>
-                            <a class="arrowIcon" href="/blog/{{$blog->slug}}">
-                                <img src="/img/icons/right-icon.png" />
-                            </a>
+                            <div class="readMoreBlog">
+                                <p><a href="/blog/{{$blog->slug}}">{{ trans('read_post') }}</a></p>
+                                <a class="arrowIcon" href="/blog/{{$blog->slug}}">
+                                    <img src="/img/icons/right-icon.png" />
+                                </a>
+                            </div>
+                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
+
                         </div>
-                        <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
-
-                    </div>
-                @endforeach
+                    @endforeach
 
                     <div class="row">
                         <div class="col-sm-12 catalogNavigation">
-                            <span class="pages">Pages </span> {{ $blogs->links() }}
+                            <span class="pages">{{ trans('index.pages') }} </span> {{ $blogs->links() }}
                         </div>
                     </div>
 
+                </div>
+
+                <div class="col-sm-3">
+
+                    @foreach($blog_right_sections as $advertisement)
+                        @if( $advertisement->image != "undefined")
+                            <div class="storeRightAdvertisement">
+                                <a href="{{$advertisement->url}}" target="_blank">
+                                    <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                                </a>
+                            </div>
+                        @else
+
+                            {!! $advertisement->ad !!}
+                        @endif
+
+                    @endforeach
+
+                </div>
             </div>
 
-            <div class="col-sm-3">
+        @endif
 
-                @foreach($blog_right_sections as $advertisement)
-                    @if( $advertisement->image != "undefined")
-                        <div class="storeRightAdvertisement">
-                            <a href="{{$advertisement->url}}" target="_blank">
-                                <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
-                            </a>
+        @if(session('locale') == 'ar')
+                <div class="row">
+                    <div class="col-sm-3">
+
+                        @foreach($blog_right_sections as $advertisement)
+                            @if( $advertisement->image != "undefined")
+                                <div class="storeRightAdvertisement">
+                                    <a href="{{$advertisement->url}}" target="_blank">
+                                        <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                                    </a>
+                                </div>
+                            @else
+
+                                {!! $advertisement->ad !!}
+                            @endif
+
+                        @endforeach
+
+                    </div>
+                    <div class="col-sm-9">
+
+                        @foreach($blogs as $blog)
+                            <div>
+
+                                <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($blog->title) }}</h2>
+
+                                <div class="richTextBody">
+                                    <p>
+                                        {!! Str::limit($blog->body, 400, '') !!}
+                                    </p>
+                                </div>
+
+                                <div class="readMoreBlogArabic">
+                                    <a class="arrowIcon" href="/blog/{{$blog->slug}}">
+                                        <img src="/img/icons/right-icon.png" />
+                                    </a>
+                                    <p><a href="/blog/{{$blog->slug}}">{{ trans('index.read_post') }}</a></p>
+                                </div>
+                                <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
+
+                            </div>
+                        @endforeach
+
+                        <div class="row">
+                            <div class="col-sm-12 catalogNavigation justify-content-start">
+                                <span class="pages">{{ trans('index.pages') }} </span> {{ $blogs->links() }}
+                            </div>
                         </div>
-                    @else
 
-                        {!! $advertisement->ad !!}
-                    @endif
+                    </div>
+                </div>
 
-                @endforeach
-
-            </div>
-        </div>
+            @endif
 
 {{--        ===================== latest blog posts =================--}}
         <h2 class="lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_blog_posts') }}</h2>

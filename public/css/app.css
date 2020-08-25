@@ -11147,6 +11147,11 @@ div.lineBreaker {
   justify-content: flex-end;
 }
 
+.readMoreBlogArabic {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .readMoreBlog p {
   padding-top: 7px;
   padding-right: 15px;
@@ -11335,4 +11340,12 @@ img.country {
 .flexEnd {
   display: flex;
   justify-content: flex-end;
+}
+
+.richTextBody p {
+  text-align: right;
+}
+
+.justify-content-start {
+  justify-content: flex-start;
 }

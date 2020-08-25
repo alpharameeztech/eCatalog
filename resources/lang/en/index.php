@@ -53,5 +53,7 @@ return [
     'message' => 'Message*',
     'submit' => 'Submit',
     'upload_a_file' => 'Upload a file (optional)',
-    'join_us' => 'Join Us'
+    'join_us' => 'Join Us',
+    'read_post' => 'Read post',
+    'pages' => 'Pages'
 ];
