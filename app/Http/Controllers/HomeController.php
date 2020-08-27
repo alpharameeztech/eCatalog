@@ -81,7 +81,7 @@ class HomeController extends Controller
         $this->setLocale($request);
 
         $stores = $this->storeRepository->all();
-        $latest_catalogs = $this->catalogRepository->latest(4);
+        $latest_catalogs = $this->catalogRepository->latest(12);
         $popular_catalogs =  $this->catalogRepository->popular();
         $featured_catalogs = $this->catalogRepository->featured();
         return view('home',[
