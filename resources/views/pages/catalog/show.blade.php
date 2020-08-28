@@ -1,5 +1,8 @@
 @extends('master')
 
+@section('title', ': '.  $catalog->seoTags->title  )
+@section('description', $catalog->seoTags->description  )
+
 @section('content')
 
     <style>
