@@ -1,4 +1,6 @@
 @extends('master')
+@section('title', ': '.  $blog->seoTags->title  )
+@section('description', $blog->seoTags->description  )
 
 @section('content')
 
