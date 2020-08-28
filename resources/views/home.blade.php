@@ -1,6 +1,7 @@
 @extends('master')
 
-@section('title', ': All Deals in One Place')
+@section('title', ': ' . $page_description->seo_title)
+@section('description', $page_description->seo_description  )
 
 @section('content')
 

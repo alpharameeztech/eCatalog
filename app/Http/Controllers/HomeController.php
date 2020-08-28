@@ -77,7 +77,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-
         $this->setLocale($request);
 
         $stores = $this->storeRepository->all();
