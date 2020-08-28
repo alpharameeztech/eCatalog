@@ -154,33 +154,6 @@
 
             <div class="row subHeading">
                 <div class="col-sm-3">
-                    <p class="subHeading2">{{ trans('index.stores')}}</p>
-
-                    @foreach ($recent_stores as $store)
-                        <p><a href="/store/{{$store->slug}}">{{$store->name}}</a></p>
-                    @endforeach
-
-                    <p><a href="">{{ trans('index.all_stores') }}</a></p>
-
-                </div>
-                <div class="col-sm-3">
-                    <p class="subHeading2">{{ trans('index.cities') }}</p>
-
-                    @foreach ($recent_cities as $city)
-
-                        <p><a class="@if(!empty (request('city') && request('city') == $city->slug )) active @endif" href="/{{session('locale')}}/city/{{$city->slug}}">{{$city->name}}</a></p>
-
-                    @endforeach
-
-                    <p><a href="/">{{ trans('index.all_cities')}}</a></p>
-
-                </div>
-                <div class="col-sm-3">
-
-                    <p class="subHeading2"><a href="/terms">{{ trans('index.terms') }}</a></p>
-
-                </div>
-                <div class="col-sm-3">
                     <p class="subHeading2">{{ trans('index.follow') }}</p>
 
                     <div class="social">
@@ -194,6 +167,38 @@
 
                     </div>
                 </div>
+
+                <div class="col-sm-3">
+
+                    <p class="subHeading2"><a href="/terms">{{ trans('index.terms') }}</a></p>
+
+                </div>
+
+                <div class="col-sm-3">
+                    <p class="subHeading2">{{ trans('index.cities') }}</p>
+
+                    @foreach ($recent_cities as $city)
+
+                        <p><a class="@if(!empty (request('city') && request('city') == $city->slug )) active @endif" href="/{{session('locale')}}/city/{{$city->slug}}">{{$city->name}}</a></p>
+
+                    @endforeach
+
+                    <p><a href="/">{{ trans('index.all_cities')}}</a></p>
+
+                </div>
+
+                <div class="col-sm-3">
+                    <p class="subHeading2">{{ trans('index.stores')}}</p>
+
+                    @foreach ($recent_stores as $store)
+                        <p><a href="/store/{{$store->slug}}">{{$store->name}}</a></p>
+                    @endforeach
+
+                    <p><a href="">{{ trans('index.all_stores') }}</a></p>
+
+                </div>
+
+
             </div>
 
         </div>
