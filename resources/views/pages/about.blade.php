@@ -1,5 +1,8 @@
 @extends('master')
 
+@section('title', ': '.  $about[0]->seoTags->title  )
+@section('description', $about[0]->seoTags->description  )
+
 @section('content')
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -11,7 +14,6 @@
 
                 @foreach($about as $content)
                     <div>
-
                         <p>
                             {!! $content->body !!}
                         </p>
