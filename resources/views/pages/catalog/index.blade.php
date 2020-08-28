@@ -1,5 +1,7 @@
 @extends('master')
 
+@section('title', ': Catalogs & Offers')
+
 @section('content')
 
     <div class="container">

@@ -1,4 +1,7 @@
 @extends('master')
+
+@section('title', ': Contact Us')
+
 <script src="/js/jquery.js" ></script>
 
 @section('content')

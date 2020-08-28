@@ -1,5 +1,7 @@
 @extends('master')
 
+@section('title', ': All Deals in One Place')
+
 @section('content')
 
     <!-- banner -->

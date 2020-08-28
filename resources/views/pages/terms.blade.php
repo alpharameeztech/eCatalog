@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', '- About Page')
+@section('title', 'Terms of Use : All Deals in One Place')
 
 @section('content')
 
