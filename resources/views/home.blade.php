@@ -10,13 +10,23 @@
     <!-- banner end -->
 
     <div class="container mx-auto">
+
+
+        <!-- search only for extra small -->
+        <div class="searchContainer d-block d-sm-none">
+            @include('partials/search')
+        </div>
+        <!-- search only for extra small end-->
+
         <!-- logos -->
         @include('partials/logos')
         <!-- logos end -->
 
-        <!-- about -->
-        @include('partials/search')
-        <!-- about end-->
+        <!-- search for screen greater than extra small -->
+        <div class="searchContainer d-none d-sm-block">
+            @include('partials/search')
+        </div>
+        <!-- search for screen greater than extra small end-->
 
         <!-- advertisements -->
         @foreach($home_long_ad_1 as $advertisement)
