@@ -5,6 +5,12 @@
 
 @section('content')
 
+    <!-- search only for extra small -->
+    <div class="mobileSearchSection searchContainer marginBottom d-block d-sm-none searchOnSmallerScreen">
+        @include('partials/search')
+    </div>
+    <!-- search only for extra small end-->
+
     <!-- banner -->
     @include('partials/banner')
     <!-- banner end -->
@@ -12,11 +18,6 @@
     <div class="container mx-auto">
 
 
-        <!-- search only for extra small -->
-        <div class="searchContainer d-block d-sm-none">
-            @include('partials/search')
-        </div>
-        <!-- search only for extra small end-->
 
         <!-- logos -->
         @include('partials/logos')

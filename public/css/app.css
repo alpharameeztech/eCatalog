@@ -11357,3 +11357,22 @@ img.country {
 .margiBottom {
   margin-bottom: 5%;
 }
+
+.marginBottom {
+  margin-bottom: 8%;
+}
+
+.mobileSearchSection {
+  display: flex !important;
+  justify-content: center;
+  padding-top: 30px !important;
+  background-position: 70px 8px;
+}
+
+.mobileSearchSection form.example input[type=text] {
+  width: 70%;
+}
+
+.mobileSearchSection form.example button {
+  width: 30%;
+}
