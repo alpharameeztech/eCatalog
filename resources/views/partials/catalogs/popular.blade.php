@@ -1,4 +1,5 @@
-<h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_most_popular_catalogs') }}</h2>
+<h2 class="d-none d-sm-block @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_most_popular_catalogs') }}</h2>
+<h2 class="d-block d-sm-none textAlignRight @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_most_popular_catalogs') }}</h2>
 <div class="row popularCatalogsContainer">
     @foreach ($popular_catalogs as $key=>$catalog)
         @if($catalog->ifExistInTheCity())

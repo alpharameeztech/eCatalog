@@ -3,7 +3,7 @@
 
     @if($catalog->ifExistInTheCity())
 
-            <div class="col-sm-3">
+            <div class="col-6 col-sm-3">
 
                 @foreach ($catalog->images as $image)
 
