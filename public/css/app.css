@@ -11386,6 +11386,10 @@ img.country {
   box-shadow: 0px 0px 2px 0px rgba(50, 50, 50, 0.75);
 }
 
+.flex {
+  display: flex;
+}
+
 @media (min-width: 576px) {
   .logosLargeSection {
     display: flex !important;
