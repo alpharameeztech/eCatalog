@@ -742,10 +742,11 @@ img.country{
     margin-bottom: 8%;
 }
 .mobileSearchSection{
-    display: flex !important;
     justify-content: center;
     padding-top: 30px !important;
     background-position: 70px 8px;
+    margin-right: 5%;
+    margin-left: 5%;
 }
 .mobileSearchSection form.example input[type=text]{
     width: 70%;

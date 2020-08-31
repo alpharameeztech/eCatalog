@@ -6,7 +6,7 @@
 @section('content')
 
     <!-- search only for extra small -->
-    <div class="mobileSearchSection searchContainer marginBottom d-block d-sm-none searchOnSmallerScreen">
+    <div class="d-block d-sm-none mobileSearchSection searchContainer marginBottom searchOnSmallerScreen">
         @include('partials/search')
     </div>
     <!-- search only for extra small end-->
