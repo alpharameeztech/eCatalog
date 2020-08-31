@@ -55,7 +55,7 @@
 
         <!-- latest catalogs -->
         <h2 class="d-none d-sm-block text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_catalogs') }}</h2>
-        <h2 class="d-block d-sm-none textAlignRight text-3xl mt-8 textAlignCenter @if(session('locale') == 'ar')  @endif">{{ trans('index.the_latest_catalogs') }}</h2>
+        <h2 class="d-block d-sm-none textAlignCenter text-3xl mt-8 textAlignCenter @if(session('locale') == 'ar')  @endif">{{ trans('index.the_latest_catalogs') }}</h2>
         @include('partials/catalogs/latest')
         <!-- latest catalogs end-->
 
