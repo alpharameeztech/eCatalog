@@ -137,11 +137,20 @@
     <nav class="customMainNav navbar navbar-expand-lg navbar-dark primary-color">
         <div class="container">
 
-            <!-- Collapse button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-                    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="flex">
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="/">
+                    <img src="/img/logo.png" />
+                </a>
+
+                <!-- Collapse button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </div>
+
 
             <!-- Collapsible content -->
             <div class="collapse navbar-collapse" id="basicExampleNav">
@@ -252,7 +261,7 @@
             <!-- Collapsible content -->
 
             <!-- Navbar brand -->
-            <a class="navbar-brand textAlignRight" href="/">
+            <a class="d-none d-sm-block navbar-brand textAlignRight" href="/">
                 <img src="/img/logo.png" />
             </a>
             <!-- Navbar brand end-->
