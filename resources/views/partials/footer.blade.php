@@ -139,25 +139,63 @@
 
                 <div class="row subHeading">
                     <div class="col-sm-3">
-                        <p class="subHeading2">{{ trans('index.stores')}}</p>
 
-                        @foreach ($recent_stores as $store)
-                            <p><a href="/store/{{$store->slug}}">{{$store->name}}</a></p>
-                        @endforeach
+                        <section class="accordion-section clearfix mt-3" aria-label="Question Accordions">
+                            <div class="container">
 
-                        <p><a href="">{{ trans('index.all_stores') }}</a></p>
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
+                                            <h3 class="panel-title">
+                                                <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                                                    Stores
+                                                </a>
+                                            </h3>
+                                        </div>
+                                        <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+                                            <div class="panel-body px-3 mb-4">
+                                                @foreach ($recent_stores as $store)
+                                                    <p><a href="/store/{{$store->slug}}">{{$store->name}}</a></p>
+                                                @endforeach
+
+                                                <p><a href="">{{ trans('index.all_stores') }}</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading p-3 mb-3" role="tab" id="heading1">
+                                            <h3 class="panel-title">
+                                                <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                    Cities
+                                                </a>
+                                            </h3>
+                                        </div>
+                                        <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                                            <div class="panel-body px-3 mb-4">
+                                                <p class="subHeading2">{{ trans('index.cities') }}</p>
+
+                                                @foreach ($recent_cities as $city)
+
+                                                    <p><a class="@if(!empty (request('city') && request('city') == $city->slug )) active @endif" href="/{{session('locale')}}/city/{{$city->slug}}">{{$city->name}}</a></p>
+
+                                                @endforeach
+
+                                                <p><a href="/">{{ trans('index.all_cities')}}</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </section>
+
+
 
                     </div>
                     <div class="col-sm-3">
-                        <p class="subHeading2">{{ trans('index.cities') }}</p>
 
-                        @foreach ($recent_cities as $city)
-
-                            <p><a class="@if(!empty (request('city') && request('city') == $city->slug )) active @endif" href="/{{session('locale')}}/city/{{$city->slug}}">{{$city->name}}</a></p>
-
-                        @endforeach
-
-                        <p><a href="/">{{ trans('index.all_cities')}}</a></p>
 
                     </div>
                     <div class="col-sm-3">
