@@ -768,6 +768,13 @@ img.country{
 .flex{
     display: flex;
 }
+.displayBlock{
+    display: block;
+}
+.navigationLinksForExtraSmallScreen a{
+    padding: 5%;
+    margin: 1% 1%;
+}
 @media (min-width: 576px){
     .logosLargeSection{
         display: flex !important;
