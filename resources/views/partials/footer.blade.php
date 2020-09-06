@@ -1,7 +1,8 @@
 <div class="footer">
 
     @if(session('locale') == 'en')
-        <div class="container">
+        <!-- for screen greater than extra small -->
+            <div class="d-none d-sm-block container">
 
             <nav role='navigation' class="main-nav" id="main-nav">
                 <ul id="main-nav-list">
@@ -96,7 +97,7 @@
             </div>
 
         </div>
-
+        <!-- for screen greater than extra small end-->
     @else
         <div class="container">
 
