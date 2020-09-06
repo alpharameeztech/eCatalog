@@ -11399,6 +11399,27 @@ img.country {
   margin: 1% 1%;
 }
 
+.accordianForExtraSmall {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.borderGrayTop {
+  border-top: 1px solid #9a9a9a;
+}
+
+.borderGrayBottom {
+  border-bottom: 1px solid #9a9a9a;
+}
+
+.accordianForExtraSmall .panel-title {
+  padding: 5% 0 1px 4% !important;
+}
+
+.width50 {
+  width: 50%;
+}
+
 @media (min-width: 576px) {
   .logosLargeSection {
     display: flex !important;

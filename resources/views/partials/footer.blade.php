@@ -134,18 +134,22 @@
                                     {{ trans('index.contact_us')}}
                                 </div>
                             </a>
+                            <a class="darkGray displayBlock" href="/{{session('locale')}}/contact-us">
+                                <div>
+                                    {{ trans('index.terms') }}
+                                </div>
+                            </a>
+
                         </div>
                     </div>
 
                 <div class="row subHeading">
-                    <div class="col-sm-3">
 
-                        <section class="accordion-section clearfix mt-3" aria-label="Question Accordions">
-                            <div class="container">
+                    <section class="accordianForExtraSmall accordion-section clearfix mt-3" aria-label="Question Accordions">
 
-                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="borderGrayTop panel panel-default">
+                                        <div class="panel-heading mb-3" role="tab" id="heading0">
                                             <h3 class="panel-title">
                                                 <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
                                                     Stores
@@ -163,8 +167,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading p-3 mb-3" role="tab" id="heading1">
+                                    <div class="borderGrayTop borderGrayBottom panel panel-default">
+                                        <div class="panel-heading  mb-3" role="tab" id="heading1">
                                             <h3 class="panel-title">
                                                 <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
                                                     Cities
@@ -188,30 +192,21 @@
 
                                 </div>
 
-                            </div>
                         </section>
 
-
-
-                    </div>
                     <div class="col-sm-3">
 
 
                     </div>
                     <div class="col-sm-3">
-
-                        <p class="subHeading2"><a href="/terms">{{ trans('index.terms') }}</a></p>
-
-                    </div>
-                    <div class="col-sm-3">
-                        <p class="subHeading2">{{ trans('index.follow') }}</p>
+                        <h4 class="subHeading2 textAlignCenter">{{ trans('index.follow') }}</h4>
 
                         <div class="social">
                             @if($social)
-                                <a href="{{$social->facebook}}"><img src="/img/icons/facebook.svg" /></a>
-                                <a href="{{$social->twitter}}"><img src="/img/icons/twitter.svg" /></a>
-                                <a href="{{$social->instagram}}"><img src="/img/icons/instagram.svg" /></a>
-                                <a href="{{$social->youtube}}"><img src="/img/icons/youtube.svg" /></a>
+                                <a href="{{$social->facebook}}"><img class="width50" src="/img/icons/facebook.svg" /></a>
+                                <a href="{{$social->twitter}}"><img class="width50" src="/img/icons/twitter.svg" /></a>
+                                <a href="{{$social->instagram}}"><img class="width50" src="/img/icons/instagram.svg" /></a>
+                                <a href="{{$social->youtube}}"><img class="width50" src="/img/icons/youtube.svg" /></a>
                             @endif
 
 
