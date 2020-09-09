@@ -1,7 +1,7 @@
 <div class="footer">
 
     @if(session('locale') == 'en')
-        <!-- for screen greater than extra small -->
+        <!-- ===================================  for screen greater than extra small ========================== -->
             <div class="d-none d-sm-block container">
 
             <nav role='navigation' class="main-nav" id="main-nav">
@@ -75,12 +75,21 @@
                     <p><a href="/">{{ trans('index.all_cities')}}</a></p>
 
                 </div>
-                <div class="col-sm-3">
 
-                    <p class="subHeading2"><a href="/terms">{{ trans('index.terms') }}</a></p>
+                <div class="col-sm-3">
+                    <p class="subHeading2">{{ trans('index.countries') }}</p>
+
+                    @foreach ($recent_countries as $country)
+
+                        <p><a class="@if(!empty (request('country') && request('country') == $country->slug )) active @endif" href="/{{session('locale')}}/country/{{$country->slug}}">{{$country->name}}</a></p>
+
+                    @endforeach
 
                 </div>
+
                 <div class="col-sm-3">
+                    <p class="subHeading2"><a href="/terms">{{ trans('index.terms') }}</a></p>
+
                     <p class="subHeading2">{{ trans('index.follow') }}</p>
 
                     <div class="social">
@@ -97,7 +106,7 @@
             </div>
 
         </div>
-        <!-- for screen greater than extra small end-->
+        <!--  =================================== for screen greater than extra small end  ===================================-->
 
         <!-- ========================== only for extra small ======================== -->
             <div class="d-block d-sm-none container">
@@ -273,6 +282,9 @@
 
             <div class="row subHeading">
                 <div class="col-sm-3">
+
+                    <p class="subHeading2"><a href="/terms">{{ trans('index.terms') }}</a></p>
+
                     <p class="subHeading2">{{ trans('index.follow') }}</p>
 
                     <div class="social">
@@ -286,10 +298,15 @@
 
                     </div>
                 </div>
-
+                
                 <div class="col-sm-3">
+                    <p class="subHeading2">{{ trans('index.countries') }}</p>
 
-                    <p class="subHeading2"><a href="/terms">{{ trans('index.terms') }}</a></p>
+                    @foreach ($recent_countries as $country)
+
+                        <p><a class="@if(!empty (request('country') && request('country') == $country->slug )) active @endif" href="/{{session('locale')}}/country/{{$country->slug}}">{{$country->name}}</a></p>
+
+                    @endforeach
 
                 </div>
 

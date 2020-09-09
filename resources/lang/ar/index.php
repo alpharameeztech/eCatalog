@@ -7,6 +7,7 @@ return [
     'blog' => 'المدونة',
     'contact_us' => 'اتصل بنا',
     'country' => 'البلد',
+    'countries' => 'بلدان',
     'city' => 'المدينة',
     'language' => 'اللغة',
     'the_latest_catalogs' => 'أحدث العروض',

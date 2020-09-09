@@ -7,6 +7,7 @@ return [
     'blog' => 'Blog',
     'contact_us' => 'Contact Us',
     'country' => 'Country',
+    'countries' => 'Countries',
     'city' => 'City',
     'language' => 'Language',
     'the_latest_catalogs' => 'The latest catalogs',
