@@ -99,7 +99,7 @@
         </div>
         <!-- for screen greater than extra small end-->
 
-        <!-- only for extra small -->
+        <!-- ========================== only for extra small ======================== -->
             <div class="d-block d-sm-none container">
 
                     <div class="row">
@@ -150,10 +150,11 @@
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                     <div class="borderGrayTop panel panel-default">
                                         <div class="panel-heading mb-3" role="tab" id="heading0">
-                                            <h3 class="panel-title">
+                                            <h3 class="simpleFlex panel-title">
                                                 <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
                                                     Stores
                                                 </a>
+                                                <img class="footerSmallScreenDropdownIcon" src="/img/icons/arrow-down.svg" />
                                             </h3>
                                         </div>
                                         <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
@@ -169,10 +170,11 @@
 
                                     <div class="borderGrayTop borderGrayBottom panel panel-default">
                                         <div class="panel-heading  mb-3" role="tab" id="heading1">
-                                            <h3 class="panel-title">
+                                            <h3 class="simpleFlex panel-title">
                                                 <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
                                                     Cities
                                                 </a>
+                                                <img class="footerSmallScreenDropdownIcon" src="/img/icons/arrow-down.svg" />
                                             </h3>
                                         </div>
                                         <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
@@ -215,7 +217,7 @@
                 </div>
 
             </div>
-            <!-- only for extra small end-->
+            <!-- ========================= only for extra small end ========================= -->
         @else
         <div class="container">
 

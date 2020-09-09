@@ -722,6 +722,9 @@ img.country{
     margin-top: 7%;
     margin-bottom: 9%;
 }
+.simpleFlex{
+    display: flex;
+}
 .flexEnd{
     display: flex;
     justify-content: flex-end;
@@ -791,7 +794,10 @@ img.country{
 .width50{
     width:50%;
 }
-
+.footerSmallScreenDropdownIcon{
+    width: 8%;
+    margin-right: 3%;
+}
 
 
 //
