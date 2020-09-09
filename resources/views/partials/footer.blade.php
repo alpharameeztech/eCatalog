@@ -199,6 +199,27 @@
                                         </div>
                                     </div>
 
+                                    <div class="borderGrayTop borderGrayBottom panel panel-default">
+                                        <div class="panel-heading  mb-3" role="tab" id="heading2">
+                                            <h3 class="simpleFlex panel-title">
+                                                <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse1">
+                                                    {{ trans('index.countries') }}
+                                                </a>
+                                                <img class="footerSmallScreenDropdownIcon" src="/img/icons/arrow-down.svg" />
+                                            </h3>
+                                        </div>
+                                        <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                                            <div class="panel-body px-3 mb-4">
+                                                @foreach ($recent_countries as $country)
+
+                                                    <p class="textAlignCenter"><a class="@if(!empty (request('country') && request('country') == $country->slug )) active @endif" href="/{{session('locale')}}/country/{{$country->slug}}">{{$country->name}}</a></p>
+
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                         </section>
