@@ -160,10 +160,10 @@
                                         <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
                                             <div class="panel-body px-3 mb-4">
                                                 @foreach ($recent_stores as $store)
-                                                    <p><a href="/store/{{$store->slug}}">{{$store->name}}</a></p>
+                                                    <p class="textAlignCenter"><a href="/store/{{$store->slug}}">{{$store->name}}</a></p>
                                                 @endforeach
 
-                                                <p><a href="">{{ trans('index.all_stores') }}</a></p>
+                                                <p class="textAlignCenter"><a href="">{{ trans('index.all_stores') }}</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -179,15 +179,13 @@
                                         </div>
                                         <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
                                             <div class="panel-body px-3 mb-4">
-                                                <p class="subHeading2">{{ trans('index.cities') }}</p>
-
                                                 @foreach ($recent_cities as $city)
 
-                                                    <p><a class="@if(!empty (request('city') && request('city') == $city->slug )) active @endif" href="/{{session('locale')}}/city/{{$city->slug}}">{{$city->name}}</a></p>
+                                                    <p class="textAlignCenter"><a class="@if(!empty (request('city') && request('city') == $city->slug )) active @endif" href="/{{session('locale')}}/city/{{$city->slug}}">{{$city->name}}</a></p>
 
                                                 @endforeach
 
-                                                <p><a href="/">{{ trans('index.all_cities')}}</a></p>
+                                                <p class="textAlignCenter"><a href="/">{{ trans('index.all_cities')}}</a></p>
                                             </div>
                                         </div>
                                     </div>
