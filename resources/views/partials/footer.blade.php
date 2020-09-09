@@ -247,7 +247,8 @@
             </div>
             <!-- ========================= only for extra small end ========================= -->
         @else
-        <div class="container">
+        <!-- ===================================  for screen greater than extra small ========================== -->
+        <div class="d-none d-sm-block container">
 
             <nav role='navigation' class="main-nav" id="main-nav">
                 <ul id="main-nav-list">
@@ -359,6 +360,148 @@
             </div>
 
         </div>
+        <!-- ===================================  for screen greater than extra small end ========================== -->
+
+        <!-- ========================== only for extra small arabic version======================== -->
+        <div class="d-block d-sm-none container">
+
+            <div class="row">
+                
+                <div class="col-6 navigationLinksForExtraSmallScreen">
+                    <a class="textAlignRight darkGray displayBlock" href="/faq">
+                        <div>
+                            {{ trans('index.faq')}}
+                        </div>
+                    </a>
+                    <a class="textAlignRight darkGray displayBlock" href="/{{session('locale')}}/contact-us">
+                        <div>
+                            {{ trans('index.contact_us')}}
+                        </div>
+                    </a>
+                    <a class="textAlignRight darkGray displayBlock" href="/{{session('locale')}}/contact-us">
+                        <div>
+                            {{ trans('index.terms') }}
+                        </div>
+                    </a>
+
+                </div>
+
+                <div class="col-6 displayBlock navigationLinksForExtraSmallScreen">
+
+                    <a class="textAlignRight displayBlock darkGray" href="/">
+                        {{ trans('index.home')}}
+                    </a>
+
+                    <a class="textAlignRight displayBlock darkGray"  href="/stores">
+                        {{ trans('index.stores')}}
+                    </a>
+
+                    <a class="textAlignRight displayBlock darkGray"  href="/catalogs">
+                        {{ trans('index.catalogs')}}
+                    </a>
+
+                    <a class="textAlignRight displayBlock darkGray"  href="/{{session('locale')}}/about-us">
+                        {{ trans('index.about')}}
+                    </a>
+
+                </div>
+
+            </div>
+
+        <div class="row subHeading">
+
+            <section class="accordianForExtraSmall accordion-section clearfix mt-3" aria-label="Question Accordions">
+
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="borderGrayTop panel panel-default">
+                                <div class="panel-heading mb-3" role="tab" id="heading0">
+                                    <h3 class="simpleFlex panel-title">
+                                        <img class="footerSmallScreenDropdownIcon" src="/img/icons/arrow-down.svg" />
+                                        <a class="textAlignRight collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                                            {{  trans('index.stores') }}
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+                                    <div class="panel-body px-3 mb-4">
+                                        @foreach ($recent_stores as $store)
+                                            <p class="textAlignCenter"><a href="/store/{{$store->slug}}">{{$store->name}}</a></p>
+                                        @endforeach
+
+                                        <p class="textAlignCenter"><a href="">{{ trans('index.all_stores') }}</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="borderGrayTop borderGrayBottom panel panel-default">
+                                <div class="panel-heading  mb-3" role="tab" id="heading1">
+                                    <h3 class="simpleFlex panel-title">
+                                        <img class="footerSmallScreenDropdownIcon" src="/img/icons/arrow-down.svg" />
+                                        <a class="textAlignRight collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                            {{  trans('index.cities') }}
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                                    <div class="panel-body px-3 mb-4">
+                                        @foreach ($recent_cities as $city)
+
+                                            <p class="textAlignCenter"><a class="@if(!empty (request('city') && request('city') == $city->slug )) active @endif" href="/{{session('locale')}}/city/{{$city->slug}}">{{$city->name}}</a></p>
+
+                                        @endforeach
+
+                                        <p class="textAlignCenter"><a href="/">{{ trans('index.all_cities')}}</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="borderGrayTop borderGrayBottom panel panel-default">
+                                <div class="panel-heading  mb-3" role="tab" id="heading2">
+                                    <h3 class="simpleFlex panel-title">
+                                        <img class="footerSmallScreenDropdownIcon" src="/img/icons/arrow-down.svg" />
+                                        <a class="textAlignRight collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse1">
+                                            {{ trans('index.countries') }}
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                                    <div class="panel-body px-3 mb-4">
+                                        @foreach ($recent_countries as $country)
+
+                                            <p class="textAlignCenter"><a class="@if(!empty (request('country') && request('country') == $country->slug )) active @endif" href="/{{session('locale')}}/country/{{$country->slug}}">{{$country->name}}</a></p>
+
+                                        @endforeach
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                </section>
+
+            <div class="col-sm-3">
+
+
+            </div>
+            <div class="col-sm-3">
+                <h4 class="subHeading2 textAlignCenter">{{ trans('index.follow') }}</h4>
+
+                <div class="social">
+                    @if($social)
+                        <a href="{{$social->facebook}}"><img class="width50" src="/img/icons/facebook.svg" /></a>
+                        <a href="{{$social->twitter}}"><img class="width50" src="/img/icons/twitter.svg" /></a>
+                        <a href="{{$social->instagram}}"><img class="width50" src="/img/icons/instagram.svg" /></a>
+                        <a href="{{$social->youtube}}"><img class="width50" src="/img/icons/youtube.svg" /></a>
+                    @endif
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+        <!-- ========================== only for extra small arabic version end ======================== -->
 
     @endif
 
