@@ -125,6 +125,12 @@ ul.pagination{
     -moz-box-shadow:    -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
     box-shadow:         -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
 }
+.backgroundStoreContainer{
+    -webkit-box-shadow: -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
+    margin: 15px 0%;
+}
 .catalogBoxShadow{
     margin: 15px 0px;
     -webkit-box-shadow: -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
@@ -400,7 +406,7 @@ h2.lineBreaker{
 background-color: #ededed;
 }
 .storeContainerIndex{
-    position: absolute;
+    // position: absolute;
     bottom: 0;
     width: 100%;
     background-color: #ededed;

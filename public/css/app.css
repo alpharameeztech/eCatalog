@@ -10658,6 +10658,11 @@ ul.pagination {
   box-shadow: -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
 }
 
+.backgroundStoreContainer {
+  box-shadow: -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
+  margin: 15px 0%;
+}
+
 .catalogBoxShadow {
   margin: 15px 0px;
   box-shadow: -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
@@ -10961,7 +10966,6 @@ h2.lineBreaker {
 }
 
 .storeContainerIndex {
-  position: absolute;
   bottom: 0;
   width: 100%;
   background-color: #ededed;

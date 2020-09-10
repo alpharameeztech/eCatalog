@@ -28,7 +28,7 @@
         <!-- all catalogs -->
         <h2 class="lineBreaker"></h2>
 
-        <div class="row popularCatalogsContainer">
+        <div class="row">
         @foreach ($stores as $key=>$store)
 
             @if($key == 12)
@@ -52,22 +52,22 @@
                 @endif
 
 
-                <div class="col-sm-3 customContainers bgWhite">
-
-
-                    <a href="/store/{{$store->slug}}">
-                         <img class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$store->image}}" alt="Sunset in the mountains">
-                    </a>
-                    <div class="row catalogDetails bgGray">
-                        <div class="col-sm-12 storeContainerIndex">
-
-                            <div class="textContainer">
-
-                                <p class="alignCenter">
-                                    Store {{$store->name}}
-                                </p>
-                            </div>
-                        </div>
+                <div class="col-6 col-sm-3">
+                    <div class=" backgroundStoreContainer">
+                        <a href="/store/{{$store->slug}}">
+                            <img class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$store->image}}" alt="Sunset in the mountains">
+                       </a>
+                       <div class=" catalogDetails bgGray">
+                           <div class=" storeContainerIndex">
+   
+                               <div class="textContainer">
+   
+                                   <p class="alignCenter">
+                                       Store {{$store->name}}
+                                   </p>
+                               </div>
+                           </div>
+                       </div>
                     </div>
                 </div>
             @endforeach
