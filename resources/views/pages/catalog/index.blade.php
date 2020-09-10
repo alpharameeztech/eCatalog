@@ -8,8 +8,8 @@
         <!-- all catalogs -->
         <h2 class="lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.find_your_favorite_stores_offers_on_dealzbook') }}</h2>
 
-        {{--  -----------sorting -----------  --}}
-        <div class="row sortingContainer">
+        {{--  -----------sorting for extra small screen-----------  --}}
+        <div class="d-block d-sm-none row sortingContainer">
             <div class="col-sm-1">
                 <a href=""><span class="sortSpan">{{ trans('index.sort_by') }}</span></a>
             </div>
@@ -41,7 +41,44 @@
             </div>
         </div>
 
-        {{--  -----------sorting end -----------  --}}
+        {{--  -----------sorting for extra small screen end -----------  --}}
+
+        {{--  -----------sorting for screen size greater than extra small-----------  --}}
+        <div class="d-none d-sm-block">
+            <div class="row sortingContainer">
+                <div class="col-sm-1">
+                    <a href=""><span class="sortSpan">{{ trans('index.sort_by') }}</span></a>
+                </div>
+                <div class="col-sm-9">
+                    <nav role='navigation'>
+                        <ul class="sorting">
+                        <li>
+                            <a href="/catalogs">
+                            <div>
+                                {{ trans('index.all') }}
+                            </div>
+                            </a>
+                        </li>
+                        @foreach ($tags as $key=>$tag)
+                            <li class="@if( request('tag') == $tag->slug) activeTag  @endif">
+                                <a href="/catalogs?tag={{$tag->slug}}">
+                                    {{$tag->name}}
+                                </a>
+                        </li>
+                        @endforeach
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-sm-2">
+                    <a href="/catalogs?tag=newest" class="newestSort">
+                        <span>{{ trans('index.newest') }}</span>
+                        <img src="/img/icons/arrow-down-black.svg"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {{--  -----------sorting for screen size greater than extra small end -----------  --}}
 
         <div class="row">
             @foreach ($catalogs as $key=>$catalog)
