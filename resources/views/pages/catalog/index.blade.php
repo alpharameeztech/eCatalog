@@ -43,7 +43,7 @@
 
         {{--  -----------sorting end -----------  --}}
 
-        <div class="row popularCatalogsContainer">
+        <div class="row">
             @foreach ($catalogs as $key=>$catalog)
 
                 @if($key == 8)
@@ -85,12 +85,11 @@
                     <!-- advertisements end -->
                 @endif
 
-                <div class="col-sm-3 customContainers">
-
+                <div class="col-6 col-sm-3 catalogMargin">
+                    <div class="catalogBoxShadow">   
                     @foreach ($catalog->images as $image)
 
                         @if ($image->featured)
-                            {{$catalog->store->name}}
                             <a href="/{{session('locale')}}/catalog/{{$catalog->slug}}">
                                  <img class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
                             </a>
@@ -123,6 +122,7 @@
                                 </p>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             @endforeach

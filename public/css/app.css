@@ -10593,6 +10593,10 @@ ul.pagination {
   margin: 20px 0px;
 }
 
+.catalogDetails {
+  padding: 1px 8px;
+}
+
 .card .viewer-container {
   display: none !important;
 }
@@ -10651,6 +10655,11 @@ ul.pagination {
 
 .popularCatalogsContainer > div {
   margin: 10px 6px;
+  box-shadow: -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
+}
+
+.catalogBoxShadow {
+  margin: 15px 0px;
   box-shadow: -1px -1px 7px 0px rgba(50, 50, 50, 0.75);
 }
 
