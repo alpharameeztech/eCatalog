@@ -9,10 +9,15 @@
         <h2 class="lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.find_your_favorite_stores_offers_on_dealzbook') }}</h2>
 
         {{--  -----------sorting for extra small screen-----------  --}}
+        <div class="blueBorderBottom d-flex d-sm-none justify-content-space-between">
+            <a href=""><span class="sortSpan">{{ trans('index.sort_by') }}</span></a>
+            <a href="/catalogs?tag=newest" class="newestSort">
+                <span>{{ trans('index.newest') }}</span>
+                <img src="/img/icons/arrow-down-black.svg"/>
+            </a>
+        </div>
         <div class="d-block d-sm-none row sortingContainer">
-            <div class="col-sm-1">
-                <a href=""><span class="sortSpan">{{ trans('index.sort_by') }}</span></a>
-            </div>
+            
             <div class="col-sm-9">
                 <nav role='navigation'>
                     <ul class="sorting">
@@ -33,12 +38,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-sm-2">
-                <a href="/catalogs?tag=newest" class="newestSort">
-                    <span>{{ trans('index.newest') }}</span>
-                    <img src="/img/icons/arrow-down-black.svg"/>
-                </a>
-            </div>
+           
         </div>
 
         {{--  -----------sorting for extra small screen end -----------  --}}

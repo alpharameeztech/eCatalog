@@ -11363,6 +11363,10 @@ img.country {
   justify-content: flex-start;
 }
 
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
 .flexEnd {
   justify-content: flex-end;
 }
@@ -11436,6 +11440,15 @@ img.country {
 .footerSmallScreenDropdownIcon {
   width: 8%;
   margin-right: 3%;
+}
+
+.simpleFlex img {
+  width: 25px;
+}
+
+.blueBorderBottom {
+  border-bottom: 3px solid #0061a6;
+  margin-bottom: 10px;
 }
 
 @media (min-width: 576px) {
