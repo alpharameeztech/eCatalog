@@ -141,14 +141,14 @@
                     <div class="catalogInfo">
 
                         <div class="row">
-                            <div class="col-sm-8">
+                            <div class="col-6 col-sm-8">
 
                                 <p class="fontMada">
                                     {{ $store->name }}
                                 </p>
                             </div>
 
-                            <div class="col-sm-4">
+                            <div class="col-6 col-sm-4">
                                 <p>
                                     {{ count($catalog->images) }}
                                 </p>
@@ -158,7 +158,7 @@
 
                         <div class="row">
 
-                            <div class="col-sm-4">
+                            <div class="col-6 col-sm-4">
 
                                 <p class="catalogDate">
                                     {{ \Carbon\Carbon::parse($catalog->created_at)->day }}
@@ -170,7 +170,7 @@
                                 </p>
                             </div>
 
-                            <div class="col-sm-4">
+                            <div class="col-6 col-sm-4">
 
                                 <p class="catalogDate">
                                     {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
@@ -182,7 +182,7 @@
                                 </p>
                             </div>
 
-                            <div class="col-sm-4">
+                            <div class="col-6 col-sm-4">
                                 <p class="catalogDate">
                                     {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
                                     {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
@@ -226,7 +226,7 @@
 
                         <div class="row" id="images">
                             @foreach ($catalog_images as $image)
-                                <div class="col-sm-4 catalogImages"><img
+                                <div class="col-6 col-sm-4 catalogImages"><img
                                         src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
                                         alt="Picture 1"></div>
                             @endforeach
