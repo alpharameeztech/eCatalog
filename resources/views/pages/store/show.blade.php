@@ -129,11 +129,11 @@
                             </div>
                         {{-- ===================== for extra small screen end=======================> --}}
 
-
+                        {{-- <!-- ===================== for screen greater than extra small ======================= --> --}}
                         @foreach($store_left_sections as $advertisement)
 
                             @if( $advertisement->image != "undefined")
-                                <div class="storeLeftAdvertisement">
+                                <div class="d-none d-sm-block storeLeftAdvertisement">
                                     <a href="{{$advertisement->url}}" target="_blank">
                                         <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
                                     </a>
@@ -144,6 +144,7 @@
                             @endif
 
                         @endforeach
+                        {{-- <!-- ===================== for screen greater than extra small end======================= --> --}}
 
                     </div>
 
@@ -165,6 +166,26 @@
                         </p>
 
                     </div>
+
+                    {{-- <!-- ===================== for extra smalls screen ======================= --> --}}
+                    <div class="d-block d-sm-none col-sm-3">
+                        @foreach($store_left_sections as $advertisement)
+
+                            @if( $advertisement->image != "undefined")
+                                <div class="storeLeftAdvertisement">
+                                    <a href="{{$advertisement->url}}" target="_blank">
+                                        <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                                    </a>
+                                </div>
+                            @else
+
+                                {!! $advertisement->ad !!}
+                            @endif
+
+                        @endforeach
+                    </div>
+                    {{-- <!-- ===================== for extra smalls screen end ======================= --> --}}
+
 
                     <div class="storeRightSideBar col-sm-3">
 
