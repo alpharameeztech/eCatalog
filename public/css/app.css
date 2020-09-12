@@ -11441,6 +11441,10 @@ img.country {
   width: 50%;
 }
 
+.fullWidth {
+  width: 100%;
+}
+
 .footerSmallScreenDropdownIcon {
   width: 8%;
   margin-right: 3%;
@@ -11453,6 +11457,14 @@ img.country {
 .blueBorderBottom {
   border-bottom: 3px solid #0061a6;
   margin-bottom: 10px;
+}
+
+.positionRelative {
+  position: relative;
+}
+
+.extraSmallStoreLogo {
+  margin: 60px 0;
 }
 
 @media (min-width: 576px) {

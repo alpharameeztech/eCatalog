@@ -115,12 +115,20 @@
                 <div class="row">
                     <div class="storeLeftSideBar col-sm-3">
 
-                        <div class="storeLogo">
+                        {{-- <!-- ===================== for screen greater than extra small ======================= --> --}}
+                        <div class="d-none d-sm-block storeLogo">
                             <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$store->image}}" />
-
                             <a class="btn btn-primary checkStoresCta" href="/catalogs" role="button">{{ trans('index.browse_catalogs') }}</a>
-
                         </div>
+                        {{-- <!-- ===================== for screen greater than extra small end======================= --> --}}
+
+                        {{-- ===================== for extra small screen =======================> --}}
+                            <div class="d-block d-sm-none">
+                                <img class="extraSmallStoreLogo catalogInfo catalogBoxShadow" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$store->image}}" />
+                                <a class="positionRelative fullWidth btn btn-primary checkStoresCta" href="/catalogs" role="button">{{ trans('index.browse_catalogs') }}</a>
+                            </div>
+                        {{-- ===================== for extra small screen end=======================> --}}
+
 
                         @foreach($store_left_sections as $advertisement)
 
