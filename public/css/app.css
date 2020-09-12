@@ -11371,6 +11371,10 @@ img.country {
   justify-content: space-between;
 }
 
+.justify-content-center {
+  justify-content: center;
+}
+
 .flexEnd {
   justify-content: flex-end;
 }

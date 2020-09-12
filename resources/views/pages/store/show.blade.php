@@ -150,9 +150,11 @@
 
                     <div class="storeContentSection col-sm-6">
 
-                        <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($store->name) }}</h2>
+                        <h2 class="d-none d-sm-block @if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($store->name) }}</h2>
+                        <h2 class="d-block d-sm-none textAlignCenter @if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($store->name) }}</h2>
 
-                        <div class="storeSocialIcons">
+                        {{-- ===================== for extra small screen =======================> --}}
+                        <div class="d-flex d-sm-none storeSocialIcons justify-content-center">
                             <a href="{{ $store->facebook_link }}" target="_blank">
                                 <img src="/img/icons/share-icon-facebook.svg">
                             </a>
@@ -160,6 +162,20 @@
                                 <img src="/img/icons/share-icon-twitter.svg">
                             </a>
                         </div>
+                        {{-- ===================== for extra small screen end =======================> --}}
+
+
+                        {{-- ===================== larger screens =======================> --}}
+                        <div class="d-none d-sm-block storeSocialIcons">
+                            <a href="{{ $store->facebook_link }}" target="_blank">
+                                <img src="/img/icons/share-icon-facebook.svg">
+                            </a>
+                            <a href="{{ $store->twitter_link }}" target="_blank">
+                                <img src="/img/icons/share-icon-twitter.svg">
+                            </a>
+                        </div>
+                        {{-- ===================== larger screens end =======================> --}}
+
 
                         <p>
                             {!! $store->about !!}
