@@ -537,19 +537,9 @@
         @if(count($catalog->images))
         <div class="catalogParentDiv">
             <div class="row catalogHeaderOne">
-                <div class="storeLeftSideBar col-sm-6">
-
-                    <div class="storeLogo">
-
-                        <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($catalog->name) }}</h2>
-
-                    </div>
-
-                </div>
-
                 <div class="storeContentSection col-sm-6 catalogHeaderTwo">
 
-                    <div class="storeSocialIcons">
+                    <div class="storeSocialIcons flexEnd">
                         <a href="{{ $store->facebook_link }}" target="_blank">
                             <img src="/img/icons/share-icon-facebook.svg">
                         </a>
@@ -559,10 +549,25 @@
                     </div>
 
                 </div>
+                <div class="storeLeftSideBar col-sm-6">
 
+                    <div class="storeLogo">
+
+                        <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($catalog->name) }}</h2>
+
+                    </div>
+
+                </div>
             </div>
 
             <div class="row catalogContainer">
+
+                <div class="storeContentSection col-sm-6">
+
+                    {!! $catalog->description !!}
+
+                </div>
+
                 <div class="storeLeftSideBar col-sm-6">
 
                     <div class="catalogInfo">
@@ -625,29 +630,8 @@
 
                 </div>
 
-                <div class="storeContentSection col-sm-6">
-
-                    {!! $catalog->description !!}
-
-                </div>
-
+                
                 <div class="row">
-
-                    <div class="col-sm-6">
-
-                        @foreach ($catalog->images as $image)
-
-                            @if ($image->featured)
-                                <div class="card">
-
-                                    <img id="image" class="w-full"
-                                         src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
-                                         alt="Sunset in the mountains">
-
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
 
                     <div class="col-sm-6">
 
@@ -667,6 +651,21 @@
 
                     </div>
 
+                    <div class="col-sm-6">
+
+                        @foreach ($catalog->images as $image)
+
+                            @if ($image->featured)
+                                <div class="card">
+
+                                    <img id="image" class="w-full"
+                                         src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
+                                         alt="Sunset in the mountains">
+
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
 
                 </div>
 
@@ -681,7 +680,7 @@
                 <div class="row catalogHeaderOne">
                     <div class="storeLeftSideBar col-sm-12">
 
-                        <div class="storeLogo">
+                        <div class="storeLogo textAlignRight">
 
                             <h2>{{ strtoupper($catalog->name) }}</h2>
 
@@ -692,37 +691,6 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-6">
-                        @foreach ($catalog->images as $image)
-
-                            @if ($image->featured)
-                                <div class="card">
-
-                                    @foreach($catalog->pdfs as $pdf)
-                                        <td colspan="2">
-                                            <a target="_blanck" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">
-                                                <img id="image" class="w-full"
-                                                     src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
-                                                     alt="Sunset in the mountains">
-                                            </a>
-                                        </td>
-
-
-                                    @endforeach
-
-
-                                </div>
-
-                                <p class="textCenter">
-                                    @foreach($catalog->pdfs as $pdf)
-                                        <a target="_blank" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">Click here to view</a>
-                                    @endforeach
-                                </p>
-
-
-                            @endif
-                        @endforeach
-                    </div>
                     <div class="col-sm-6">
 
                         <div class="row catalogInfo">
@@ -765,7 +733,7 @@
 
                         <div class="storeContentSection catalogHeaderTwo">
 
-                            <div class="storeSocialIcons">
+                            <div class="storeSocialIcons flexEnd">
                                 <a href="{{ $store->facebook_link }}" target="_blank">
                                     <img src="/img/icons/share-icon-facebook.svg">
                                 </a>
@@ -783,6 +751,37 @@
                         </div>
 
                     </div>
+                    <div class="col-sm-6">
+                        @foreach ($catalog->images as $image)
+
+                            @if ($image->featured)
+                                <div class="card">
+
+                                    @foreach($catalog->pdfs as $pdf)
+                                        <td colspan="2">
+                                            <a target="_blanck" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">
+                                                <img id="image" class="w-full"
+                                                     src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
+                                                     alt="Sunset in the mountains">
+                                            </a>
+                                        </td>
+
+
+                                    @endforeach
+
+
+                                </div>
+
+                                <p class="textCenter">
+                                    @foreach($catalog->pdfs as $pdf)
+                                        <a target="_blank" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">Click here to view</a>
+                                    @endforeach
+                                </p>
+
+
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
             </div>
         @endif
@@ -791,22 +790,6 @@
 
         {{-- ================================= advertisement =====================--}}
         <div class="row">
-
-            <div class="col-sm-3">
-                @foreach($catalog_small_sections as $advertisement)
-                    @if( $advertisement->image != "undefined")
-                        <div class="storeRightAdvertisement">
-                            <a href="{{$advertisement->url}}" target="_blank">
-                                <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
-                            </a>
-                        </div>
-                    @else
-
-                        {!! $advertisement->ad !!}
-                    @endif
-
-                @endforeach
-            </div>
 
             <div class="col-sm-9">
                 @foreach($catalog_large_sections as $advertisement)
@@ -823,6 +806,22 @@
 
                 @endforeach
             </div>
+            <div class="col-sm-3">
+                @foreach($catalog_small_sections as $advertisement)
+                    @if( $advertisement->image != "undefined")
+                        <div class="storeRightAdvertisement">
+                            <a href="{{$advertisement->url}}" target="_blank">
+                                <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                            </a>
+                        </div>
+                    @else
+
+                        {!! $advertisement->ad !!}
+                    @endif
+
+                @endforeach
+            </div>
+
 
         </div>
         {{-- ================================= advertisement ends=================--}}
