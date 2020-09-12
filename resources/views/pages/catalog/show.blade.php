@@ -932,7 +932,7 @@
 
 
 {{--        ========================= tags =========================--}}
-        <div class="row catalogInfo">
+        <div class="row catalogInfo flexEnd">
 
             @foreach($catalog->tags as $tag)
                 <a href="/catalogs?tag={{$tag->slug}}" class="tag">{{ $tag->name }}</a>
