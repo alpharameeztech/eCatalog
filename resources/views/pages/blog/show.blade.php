@@ -48,7 +48,7 @@
         @endif
 
         @if(session('locale') == 'ar')
-                <div class="row">
+                <div class="d-none d-sm-flex row">
                     <div class="col-sm-3">
 
                         @foreach($blog_right_sections as $advertisement)
@@ -81,6 +81,42 @@
                             </div>
 
                         </div>
+
+                    </div>
+                </div>
+                <div class="d-block d-sm-none row">
+                    <div class="col-sm-9">
+
+                        <div>
+
+                            <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($blog->title) }}</h2>
+
+                            <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
+
+                            <div class="richTextBody">
+                                <p>
+                                    {!! $blog->body !!}
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3">
+
+                        @foreach($blog_right_sections as $advertisement)
+                            @if( $advertisement->image != "undefined")
+                                <div class="storeRightAdvertisement">
+                                    <a href="{{$advertisement->url}}" target="_blank">
+                                        <img  src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$advertisement->image}}" >
+                                    </a>
+                                </div>
+                            @else
+
+                                {!! $advertisement->ad !!}
+                            @endif
+
+                        @endforeach
 
                     </div>
                 </div>
