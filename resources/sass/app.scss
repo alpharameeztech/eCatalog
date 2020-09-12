@@ -836,8 +836,28 @@ img.country{
 }
 //
 //===================================== media queries ======================
+@media only screen and (max-width: 600px) {
+    .contactUsBg {
+        height: auto;
+        background-repeat: no-repeat;
+        width: 100%;
+        background-size: cover;
+        background-image: url(/img/contact/Component1.png);
+    }
+    .joinDiv img{
+        display: block;
+        margin: 0 auto;
+    }
+    .advertiseWithUs img{
+        width: 37%;
+        margin: 0 auto;
+        display: block;
+    }    
+}
+
 @media (min-width: 576px){
     .logosLargeSection{
         display: flex !important;
     }
 }
+

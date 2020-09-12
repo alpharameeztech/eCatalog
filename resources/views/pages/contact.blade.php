@@ -8,7 +8,8 @@
     {!! NoCaptcha::renderJs() !!}
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-    <div class="contactUsBg">
+    {{-- ================================================= largers screens ============================================ --}}
+    <div class="d-none d-sm-block contactUsBg">
         <div class="container">
             <div class="row">
                 <div class="col-sm-5">
@@ -32,6 +33,35 @@
             </div>
         </div>
     </div>
+    {{-- ================================================= largers screens ends========================================= --}}
+
+    {{-- ================================================= mobile screen ========================================== --}}
+    <div class="d-block d-sm-none contactUsBg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5">
+                </div>
+                <div class="col-sm-7">
+                    <h1 class="heading textAlignCenter">
+                        {{ trans('index.contact_us_heading') }}
+                    </h1>
+                    <p class="subHeading textAlignCenter">
+                        {{ trans('index.contact_us_sub_heading') }}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6 joinDiv">
+                    <p class="join textAlignCenter">{{ trans('index.join_us') }}</p>
+                    <img src="/img/contact/Group.svg" />
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- ================================================= mobile screen ends =============================================== --}}
+
 
     @if(session()->has('message'))
         <div class="alert alert-success">
