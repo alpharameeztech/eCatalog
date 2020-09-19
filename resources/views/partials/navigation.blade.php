@@ -139,7 +139,7 @@
 
             <div class="flex">
                 <!-- Navbar brand -->
-                <a class="navbar-brand" href="/">
+                <a class="d-block d-sm-none navbar-brand" href="/">
                     <img src="/img/logo.png" />
                 </a>
 
