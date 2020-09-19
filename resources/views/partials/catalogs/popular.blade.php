@@ -74,7 +74,7 @@
                             <p class="catalogName">{{$catalog->name}}</p>
                             <div class="textContainer">
                                 <p class="catalogDate">
-                                    {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
+                                    {{ $catalog->start_at }}
                                     @if(!$catalog->end_at)
                                         {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
                                     @endif
@@ -117,8 +117,15 @@
                             <p class="catalogName @if(session('locale') == 'ar') textAlignRight @endif">{{$catalog->name}}</p>
                             <div class="textContainer">
                                 <p class="catalogDate @if(session('locale') == 'ar') textAlignRight @endif">
-                                    {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
-                                    @if(!$catalog->end_at)
+                                    @if(session('locale') == 'en') 
+                                        {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
+                                    @else
+                                        {{ $catalog->start_at }}
+                                    @endif
+
+
+
+                                    @if(!$catalog->end_at && session('locale') == 'en')
                                         {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
                                     @endif
 
@@ -171,8 +178,13 @@
                         <p class="catalogName @if(session('locale') == 'ar') textAlignRight @endif">{{$catalog->name}}</p>
                         <div class="textContainer">
                             <p class="catalogDate @if(session('locale') == 'ar') textAlignRight @endif">
-                                {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
-                                @if(!$catalog->end_at)
+                                @if(session('locale') == 'en') 
+                                    {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
+                                    @else
+                                    {{ $catalog->start_at }}
+                                @endif
+                                
+                                @if(!$catalog->end_at && session('locale') == 'en')
                                     {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
                                 @endif
 
