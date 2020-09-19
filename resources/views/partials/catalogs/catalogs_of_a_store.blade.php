@@ -21,8 +21,13 @@
                             <p class="catalogName">{{$catalog->name}}</p>
                             <div class="textContainer">
                                 <p class="catalogDate">
-                                    {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
-                                    @if(!$catalog->end_at)
+                                    @if(session('locale') == 'en') 
+                                        {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
+                                    @else
+                                        {{ $catalog->start_at }}
+                                    @endif
+
+                                    @if(!$catalog->end_at && session('locale') == 'en' )
                                         {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
                                     @endif
 
