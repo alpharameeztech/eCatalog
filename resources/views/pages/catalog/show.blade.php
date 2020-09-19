@@ -173,9 +173,14 @@
                             <div class="col-6 col-sm-4">
 
                                 <p class="catalogDate">
+                                    @if(session('locale') == 'en')
                                     {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
                                     {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
-                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }}
+                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }} 
+                                    @else
+                                        {{ $catalog->start_at }}
+                                    @endif
+                                
                                 </p>
                                 <p class="darkGray">
                                     Start Date
@@ -315,9 +320,14 @@
                             <div class="col-sm-4">
 
                                 <p class="catalogDate">
+                                    @if(session('locale') == 'en')
                                     {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
                                     {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
-                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }}
+                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }} 
+                                    @else
+                                        {{ $catalog->start_at }}
+                                    @endif
+                               
                                 </p>
                                 <p class="darkGray">
                                     Start Date
@@ -605,9 +615,14 @@
                             <div class="col-sm-4">
 
                                 <p class="catalogDate">
-                                    {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
-                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
-                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }}
+                                    @if(session('locale') == 'en')
+                                        {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
+                                        {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                                        {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }} 
+                                    @else
+                                        {{ $catalog->start_at }}
+                                    @endif
+                                    
                                 </p>
                                 <p class="darkGray">
                                     Start Date
@@ -710,9 +725,14 @@
                             <div class="col-sm-4">
 
                                 <p class="catalogDate">
-                                    {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
-                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
-                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }}
+                                    @if(session('locale') == 'en')
+                                        {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
+                                        {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                                        {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }} 
+                                    @else
+                                        {{ $catalog->start_at }}
+                                    @endif
+                                   
                                 </p>
                                 <p class="darkGray">
                                     Start Date
