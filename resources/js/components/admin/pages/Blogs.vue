@@ -375,7 +375,7 @@ import { VueEditor } from "vue2-editor";
                     formData.append('seo_description', this.editedItem.seo_description);
                     formData.append('arabic_seo_description', this.editedItem.arabic_seo_description);
 
-                    axios.post('/api/blog/', formData,{
+                    axios.post('/api/blog', formData,{
                         headers: {
                             'Content-Type': 'multipart/form-data',
                             'enctype' : 'multipart/form-data'
@@ -417,7 +417,7 @@ import { VueEditor } from "vue2-editor";
                     formData.append('seo_description', this.editedItem.seo_description);
                     formData.append('arabic_seo_description', this.editedItem.arabic_seo_description);
 
-                    axios.post('/api/blog/', formData,{
+                    axios.post('/api/blog', formData,{
                         headers: {
                             'Content-Type': 'multipart/form-data',
                             'enctype' : 'multipart/form-data'
