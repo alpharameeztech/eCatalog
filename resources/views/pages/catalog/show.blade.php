@@ -189,9 +189,13 @@
 
                             <div class="col-6 col-sm-4">
                                 <p class="catalogDate">
-                                    {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
-                                    {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
-                                    {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
+                                    @if ($catalog->end_at && session('locale') == 'en')
+                                        {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
+                                        {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                                        {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
+                                    @else
+                                        {{ $catalog->end_at }}
+                                    @endif
                                 </p>
                                 <p class="darkGray">
                                     End Date
@@ -336,9 +340,13 @@
 
                             <div class="col-sm-4">
                                 <p class="catalogDate">
+                                @if ($catalog->end_at && session('locale') == 'en')
                                     {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
                                     {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
                                     {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
+                                @else
+                                    {{ $catalog->end_at }}
+                                @endif
                                 </p>
                                 <p class="darkGray">
                                     End Date
@@ -631,9 +639,13 @@
 
                             <div class="col-sm-4">
                                 <p class="catalogDate">
-                                    {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
-                                    {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
-                                    {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
+                                    @if ($catalog->end_at && session('locale') == 'en')
+                                        {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
+                                        {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                                        {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
+                                    @else
+                                        {{ $catalog->end_at }}
+                                    @endif
                                 </p>
                                 <p class="darkGray">
                                     End Date
@@ -741,9 +753,13 @@
 
                             <div class="col-sm-4">
                                 <p class="catalogDate">
+                                    @if ($catalog->end_at && session('locale') == 'en')
                                     {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
                                     {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
                                     {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
+                                @else
+                                    {{ $catalog->end_at }}
+                                @endif
                                 </p>
                                 <p class="darkGray">
                                     End Date

@@ -145,10 +145,12 @@
                                         {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
                                     @endif
 
-                                    @if($catalog->end_at)
+                                    @if($catalog->end_at && && session('locale') == 'en')
                                         <span> - {{ \Carbon\Carbon::parse($catalog->end_at_at)->day }}
                                             {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
                                         </span>
+                                    @else
+                                        {{ $catalog->end_at}}
                                     @endif
                                 </p>
                                 <p class="@if(session('locale') == 'ar') textAlignRight @endif">

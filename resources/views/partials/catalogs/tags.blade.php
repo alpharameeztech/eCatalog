@@ -28,7 +28,7 @@
                         <a href="{{$catalog->store->slug}}/catalogs/{{$catalog->slug}}" class="no-underline hover:underline text-blue-500 ">View Details</a>
                     </p>
 
-                    @if(!empty($catalog->end_at))
+                    @if( !empty($catalog->end_at) && session('locale') == 'en' )
                         @if( $catalog->end_at <= date('Y-m-d'))
                             <span class="badge badge-danger">Expired</span>
                         @endif
