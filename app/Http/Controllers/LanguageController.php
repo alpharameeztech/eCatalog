@@ -10,9 +10,10 @@ class LanguageController extends Controller
 {
     public function setLanguage(Request $request, $language)
     {
+        \Log::info($language);
+        
         app()->setLocale($language);
         session(['locale' => $language]);
-       // dd( request()->segment(2));
         $previousUrl = url()->previous();
 
         if($language == 'ar'){
