@@ -5,7 +5,7 @@
         @foreach ($latest_blog as $blog)
         <div class="row">
             <div class="col-sm-6">
-                <img src="/img/main-page/banner-2.png" />
+                <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
             </div>
             <div class="col-sm-6">
                 <h2 class="d-none d-sm-block @if(session('locale') == 'ar') textAlignRight @endif"> {{$blog->title}}</h2>
