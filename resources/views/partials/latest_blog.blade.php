@@ -15,7 +15,11 @@
                         {{$blog->title}}
                     </a>
                 </h2>
-                <h2 class="d-block d-sm-none textAlignCenter @if(session('locale') == 'ar') textAlignRight @endif"> {{$blog->title}}</h2>
+                <h2 class="d-block d-sm-none textAlignCenter @if(session('locale') == 'ar') textAlignRight @endif">
+                    <a href="/blog/{{$blog->slug}}" style="color:#000">
+                        {{$blog->title}}
+                    </a>
+                </h2>
 
                <div class="@if(session('locale') == 'ar') richTextBody @endif">
                    <p class="@if(session('locale') == 'ar') textAlignRight @endif">
