@@ -5,10 +5,16 @@
         @foreach ($latest_blog as $blog)
         <div class="row">
             <div class="col-sm-5">
-                <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
+                <a href="/blog/{{$blog->slug}}">
+                    <img src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$blog->image}}" />
+                </a>
             </div>
             <div class="col-sm-7">
-                <h2 class="d-none d-sm-block @if(session('locale') == 'ar') textAlignRight @endif"> {{$blog->title}}</h2>
+                <h2 class="d-none d-sm-block @if(session('locale') == 'ar') textAlignRight @endif"> 
+                    <a href="/blog/{{$blog->slug}}" style="color:#000">
+                        {{$blog->title}}
+                    </a>
+                </h2>
                 <h2 class="d-block d-sm-none textAlignCenter @if(session('locale') == 'ar') textAlignRight @endif"> {{$blog->title}}</h2>
 
                <div class="@if(session('locale') == 'ar') richTextBody @endif">
