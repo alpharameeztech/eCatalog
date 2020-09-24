@@ -19,7 +19,7 @@
                 @endforeach
 
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-5">
                 <img src="/img/main-page/about.png" />
             </div>
 
