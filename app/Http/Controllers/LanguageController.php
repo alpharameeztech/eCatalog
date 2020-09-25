@@ -17,9 +17,12 @@ class LanguageController extends Controller
         $previousUrl = url()->previous();
 
         if($language == 'ar'){
-            $url = str_replace('en', $language,$previousUrl);
+            $url = preg_replace('/en/', 'ar', $previousUrl, 1);
+            //$url = str_replace('en', $language,$previousUrl);
         }else{
-            $url = str_replace('ar', $language,$previousUrl);
+            //$url = str_replace('ar', $language,$previousUrl);
+            $url = preg_replace('/ar/', 'en', $previousUrl, 1);
+
         }
 
         return redirect($url);
