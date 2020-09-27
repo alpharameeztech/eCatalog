@@ -2746,12 +2746,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-_libs.PDFJS.GlobalWorkerOptions.workerSrc = (window.PDFJS_LOCALE ? PDFJS_LOCALE : __webpack_require__.i({"pdfJsWorker":"js/pdf.worker.js","pdfJsCMapUrl":"cmaps/"})).pdfJsWorker;
-_libs.PDFJS.cMapUrl = (window.PDFJS_LOCALE ? PDFJS_LOCALE : __webpack_require__.i({"pdfJsWorker":"js/pdf.worker.js","pdfJsCMapUrl":"cmaps/"})).pdfJsCMapUrl;
+_libs.PDFJS.GlobalWorkerOptions.workerSrc = (window.PDFJS_LOCALE ? PDFJS_LOCALE : __webpack_require__.i({"pdfJsWorker":"/js/pdf.worker.js","pdfJsCMapUrl":"cmaps/"})).pdfJsWorker;
+_libs.PDFJS.cMapUrl = (window.PDFJS_LOCALE ? PDFJS_LOCALE : __webpack_require__.i({"pdfJsWorker":"/js/pdf.worker.js","pdfJsCMapUrl":"cmaps/"})).pdfJsCMapUrl;
 _libs.PDFJS.cMapPacked = true;
 _libs.PDFJS.disableAutoFetch = true;
 _libs.PDFJS.disableStream = true;
-_libs.PDFJS.imageResourcesPath = 'images/pdfjs/';
+_libs.PDFJS.imageResourcesPath = '/images/pdfjs/';
 _libs.PDFJS.externalLinkTarget = _libs.PDFJS.LinkTarget.BLANK;
 // PDFJS.disableFontFace = true;
 
@@ -6202,13 +6202,13 @@ var BookView = function (_View) {
 
   BookView.prototype.getTemplate = function getTemplate() {
     return {
-      html: 'templates/default-book-view.html',
-      styles: ['css/black-book-view.css'],
+      html: '/templates/default-book-view.html',
+      styles: ['/css/black-book-view.css'],
       links: [{
         rel: 'stylesheet',
-        href: 'css/font-awesome.min.css'
+        href: '/css/font-awesome.min.css'
       }],
-      script: 'js/default-book-view.js'
+      script: '/js/default-book-view.js'
     };
   };
 

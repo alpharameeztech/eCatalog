@@ -121,7 +121,7 @@ export default class BookView extends View {
     return {
       html: 'templates/default-book-view.html',
       styles: [
-        'css/black-book-view.css'
+        '/css/black-book-view.css'
       ],
       links: [
         {
