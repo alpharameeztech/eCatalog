@@ -96,7 +96,10 @@
         }
     </style>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <div class="flip-book-container solid-container" src="/books/FoxitPdfSdk.pdf">
 
+    </div>
+    
     @if(session('locale') == 'en')
     <div class="container">
 
@@ -281,13 +284,14 @@
                                 <div class="card">
 
                                     @foreach($catalog->pdfs as $pdf)
-                                        <td colspan="2">
+                                    <div class="flip-book-container" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}"></div>
+                                        {{-- <td colspan="2">
                                             <a target="_blanck" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">
                                                 <img id="image" class="w-full"
                                                      src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
                                                      alt="Sunset in the mountains">
                                             </a>
-                                        </td>
+                                        </td> --}}
 
 
                                     @endforeach
@@ -297,6 +301,8 @@
 
                                 <p class="textCenter">
                                     @foreach($catalog->pdfs as $pdf)
+                                    <div class="flip-book-container" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}"></div>
+                                     
                                         <a target="_blank" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">Click here to view</a>
                                     @endforeach
                                 </p>
@@ -810,6 +816,8 @@
 
                                 <p class="textCenter">
                                     @foreach($catalog->pdfs as $pdf)
+                                    <div class="flip-book-container" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}"></div>
+
                                         <a target="_blank" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">Click here to view</a>
                                     @endforeach
                                 </p>
@@ -991,8 +999,8 @@
    
 @endsection
 
-<link href="{{ asset('css/viewer.css') }}" rel="stylesheet">
+{{-- <link href="{{ asset('css/viewer.css') }}" rel="stylesheet">
 
-<script src="{{ asset('js/viewer.js') }}" defer></script>
+<script src="{{ asset('js/viewer.js') }}" defer></script> --}}
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+

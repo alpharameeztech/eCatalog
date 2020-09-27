@@ -147,7 +147,7 @@ Route::prefix('/{lang}')->group(function () {
 
     Route::get('/stores', 'StoreController@index');
     Route::get('/store/{store}', 'StoreController@show');
-    Route::get('/catalog/{catalog}', 'CatalogController@show');
+    Route::get('/catalog/{catalog}', 'CatalogController@show')->middleware('cors');
 
     Route::get('/catalogs', 'CatalogController@index');
 

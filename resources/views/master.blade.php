@@ -20,6 +20,7 @@
 
 </head>
 <body>
+  
 <div class="flex-center position-ref full-height">
 
     <!-- navigation -->
@@ -51,6 +52,14 @@
 
 <script src="/js/umd_popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="/js/1bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 
+
+<script type="text/javascript" src="{{ asset('js/3d-flip-book/js/libs/jquery.min.js') }}"></script>
+
+<script src="{{ asset('js/3d-flip-book/js/libs/html2canvas.min.js') }}" defer></script>
+<script src="{{ asset('js/3d-flip-book/js/libs/three.min.js') }}" defer></script>
+<script src="{{ asset('js/3d-flip-book/js/libs/pdf.min.js') }}" defer></script>
+<script src="{{ asset('js/3d-flip-book/js/dist/3dflipbook.js') }}" defer></script>
 
 </body>
 </html>

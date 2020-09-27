@@ -61,7 +61,7 @@
                     @foreach ($catalog->images as $image)
 
                         @if ($image->featured)
-                            <a href="/{{$catalog->store->name}}/catalogs/{{$catalog->slug}}">
+                            <a href="/{{session('locale')}}/catalog/{{$catalog->slug}}">
                                  <img class="w-full" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}" alt="Sunset in the mountains">
                             </a>
                         @endif
