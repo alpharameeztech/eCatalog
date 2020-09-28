@@ -96,9 +96,9 @@
         }
     </style>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-    <div class="flip-book-container solid-container" src="/books/FoxitPdfSdk.pdf">
+    {{-- <div class="flip-book-container solid-container" src="/books/FoxitPdfSdk.pdf">
 
-    </div>
+    </div> --}}
     
     @if(session('locale') == 'en')
     <div class="container">
@@ -999,8 +999,8 @@
    
 @endsection
 
-{{-- <link href="{{ asset('css/viewer.css') }}" rel="stylesheet">
+<link href="{{ asset('css/viewer.css') }}" rel="stylesheet">
 
-<script src="{{ asset('js/viewer.js') }}" defer></script> --}}
+<script src="{{ asset('js/viewer.js') }}" defer></script>
 
 
