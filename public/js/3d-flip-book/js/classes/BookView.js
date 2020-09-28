@@ -126,10 +126,10 @@ export default class BookView extends View {
       links: [
         {
           rel: 'stylesheet',
-          href: 'css/font-awesome.min.css'
+          href: '/css/font-awesome.min.css'
         }
       ],
-      script: 'js/default-book-view.js'
+      script: '/js/default-book-view.js'
     };
   }
 
