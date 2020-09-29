@@ -302,7 +302,7 @@
                                     @foreach($catalog->pdfs as $pdf)
                                     <div class="flip-book-container" src="{{ asset('storage/'.$pdf->pdf) }}"></div>
                                      
-                                        <a target="_blank" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">Click here to view</a>
+                                        {{-- <a target="_blank" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">Click here to view</a> --}}
                                     @endforeach
                                 </p>
 
