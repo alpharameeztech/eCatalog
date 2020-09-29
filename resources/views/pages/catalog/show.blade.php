@@ -110,7 +110,7 @@
 
 
 {{--        ================================== catalog has image =========================--}}
-        @if(count($catalog->images))
+        @if(count($catalog->images) && count($catalog->pdfs) == 0)
         <div class="catalogParentDiv">
             <div class="row catalogHeaderOne">
                 <div class="storeLeftSideBar col-sm-6">
@@ -557,7 +557,7 @@
 
 
 {{--        ================================== catalog has image =========================--}}
-        @if(count($catalog->images))
+        @if( count($catalog->images) && count($catalog->pdfs) == 0)
         <div class="catalogParentDiv">
             <div class="row catalogHeaderOne">
                 <div class="storeContentSection col-sm-6 catalogHeaderTwo">
