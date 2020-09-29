@@ -10,6 +10,7 @@ use App\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Page;
+use Illuminate\Support\Facades\Storage;
 
 class CatalogController extends Controller
 {
@@ -334,7 +335,7 @@ class CatalogController extends Controller
         ]);
 
         $new_pdf = request()->file('file')->store('catalogs', 's3');
-
+        $path = $request->file('file')->store('public/catalogs', 'local');
         $catalog = Catalog::find($request->id);
 
         $pdf = new Pdf;

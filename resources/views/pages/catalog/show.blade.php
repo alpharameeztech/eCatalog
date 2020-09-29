@@ -96,9 +96,9 @@
         }
     </style>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-    <div class="flip-book-container solid-container" src="/books/FoxitPdfSdk.pdf">
+    {{-- <div class="flip-book-container solid-container" src="{{ asset('storage/catalogs/ZwgJYEDP4VLgpoF5oPjWqcUN43FwGAAGEdIPAA12.pdf') }}">
 
-    </div>
+    </div> --}}
     
     @if(session('locale') == 'en')
     <div class="container">
@@ -276,7 +276,7 @@
 
                 </div>
 
-                <div class="row">
+                <div class="row" style="min-height: 600px">
                     <div class="col-sm-6">
                         @foreach ($catalog->images as $image)
 
@@ -284,7 +284,6 @@
                                 <div class="card">
 
                                     @foreach($catalog->pdfs as $pdf)
-                                    <div class="flip-book-container" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}"></div>
                                         {{-- <td colspan="2">
                                             <a target="_blanck" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">
                                                 <img id="image" class="w-full"
@@ -301,7 +300,7 @@
 
                                 <p class="textCenter">
                                     @foreach($catalog->pdfs as $pdf)
-                                    <div class="flip-book-container" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}"></div>
+                                    <div class="flip-book-container" src="{{ asset('storage/'.$pdf->pdf) }}"></div>
                                      
                                         <a target="_blank" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">Click here to view</a>
                                     @endforeach
