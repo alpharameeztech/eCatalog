@@ -56,7 +56,7 @@
 
 <script type="text/javascript" src="{{ asset('js/3d-flip-book/js/libs/jquery.min.js') }}"></script>
 
-<script src="{{ asset('js/3d-flip-book/js/libs/html2canvas.min.js') }}" defer></script>
+{{--  <script src="{{ asset('js/3d-flip-book/js/libs/html2canvas.min.js') }}" defer></script>  --}}
 <script src="{{ asset('js/3d-flip-book/js/libs/three.min.js') }}" defer></script>
 <script src="{{ asset('js/3d-flip-book/js/libs/pdf.min.js') }}" defer></script>
 <script src="{{ asset('js/3d-flip-book/js/dist/3dflipbook.js') }}" defer></script>
