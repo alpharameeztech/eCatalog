@@ -4,6 +4,13 @@
 @section('description', $catalog->seoTags->description  )
 
 @section('content')
+<script type="text/javascript" src="{{ asset('js/3d-flip-book/js/libs/jquery.min.js') }}"></script>
+
+<script src="{{ asset('js/3d-flip-book/js/libs/html2canvas.min.js') }}" ></script> 
+<script src="{{ asset('js/3d-flip-book/js/libs/three.min.js') }}" defer></script>
+<script src="{{ asset('js/3d-flip-book/js/libs/pdf.min.js') }}" defer></script>
+<script src="{{ asset('js/3d-flip-book/js/dist/3dflipbook.js') }}" defer></script>
+
 
     <style>
         .accordion {
@@ -300,7 +307,14 @@
 
                                 <p class="textCenter">
                                     @foreach($catalog->pdfs as $pdf)
-                                    <div class="flip-book-container" src="{{ asset('storage/'.$pdf->pdf) }}"></div>
+                                    {{-- <div class="flip-book-container" src="{{ asset('storage/'.$pdf->pdf) }}"></div> --}}
+                                    <div class="sample-container"></div>
+                                    <script type="text/javascript">
+                                        $(document).ready(function (){
+                                            var data = '<?php echo $pdf->pdf; ?>';
+                                          $('.sample-container').FlipBook({pdf: 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data});
+                                        })
+                                      </script>
                                      
                                         {{-- <a target="_blank" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">Click here to view</a> --}}
                                     @endforeach
