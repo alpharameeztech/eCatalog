@@ -315,6 +315,7 @@
                                                     btnPrint: {
                                                         enabled: false,
                                                     },
+                                                    forceDownload: false
                                                 });
 
                                             })
@@ -834,6 +835,7 @@
                                                         btnPrint: {
                                                             enabled: false,
                                                         },
+                                                        forceDownload: false,
                                                     });
     
                                                 })
