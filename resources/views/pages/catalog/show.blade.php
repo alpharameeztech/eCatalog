@@ -294,26 +294,10 @@
                         @foreach ($catalog->images as $image)
 
                             @if ($image->featured)
-                                <div class="card">
-
-                                    @foreach($catalog->pdfs as $pdf)
-                                        {{-- <td colspan="2">
-                                            <a target="_blanck" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">
-                                                <img id="image" class="w-full"
-                                                     src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
-                                                     alt="Sunset in the mountains">
-                                            </a>
-                                        </td> --}}
-
-
-                                    @endforeach
-
-
-                                </div>
 
                                 <p class="textCenter">
                                     @foreach($catalog->pdfs as $pdf)
-                                        <img id="container" src="/img/main-page/about.png" />
+                                        <img id="container" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"  />
                                         <script type="text/javascript">
 
                                             $(document).ready(function () {
@@ -324,16 +308,6 @@
 
                                             })
                                         </script>
-                                    {{-- <div class="flip-book-container" src="{{ asset('storage/'.$pdf->pdf) }}"></div> --}}
-                                    {{--  <div class="sample-container"></div>  --}}
-                                    {{--  <script type="text/javascript">
-                                        $(document).ready(function (){
-                                            var data = '<?php echo $pdf->pdf; ?>';
-                                          $('.sample-container').FlipBook({pdf: 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data});
-                                        })
-                                      </script>  --}}
-                                     
-                                        {{-- <a target="_blank" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">Click here to view</a> --}}
                                     @endforeach
                                 </p>
 
@@ -827,50 +801,21 @@
                         @foreach ($catalog->images as $image)
 
                             @if ($image->featured)
-                                <div class="card">
-
-                                    @foreach($catalog->pdfs as $pdf)
-                                        <td colspan="2">
-                                            {{--  <a target="_blanck" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">
-                                                <img id="image" class="w-full"
-                                                     src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"
-                                                     alt="Sunset in the mountains">
-                                            </a>  --}}
-                                    {{-- <div class="flip-book-container" src="{{ asset('storage/'.$pdf->pdf) }}"></div> --}}
-                                            
-                                    <img id="container" src="/img/main-page/about.png" />
-                                    <script type="text/javascript">
-
-                                        $(document).ready(function () {
-                                            $("#container").flipBook({
-                                                pdfUrl:"https://ecatalog.s3-ap-southeast-1.amazonaws.com/catalogs/6YdwfeQXfTC14o55gmf4HDOWf8fPmmRxa7UQL1Xc.pdf",
-                                                lightBox:true
-                                            });
-
-                                        })
-                                    </script>
-
-                                        </td>
-
-
-                                    @endforeach
-
-
-                                </div>
 
                                 <p class="textCenter">
                                     @foreach($catalog->pdfs as $pdf)
-                                    <img id="container" src="/img/main-page/about.png" />
-                                    <script type="text/javascript">
 
-                                        $(document).ready(function () {
-                                            $("#container").flipBook({
-                                                pdfUrl:"https://ecatalog.s3-ap-southeast-1.amazonaws.com/catalogs/6YdwfeQXfTC14o55gmf4HDOWf8fPmmRxa7UQL1Xc.pdf",
-                                                lightBox:true
-                                            });
-
-                                        })
-                                    </script>
+                                    <img id="container" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"  />
+                                            <script type="text/javascript">
+    
+                                                $(document).ready(function () {
+                                                    $("#container").flipBook({
+                                                        pdfUrl:"https://ecatalog.s3-ap-southeast-1.amazonaws.com/catalogs/6YdwfeQXfTC14o55gmf4HDOWf8fPmmRxa7UQL1Xc.pdf",
+                                                        lightBox:true
+                                                    });
+    
+                                                })
+                                            </script>
 
                                     @endforeach
                                 </p>
