@@ -305,7 +305,7 @@
                                             $(document).ready(function () {
                                                 var data = '<?php echo $pdf->pdf; ?>';
                                                 $("#container").flipBook({
-                                                    pdfUrl: 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data,
+                                                    pdfUrl: 'http://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data,
                                                     lightBox:true
                                                 });
 
@@ -816,7 +816,7 @@
                                                 $(document).ready(function () {
                                                     var data = '<?php echo $pdf->pdf; ?>';
                                                     $("#container").flipBook({
-                                                        pdfUrl: 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data,
+                                                        pdfUrl: 'http://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data,
                                                         lightBox:true
                                                     });
     
