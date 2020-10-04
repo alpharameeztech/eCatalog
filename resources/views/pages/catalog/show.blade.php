@@ -301,8 +301,9 @@
                                         <script type="text/javascript">
 
                                             $(document).ready(function () {
+                                                var data = '<?php echo $pdf->pdf; ?>';
                                                 $("#container").flipBook({
-                                                    pdfUrl:"https://ecatalog.s3-ap-southeast-1.amazonaws.com/catalogs/6YdwfeQXfTC14o55gmf4HDOWf8fPmmRxa7UQL1Xc.pdf",
+                                                    pdfUrl: 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data,
                                                     lightBox:true
                                                 });
 
@@ -809,8 +810,9 @@
                                             <script type="text/javascript">
     
                                                 $(document).ready(function () {
+                                                    var data = '<?php echo $pdf->pdf; ?>';
                                                     $("#container").flipBook({
-                                                        pdfUrl:"https://ecatalog.s3-ap-southeast-1.amazonaws.com/catalogs/6YdwfeQXfTC14o55gmf4HDOWf8fPmmRxa7UQL1Xc.pdf",
+                                                        pdfUrl: 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data,
                                                         lightBox:true
                                                     });
     
