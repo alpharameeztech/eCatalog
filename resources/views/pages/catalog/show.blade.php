@@ -306,7 +306,15 @@
                                                 var data = '<?php echo $pdf->pdf; ?>';
                                                 $("#container").flipBook({
                                                     pdfUrl: 'http://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data,
-                                                    lightBox:true
+                                                    lightBox:true,
+                                                    btnShare : {enabled:false},
+                                                    btnDownloadPages : {enabled:false},
+                                                    btnDownloadPdf : {enabled:false},
+                                                    printMenu: true,
+                                                    downloadMenu: true,
+                                                    btnPrint: {
+                                                        enabled: false,
+                                                    },
                                                 });
 
                                             })
@@ -817,7 +825,15 @@
                                                     var data = '<?php echo $pdf->pdf; ?>';
                                                     $("#container").flipBook({
                                                         pdfUrl: 'http://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data,
-                                                        lightBox:true
+                                                        lightBox:true,
+                                                        btnShare : {enabled:false},
+                                                        btnDownloadPages : {enabled:false},
+                                                        btnDownloadPdf : {enabled:false},
+                                                        printMenu: true,
+                                                        downloadMenu: true,
+                                                        btnPrint: {
+                                                            enabled: false,
+                                                        },
                                                     });
     
                                                 })
