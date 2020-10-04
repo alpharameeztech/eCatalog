@@ -6,10 +6,16 @@
 @section('content')
 <script type="text/javascript" src="{{ asset('js/3d-flip-book/js/libs/jquery.min.js') }}"></script>
 
-<script src="{{ asset('js/3d-flip-book/js/libs/html2canvas.min.js') }}" ></script> 
+{{--  <script src="{{ asset('js/3d-flip-book/js/libs/html2canvas.min.js') }}" ></script> 
 <script src="{{ asset('js/3d-flip-book/js/libs/three.min.js') }}" defer></script>
 <script src="{{ asset('js/3d-flip-book/js/libs/pdf.min.js') }}" defer></script>
-<script src="{{ asset('js/3d-flip-book/js/dist/3dflipbook.js') }}" defer></script>
+<script src="{{ asset('js/3d-flip-book/js/dist/3dflipbook.js') }}" defer></script>  --}}
+
+{{--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>  --}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<script src="{{ asset('canyon/js/flipbook.min.js') }}"></script>
 
 
     <style>
@@ -307,14 +313,25 @@
 
                                 <p class="textCenter">
                                     @foreach($catalog->pdfs as $pdf)
+                                        <img id="container" src="/img/main-page/about.png" />
+                                        <script type="text/javascript">
+
+                                            $(document).ready(function () {
+                                                $("#container").flipBook({
+                                                    pdfUrl:"https://ecatalog.s3-ap-southeast-1.amazonaws.com/catalogs/6YdwfeQXfTC14o55gmf4HDOWf8fPmmRxa7UQL1Xc.pdf",
+                                                    lightBox:true
+                                                });
+
+                                            })
+                                        </script>
                                     {{-- <div class="flip-book-container" src="{{ asset('storage/'.$pdf->pdf) }}"></div> --}}
-                                    <div class="sample-container"></div>
-                                    <script type="text/javascript">
+                                    {{--  <div class="sample-container"></div>  --}}
+                                    {{--  <script type="text/javascript">
                                         $(document).ready(function (){
                                             var data = '<?php echo $pdf->pdf; ?>';
                                           $('.sample-container').FlipBook({pdf: 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data});
                                         })
-                                      </script>
+                                      </script>  --}}
                                      
                                         {{-- <a target="_blank" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">Click here to view</a> --}}
                                     @endforeach
@@ -820,13 +837,18 @@
                                                      alt="Sunset in the mountains">
                                             </a>  --}}
                                     {{-- <div class="flip-book-container" src="{{ asset('storage/'.$pdf->pdf) }}"></div> --}}
-                                    <div class="sample-container"></div>
+                                            
+                                    <img id="container" src="/img/main-page/about.png" />
                                     <script type="text/javascript">
-                                        $(document).ready(function (){
-                                            var data = '<?php echo $pdf->pdf; ?>';
-                                          $('.sample-container').FlipBook({pdf: 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data});
+
+                                        $(document).ready(function () {
+                                            $("#container").flipBook({
+                                                pdfUrl:"https://ecatalog.s3-ap-southeast-1.amazonaws.com/catalogs/6YdwfeQXfTC14o55gmf4HDOWf8fPmmRxa7UQL1Xc.pdf",
+                                                lightBox:true
+                                            });
+
                                         })
-                                      </script>
+                                    </script>
 
                                         </td>
 
@@ -838,15 +860,17 @@
 
                                 <p class="textCenter">
                                     @foreach($catalog->pdfs as $pdf)
-                                        {{--  <a target="_blank" href="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$pdf->pdf}}">Click here to view</a>  --}}
-                                    {{-- <div class="flip-book-container" src="{{ asset('storage/'.$pdf->pdf) }}"></div> --}}
-                                    <div class="sample-container"></div>
+                                    <img id="container" src="/img/main-page/about.png" />
                                     <script type="text/javascript">
-                                        $(document).ready(function (){
-                                            var data = '<?php echo $pdf->pdf; ?>';
-                                          $('.sample-container').FlipBook({pdf: 'https://ecatalog.s3-ap-southeast-1.amazonaws.com/' + data});
+
+                                        $(document).ready(function () {
+                                            $("#container").flipBook({
+                                                pdfUrl:"https://ecatalog.s3-ap-southeast-1.amazonaws.com/catalogs/6YdwfeQXfTC14o55gmf4HDOWf8fPmmRxa7UQL1Xc.pdf",
+                                                lightBox:true
+                                            });
+
                                         })
-                                      </script>
+                                    </script>
 
                                     @endforeach
                                 </p>
