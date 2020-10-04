@@ -124,6 +124,8 @@
 
 {{--        ================================== catalog has image =========================--}}
         @if(count($catalog->images) && count($catalog->pdfs) == 0)
+        <script src="{{ mix('js/app.js') }}" defer></script>
+
         <div class="catalogParentDiv">
             <div class="row catalogHeaderOne">
                 <div class="storeLeftSideBar col-sm-6">
@@ -564,6 +566,8 @@
 
 {{--        ================================== catalog has image =========================--}}
         @if( count($catalog->images) && count($catalog->pdfs) == 0)
+        <script src="{{ mix('js/app.js') }}" defer></script>
+
         <div class="catalogParentDiv">
             <div class="row catalogHeaderOne">
                 <div class="storeContentSection col-sm-6 catalogHeaderTwo">
