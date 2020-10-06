@@ -87,12 +87,11 @@
                                         {{ $catalog->end_at }}
                                     @endif
                                 </p>
-                                <p>
-                                    Store {{$catalog->store->name}}
-                                    {{--  <a  href="/store/{{$catalog->store->slug}}" class="no-underline hover:underline text-blue-400">
-                                        {{$catalog->store->name}}
-                                    </a>  --}}
-                                </p>
+                                <a class="blackColor" href="/{{session('locale')}}/store/{{$catalog->store->slug}}">
+                                    <p>
+                                        Store {{$catalog->store->name}}
+                                    </p>
+                                </a>
                             </div>
                         </div>
                     </div>
