@@ -90,7 +90,7 @@
                 class="ml-0 pl-4"
             >
                 <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-                <a href="/home"><span class="hidden-sm-and-down"  >eCatalog Admin</span></a>
+                <a href="/home"><span class="hidden-sm-and-down"  >DealzBook Admin</span></a>
             </v-toolbar-title>
 
             <v-spacer />
