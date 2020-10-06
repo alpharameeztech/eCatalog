@@ -90,7 +90,7 @@
                                 <v-container>
                                     <v-row>
                                         <v-col cols="12" sm="12" md="12">
-                                            <v-select
+                                            <!-- <v-select
                                                 v-model="editedItem"
                                                 :items="catalogs"
                                                 item-text="name.en"
@@ -99,7 +99,16 @@
                                                 persistent-hint
                                                 return-object
                                                 single-line
-                                                ></v-select>
+                                                ></v-select> -->
+                                                <v-autocomplete
+                                                        v-model="editedItem"
+                                                        :items="catalogs"
+                                                        item-value="id"
+                                                        :filter="customFilter"
+                                                        item-text="name.en"
+                                                        return-object
+                                                        label="Select Catalog"
+                                                    ></v-autocomplete>
                                         </v-col>
 
                                         <v-col cols="12" sm="12" md="12">
