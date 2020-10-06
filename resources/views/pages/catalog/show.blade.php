@@ -297,7 +297,7 @@
 
                             @if ($image->featured)
 
-                                <p class="textCenter">
+                                <p class="textCenter" id="container">
                                     @foreach($catalog->pdfs as $pdf)
                                         <img id="container" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"  />
                                         <script type="text/javascript">
@@ -320,6 +320,8 @@
 
                                             })
                                         </script>
+                                        <a id="container">Browse catalog</a>
+
                                     @endforeach
                                 </p>
 
@@ -816,7 +818,7 @@
 
                             @if ($image->featured)
 
-                                <p class="textCenter">
+                                <p class="textCenter" id="container">
                                     @foreach($catalog->pdfs as $pdf)
 
                                     <img id="container" src="https://ecatalog.s3-ap-southeast-1.amazonaws.com/{{$image->image}}"  />
@@ -840,6 +842,7 @@
     
                                                 })
                                             </script>
+                                    <a id="container">Browse catalog</a>
 
                                     @endforeach
                                 </p>
