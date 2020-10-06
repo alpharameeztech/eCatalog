@@ -17,7 +17,9 @@
 
                 <div class="row catalogDetails">
                     <div class="col-sm-12">
-                        <p class="catalogName @if(session('locale') == 'ar') textAlignRight @endif">{{$catalog->name}}</p>
+                        <p class="catalogName @if(session('locale') == 'ar') textAlignRight @endif">
+                            <a class="blackColor" href="/{{session('locale')}}/catalog/{{$catalog->slug}}">{{$catalog->name}}</a>
+                        </p>
                         <div class="textContainer">
                             <p class="catalogDate @if(session('locale') == 'ar') textAlignRight @endif">
                                 @if(session('locale') == 'en') 

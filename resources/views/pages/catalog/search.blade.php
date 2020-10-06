@@ -70,7 +70,9 @@
 
                     <div class="row catalogDetails">
                         <div class="col-sm-12">
-                            <p class="catalogName">{{$catalog->name}}</p>
+                            <p class="catalogName">
+                                <a class="blackColor" href="/{{session('locale')}}/catalog/{{$catalog->slug}}">{{$catalog->name}}</a>
+                            </p>
 
                             <div class="textContainer">
                                 <p class="catalogDate">
