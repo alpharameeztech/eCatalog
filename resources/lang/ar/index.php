@@ -11,7 +11,7 @@ return [
     'city' => 'المدينة',
     'language' => 'اللغة',
     'the_latest_catalogs' => 'أحدث العروض',
-    'the_most_popular_catalogs' => 'أشهر منشورات المدونة',
+    'the_most_popular_catalogs' => 'أشهر العروض',
     'the_latest_blog_posts' => 'أحدث منشورات المدونة',
     'about' => 'من نحن',
     'faq' => 'الأسئلة والأجوبة',
