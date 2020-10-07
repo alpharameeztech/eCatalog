@@ -109,20 +109,22 @@ Route::group([
 });
 //======================== public apis end ==========================
 
-Route::get('/', function () {
+Route::get('/','HomeController@index');
 
-    $locale = session('locale');
+// Route::get('/', function () {
 
-     if(empty($locale)){
-         $locale = 'en';
-         app()->setLocale($locale);
-         session(['locale' => $locale]);
-         redirect('/en');
-     }
-     else{
-        return redirect("/{$locale}");
-     }
-});
+//     $locale = session('locale');
+
+//      if(empty($locale)){
+//          $locale = 'en';
+//          app()->setLocale($locale);
+//          session(['locale' => $locale]);
+//          redirect('/en');
+//      }
+//      else{
+//         return redirect("/{$locale}");
+//      }
+// });
 
 Route::middleware(['locale'])->group(function () {
     Route::get('/stores', 'StoreController@index');
