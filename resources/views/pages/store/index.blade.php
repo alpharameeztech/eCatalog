@@ -61,10 +61,11 @@
                            <div class=" storeContainerIndex">
    
                                <div class="textContainer">
-   
-                                   <p class="alignCenter">
-                                       Store {{$store->name}}
-                                   </p>
+                                    <a class="blackColor" href="/{{session('locale')}}/store/{{$store->slug}}">
+                                        <p class="alignCenter">
+                                            Store {{$store->name}}
+                                        </p>
+                                    </a>
                                </div>
                            </div>
                        </div>

@@ -145,12 +145,11 @@
                                     {{ $catalog->end_at}}
                                     @endif
                                 </p>
-                                <p class="@if(session('locale') == 'ar') textAlignRight @endif">
-                                    {{ trans('index.store') }} {{$catalog->store->name}}
-                                    {{--  <a  href="/store/{{$catalog->store->slug}}" class="no-underline hover:underline text-blue-400">
-                                        {{$catalog->store->name}}
-                                    </a>  --}}
-                                </p>
+                                <a class="blackColor" href="/{{session('locale')}}/store/{{$catalog->store->slug}}">
+                                    <p class="@if(session('locale') == 'ar') textAlignRight @endif">
+                                        {{ trans('index.store') }} {{$catalog->store->name}}
+                                    </p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -210,12 +209,11 @@
                                     {{ $catalog->end_at}}
                                 @endif
                             </p>
-                            <p class="@if(session('locale') == 'ar') textAlignRight @endif">
-                                {{ trans('index.store') }} {{$catalog->store->name}}
-                                {{--  <a  href="/store/{{$catalog->store->slug}}" class="no-underline hover:underline text-blue-400">
-                                    {{$catalog->store->name}}
-                                </a>  --}}
-                            </p>
+                            <a class="blackColor" href="/{{session('locale')}}/store/{{$catalog->store->slug}}">
+                                <p class="@if(session('locale') == 'ar') textAlignRight @endif">
+                                    {{ trans('index.store') }} {{$catalog->store->name}}
+                                </p>
+                            </a>
                         </div>
                     </div>
                 </div>
